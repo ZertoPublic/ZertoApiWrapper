@@ -46,7 +46,7 @@ function Get-ZertoProtectedVm {
             }
 
             "filter" {
-                $filter = New-ZertoApiFilter -filterTable $PSBoundParameters
+                $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $results = New-ZertoRestRequest -uri $uri
                 $returnObject.Add($results) | Out-Null

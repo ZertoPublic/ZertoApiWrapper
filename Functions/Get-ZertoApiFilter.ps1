@@ -1,4 +1,4 @@
-function New-ZertoApiFilter {
+function Get-ZertoApiFilter {
     [cmdletbinding()]
     param(
         [Parameter( Mandatory = $true )]

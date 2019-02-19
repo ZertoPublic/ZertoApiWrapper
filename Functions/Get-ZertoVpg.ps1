@@ -82,7 +82,7 @@ function Get-ZertoVpg {
                             $filterTable[$key] = $PSBoundParameters[$key]
                         }
                     }
-                    $filter = New-ZertoApiFilter -filterTable $filterTable
+                    $filter = Get-ZertoApiFilter -filterTable $filterTable
                 }
                 foreach ( $id in $protectionGroupIdentifier ) {
                     if ( $filter ) {
@@ -104,7 +104,7 @@ function Get-ZertoVpg {
             }
 
             "filter" {
-                $filter = New-ZertoApiFilter -filterTable $PSBoundParameters
+                $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $results = Invoke-ZertoRestRequest -uri $uri
                 $returnObject.Add($results)

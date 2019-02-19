@@ -59,7 +59,7 @@ function Get-ZertoEvent {
             }
 
             "filter" {
-                $filter = New-ZertoApiFilter -filterTable $PSBoundParameters
+                $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $results = Invoke-ZertoRestRequest -uri $uri
                 $returnObject.Add($results) | Out-Null

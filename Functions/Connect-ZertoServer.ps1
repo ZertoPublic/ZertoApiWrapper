@@ -3,7 +3,7 @@ function Connect-ZertoServer {
         SupportsShouldProcess = $false
     )]
     param(
-        [Parameter( 
+        [Parameter(
             Mandatory = $true,
             HelpMessage = "IP address or FQDN of your Zerto Management Server"
         )]
@@ -24,5 +24,5 @@ function Connect-ZertoServer {
     $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST
     $zertoAuthorizationHeaders = @{"x-zerto-session" = $results.Headers['x-zerto-session'][0].ToString(); "Accept" = "application/json"}
     Set-Item Env:zertoAuthorizationHeaders -Value ($zertoAuthorizationHeaders | convertto-json -Compress)
-    return $zertoAuthorizationHeaders    
+    return $zertoAuthorizationHeaders
 }

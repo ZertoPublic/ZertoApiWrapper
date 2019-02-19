@@ -44,7 +44,7 @@ function Get-ZertoResourcesReport {
     process {
         switch ( $PSCmdlet.ParameterSetName ) {
             "filter" {
-                $filter = New-ZertoApiFilter -filterTable $PSBoundParameters
+                $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $results = New-ZertoRestRequest -uri $uri
             }
