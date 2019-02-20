@@ -15,6 +15,7 @@ function Get-ZertoVolume {
 
     begin {
         $baseUri = "volumes"
+        $returnObject = @()
     }
 
     process {
@@ -22,16 +23,16 @@ function Get-ZertoVolume {
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $results = Invoke-ZertoRestRequest -uri $uri
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             default {
-                $results = Invoke-ZertoRestRequest -uri $baseUri
+                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
             }
         }
     }
 
     end {
-        return $results
+        return $returnObject
     }
 }

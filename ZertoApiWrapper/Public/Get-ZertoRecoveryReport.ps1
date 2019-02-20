@@ -28,16 +28,16 @@ function Get-ZertoRecoveryReport {
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $results = New-ZertoRestRequest -uri $uri
+                $returnObject = New-ZertoRestRequest -uri $uri
             }
 
             default {
-                $results = Invoke-ZertoRestRequest -uri $baseUri
+                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
             }
         }
     }
 
     end {
-        return $results
+        return $returnObject
     }
 }

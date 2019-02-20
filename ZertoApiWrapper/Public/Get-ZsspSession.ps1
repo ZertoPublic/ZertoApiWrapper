@@ -7,18 +7,16 @@ function Get-ZertoZsspSession {
 
     begin {
         $baseUri = "zsspSessionIdentifier"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     process {
         if ( $PSCmdlet.ParameterSetName -eq "default" ) {
-            $results = Invoke-ZertoRestRequest -uri $baseUri
-            $returnObject.Add($results) | Out-Null
+            $returnObject = Invoke-ZertoRestRequest -uri $baseUri
         } elseif ( $PSCmdlet.ParameterSetName -eq "zsspSessionIdentifier" ) {
-            foreach ( $id in $zsspSessionIdentifier ) {
+            $returnObject = foreach ( $id in $zsspSessionIdentifier ) {
                 $uri = "{0}/{1}" -f $baseUri, $id
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
         }
     }

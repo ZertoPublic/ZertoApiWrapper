@@ -54,21 +54,19 @@ function Get-ZertoVpg {
     )
     begin {
         $baseUri = "vpgs"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     Process {
         switch ( $PSCmdlet.ParameterSetName ) {
             "main" {
-                $results = Invoke-ZertoRestRequest -uri $baseUri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
             }
 
             "protectionGroupIdentifier" {
-                foreach ( $vpgId in $protectionGroupIdentifier ) {
+                $returnObject = foreach ( $vpgId in $protectionGroupIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $vpgId
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
@@ -84,36 +82,32 @@ function Get-ZertoVpg {
                     }
                     $filter = Get-ZertoApiFilter -filterTable $filterTable
                 }
-                foreach ( $id in $protectionGroupIdentifier ) {
+                $returnObject = foreach ( $id in $protectionGroupIdentifier ) {
                     if ( $filter ) {
                         $uri = "{0}/{1}/checkpoints{2}" -f $baseUri, $id, $filter
                     } else {
                         $uri = "{0}/{1}/checkpoints" -f $baseUri, $id
                     }
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             "stats" {
-                foreach ( $id in $protectionGroupIdentifier ) {
+                $returnObject = foreach ( $id in $protectionGroupIdentifier ) {
                     $uri = "{0}/{1}/checkpoints/stats" -f $baseUri, $id
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName.ToLower()
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
         }
     }

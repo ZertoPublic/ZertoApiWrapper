@@ -27,29 +27,27 @@ function Get-ZertoProtectedVm {
 
     begin {
         $baseUri = "vms"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     process {
         switch ( $PSCmdlet.ParameterSetName ) {
             "main" {
-                $results = Invoke-ZertoRestRequest -uri $baseUri
+                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
                 $returnObject.Add($results) | Out-Null
             }
 
             "vmIdentifier" {
-                foreach ( $id in $vmIdentifier ) {
+                $returnObject = foreach ( $id in $vmIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $id
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $results = New-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = New-ZertoRestRequest -uri $uri
             }
         }
     }
