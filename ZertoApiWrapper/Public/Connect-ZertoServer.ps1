@@ -24,5 +24,7 @@ function Connect-ZertoServer {
     $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST
     $zertoAuthorizationHeaders = @{"x-zerto-session" = $results.Headers['x-zerto-session'][0].ToString(); "Accept" = "application/json"}
     Set-Item Env:zertoAuthorizationHeaders -Value ($zertoAuthorizationHeaders | convertto-json -Compress)
+    $zertoLocalSiteInfo = Get-ZertoLocalSite
+    Set-Item Env:zertoLocalSiteInfo -Value ($zertoLocalSiteInfo | ConvertTo-Json -Compress)
     return $zertoAuthorizationHeaders
 }
