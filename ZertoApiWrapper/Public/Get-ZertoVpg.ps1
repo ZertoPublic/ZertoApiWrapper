@@ -74,7 +74,7 @@ function Get-ZertoVpg {
 
             "checkpoints" {
                 $filter = $false
-                if ( $PSBoundParameters.Contains("startDate") -or $PSBoundParameters.Contains("endDate") ) {
+                if ( $PSBoundParameters.ContainsKey("startDate") -or $PSBoundParameters.ContainsKey("endDate") ) {
                     $filter = $true
                     $filterTable = @{}
                     foreach ( $key in $PSBoundParameters.Keys ) {

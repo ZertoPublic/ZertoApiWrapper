@@ -50,7 +50,7 @@ function Get-ZertoVirtualizationSite {
 
             "devices" {
                 foreach ( $id in $siteIdentifier ) {
-                    if ( $PSBoundParameters.Contains( "hostIdentifier" ) ) {
+                    if ( $PSBoundParameters.ContainsKey( "hostIdentifier" ) ) {
                         $uri = "{0}/{1}/devices?hostIdentifier={2}" -f $baseUri, $siteIdentifier, $hostIdentifier
                     } else {
                         $uri = "{0}/{1}/devices" -f $baseUri, $siteIdentifier
@@ -61,7 +61,7 @@ function Get-ZertoVirtualizationSite {
             }
 
             "hosts" {
-                if ( $PSBoundParameters.Contains( "hostIdentifier" ) ) {
+                if ( $PSBoundParameters.ContainsKey( "hostIdentifier" ) ) {
                     $uri = "{0}/{1}/hosts/{2}" -f $baseUri, $siteIdentifier, $hostIdentifier
                 } else {
                     $uri = "{0}/{1}/hosts" -f $baseUri, $siteIdentifier
