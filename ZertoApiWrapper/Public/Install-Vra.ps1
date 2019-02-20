@@ -25,5 +25,6 @@ function Install-Vra {
 
     )
 
-    $hostInformation = Get-
+    $siteIdentifier = ((Get-Item Env:zertoLocalSiteInfo).value | ConvertFrom-Json).SiteIdentifier
+    $hostInformation = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object {$_.VirtualizationHostName -eq $hostName}
 }
