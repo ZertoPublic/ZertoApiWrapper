@@ -56,7 +56,7 @@ function Get-ZertoVirtualizationSite {
                         $uri = "{0}/{1}/devices" -f $baseUri, $siteIdentifier
                     }
                     $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
+                    $returnObject.Add($results) | Out-Null
                 }
             }
 
@@ -67,14 +67,14 @@ function Get-ZertoVirtualizationSite {
                     $uri = "{0}/{1}/hosts" -f $baseUri, $siteIdentifier
                 }
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
             }
 
             "siteIdentifier" {
                 # foreach ( $id in $siteIdentifier ) {
                 $uri = "{0}/{1}" -f $baseUri, $id
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
                 # }
             }
 
@@ -82,7 +82,7 @@ function Get-ZertoVirtualizationSite {
                 # foreach ( $id in $siteIdentifier ) {
                 $uri = "{0}/{1}/{2}" -f $baseUri, $siteIdentifier, $PSCmdlet.ParameterSetName.ToLower()
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
                 # }
             }
         }

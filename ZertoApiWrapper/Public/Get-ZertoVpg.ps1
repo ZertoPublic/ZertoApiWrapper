@@ -68,7 +68,7 @@ function Get-ZertoVpg {
                 foreach ( $vpgId in $protectionGroupIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $vpgId
                     $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
+                    $returnObject.Add($results) | Out-Null
                 }
             }
 
@@ -91,7 +91,7 @@ function Get-ZertoVpg {
                         $uri = "{0}/{1}/checkpoints" -f $baseUri, $id
                     }
                     $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
+                    $returnObject.Add($results) | Out-Null
                 }
             }
 
@@ -99,7 +99,7 @@ function Get-ZertoVpg {
                 foreach ( $id in $protectionGroupIdentifier ) {
                     $uri = "{0}/{1}/checkpoints/stats" -f $baseUri, $id
                     $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
+                    $returnObject.Add($results) | Out-Null
                 }
             }
 
@@ -107,13 +107,13 @@ function Get-ZertoVpg {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
             }
 
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName.ToLower()
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
             }
         }
     }
