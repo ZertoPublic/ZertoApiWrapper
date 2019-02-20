@@ -29,7 +29,7 @@ function Get-ZertoVra {
             foreach ( $vraId in $vraIdentifier ) {
                 $uri = "{0}/{1}" -f $baseUri, $vraId
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
             }
         } else {
             $uri = $baseUri
