@@ -46,7 +46,7 @@ function Get-ZertoResourcesReport {
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $returnObject = New-ZertoRestRequest -uri $uri
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             default {
