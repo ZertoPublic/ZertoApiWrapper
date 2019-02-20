@@ -42,7 +42,7 @@ function Get-ZertoTask {
                 foreach ( $id in $taskIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $id
                     $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
+                    $returnObject.Add($results) | Out-Null
                 }
             }
 

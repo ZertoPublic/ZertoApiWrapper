@@ -13,12 +13,12 @@ function Get-ZertoZsspSession {
     process {
         if ( $PSCmdlet.ParameterSetName -eq "default" ) {
             $results = Invoke-ZertoRestRequest -uri $baseUri
-            $returnObject.Add($results)
+            $returnObject.Add($results) | Out-Null
         } elseif ( $PSCmdlet.ParameterSetName -eq "zsspSessionIdentifier" ) {
             foreach ( $id in $zsspSessionIdentifier ) {
                 $uri = "{0}/{1}" -f $baseUri, $id
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results)
+                $returnObject.Add($results) | Out-Null
             }
         }
     }

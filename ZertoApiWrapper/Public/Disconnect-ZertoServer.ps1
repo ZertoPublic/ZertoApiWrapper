@@ -3,5 +3,6 @@ function Disconnect-ZertoServer {
     $uri = "session"
     Invoke-ZertoRestRequest -uri $uri -method DELETE
     Remove-Item Env:zertoAuthorizationHeaders
-    Remove-Item Env:zertoConnectionInformation  
+    Remove-Item Env:zertoConnectionInformation
+    Remove-Item Env:zertoLocalSiteInfo
 }
