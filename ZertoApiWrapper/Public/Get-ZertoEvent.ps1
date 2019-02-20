@@ -39,36 +39,32 @@ function Get-ZertoEvent {
 
     begin {
         $baseUri = "events"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     process {
         switch ( $PSCmdlet.ParameterSetName ) {
             "main" {
                 $uri = "{0}" -f $baseUri
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             "eventId" {
-                foreach ( $id in $eventId ) {
+                $returnObject = foreach ( $id in $eventId ) {
                     $uri = "{0}/{1}" -f $baseUri, $id
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName.ToLower()
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
         }
     }

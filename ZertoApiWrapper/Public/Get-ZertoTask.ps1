@@ -21,35 +21,31 @@ function Get-ZertoTask {
 
     begin {
         $baseUri = "tasks"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     process {
         switch ( $PSCmdlet.ParameterSetName ) {
             "main" {
-                $results = Invoke-ZertoRestRequest -uri $baseUri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
             }
 
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $results = New-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = New-ZertoRestRequest -uri $uri
             }
 
             "taskIdentifier" {
-                foreach ( $id in $taskIdentifier ) {
+                $returnObject = foreach ( $id in $taskIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $id
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
         }
     }

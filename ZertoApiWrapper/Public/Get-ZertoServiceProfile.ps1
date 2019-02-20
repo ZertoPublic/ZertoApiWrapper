@@ -16,21 +16,18 @@ function Get-ZertoServiceProfile {
         switch ( $PSCmdlet.ParameterSetName ) {
             "siteIdentifier" {
                 $uri = "{0}?site={1}" -f $baseUri, $siteIdentifier
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             "serviceProfileId" {
-                foreach ( $id in $serviceProfileId ) {
+                $returnObject = foreach ( $id in $serviceProfileId ) {
                     $uri = "{0}/{1}" -f $baseUri, $id
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             default {
-                $results = Invoke-ZertoRestRequest -uri $baseUri
-                $returnObject.Add($results) | Out-Null
+                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
             }
         }
     }
