@@ -1,4 +1,4 @@
-function Install-Vra {
+function Install-ZertoVra {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter( Mandatory = $true )]
