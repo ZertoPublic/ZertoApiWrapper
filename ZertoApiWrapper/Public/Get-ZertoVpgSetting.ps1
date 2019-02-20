@@ -1,6 +1,6 @@
 function Get-ZertoVpgSetting {
     [cmdletbinding(
-        DefaultParameterSetName = "default",
+        DefaultParameterSetName = "main",
         SupportsShouldProcess = $false
     )]
     param(
@@ -212,46 +212,42 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "volumeIdentifier",
             Mandatory = $true
         )]
-        [string]$volumeIdentifier<#,
-         [Parameter(
-            ParameterSetName = "vpgSettingsIdentifier",
-            Mandatory = $true
-        )]
-        [switch]$allSettings #>
+        [string]$volumeIdentifier
     )
 
     begin {
         $baseUri = "vpgSettings"
+        $returnObject = @()
     }
 
     process {
-        if ( $PSCmdlet.ParameterSetName -eq "default" ) {
-            $results = Invoke-ZertoRestRequest -uri $baseUri
+        if ( $PSCmdlet.ParameterSetName -eq "main" ) {
+            $returnObject = Invoke-ZertoRestRequest -uri $baseUri
         } elseif ($PSCmdlet.ParameterSetName -eq "vpgSettingsIdentifier") {
             $uri = "{0}/{1}" -f $baseUri, $vpgSettingsIdentifier
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $PSCmdlet.ParameterSetName -eq "dayOfWeek" -or $PSCmdlet.ParameterSetName -eq "retentionPeriod" -or $PSCmdlet.ParameterSetName -eq "schedulerPeriod"  ) {
             $uri = "{0}/{1}/backup/{2}" -f $baseUri, $vpgSettingsIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $PSCmdlet.ParameterSetName -eq "nics" -or $PSCmdlet.ParameterSetName -eq "volumes" ) {
             $uri = "{0}/{1}/vms/{2}/{3}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $PSCmdlet.ParameterSetName -eq "vmIdentifier" ) {
             $uri = "{0}/{1}/vms/{2}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $PSCmdlet.ParameterSetName -eq "nicIdentifier" ) {
             $uri = "{0}/{1}/vms/{2}/nics/{3}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier, $nicIdentifier
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $PSCmdlet.ParameterSetName -eq "volumeIdentifier" ) {
             $uri = "{0}/{1}/vms/{2}/volumes/{3}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier, $volumeIdentifier
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } else {
             $uri = "{0}/{1}/{2}" -f $baseUri, $vpgSettingsIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-            $results = Invoke-ZertoRestRequest -uri $uri
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         }
     }
 
     end {
-        return $results
+        return $returnObject
     }
 }

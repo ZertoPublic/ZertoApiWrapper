@@ -13,28 +13,24 @@ function Get-ZertoVra {
 
     begin {
         $baseUri = "vras"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     process {
         if ( $ipconfigurationtypes ) {
             $uri = "{0}/ipconfigurationtypes" -f $baseUri
-            $results = Invoke-ZertoRestRequest -uri $uri
-            $returnObject = $results
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $statuses ) {
             $uri = "{0}/statuses" -f $baseUri
-            $results = Invoke-ZertoRestRequest -uri $uri
-            $returnObject = $results
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } elseif ( $PSCmdlet.ParameterSetName -eq "vraIdentifierifier" ) {
-            foreach ( $vraId in $vraIdentifier ) {
+            $returnObject = foreach ( $vraId in $vraIdentifier ) {
                 $uri = "{0}/{1}" -f $baseUri, $vraId
-                $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                Invoke-ZertoRestRequest -uri $uri
             }
         } else {
             $uri = $baseUri
-            $results = Invoke-ZertoRestRequest -uri $uri
-            $returnObject = $results
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         }
     }
 

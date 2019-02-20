@@ -7,19 +7,17 @@ function Get-ZertoDatastore {
 
     begin {
         $baseUri = "datastores"
-        $returnObject = [System.Collections.ArrayList]@()
+        $returnObject = @()
     }
 
     process {
         if ( $PSCmdlet.ParameterSetName -eq "main" ) {
             $uri = "{0}" -f $baseUri
-            $result = Invoke-ZertoRestRequest -uri $uri
-            $returnObject.Add($result) | Out-Null
+            $returnObject = Invoke-ZertoRestRequest -uri $uri
         } else {
-            foreach ( $id in $datastoreIdentifier ) {
+            $returnObject = foreach ( $id in $datastoreIdentifier ) {
                 $uri = "{0}/{1}" -f $baseUri, $id
-                $result = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($result) | Out-Null
+                Invoke-ZertoRestRequest -uri $uri
             }
         }
     }
