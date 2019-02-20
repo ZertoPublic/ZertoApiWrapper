@@ -1,3 +1,5 @@
+task . InstallDependencies, Analyze
+
 task InstallDependencies {
     Install-Module Pester -Force
     Install-Module PSScriptAnalyzer -Force
@@ -5,7 +7,7 @@ task InstallDependencies {
 
 task Analyze {
     $scriptAnalyzerParams = @{
-        Path        = "$BuildRoot\Functions\"
+        Path        = "$BuildRoot\ZertoApiWrapper\"
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
