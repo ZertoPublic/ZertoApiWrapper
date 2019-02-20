@@ -9,7 +9,7 @@ function Get-ZertoVirtualizationSite {
         [Parameter( ParameterSetName = "networks", Mandatory = $true )]
         [Parameter( ParameterSetName = "resourcePools", Mandatory = $true )]
         [Parameter( ParameterSetName = "vms", Mandatory = $true )]
-        [string[]]$siteIdentifiers,
+        # [string[]]$siteIdentifiers,
         [Parameter( ParameterSetName = "devices", Mandatory = $true )]
         [Parameter( ParameterSetName = "folders", Mandatory = $true )]
         [string]$siteIdentifier,
@@ -71,19 +71,19 @@ function Get-ZertoVirtualizationSite {
             }
 
             "siteIdentifier" {
-                foreach ( $id in $siteIdentifiers ) {
-                    $uri = "{0}/{1}" -f $baseUri, $id
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
-                }
+                # foreach ( $id in $siteIdentifier ) {
+                $uri = "{0}/{1}" -f $baseUri, $id
+                $results = Invoke-ZertoRestRequest -uri $uri
+                $returnObject.Add($results)
+                # }
             }
 
             default {
-                foreach ( $id in $siteIdentifiers ) {
-                    $uri = "{0}/{1}/{2}" -f $baseUri, $siteIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-                    $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results)
-                }
+                # foreach ( $id in $siteIdentifier ) {
+                $uri = "{0}/{1}/{2}" -f $baseUri, $siteIdentifier, $PSCmdlet.ParameterSetName.ToLower()
+                $results = Invoke-ZertoRestRequest -uri $uri
+                $returnObject.Add($results)
+                # }
             }
         }
     }
