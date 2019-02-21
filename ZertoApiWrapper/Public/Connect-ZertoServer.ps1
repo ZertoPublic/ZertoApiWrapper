@@ -18,7 +18,7 @@ function Connect-ZertoServer {
         [System.Management.Automation.PSCredential]
         $credential
     )
-    Set-Variable -Name zvmHost -Scope Script -Value $zertoServer
+    Set-Variable -Name zvmServer -Scope Script -Value $zertoServer
     Set-Variable -Name zvmPort -Scope Script -Value $zertoPort
     Set-Variable -Name zmvLastAction -Scope Script -Value $(get-date).Ticks
     # $zertoConnectionInformation = @{"zertoServer" = $zertoServer; "zertoPort" = $zertoPort; "LastAction" = $(get-date).Ticks}
