@@ -28,7 +28,7 @@ function Install-ZertoVra {
     #TODO - Test to see if VRA already exists!
     $vraName = "Z-VRA-{0}" -f $hostName
     if ( -not (Get-ZertoVra -vraName $vraName) ) {
-        $siteIdentifier = ((Get-Item Env:zertoLocalSiteInfo).value | ConvertFrom-Json).SiteIdentifier
+        $siteIdentifier = $script:zertoLocalInfo.SiteIdentifier
         $hostIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object {$_.VirtualizationHostName -eq $hostName} | Select-Object hostIdentifier -ExpandProperty hostIdentifier
         $networkIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -networks | Where-Object {$_.VirtualizationNetworkName -eq $networkName} | Select-Object NetworkIdentifier -ExpandProperty NetworkIdentifier
         $datastoreIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -datastores | Where-Object {$_.DatastoreName -eq $datastoreName} | Select-Object DatastoreIdentifier -ExpandProperty DatastoreIdentifier
@@ -51,7 +51,7 @@ function Install-ZertoVra {
             $vraBasicNetwork['VraIPConfigurationTypeApi'] = "Dhcp"
         }
         $vraBasic['VraNetworkDataApi'] = $vraBasicNetwork
-        if ($PSCmdlet.ShouldProcess("Host $hostName with the following data $($vraBasic | convertto-json)")) {
+        if ($PSCmdlet.ShouldProcess("Preforming operation 'Install-Vra' on Host $hostName with the following data \n $($vraBasic | convertto-json)")) {
             Invoke-ZertoRestRequest -uri "vras" -method POST -body $($vraBasic | ConvertTo-Json)
         }
     } else {
