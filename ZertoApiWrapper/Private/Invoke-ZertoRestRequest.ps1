@@ -11,29 +11,22 @@ function Invoke-ZertoRestRequest {
         [switch]$returnHeaders
     )
     $callerErrorActionPreference = $ErrorActionPreference
-    if ( Test-Path Env:zertoConnectionInformation ) {
-        $zertoConnectionInformation = $(Get-Item -Path Env:zertoConnectionInformation).value | ConvertFrom-Json
-    } else {
+    if ( -not (Test-Path variable:script:zvmServer -and Test-Path variable:script:zvmPort) ) {
         Write-Error -Message "Zerto Connection does not Exist. Please run Connect-ZertoServer first to establish a connection"
         break
-    }
-    if ( Test-Path Env:zertoAuthorizationHeaders ) {
-        $json = $(Get-Item Env:zertoAuthorizationHeaders).value | ConvertFrom-Json
-        $headers = @{}
-        $json.psobject.properties | ForEach-Object { $headers[$_.Name] = $_.Value }
+    if ( Test-Path variable:script:zvmHeaders ) {
+        $headers = $script:zvmHeaders
     } else {
         $headers = $null
     }
-    if ( (Test-Path Env:zertoAuthorizationHeaders) -and $([datetime]$zertoConnectionInformation.lastAction).addMinutes(30) -lt $(get-date) ) {
+    if ( (Test-Path variable:script:zvmHeaders) -and $([datetime]$script:zvmLastAction).addMinutes(30) -lt $(get-date) ) {
         Write-Error -Message "Authorization Token has Expired or Does not exist in Env variables. Please re-authorize to the Zerto Virtual Manager"
         break
     } else {
-        $submittedURI = "https://{0}:{1}/{2}/{3}" -f $zertoConnectionInformation.zertoServer, $zertoConnectionInformation.zertoPort, $apiVersion, $uri
+        $submittedURI = "https://{0}:{1}/{2}/{3}" -f $script:zvmServer, $script:zvmPort, $apiVersion, $uri
         try {
-            $lastAction = (get-date).Ticks
+            $script:zvmLastAction = (get-date).Ticks
             $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $headers -Method $method -Body $body -ContentType $contentType -Credential $credential -SkipCertificateCheck -ResponseHeadersVariable responseHeaders -TimeoutSec 100
-            $zertoConnectionInformation.lastAction = $lastAction
-            Set-Item -Path Env:zertoConnectionInformation -Value $($zertoConnectionInformation | ConvertTo-Json -Compress)
         } catch {
             Write-Error -ErrorRecord $_ -ErrorAction $callerErrorActionPreference
         }

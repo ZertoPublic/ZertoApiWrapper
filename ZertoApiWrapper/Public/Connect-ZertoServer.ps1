@@ -18,14 +18,18 @@ function Connect-ZertoServer {
         [System.Management.Automation.PSCredential]
         $credential
     )
-    $zertoConnectionInformation = @{"zertoServer" = $zertoServer; "zertoPort" = $zertoPort; "LastAction" = $(get-date).Ticks}
-    Set-Item Env:zertoConnectionInformation -Value ($zertoConnectionInformation | ConvertTo-Json -Compress)
+    Set-Variable -Name zvmHost -Scope Script -Value $zertoServer
+    Set-Variable -Name zvmPort -Scope Script -Value $zertoPort
+    Set-Variable -Name zmvLastAction -Scope Script -Value $(get-date).Ticks
+    # $zertoConnectionInformation = @{"zertoServer" = $zertoServer; "zertoPort" = $zertoPort; "LastAction" = $(get-date).Ticks}
+    # Set-Item Env:zertoConnectionInformation -Value ($zertoConnectionInformation | ConvertTo-Json -Compress)
     $body = '{"AuthenticationMethod": "1"}'
     $uri = "session/add"
     $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST
     $zertoAuthorizationHeaders = @{"x-zerto-session" = $results.Headers['x-zerto-session'][0].ToString(); "Accept" = "application/json"}
-    Set-Item Env:zertoAuthorizationHeaders -Value ($zertoAuthorizationHeaders | ConvertTo-Json -Compress)
-    $zertoLocalSiteInfo = Get-ZertoLocalSite
-    Set-Item Env:zertoLocalSiteInfo -Value ($zertoLocalSiteInfo | ConvertTo-Json -Compress)
+    Set-Variable -Name zvmHeaders -Scope Script -Value $zertoAuthorizationHeaders
+    # Set-Item Env:zertoAuthorizationHeaders -Value ($zertoAuthorizationHeaders | ConvertTo-Json -Compress)
+    Set-Variable -Name zvmLocalInfo -Scope Script -Value (Get-ZertoLocalSite)
+    # Set-Item Env:zertoLocalSiteInfo -Value ($zertoLocalSiteInfo | ConvertTo-Json -Compress)
     return $zertoAuthorizationHeaders
 }
