@@ -51,7 +51,7 @@ function Install-ZertoVra {
             $vraBasicNetwork['VraIPConfigurationTypeApi'] = "Dhcp"
         }
         $vraBasic['VraNetworkDataApi'] = $vraBasicNetwork
-        if ($PSCmdlet.ShouldProcess("Preforming operation 'Install-Vra' on Host $hostName with the following data \n $($vraBasic | convertto-json)")) {
+        if ($PSCmdlet.ShouldProcess("Host $hostName with the following data $($vraBasic | convertto-json)")) {
             Invoke-ZertoRestRequest -uri "vras" -method POST -body $($vraBasic | ConvertTo-Json)
         }
     } else {
