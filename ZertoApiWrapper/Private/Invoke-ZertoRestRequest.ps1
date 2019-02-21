@@ -11,7 +11,7 @@ function Invoke-ZertoRestRequest {
         [switch]$returnHeaders
     )
     $callerErrorActionPreference = $ErrorActionPreference
-    if ( -not (Test-Path variable:script:zvmServer -and Test-Path variable:script:zvmPort) ) {
+    if ( -not ((Test-Path variable:script:zvmServer) -and (Test-Path variable:script:zvmPort)) ) {
         Write-Error -Message "Zerto Connection does not Exist. Please run Connect-ZertoServer first to establish a connection"
         break
     }
