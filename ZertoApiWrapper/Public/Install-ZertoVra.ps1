@@ -27,7 +27,7 @@ function Install-ZertoVra {
     )
     #TODO - Test to see if VRA already exists!
     $vraName = "Z-VRA-{0}" -f $hostName
-    if ( Get-ZertoVra -vraName $vraName ) {
+    if ( -not (Get-ZertoVra -vraName $vraName) ) {
         $siteIdentifier = $script:zertoLocalInfo.SiteIdentifier
         $hostIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object {$_.VirtualizationHostName -eq $hostName} | Select-Object hostIdentifier -ExpandProperty hostIdentifier
         $networkIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -networks | Where-Object {$_.VirtualizationNetworkName -eq $networkName} | Select-Object NetworkIdentifier -ExpandProperty NetworkIdentifier
