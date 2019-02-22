@@ -20,7 +20,7 @@ function Connect-ZertoServer {
     )
     Set-Variable -Name zvmServer -Scope Script -Value $zertoServer
     Set-Variable -Name zvmPort -Scope Script -Value $zertoPort
-    Set-Variable -Name zmvLastAction -Scope Script -Value $(get-date).Ticks
+    Set-Variable -Name zvmLastAction -Scope Script -Value $(get-date).Ticks
     # $zertoConnectionInformation = @{"zertoServer" = $zertoServer; "zertoPort" = $zertoPort; "LastAction" = $(get-date).Ticks}
     # Set-Item Env:zertoConnectionInformation -Value ($zertoConnectionInformation | ConvertTo-Json -Compress)
     $body = '{"AuthenticationMethod": "1"}'
