@@ -15,6 +15,9 @@ function Uninstall-ZertoVra {
             $vraIdentifier = get-zertovra -vraName $vraName | Select-Object vraIdentifier -ExpandProperty vraIdentifier
             $uri = "{0}/{1}" -f $baseUri, $vraIdentifier.toString()
             Invoke-ZertoRestRequest -uri $uri -method "DELETE"
+            if ($hostName.Count -gt 1) {
+                Start-Sleep 1
+            }
         }
     }
 
