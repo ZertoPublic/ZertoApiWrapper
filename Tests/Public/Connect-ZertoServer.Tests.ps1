@@ -2,7 +2,7 @@ $moduleFileName = "ZertoApiWrapper.psm1"
 $filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
 $fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
 $modulePath = $filePath -replace "Public", ""
-Import-Module $modulePath/$moduleFileName -Force
+Import-Module $modulePath\$moduleFileName -Force
 
 $userName = "zerto\build"
 $password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
