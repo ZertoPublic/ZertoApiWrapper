@@ -2,9 +2,9 @@ function Disconnect-ZertoServer {
     [cmdletbinding()]
     $uri = "session"
     Invoke-ZertoRestRequest -uri $uri -method DELETE
-    Clear-Variable -Name zvmServer -Scope Script
-    Clear-Variable -Name zvmPort -Scope Script
-    Clear-Variable -Name zvmLastAction -Scope Script
-    Clear-Variable -Name zvmHeaders -Scope Script
-    Clear-Variable -Name zvmLocalInfo -Scope Script
+    Remove-Variable -Name zvmServer -Scope Script
+    Remove-Variable -Name zvmPort -Scope Script
+    Remove-Variable -Name zvmLastAction -Scope Script
+    Remove-Variable -Name zvmHeaders -Scope Script
+    Remove-Variable -Name zvmLocalInfo -Scope Script
 }
