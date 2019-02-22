@@ -13,13 +13,13 @@ $zertoServer = "192.168.1.100"
 $zertoPort = "7669"
 
 Describe "Connect-ZertoServer" {
-    it "should exist" {
+    it "file should exist" {
         "$filePath\$fileName" | should exist
     }
     it "has a function called Connect-ZertoServer" {
         get-command Connect-ZertoServer | should be $true
     }
-    $headers = Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential
+    $headers = Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential -returnHeaders
     it "returns a Hashtable with 2 keys" {
         $headers.keys.count | should be 2
     }
