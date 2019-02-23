@@ -1,7 +1,11 @@
 function Disconnect-ZertoServer {
     [cmdletbinding()]
     $uri = "session"
+
+    # Delete API Authorization
     Invoke-ZertoRestRequest -uri $uri -method DELETE
+
+    # Remove all variables used
     Remove-Variable -Name zvmServer -Scope Script
     Remove-Variable -Name zvmPort -Scope Script
     Remove-Variable -Name zvmLastAction -Scope Script
