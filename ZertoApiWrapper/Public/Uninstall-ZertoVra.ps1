@@ -1,7 +1,10 @@
 function Uninstall-ZertoVra {
     [cmdletbinding()]
     param(
-        [Parameter( Mandatory = $true )]
+        [Parameter(
+            Mandatory = $true,
+            HelpMessage = "Host Name attached to the VRA to be removed."
+        )]
         [string[]]$hostName
     )
 
