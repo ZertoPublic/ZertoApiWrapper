@@ -39,7 +39,7 @@ function Get-ZertoAlert {
         [string]$endDate,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage "Returns alerts for the specified vraIdentifier"
+            HelpMessage = "Returns alerts for the specified vraIdentifier"
         )]
         [string]$vpgIdentifier,
         [Parameter(

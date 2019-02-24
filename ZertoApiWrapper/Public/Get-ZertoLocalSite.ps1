@@ -1,6 +1,9 @@
 function Get-ZertoLocalSite {
     [cmdletbinding()]
     param(
+        [Parameter(
+            HelpMessage = "Switch to return possible paiting statuses."
+        )]
         [switch]$pairingstatuses
     )
     $uri = "localsite"

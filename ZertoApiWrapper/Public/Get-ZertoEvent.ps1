@@ -87,7 +87,7 @@ function Get-ZertoEvent {
         [Parameter(
             ParameterSetName = "types",
             Mandatory = $true,
-            HelpMessage "Returns possible event types.")]
+            HelpMessage = "Returns possible event types.")]
         [switch]$types
     )
 

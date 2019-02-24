@@ -1,9 +1,15 @@
 function Get-ZertoServiceProfile {
     [cmdletbinding( DefaultParameterSetName = "main" )]
     param (
-        [Parameter( ParameterSetName = "siteIdentifier" )]
+        [Parameter(
+            ParameterSetName = "siteIdentifier",
+            HelpMessage = "The identifier of the site for which service profiles should be returned."
+        )]
         [string]$siteIdentifier,
-        [Parameter( ParameterSetName = "serviceProfileId" )]
+        [Parameter(
+            ParameterSetName = "serviceProfileId",
+            HelpMessage = "The service profile ID for which information should be returned."
+        )]
         [string[]]$serviceProfileId
     )
 
