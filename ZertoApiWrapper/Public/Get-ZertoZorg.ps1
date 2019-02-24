@@ -1,7 +1,10 @@
 function Get-ZertoZorg {
     [cmdletbinding( DefaultParameterSetName = "default" )]
     param(
-        [Parameter( ParameterSetName = "zorgIdentifier" )]
+        [Parameter(
+            ParameterSetName = "zorgIdentifier",
+            HelpMessage = "Identifier(s) of the ZORG."
+        )]
         [string[]]$zorgIdentifier
     )
 

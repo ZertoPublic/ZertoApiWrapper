@@ -1,7 +1,10 @@
 function Get-ZertoZsspSession {
     [cmdletbinding( DefaultParameterSetName = "default" )]
     param(
-        [Parameter( ParameterSetName = "zsspSessionIdentifier" )]
+        [Parameter(
+            ParameterSetName = "zsspSessionIdentifier",
+            HelpMessage = "ZSSP Session Id(s) to get information."
+        )]
         [string[]]$zsspSessionIdentifier
     )
 
