@@ -1,22 +1,15 @@
 function Edit-ZertoVra {
-    [cmdletbinding()]
+    [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter(
             Mandatory = $true,
             HelpMessage = "Identifier of the VRA to be updated."
         )]
-        [Alias("Identifier")]
         [string]$vraIdentifier,
         [Parameter(
             HelpMessage = "Bandwidth group to assign to the VRA. If unspecified will not modify current assignment"
         )]
         [string]$groupName,
-        [Parameter(
-            ParameterSetName = "Dhcp",
-            Mandatory = $true,
-            HelpMessage = "Assign a DHCP address to the VRA."
-        )]
-        [switch]$Dhcp,
         [Parameter(
             ParameterSetName = "StaticIp",
             HelpMessage = "Static IP address to assign to the VRA."
@@ -35,43 +28,49 @@ function Edit-ZertoVra {
         )]
         [ValidateScript( {$_ -match [IPAddress]$_ })]
         [string]$subnetMask
-
     )
 
     begin {
         $baseUri = "vras/{0}" -f $vraIdentifier
+        # Get the current VRA information for use if an updated parameter is not supplied
         $vra = Get-ZertoVra -vraIdentifier $vraIdentifier
     }
 
     process {
+        # Create ordered hashtables to be converted later to JSON.
         $vraUpdate = [ordered]@{}
         $vraNetwork = [ordered]@{}
+        # If a new group name is specified, update.
         if ( $PSBoundParameters.ContainsKey('GroupName')) {
+            $vraUpdate['GroupName'] = $groupName
+        } else {
             $vraUpdate['GroupName'] = $vra.VraGroup
         }
-        if ( $PSCmdlet.ParameterSetName -eq 'Dhcp' ) {
-            $vraNetwork['VraIPConfigurationTypeApi'] = "Dhcp"
-            $vraUpdate['VraNetworkDataApi'] = $vraNetwork
-        } elseif ( $PSCmdlet.ParameterSetName -eq 'StaticIp' ) {
+        # If ParameterSetName StaticIp is used, update the parameters submitted
+        if ( $PSCmdlet.ParameterSetName -eq 'StaticIp' ) {
             if ( $PSBoundParameters.ContainsKey('defaultGateway') ) {
-                $vraUpdate['DefaultGateway'] = $defaultGateway
+                $vraNetwork['DefaultGateway'] = $defaultGateway
             } else {
-                $vraUpdate['DefaultGateway'] = $vra.VraNetworkDataApi.DefaultGateway
+                $vraNetwork['DefaultGateway'] = $vra.VraNetworkDataApi.DefaultGateway
             }
             if ( $PSBoundParameters.ContainsKey('subnetMask') ) {
-                $vraUpdate['SubnetMask'] = $subnetMask
+                $vraNetwork['SubnetMask'] = $subnetMask
             } else {
-                $vraUpdate['SubnetMask'] = $vra.VraNetworkDataApi.SubnetMask
+                $vraNetwork['SubnetMask'] = $vra.VraNetworkDataApi.SubnetMask
             }
             if ( $PSBoundParameters.ContainsKey('vraIpAddress') ) {
-                $vraUpdate['VraIpAddress'] = $vraIpAddress
+                $vraNetwork['VraIpAddress'] = $vraIpAddress
             } else {
-                $vraUpdate['VraIpAddress'] = $vra.VraNetworkDataApi.VraIpAddress
+                $vraNetwork['VraIpAddress'] = $vra.VraNetworkDataApi.VraIpAddress
             }
             $vraNetwork['VraIPConfigurationTypeApi'] = "Static"
+            # Add network information to update object.
             $vraUpdate['VraNetworkDataApi'] = $vraNetwork
         }
-        Invoke-ZertoRestRequst -uri $baseUri -body $($vraUpdate | ConvertTo-Json) -method "PUT"
+        # -WhatIf processing and submit!
+        if ($PSCmdlet.ShouldProcess( "Updating " + $vra.vraName + " with these settings: $($vraUpdate | convertTo-Json)")) {
+            Invoke-ZertoRestRequest -uri $baseUri -body $($vraUpdate | ConvertTo-Json) -method "PUT"
+        }
     }
 
     end {
