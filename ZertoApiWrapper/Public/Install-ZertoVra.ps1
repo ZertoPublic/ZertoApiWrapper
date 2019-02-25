@@ -1,3 +1,4 @@
+#TODO - Add ability to installed with root password.
 function Install-ZertoVra {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
