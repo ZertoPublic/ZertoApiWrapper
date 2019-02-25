@@ -14,7 +14,7 @@ Describe "Get-ZertoApiFilter" {
     it "one item test" {
         Get-ZertoApiFilter -filtertable $oneItemTest | should be "?OneItem=Test"
     }
-    it "twoItemTest" {
+    it "two item test" {
         Get-ZertoApiFilter -filtertable $twoItemTest | should be "?OneItem=Test&SecondItem=Yours"
     }
     it "bool item test" {
