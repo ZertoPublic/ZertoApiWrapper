@@ -82,7 +82,7 @@ function Get-ZertoVra {
             }
 
             # When vra ids are provided, return for each id provided
-            "vraIdentifierifier" {
+            "vraIdentifier" {
                 $returnObject = foreach ( $vraId in $vraIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $vraId
                     Invoke-ZertoRestRequest -uri $uri
