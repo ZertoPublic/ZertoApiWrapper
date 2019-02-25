@@ -17,6 +17,6 @@ Describe "Set-ZertoAlert" {
         "$filePath\$fileName" | should exist
     }
     it "module should have a function called Set-ZertoAlert" {
-        get-command Connect-ZertoServer | should be $true
+        get-command Set-ZertoAlert | should be $true
     }
 }
