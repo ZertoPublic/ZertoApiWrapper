@@ -3,9 +3,9 @@ $fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.',
 $modulePath = $filePath -replace "Private", ""
 
 . "$filePath\$fileName"
-$oneItemTest = @{"OneItem" = "Test"}
-$twoItemTest = @{"OneItem" = "Test"; "SecondItem" = "Yours"}
-$boolItemTest = @{"OneItem" = "Test"; "BoolItem" = $true}
+$oneItemTest = [ordered]@{"OneItem" = "Test"}
+$twoItemTest = [ordered]@{"OneItem" = "Test"; "SecondItem" = "Yours"}
+$boolItemTest = [ordered]@{"OneItem" = "Test"; "BoolItem" = $true}
 
 Describe "Get-ZertoApiFilter" {
     it "file should exist" {
