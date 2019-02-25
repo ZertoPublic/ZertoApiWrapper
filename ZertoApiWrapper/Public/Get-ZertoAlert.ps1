@@ -69,9 +69,9 @@ function Get-ZertoAlert {
         [string]$entity,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "Returns alerts that are dismissed"
+            HelpMessage = 'Returns alerts that are dismissed when set to $true an undismissed alerts when set to $false'
         )]
-        [switch]$isDismissed
+        [bool]$isDismissed
     )
 
     begin {
