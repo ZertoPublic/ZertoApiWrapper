@@ -72,12 +72,12 @@ function Get-ZertoVirtualizationSite {
         [switch]$devices,
         [Parameter(
             ParameterSetName = "devices",
-            andatory = $false,
+            Mandatory = $false,
             HelpMessage = "The identifier of the host for which to return all devices."
         )]
         [Parameter(
             ParameterSetName = "hosts",
-            andatory = $false,
+            Mandatory = $false,
             HelpMessage = "The identifier of the host at the selected site to return information for only one host."
         )]
         [string]$hostIdentifier,
@@ -158,7 +158,7 @@ function Get-ZertoVirtualizationSite {
 
             # If siteIdentifier is specified, return information for that site.
             "siteIdentifier" {
-                $uri = "{0}/{1}" -f $baseUri, $id
+                $uri = "{0}/{1}" -f $baseUri, $siteIdentifier
                 $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
