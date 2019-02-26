@@ -84,6 +84,7 @@ function Get-ZertoVpg {
             ParameterSetName = "filter",
             HelpMessage = "The name of the VPG."
         )]
+        [Alias("vpgName")]
         [string]$name,
         [Parameter(
             ParameterSetName = "filter",
