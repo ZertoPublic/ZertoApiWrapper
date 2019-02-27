@@ -15,9 +15,9 @@ function Invoke-ZertoFailoverCommit {
     begin {
         $baseUri = "vpgs"
         if ( $reverseProtect ) {
-            $body = @{"IsReverseProtect" = 1}
+            $body = @{"IsReverseProtect" = $true}
         } else {
-            $body = @{"IsReverseProtect" = 0}
+            $body = @{"IsReverseProtect" = $false}
         }
     }
 
