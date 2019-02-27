@@ -14,8 +14,8 @@ function Invoke-ZertoFailoverRollback {
 
     process {
         foreach ($name in $vpgName) {
-            $id = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/FailoverRollback" -f $baseUri, $id
+            $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
+            $uri = "{0}/{1}/FailoverRollback" -f $baseUri, $vpgId
             Invoke-ZertoRestRequest -uri $uri -method "POST"
         }
     }
