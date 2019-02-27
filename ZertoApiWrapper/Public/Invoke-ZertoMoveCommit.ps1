@@ -23,7 +23,6 @@ function Invoke-ZertoMoveCommit {
         } else {
             $body = @{"KeepSourceVms" = $keepSourceVms}
         }
-
     }
 
     process {
