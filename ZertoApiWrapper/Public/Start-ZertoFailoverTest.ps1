@@ -1,4 +1,4 @@
-function Invoke-ZertoFailoverTest {
+function Start-ZertoFailoverTest {
     [cmdletbinding()]
     param(
         [Parameter(
