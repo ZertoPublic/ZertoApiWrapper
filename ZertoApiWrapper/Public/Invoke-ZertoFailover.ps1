@@ -20,7 +20,7 @@ function Invoke-ZertoFailover {
         [Parameter(
             HelpMessage = "The amount of time in seconds the failover waits in a Before Commit state to enable checking that the failover is as required before performing the commitPolicy setting. Default is the Site Setting"
         )]
-        [string]$commitValue
+        [string]$commitValue,
         [Parameter(
             HelpMessage = "0: The protected virtual machines are not touched before starting the failover. This assumes that you do not have access to the protected virtual machines. -- DEFAULT
         1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.
