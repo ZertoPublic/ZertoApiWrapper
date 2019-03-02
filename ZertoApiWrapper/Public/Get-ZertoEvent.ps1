@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Get-ZertoEvent {
     [cmdletbinding( defaultParameterSetName = "main" )]
     param(
