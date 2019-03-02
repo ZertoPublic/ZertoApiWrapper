@@ -8,7 +8,7 @@ schema: 2.0.0
 # Add-ZertoPeerSite
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Pairs the current Zerto Virtual Manager to the target Zerto Virtual Manager
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Add-ZertoPeerSite [-targetHost] <String> [[-targetPort] <Int32>] [-WhatIf] [-Con
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Pairs the current Zerto Virtual Manager to the target Zerto Virtual Manager by leveraging the Zerto Peer Sites API end point.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Add-ZertoPeerSite -targetHost "192.168.2.100" -targetPort "9081"
 ```
 
-{{ Add example description here }}
+Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP address 192.168.2.100.
 
 ## PARAMETERS
 
@@ -56,7 +56,7 @@ Aliases:
 
 Required: False
 Position: 1
-Default value: None
+Default value: "9081"
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -105,3 +105,4 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Peer Site API End Point](http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.044.html%23)

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Checkpoint-ZertoVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Add a tagged checkpoint to a specified VPG
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Checkpoint-ZertoVpg [-vpgName] <String> [-checkpointName] <String> [<CommonParam
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Add a tagged checkpoint to a specified VPG
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Checkpoint-ZertoVpg -vpgName "Example VPG" -checkpointName "My Tagged Checkpoint"
 ```
 
-{{ Add example description here }}
+Adds a tagged checkpoint to the "Example VPG" with the checkpoint name of "My Tagged Checkpoint"
 
 ## PARAMETERS
 

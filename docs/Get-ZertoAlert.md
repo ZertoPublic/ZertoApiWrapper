@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoAlert
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Get Alerts from the Zerto Virtual Manager
 
 ## SYNTAX
 
