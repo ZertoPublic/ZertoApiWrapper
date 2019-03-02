@@ -45,16 +45,55 @@ Get-ZertoAlert [-startDate <String>] [-endDate <String>] [-vpgIdentifier <String
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+This function will return all alerts from the Zerto Virtual Manager when called witout any parameters.
+
+When the filter parameter set is used it will return any alerts that suit the passed criteria depending on the parameters that are defined. The parameters are combined with "AND" logic so it will only return alerts that meet all the criteria passed.
+
+Any of the other parameter sets used will return valid settings for each setting type.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoAlert
 ```
 
-{{ Add example description here }}
+Returns all current alerts.
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoAlert -startDate "2019-02-01T08:00:00.000" -endDate "2019-02-02T20:30:00.000"
+```
+
+Returns all alerts that were started after Feb. 01, 2019 8 AM ZVM local time and Feb. 02 2019 8 PM ZVM local time.
+
+### Example 3
+```powershell
+PS C:\> Get-ZertoAlert -alertId "Need to Fill This In"
+```
+
+Returns information on the alert with alert identifier "Need to Fill This In"
+
+### Example 4
+```powershell
+PS C:\> Get-ZertoAlert -entities
+```
+
+Returns entities information
+
+### Example 5
+```powershell
+PS C:\> Get-ZertoAlert -helpIdentifiers
+```
+
+Returns Help Identifiers information
+
+### Example 6
+```powershell
+PS C:\> Get-ZertoAlert -levels
+```
+
+Returns information about alert levels
 
 ## PARAMETERS
 
