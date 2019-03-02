@@ -72,7 +72,6 @@ function Get-ZertoProtectedVm {
             # Return all protected VMs if no parameters are requested
             "main" {
                 $returnObject = Invoke-ZertoRestRequest -uri $baseUri
-                $returnObject.Add($results) | Out-Null
             }
 
             # Return information based on the vmIdentifer(s) provided.
