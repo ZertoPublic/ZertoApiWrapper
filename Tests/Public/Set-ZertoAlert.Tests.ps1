@@ -1,6 +1,7 @@
 $moduleFileName = "ZertoApiWrapper.psm1"
 $filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
 $fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
+$commandName = $fileName -replace '.ps1', ''
 $modulePath = $filePath -replace "Public", ""
 Import-Module $modulePath\$moduleFileName -Force
 
@@ -12,11 +13,11 @@ $credential = New-Object -TypeName System.Management.Automation.PSCredential($us
 $zertoServer = "192.168.1.100"
 $zertoPort = "7669"
 
-Describe "Set-ZertoAlert" {
+Describe "$commandName" {
     it "file should exist" {
         "$filePath\$fileName" | should exist
     }
-    it "module should have a function called Set-ZertoAlert" {
-        get-command Set-ZertoAlert | should be $true
+    it "module should have a function called $commandName" {
+        get-command $commandName | should be $true
     }
 }
