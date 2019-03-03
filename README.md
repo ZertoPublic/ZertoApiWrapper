@@ -16,8 +16,28 @@ This will import the module into your current session and make the function avia
 
 ### Connecting to a ZVM
 Before any of the functions will work, you will need to connect to a Zerto Virtual Manager server. To do this you will use the `Connect-ZertoServer` function passing in a Server Name or IP address of the Zerto Virtual Manager. If you are using a non-standard port, you will need to provide that as well with the `-zertoPort` parameter. You will also need to supply credentials to authenticate against the Zerto Virtual Manager. If credentials are not provided, the user will be prompted for a username and password.
-#### Example:
+
 ```PowerShell
 PS C:\>$credential = Get-Credential
 PS C:\>Connect-ZertoServer -zertoServer "192.168.222.20" -credential $credential
 ```
+
+After successful execution, a few Module level variables are set that are not currently exposed. These variables keep track of the Zerto Server connection information such as Server Name and Port information along with the authentication headers. A "Last Action" variable is also set to keep track of when the last call was made to the API to determine if the authentication information has expired or not. Should this command be run again with a different server, the old information will be overwritten and all commands from that point will be executed against the new server information.
+
+### Using the Module
+A help system is currently under development. While each command has a help page, it may not be fully fleshed out yet. To see all possible functions you can use the following command after the module has been imported:
+
+```PowerShell
+PS C:\>Get-Command -module ZertoApiWrapper
+```
+
+Once you have found the command that you want to know about you can call `Get-Help <Command>` to take a look at the help page, or if you want to see syntax, `Get-Command <Command> -syntax`.
+
+### Ending the Session
+If you are using this as part of a larger script, I highly suggest explicitly ending your session with the `Disconnect-ZertoSession` command. This will delete the token authorization from the Zerto Virtual Manager as well as clear all Module scoped variables.
+
+## TODO:
+- Complete Help Markdown Files
+- JFLR Functionality
+- Create VPG
+- Edit VPG
