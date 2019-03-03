@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoDatastore
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns datastore information for the local site.
 
 ## SYNTAX
 
@@ -23,16 +23,23 @@ Get-ZertoDatastore [-datastoreIdentifier <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns datastore information for the local site or information for a single datastore when a datastore identifier is passed. If several datastore parameters are passed in an array, all requested datastores will be returned.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoDatastore
 ```
 
-{{ Add example description here }}
+Returns all datastore information for the local site.
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoDatastore -datastoreIdentifier "Need to fill this in"
+```
+
+Returns all datastore information for the datastore associated with the passed identifier.
 
 ## PARAMETERS
 
