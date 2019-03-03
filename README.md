@@ -12,7 +12,7 @@ Place the folder and contents on your hard drive in a location known to you. Fro
 PS C:\>Import-Module <path>\ZertoApiWrapper\ZertoApiWrapper\ZertoApiWrapper.psm1 -force
 ```
 
-This will import the module into your current session and make the function avialable to you use and test.
+This will import the module into your current session and make the function available to you use and test.
 
 ### Connecting to a ZVM
 Before any of the functions will work, you will need to connect to a Zerto Virtual Manager server. To do this you will use the `Connect-ZertoServer` function passing in a Server Name or IP address of the Zerto Virtual Manager. If you are using a non-standard port, you will need to provide that as well with the `-zertoPort` parameter. You will also need to supply credentials to authenticate against the Zerto Virtual Manager. If credentials are not provided, the user will be prompted for a username and password.
