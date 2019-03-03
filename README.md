@@ -41,3 +41,6 @@ If you are using this as part of a larger script, I highly suggest explicitly en
 - JFLR Functionality
 - Create VPG
 - Edit VPG
+- Delete Zerto License
+- Flesh out Pester Tests
+- Complete Automated Build Process
