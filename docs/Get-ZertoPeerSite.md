@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoPeerSite
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about the peer sites.
 
 ## SYNTAX
 
@@ -34,16 +34,23 @@ Get-ZertoPeerSite [-peerName <String>] [-paringStatus <String>] [-location <Stri
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about a peer site. When called without any parameters, will return basic information about all peer sites.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoPeerSite
 ```
 
-{{ Add example description here }}
+Returns basic information about all sites connected to this site.
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoPeerSite -siteIdentifier "MySiteIdentifier"
+```
+
+Returns basic information about site with site identifier "MySiteIdentifier"
 
 ## PARAMETERS
 

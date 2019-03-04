@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoEvent
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns events from the connected Zerto Virtual Manager
 
 ## SYNTAX
 
@@ -46,16 +46,32 @@ Get-ZertoEvent [-types] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns events from the connected Zerto Virtual Manager. If any of the switches are specified, it will return information about entities with that title. For example, if you select '-types' it will return all event types.
+
+Should any of the parameters for the filter functionality be specified, only events that fulfill all of the submitted criteria will be returned.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoEvent
 ```
 
-{{ Add example description here }}
+Returns all events
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoEvent -eventId "Need an eventID"
+```
+
+Returns information for each -eventID specified.
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoEvent -startDate "2019-01-01" -endDate "2019-01-07" -vpg "My Vpg"
+```
+
+Returns all events between Jan. 01, 2019 and Jan. 07, 2019 (inclusive) for the vpg "My Vpg"
 
 ## PARAMETERS
 

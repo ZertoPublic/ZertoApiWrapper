@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoLocalSite
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about the local site.
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Get-ZertoLocalSite [-pairingstatuses] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about the local site. Please see the Zerto API Documentation for specifics on the information returned.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoLocalSite
 ```
 
-{{ Add example description here }}
+Returns information about the local site.
 
 ## PARAMETERS
 
