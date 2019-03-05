@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoRecoveryReport
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Generate a recovery report and view information about recovery operations, such as failover, failover tests and moves.
 
 ## SYNTAX
 
@@ -24,16 +24,24 @@ Get-ZertoRecoveryReport [-startTime <String>] [-endTime <String>] [-pageNumber <
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Generate a recovery report and view information about recovery operations, such as failover, failover tests and moves.
+The report displays information by VPG, and then by virtual machine within the VPG.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoRecoveryReport
 ```
 
-{{ Add example description here }}
+Returns all recovery reports
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoRecoveryReport -vpgName "My VPG"
+```
+
+Returns all recovery reports for VPG "My VPG"
 
 ## PARAMETERS
 

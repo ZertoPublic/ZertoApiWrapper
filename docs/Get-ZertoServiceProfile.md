@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoServiceProfile
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about service profiles that are defined in the Zerto Cloud Manager that is connected to the site where the API runs.
 
 ## SYNTAX
 
@@ -28,16 +28,16 @@ Get-ZertoServiceProfile [-serviceProfileId <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about service profiles that are defined in the Zerto Cloud Manager that is connected to the site where the API runs.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoServiceProfile
 ```
 
-{{ Add example description here }}
+Returns service profile defined in the Zerto Cloud Manager connected to this site.
 
 ## PARAMETERS
 

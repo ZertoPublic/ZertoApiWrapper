@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoUnprotectedVm
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns all virtual machines at the site not currently protected in a virtual protection group.
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Get-ZertoUnprotectedVm
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns all virtual machines at the site not currently protected in a virtual protection group.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoUnprotectedVm
 ```
 
-{{ Add example description here }}
+Returns all virtual machines at the site not currently protected in a virtual protection group.
 
 ## PARAMETERS
 

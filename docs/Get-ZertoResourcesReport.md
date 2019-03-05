@@ -8,7 +8,8 @@ schema: 2.0.0
 # Get-ZertoResourcesReport
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+The resources report API generates information about the resources that are used by the virtual machines that are recovered to the site where the report is run. If no virtual machines are recovered to the site where the report is run, the report is empty.
+
 
 ## SYNTAX
 
@@ -27,16 +28,18 @@ Get-ZertoResourcesReport [-startTime <String>] [-endTime <String>] [-pageNumber 
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+The resources report API generates information about the resources that are used by the virtual machines that are recovered to the site where the report is run. If no virtual machines are recovered to the site where the report is run, the report is empty.
+
+This information is collected at fixed times as defined in the Resources Report section of the Site Settings window. Information for the report is saved for 90 days when the sampling period is hourly, and for one year when the sampling period is daily.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoResourcesReport -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Returns resources report for VPG "MyVpg"
 
 ## PARAMETERS
 

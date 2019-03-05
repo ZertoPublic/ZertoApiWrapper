@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoTask
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about tasks run on the site.
 
 ## SYNTAX
 
@@ -34,16 +34,23 @@ Get-ZertoTask [-startedBeforeDate <String>] [-startedAfterDate <String>] [-compl
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about tasks run on the site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoTask
 ```
 
-{{ Add example description here }}
+Returns all current Zerto tasks
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoTask -taskIdentifier "MyTaskIdentifier"
+```
+
+Returns information about task with taskIdentifier "MyTaskIdentifier"
 
 ## PARAMETERS
 
