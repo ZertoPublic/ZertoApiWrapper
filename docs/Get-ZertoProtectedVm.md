@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoProtectedVm
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about Virtual Machines protected by Zerto
 
 ## SYNTAX
 
@@ -30,16 +30,39 @@ Get-ZertoProtectedVm [-vpgName <String>] [-vmName <String>] [-status <String>] [
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about virtual machines protected by Zerto. When called without parameters, will return all currently protected virtual machines. A single vmIdentifier or an array of vmIdentifiers can be used to only return information about those virtual machines.
+
+If information is wanted for several virtual machines and you need to search for those machines, any of the parameters in the Filter parameter set can be used to find virtual machines that fit all the criteria passed to the function.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoProtectedVm
 ```
 
-{{ Add example description here }}
+Returns all virtual machines that are either protected to or protected from this site by Zerto
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoProtectedVm -vmIdentifier "MyVmIdentifier"
+```
+
+Returns information about the protected virtual machine with identifier "MyVmIdentifier"
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoProtectedVm -vmIdentifier "MyVmIdentifier", "MyOtherVmIdentifier"
+```
+
+Returns information about the protected virtual machines with identifiers "MyVmIdentifier" and "MyOtherVmIdentifier"
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoProtectedVm -vpgName "My Vpg"
+```
+
+Returns all virtual machines that are members of the Virtual Protection Group "My Vpg"
 
 ## PARAMETERS
 
