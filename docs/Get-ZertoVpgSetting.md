@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoVpgSetting
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information when a VPG Settings object is created to create a new or edit an existing VPG.
 
 ## SYNTAX
 
@@ -110,16 +110,46 @@ Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information when a VPG Settings object is created to create a new or edit an existing VPG. Depending on the parameter set being called, the data returned will either be the entire VPG settings information, or if a specific part of the VPG is requested using a specific parameter set, then only that information will be returned.
+
+It is important to note that only once a VPG settings object has been created, will this function return data.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier"
 ```
 
-{{ Add example description here }}
+Returns all current settings for vpgSettingsIdentifier "MySettingsIdentifier"
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId"
+```
+
+Returns all current vm level settings for the vmIdentifier "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"
+
+### Example 3
+```powershell
+PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId" -volumes
+```
+
+Returns current vm level settings for volumes for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"
+
+### Example 4
+```powershell
+PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -nics
+```
+
+Returns current vm level settings for nics for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"
+
+### Example 5
+```powershell
+PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -basic
+```
+
+Returns current basic settings for vpgSettingsIdentifier "MySettingsIdentifier"
 
 ## PARAMETERS
 
