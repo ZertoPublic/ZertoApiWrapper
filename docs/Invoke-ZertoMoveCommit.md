@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: Invoke-ZertoMoveCommit.md
 schema: 2.0.0
 ---
 

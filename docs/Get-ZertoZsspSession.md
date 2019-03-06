@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertpZsspSession.md
 schema: 2.0.0
 ---
 
