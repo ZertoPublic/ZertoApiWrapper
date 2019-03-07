@@ -8,7 +8,7 @@ schema: 2.0.0
 # Remove-ZertoVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Deletes a Zerto Virtual Protection Group
 
 ## SYNTAX
 
@@ -17,16 +17,23 @@ Remove-ZertoVpg [-vpgName] <String> [-keepRecoveryVolumes] [-force] [-WhatIf] [-
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Deletes a Zerto Virtual Protection Group.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-ZertoVpg -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Deletes Zerto Virtual Protection Group named "MyVpg". Recovery volumes at the recovery site will be deleted.
+
+### Example 2
+```powershell
+PS C:\> Remove-ZertoVpg -vpgName "MyVpg" -keepRecoveryVolumes
+```
+
+Deletes Zerto Virtual Protection Group named "MyVpg". Recovery volumes at the recovery site will be retained.
 
 ## PARAMETERS
 

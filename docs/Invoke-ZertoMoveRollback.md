@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoMoveRollback
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Rollback a VPG currently undergoing a Move operation
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Invoke-ZertoMoveRollback [-vpgName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Rollback a VPG currently undergoing a Move operation
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoMoveRollback -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Rollback VPG "MyVpg"
 
 ## PARAMETERS
 

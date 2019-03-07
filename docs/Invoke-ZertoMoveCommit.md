@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoMoveCommit
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Commit a VPG currently undergoing a move operation.
 
 ## SYNTAX
 
@@ -18,16 +18,16 @@ Invoke-ZertoMoveCommit [-vpgName] <String[]> [[-reverseProtect] <Boolean>] [-kee
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Commit a VPG currently undergoing a move operation.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoMoveCommit -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Commit VPG "MyVpg" after a move has been started.
 
 ## PARAMETERS
 

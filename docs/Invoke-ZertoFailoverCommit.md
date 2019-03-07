@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoFailoverCommit
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Commit a running VPG failover
 
 ## SYNTAX
 
@@ -17,16 +17,23 @@ Invoke-ZertoFailoverCommit [-vpgName] <String[]> [-reverseProtect] [<CommonParam
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Commit a running VPG failover
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoFailoverCommit -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Commits VPG "MyVpg" without reverse protection
+
+### Example 1
+```powershell
+PS C:\> Invoke-ZertoFailoverCommit -vpgName "MyVpg" -reverseProtect
+```
+
+Commits a VPG with reverse protection
 
 ## PARAMETERS
 

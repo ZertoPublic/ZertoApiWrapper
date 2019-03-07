@@ -8,7 +8,7 @@ schema: 2.0.0
 # Uninstall-ZertoVra
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Uninstalls a Zerto Virtual Replication Appliance from a target host
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Uninstall-ZertoVra [-hostName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Uninstalls a Zerto Virtual Replication Appliance from a target host
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Uninstall-ZertoVra -hostName "Host01"
 ```
 
-{{ Add example description here }}
+Uninstalls a Zerto Virtual Replication Appliance from host "Host01"
 
 ## PARAMETERS
 

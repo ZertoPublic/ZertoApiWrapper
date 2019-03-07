@@ -8,7 +8,7 @@ schema: 2.0.0
 # Start-ZertoFailoverTest
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Start a Test Failover of a specific Virtual Protection Group
 
 ## SYNTAX
 
@@ -18,16 +18,16 @@ Start-ZertoFailoverTest [-vpgName] <String> [[-checkpointIdentifier] <String>] [
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Start a Test Failover of a specific Virtual Protection Group
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Start-ZertoFailoverTest -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Starts a Failover test of a Virtual Protection Group "MyVpg" at the latest checkpoint with all virtual machines.
 
 ## PARAMETERS
 

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoFailover
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Start a failover of a VPG
 
 ## SYNTAX
 
@@ -19,16 +19,16 @@ Invoke-ZertoFailover [-vpgName] <String> [[-checkpointIdentifier] <String>] [[-c
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Start a failover of a VPG
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoFailover -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Start a failover of VPG "MyVpg" with the latest checkpoint and site default policies.
 
 ## PARAMETERS
 
@@ -49,9 +49,12 @@ Accept wildcard characters: False
 
 ### -commitPolicy
 0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
-            1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
-            2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
-            Default is the Site Settings setting.
+
+1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+
+2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+
+Default is the Site Settings setting.
 
 ```yaml
 Type: String
@@ -84,7 +87,8 @@ Accept wildcard characters: False
 ### -reverseProtection
 True: Enable reverse protection.
 The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.
-            False: Do not enable reverse protection.
+
+False: Do not enable reverse protection.
 The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.
 
 ```yaml
@@ -103,9 +107,11 @@ Accept wildcard characters: False
 0: The protected virtual machines are not touched before starting the failover.
 This assumes that you do not have access to the protected virtual machines.
 -- DEFAULT
-        1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails.
+
+1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails.
 This is similar to performing a Move operation to a specified checkpoint.
-        2: The protected virtual machines are forcibly shut down before starting the failover.
+
+2: The protected virtual machines are forcibly shut down before starting the failover.
 If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.
 This is similar to performing a Move operation to a specified checkpoint.
 

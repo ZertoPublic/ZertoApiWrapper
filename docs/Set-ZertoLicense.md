@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-ZertoLicense
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Updates the Zerto License with a new key
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Set-ZertoLicense [-licenseKey] <String> [-WhatIf] [-Confirm] [<CommonParameters>
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Updates the Zerto License with a new key
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-ZertoLicense -licenseKey "MyNewLicenseKey"
 ```
 
-{{ Add example description here }}
+Sets the local license key to "MyNewLicenseKey"
 
 ## PARAMETERS
 

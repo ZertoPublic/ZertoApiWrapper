@@ -8,7 +8,7 @@ schema: 2.0.0
 # Start-ZertoCloneVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Start a Virtual Protection Group Clone operation
 
 ## SYNTAX
 
@@ -18,16 +18,16 @@ Start-ZertoCloneVpg [-vpgName] <String> [[-checkpointIdentifier] <String>] [[-da
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Start a Virtual Protection Group Clone operation
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Start-ZertoCloneVpg -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Starts a clone operation of VPG "MyVpg" targeting the datastore with the most free space and the latest checkpoint.
 
 ## PARAMETERS
 

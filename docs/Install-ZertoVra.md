@@ -8,7 +8,7 @@ schema: 2.0.0
 # Install-ZertoVra
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Install Zerto VRA to a single host in the site with either a Static IP address, or DHCP.
 
 ## SYNTAX
 
@@ -26,16 +26,23 @@ Install-ZertoVra -hostName <String> -datastoreName <String> -networkName <String
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Install Zerto VRA to a single host in the site with either a Static IP address, or DHCP.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networkName "VM Network" -vraIpAddress "192.168.1.50" -defaultGateway "192.168.1.254" -subnetMask "255.255.255.0"
 ```
 
-{{ Add example description here }}
+Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning an IP address if "192.168.1.50", subnetmask of "255.255.255.0" and default gateway of "192.168.1.254"
+
+### Example 2
+```powershell
+PS C:\> Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networkName "VM Network" -dhcp
+```
+
+Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning a DHCP address.
 
 ## PARAMETERS
 

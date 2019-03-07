@@ -8,7 +8,7 @@ schema: 2.0.0
 # Suspend-ZertoVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Pauses a Virtual Protection Group replication operation
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Suspend-ZertoVpg [-vpgName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Pauses a Virtual Protection Group replication operation
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Suspend-ZertoVpg -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Puts virtual protection group "MyVpg" into a paused state.
 
 ## PARAMETERS
 

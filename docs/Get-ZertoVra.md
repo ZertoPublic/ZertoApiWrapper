@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoVra
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about VRAs at the site where the command is being run.
 
 ## SYNTAX
 
@@ -40,16 +40,23 @@ Get-ZertoVra [-vraName <String>] [-status <String>] [-vraVersion <String>] [-hos
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about VRAs at the site where the command is being run.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoVra
 ```
 
-{{ Add example description here }}
+Returns information about all VRAs in the site.
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoVra -vraName "Z-VRA-192.168.1.11"
+```
+
+Returns information about vra "Z-VRA-192.168.1.11"
 
 ## PARAMETERS
 

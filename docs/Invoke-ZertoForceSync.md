@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoForceSync
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Starts a force sync process for a selected VPG
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Invoke-ZertoForceSync [-vpgName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Starts a force sync process for a selected VPG
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoForceSync -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Starts a force sync on VPG "MyVpg"
 
 ## PARAMETERS
 

@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoVolume
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about all volumes in the site processing the API.
 
 ## SYNTAX
 
@@ -24,16 +24,30 @@ Get-ZertoVolume [-volumeType <String>] [-vpgIdentifier <String>] [-datastoreIden
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Returns information about all volumes in the site processing the API.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoVolume
 ```
 
-{{ Add example description here }}
+Returns information about all volumes in the site processing the API.
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoVolume -vpgIdentifier "MyVpgIdentifier"
+```
+
+Returns information about all volumes associated with vpgIdentifier "MyVpgIdentifier" in the site processing the API.
+
+### Example 3
+```powershell
+PS C:\> Get-ZertoVolume
+```
+
+Returns information about all volumes in the site processing the API.
 
 ## PARAMETERS
 

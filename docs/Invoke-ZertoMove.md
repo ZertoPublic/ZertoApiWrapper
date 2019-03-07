@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoMove
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Start a move of a VPG.
 
 ## SYNTAX
 
@@ -19,16 +19,16 @@ Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolic
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Start a move of a VPG.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoMove -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Starts a move operation of VPG "MyVpg"
 
 ## PARAMETERS
 
@@ -68,8 +68,10 @@ Accept wildcard characters: False
 
 ### -continueOnPreScriptFailure
 False: Do not continue the Move operation in case of failure of script executing prior the operation.
-            True: Continue the Move operation in case of failure of script executing prior the operation.
-            Default: False
+
+True: Continue the Move operation in case of failure of script executing prior the operation.
+
+Default: False
 
 ```yaml
 Type: Boolean
@@ -85,8 +87,10 @@ Accept wildcard characters: False
 
 ### -forceShutdown
 False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.
-            True: To force a shutdown of the virtual machines.
-            Default: True
+
+True: To force a shutdown of the virtual machines.
+
+Default: True
 
 ```yaml
 Type: Boolean
@@ -102,8 +106,10 @@ Accept wildcard characters: False
 
 ### -keepSourceVms
 False: Remove the protected virtual machines from the protected site.
-            True: Prevent the protected virtual machines from being deleted in the protected site.
-            Default: False
+
+True: Prevent the protected virtual machines from being deleted in the protected site.
+
+Default: False
 
 ```yaml
 Type: Boolean
@@ -120,10 +126,13 @@ Accept wildcard characters: False
 ### -reverseProtection
 False: Do not enable reverse protection.
 The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.
-            True: Enable reverse protection.
+
+True: Enable reverse protection.
 The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.
-            Default Value: True
-            Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.
+
+Default Value: True
+
+Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.
 
 ```yaml
 Type: Boolean

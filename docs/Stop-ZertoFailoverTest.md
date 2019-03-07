@@ -8,7 +8,7 @@ schema: 2.0.0
 # Stop-ZertoFailoverTest
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Stops a running Failover Test operation.
 
 ## SYNTAX
 
@@ -18,16 +18,16 @@ Stop-ZertoFailoverTest [-vpgName] <String[]> [[-failoverTestSuccess] <Boolean>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Stops a running Failover Test operation.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Stop-ZertoFailoverTest -vpgName "MyVpg" -failoverTestSummary "All Good"
 ```
 
-{{ Add example description here }}
+Stop Failover Test for virtual protection group "MyVpg" indicating a success and making a note of "All Good"
 
 ## PARAMETERS
 

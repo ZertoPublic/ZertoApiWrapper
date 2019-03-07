@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoZsspSession
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Retrieve a list of existing session URLs.
 
 ## SYNTAX
 
@@ -23,16 +23,16 @@ Get-ZertoZsspSession [-zsspSessionIdentifier <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Retrieve a list of existing session URLs.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoZsspSession
 ```
 
-{{ Add example description here }}
+Retrieve a list of existing session URLs.
 
 ## PARAMETERS
 

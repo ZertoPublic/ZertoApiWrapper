@@ -8,7 +8,7 @@ schema: 2.0.0
 # Set-ZertoAlert
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Dismisses or Undismisses a Zerto Alert
 
 ## SYNTAX
 
@@ -23,16 +23,23 @@ Set-ZertoAlert -alertId <String[]> [-undismiss] [-WhatIf] [-Confirm] [<CommonPar
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Dismisses or Undismisses a Zerto Alert
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-ZertoAlert -alertId "AlertId" -dismiss
 ```
 
-{{ Add example description here }}
+Dismiss alert with alert identifier "AlertId"
+
+### Example 2
+```powershell
+PS C:\> Set-ZertoAlert -alertId "AlertId" -undismiss
+```
+
+Undismiss alert with alert identifier "AlertId"
 
 ## PARAMETERS
 

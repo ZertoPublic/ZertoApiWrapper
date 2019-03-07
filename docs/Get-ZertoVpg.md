@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about VPGs
 
 ## SYNTAX
 
@@ -77,16 +77,23 @@ Get-ZertoVpg [-name <String>] [-status <String>] [-subStatus <String>] [-protect
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+returns information about VPGs
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoVpg
 ```
 
-{{ Add example description here }}
+Returns information about all VPGs in the site processing the request
+
+### Example 1
+```powershell
+PS C:\> Get-ZertoVpg -name "MyVpg"
+```
+
+Returns information about VPG with the name "MyVpg"
 
 ## PARAMETERS
 

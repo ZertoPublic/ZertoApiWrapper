@@ -8,7 +8,7 @@ schema: 2.0.0
 # Resume-ZertoVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Resumes a Zerto Virtual Protection Group in a Paused State.
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Resume-ZertoVpg [-vpgName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Resumes a Zerto Virtual Protection Group in a Paused State.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Resume-ZertoVpg -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Resumes paused Virtual Protection Group "MyVpg"
 
 ## PARAMETERS
 

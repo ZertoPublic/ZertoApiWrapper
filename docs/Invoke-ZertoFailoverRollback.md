@@ -8,7 +8,7 @@ schema: 2.0.0
 # Invoke-ZertoFailoverRollback
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Rollsback a VPG in a Before Commit Failover State
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Invoke-ZertoFailoverRollback [-vpgName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Rollsback a VPG in a Before Commit Failover State
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Invoke-ZertoFailoverRollback -vpgName "MyVpg"
 ```
 
-{{ Add example description here }}
+Rollsback VPG "MyVPG" from a Before Commit State
 
 ## PARAMETERS
 

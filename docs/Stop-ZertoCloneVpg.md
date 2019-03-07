@@ -8,7 +8,7 @@ schema: 2.0.0
 # Stop-ZertoCloneVpg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Stops a Virtual Protection Group Clone Operation currently running
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ Stop-ZertoCloneVpg [-vpgName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Stops a Virtual Protection Group Clone Operation currently running
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Stop-ZertoCloneVpg -vpgName "MyVpg'
 ```
 
-{{ Add example description here }}
+Stops a Virtual Protection Group Clone Operation currently running for Virtual Protection Group "MyVpg"
 
 ## PARAMETERS
 

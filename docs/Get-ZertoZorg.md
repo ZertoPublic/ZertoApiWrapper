@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZertoZorg
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+Returns information about Zerto organizations, ZORGs, defined in the Zerto Cloud Manager that is connected to the site where the API runs
 
 ## SYNTAX
 
@@ -23,16 +23,23 @@ Get-ZertoZorg [-zorgIdentifier <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+returns information about Zerto organizations, ZORGs, defined in the Zerto Cloud Manager that is connected to the site where the API runs
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoZorg
 ```
 
-{{ Add example description here }}
+returns information about Zerto organizations, ZORGs, defined in the Zerto Cloud Manager that is connected to the site where the API runs
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoZorg -zorgIdentifier "myZorgIdentifier"
+```
+
+returns information about Zerto Organization with identifier "MyZorgIdentifier"
 
 ## PARAMETERS
 
