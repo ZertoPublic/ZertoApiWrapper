@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Add-ZertoPeerSite {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(

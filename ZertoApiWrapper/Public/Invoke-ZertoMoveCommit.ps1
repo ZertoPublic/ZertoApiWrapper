@@ -1,5 +1,6 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoMoveCommit {
-    [cmdletbiding()]
+    [cmdletbinding()]
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) to commit.",

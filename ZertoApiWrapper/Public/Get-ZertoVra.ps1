@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Get-ZertoVra {
     [cmdletbinding(
         DefaultParameterSetName = "main"
@@ -82,7 +83,7 @@ function Get-ZertoVra {
             }
 
             # When vra ids are provided, return for each id provided
-            "vraIdentifier" {
+            "vraIdentifierifierifier" {
                 $returnObject = foreach ( $vraId in $vraIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $vraId
                     Invoke-ZertoRestRequest -uri $uri

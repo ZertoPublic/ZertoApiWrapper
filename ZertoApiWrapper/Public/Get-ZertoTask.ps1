@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Get-ZertoTask {
     [cmdletbinding( DefaultParameterSetName = "main" )]
     param (

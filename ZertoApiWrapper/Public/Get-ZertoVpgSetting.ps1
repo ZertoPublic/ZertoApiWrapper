@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Get-ZertoVpgSetting {
     [cmdletbinding(
         DefaultParameterSetName = "main",

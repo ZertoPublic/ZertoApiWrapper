@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Remove-ZertoVpg {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
