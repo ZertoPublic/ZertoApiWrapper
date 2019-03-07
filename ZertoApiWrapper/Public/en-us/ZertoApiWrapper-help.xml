@@ -149,6 +149,10 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Add-ZertoPeerSite.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Zerto REST API Peer Site End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.044.html%23</maml:uri>
       </maml:navigationLink>
@@ -256,6 +260,10 @@
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Checkpoint-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -412,6 +420,10 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Connect-ZertoServer.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Zerto REST API Session End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.068.html%23</maml:uri>
       </maml:navigationLink>
@@ -478,6 +490,10 @@
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Disconnect-ZertoServer.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Session End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.068.html%23</maml:uri>
@@ -728,6 +744,10 @@
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.117.html#</maml:uri>
@@ -1147,6 +1167,10 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoAlert.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Zerto REST API Alerts End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.009.html%23</maml:uri>
       </maml:navigationLink>
@@ -1237,6 +1261,10 @@
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoDatastore.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Datastore Information End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.016.html#</maml:uri>
@@ -1730,6 +1758,10 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoEvent.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Zerto REST API Events End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.022.html#</maml:uri>
       </maml:navigationLink>
@@ -1788,6 +1820,10 @@
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoLicense.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API License Information</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.034.html#</maml:uri>
@@ -1871,6 +1907,10 @@
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoLocalSite.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Local Site End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.038.html#</maml:uri>
@@ -2112,6 +2152,10 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoPeerSite.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Zerto REST API Peer Site End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.038.html#</maml:uri>
       </maml:navigationLink>
@@ -2123,11 +2167,12 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoProtectedVm</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about Virtual Machines protected by Zerto</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information about virtual machines protected by Zerto. When called without parameters, will return all currently protected virtual machines. A single vmIdentifier or an array of vmIdentifiers can be used to only return information about those virtual machines.</maml:para>
+      <maml:para>If information is wanted for several virtual machines and you need to search for those machines, any of the parameters in the Filter parameter set can be used to find virtual machines that fit all the criteria passed to the function.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2431,13 +2476,38 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoProtectedVm</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns all virtual machines that are either protected to or protected from this site by Zerto</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoProtectedVm -vmIdentifier "MyVmIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about the protected virtual machine with identifier "MyVmIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoProtectedVm -vmIdentifier "MyVmIdentifier", "MyOtherVmIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about the protected virtual machines with identifiers "MyVmIdentifier" and "MyOtherVmIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoProtectedVm -vpgName "My Vpg"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns all virtual machines that are members of the Virtual Protection Group "My Vpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoProtectedVm.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Protected VMs End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.088.html#</maml:uri>
@@ -2450,11 +2520,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoRecoveryReport</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Generate a recovery report and view information about recovery operations, such as failover, failover tests and moves.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Generate a recovery report and view information about recovery operations, such as failover, failover tests and moves. The report displays information by VPG, and then by virtual machine within the VPG.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -2683,13 +2753,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoRecoveryReport</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns all recovery reports</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoRecoveryReport -vpgName "My VPG"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns all recovery reports for VPG "My VPG"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoRecoveryReport.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Recovery Report End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.055.html#</maml:uri>
@@ -2702,11 +2783,12 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoResourcesReport</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>The resources report API generates information about the resources that are used by the virtual machines that are recovered to the site where the report is run. If no virtual machines are recovered to the site where the report is run, the report is empty.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>The resources report API generates information about the resources that are used by the virtual machines that are recovered to the site where the report is run. If no virtual machines are recovered to the site where the report is run, the report is empty.</maml:para>
+      <maml:para>This information is collected at fixed times as defined in the Resources Report section of the Site Settings window. Information for the report is saved for 90 days when the sampling period is hourly, and for one year when the sampling period is daily.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3151,13 +3233,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoResourcesReport -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns resources report for VPG "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoResourcesReport.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Resources Report End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.058.html#</maml:uri>
@@ -3170,11 +3256,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoServiceProfile</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about service profiles that are defined in the Zerto Cloud Manager that is connected to the site where the API runs.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information about service profiles that are defined in the Zerto Cloud Manager that is connected to the site where the API runs.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3262,13 +3348,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoServiceProfile</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns service profile defined in the Zerto Cloud Manager connected to this site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoServiceProfile.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Service Profile End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.062.html#</maml:uri>
@@ -3281,11 +3371,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoTask</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about tasks run on the site.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information about tasks run on the site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3519,13 +3609,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoTask</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns all current Zerto tasks</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoTask -taskIdentifier "MyTaskIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about task with taskIdentifier "MyTaskIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoTask.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Task End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.076.html#</maml:uri>
@@ -3538,11 +3639,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoUnprotectedVm</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns all virtual machines at the site not currently protected in a virtual protection group.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns all virtual machines at the site not currently protected in a virtual protection group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -3578,13 +3679,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoUnprotectedVm</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns all virtual machines at the site not currently protected in a virtual protection group.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoUnprotectedVm.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Virtualization Sites End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.082.html#</maml:uri>
@@ -4048,6 +4153,10 @@
     </command:examples>
     <command:relatedLinks>
       <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVirtualizationSite.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
         <maml:linkText>Zerto REST API Virtualization Sites End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.082.html#</maml:uri>
       </maml:navigationLink>
@@ -4059,11 +4168,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoVolume</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about all volumes in the site processing the API.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information about all volumes in the site processing the API.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4220,13 +4329,31 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVolume</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns information about all volumes in the site processing the API.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVolume -vpgIdentifier "MyVpgIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about all volumes associated with vpgIdentifier "MyVpgIdentifier" in the site processing the API.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVolume</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about all volumes in the site processing the API.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVolume.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Volumes End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.094.html#</maml:uri>
@@ -4239,11 +4366,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoVpg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about VPGs</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>returns information about VPGs</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4900,13 +5027,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpg</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns information about all VPGs in the site processing the request</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVpg -name "MyVpg"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about VPG with the name "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -4919,11 +5057,12 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoVpgSetting</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information when a VPG Settings object is created to create a new or edit an existing VPG.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information when a VPG Settings object is created to create a new or edit an existing VPG. Depending on the parameter set being called, the data returned will either be the entire VPG settings information, or if a specific part of the VPG is requested using a specific parameter set, then only that information will be returned.</maml:para>
+      <maml:para>It is important to note that only once a VPG settings object has been created, will this function return data.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -5681,13 +5820,45 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns all current settings for vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns all current vm level settings for the vmIdentifier "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId" -volumes</dev:code>
+        <dev:remarks>
+          <maml:para>Returns current vm level settings for volumes for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -nics</dev:code>
+        <dev:remarks>
+          <maml:para>Returns current vm level settings for nics for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -basic</dev:code>
+        <dev:remarks>
+          <maml:para>Returns current basic settings for vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVpgSetting.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#</maml:uri>
@@ -5700,11 +5871,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoVra</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about VRAs at the site where the command is being run.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information about VRAs at the site where the command is being run.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6036,13 +6207,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVra</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns information about all VRAs in the site.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVra -vraName "Z-VRA-192.168.1.11"</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about vra "Z-VRA-192.168.1.11"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVra.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.117.html#</maml:uri>
@@ -6055,11 +6237,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoZorg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about Zerto organizations, ZORGs, defined in the Zerto Cloud Manager that is connected to the site where the API runs</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>returns information about Zerto organizations, ZORGs, defined in the Zerto Cloud Manager that is connected to the site where the API runs</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6120,13 +6302,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoZorg</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>returns information about Zerto organizations, ZORGs, defined in the Zerto Cloud Manager that is connected to the site where the API runs</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoZorg -zorgIdentifier "myZorgIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>returns information about Zerto Organization with identifier "MyZorgIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoZorg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API ZOrg End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.126.html#</maml:uri>
@@ -6139,11 +6332,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoZsspSession</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Retrieve a list of existing session URLs.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Retrieve a list of existing session URLs.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6204,13 +6397,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoZsspSession</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Retrieve a list of existing session URLs.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertpZsspSession.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API ZSSP Session End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.132.html#</maml:uri>
@@ -6223,11 +6420,11 @@
       <command:verb>Install</command:verb>
       <command:noun>ZertoVra</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Install Zerto VRA to a single host in the site with either a Static IP address, or DHCP.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Install Zerto VRA to a single host in the site with either a Static IP address, or DHCP.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6610,13 +6807,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networkName "VM Network" -vraIpAddress "192.168.1.50" -defaultGateway "192.168.1.254" -subnetMask "255.255.255.0"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning an IP address if "192.168.1.50", subnetmask of "255.255.255.0" and default gateway of "192.168.1.254"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networkName "VM Network" -dhcp</dev:code>
+        <dev:remarks>
+          <maml:para>Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning a DHCP address.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.117.html#</maml:uri>
@@ -6629,11 +6837,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoFailover</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Start a failover of a VPG</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Start a failover of a VPG</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6665,7 +6873,10 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>commitPolicy</maml:name>
           <maml:Description>
-            <maml:para>0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.             1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.             2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.             Default is the Site Settings setting.</maml:para>
+            <maml:para>0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
+            <maml:para>1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
+            <maml:para>2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
+            <maml:para>Default is the Site Settings setting.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -6689,7 +6900,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
           <maml:name>shutdownPolicy</maml:name>
           <maml:Description>
-            <maml:para>0: The protected virtual machines are not touched before starting the failover. This assumes that you do not have access to the protected virtual machines. -- DEFAULT         1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.         2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint.</maml:para>
+            <maml:para>0: The protected virtual machines are not touched before starting the failover. This assumes that you do not have access to the protected virtual machines. -- DEFAULT</maml:para>
+            <maml:para>1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.</maml:para>
+            <maml:para>2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
           <dev:type>
@@ -6713,7 +6926,8 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="6" aliases="none">
           <maml:name>reverseProtection</maml:name>
           <maml:Description>
-            <maml:para>True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.             False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.</maml:para>
+            <maml:para>True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.</maml:para>
+            <maml:para>False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -6752,7 +6966,10 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>commitPolicy</maml:name>
         <maml:Description>
-          <maml:para>0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.             1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.             2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.             Default is the Site Settings setting.</maml:para>
+          <maml:para>0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
+          <maml:para>1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
+          <maml:para>2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
+          <maml:para>Default is the Site Settings setting.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -6776,7 +6993,8 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="6" aliases="none">
         <maml:name>reverseProtection</maml:name>
         <maml:Description>
-          <maml:para>True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.             False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.</maml:para>
+          <maml:para>True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.</maml:para>
+          <maml:para>False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -6788,7 +7006,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
         <maml:name>shutdownPolicy</maml:name>
         <maml:Description>
-          <maml:para>0: The protected virtual machines are not touched before starting the failover. This assumes that you do not have access to the protected virtual machines. -- DEFAULT         1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.         2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint.</maml:para>
+          <maml:para>0: The protected virtual machines are not touched before starting the failover. This assumes that you do not have access to the protected virtual machines. -- DEFAULT</maml:para>
+          <maml:para>1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.</maml:para>
+          <maml:para>2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
         <dev:type>
@@ -6862,13 +7082,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoFailover -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Start a failover of VPG "MyVpg" with the latest checkpoint and site default policies.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailover.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -6881,11 +7105,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoFailoverCommit</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Commit a running VPG failover</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Commit a running VPG failover</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -6969,13 +7193,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoFailoverCommit -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Commits VPG "MyVpg" without reverse protection</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Invoke-ZertoFailoverCommit -vpgName "MyVpg" -reverseProtect</dev:code>
+        <dev:remarks>
+          <maml:para>Commits a VPG with reverse protection</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailoverCommit.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -6988,11 +7223,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoFailoverRollback</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Rollsback a VPG in a Before Commit Failover State</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Rollsback a VPG in a Before Commit Failover State</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7053,13 +7288,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoFailoverRollback -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Rollsback VPG "MyVPG" from a Before Commit State</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailoverRollback.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7072,11 +7311,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoForceSync</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Starts a force sync process for a selected VPG</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Starts a force sync process for a selected VPG</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7137,13 +7376,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoForceSync -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Starts a force sync on VPG "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoForceSync.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7156,11 +7399,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoMove</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Start a move of a VPG.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Start a move of a VPG.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7204,7 +7447,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
           <maml:name>forceShutdown</maml:name>
           <maml:Description>
-            <maml:para>False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.             True: To force a shutdown of the virtual machines.             Default: True</maml:para>
+            <maml:para>False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.</maml:para>
+            <maml:para>True: To force a shutdown of the virtual machines.</maml:para>
+            <maml:para>Default: True</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -7216,7 +7461,10 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
           <maml:name>reverseProtection</maml:name>
           <maml:Description>
-            <maml:para>False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.             True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.             Default Value: True             Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.</maml:para>
+            <maml:para>False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.</maml:para>
+            <maml:para>True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.</maml:para>
+            <maml:para>Default Value: True</maml:para>
+            <maml:para>Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -7228,7 +7476,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="5" aliases="none">
           <maml:name>keepSourceVms</maml:name>
           <maml:Description>
-            <maml:para>False: Remove the protected virtual machines from the protected site.             True: Prevent the protected virtual machines from being deleted in the protected site.             Default: False</maml:para>
+            <maml:para>False: Remove the protected virtual machines from the protected site.</maml:para>
+            <maml:para>True: Prevent the protected virtual machines from being deleted in the protected site.</maml:para>
+            <maml:para>Default: False</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -7240,7 +7490,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="6" aliases="none">
           <maml:name>continueOnPreScriptFailure</maml:name>
           <maml:Description>
-            <maml:para>False: Do not continue the Move operation in case of failure of script executing prior the operation.             True: Continue the Move operation in case of failure of script executing prior the operation.             Default: False</maml:para>
+            <maml:para>False: Do not continue the Move operation in case of failure of script executing prior the operation.</maml:para>
+            <maml:para>True: Continue the Move operation in case of failure of script executing prior the operation.</maml:para>
+            <maml:para>Default: False</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
@@ -7279,7 +7531,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="6" aliases="none">
         <maml:name>continueOnPreScriptFailure</maml:name>
         <maml:Description>
-          <maml:para>False: Do not continue the Move operation in case of failure of script executing prior the operation.             True: Continue the Move operation in case of failure of script executing prior the operation.             Default: False</maml:para>
+          <maml:para>False: Do not continue the Move operation in case of failure of script executing prior the operation.</maml:para>
+          <maml:para>True: Continue the Move operation in case of failure of script executing prior the operation.</maml:para>
+          <maml:para>Default: False</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -7291,7 +7545,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
         <maml:name>forceShutdown</maml:name>
         <maml:Description>
-          <maml:para>False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.             True: To force a shutdown of the virtual machines.             Default: True</maml:para>
+          <maml:para>False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.</maml:para>
+          <maml:para>True: To force a shutdown of the virtual machines.</maml:para>
+          <maml:para>Default: True</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -7303,7 +7559,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="5" aliases="none">
         <maml:name>keepSourceVms</maml:name>
         <maml:Description>
-          <maml:para>False: Remove the protected virtual machines from the protected site.             True: Prevent the protected virtual machines from being deleted in the protected site.             Default: False</maml:para>
+          <maml:para>False: Remove the protected virtual machines from the protected site.</maml:para>
+          <maml:para>True: Prevent the protected virtual machines from being deleted in the protected site.</maml:para>
+          <maml:para>Default: False</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -7315,7 +7573,10 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="4" aliases="none">
         <maml:name>reverseProtection</maml:name>
         <maml:Description>
-          <maml:para>False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.             True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.             Default Value: True             Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.</maml:para>
+          <maml:para>False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.</maml:para>
+          <maml:para>True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.</maml:para>
+          <maml:para>Default Value: True</maml:para>
+          <maml:para>Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
@@ -7365,13 +7626,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoMove -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Starts a move operation of VPG "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoMove.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7384,11 +7649,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoMoveCommit</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Commit a VPG currently undergoing a move operation.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Commit a VPG currently undergoing a move operation.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7496,13 +7761,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoMoveCommit -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Commit VPG "MyVpg" after a move has been started.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri></maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7515,11 +7784,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoMoveRollback</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Rollback a VPG currently undergoing a Move operation</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Rollback a VPG currently undergoing a Move operation</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7580,13 +7849,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Invoke-ZertoMoveRollback -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Rollback VPG "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoMoveRollback.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7599,11 +7872,11 @@
       <command:verb>Remove</command:verb>
       <command:noun>ZertoVpg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Deletes a Zerto Virtual Protection Group</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Deletes a Zerto Virtual Protection Group.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7756,13 +8029,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Remove-ZertoVpg -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Deletes Zerto Virtual Protection Group named "MyVpg". Recovery volumes at the recovery site will be deleted.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-ZertoVpg -vpgName "MyVpg" -keepRecoveryVolumes</dev:code>
+        <dev:remarks>
+          <maml:para>Deletes Zerto Virtual Protection Group named "MyVpg". Recovery volumes at the recovery site will be retained.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7775,11 +8059,11 @@
       <command:verb>Resume</command:verb>
       <command:noun>ZertoVpg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Resumes a Zerto Virtual Protection Group in a Paused State.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Resumes a Zerto Virtual Protection Group in a Paused State.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7840,13 +8124,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Resume-ZertoVpg -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Resumes paused Virtual Protection Group "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Resume-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -7859,11 +8147,11 @@
       <command:verb>Set</command:verb>
       <command:noun>ZertoAlert</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Dismisses or Undismisses a Zerto Alert</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Dismisses or Undismisses a Zerto Alert</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8053,13 +8341,24 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Set-ZertoAlert -alertId "AlertId" -dismiss</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Dismiss alert with alert identifier "AlertId"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-ZertoAlert -alertId "AlertId" -undismiss</dev:code>
+        <dev:remarks>
+          <maml:para>Undismiss alert with alert identifier "AlertId"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Set-ZertoAlert.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Alerts End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.009.html%23</maml:uri>
@@ -8072,11 +8371,11 @@
       <command:verb>Set</command:verb>
       <command:noun>ZertoLicense</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Updates the Zerto License with a new key</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Updates the Zerto License with a new key</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8183,13 +8482,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Set-ZertoLicense -licenseKey "MyNewLicenseKey"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Sets the local license key to "MyNewLicenseKey"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Set-ZertoLicense.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API License Information</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.034.html#</maml:uri>
@@ -8202,11 +8505,11 @@
       <command:verb>Start</command:verb>
       <command:noun>ZertoCloneVpg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Start a Virtual Protection Group Clone operation</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Start a Virtual Protection Group Clone operation</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8339,13 +8642,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Start-ZertoCloneVpg -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Starts a clone operation of VPG "MyVpg" targeting the datastore with the most free space and the latest checkpoint.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Start-ZertoCloneVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -8358,11 +8665,11 @@
       <command:verb>Start</command:verb>
       <command:noun>ZertoFailoverTest</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Start a Test Failover of a specific Virtual Protection Group</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Start a Test Failover of a specific Virtual Protection Group</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8471,13 +8778,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Start-ZertoFailoverTest -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Starts a Failover test of a Virtual Protection Group "MyVpg" at the latest checkpoint with all virtual machines.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Start-ZertoFailoverTest.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -8490,11 +8801,11 @@
       <command:verb>Stop</command:verb>
       <command:noun>ZertoCloneVpg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Stops a Virtual Protection Group Clone Operation currently running</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Stops a Virtual Protection Group Clone Operation currently running</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8555,13 +8866,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Stop-ZertoCloneVpg -vpgName "MyVpg'</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Stops a Virtual Protection Group Clone Operation currently running for Virtual Protection Group "MyVpg"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Stop-ZertoCloneVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -8574,11 +8889,11 @@
       <command:verb>Stop</command:verb>
       <command:noun>ZertoFailoverTest</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Stops a running Failover Test operation.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Stops a running Failover Test operation.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8687,13 +9002,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Stop-ZertoFailoverTest -vpgName "MyVpg" -failoverTestSummary "All Good"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Stop Failover Test for virtual protection group "MyVpg" indicating a success and making a note of "All Good"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Stop-ZertoFailoverTest.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -8706,11 +9025,11 @@
       <command:verb>Suspend</command:verb>
       <command:noun>ZertoVpg</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Pauses a Virtual Protection Group replication operation</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Pauses a Virtual Protection Group replication operation</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8771,13 +9090,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Suspend-ZertoVpg -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Puts virtual protection group "MyVpg" into a paused state.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Suspend-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
@@ -8790,11 +9113,11 @@
       <command:verb>Uninstall</command:verb>
       <command:noun>ZertoVra</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Uninstalls a Zerto Virtual Replication Appliance from a target host</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Uninstalls a Zerto Virtual Replication Appliance from a target host</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -8855,13 +9178,17 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Uninstall-ZertoVra -hostName "Host01"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Uninstalls a Zerto Virtual Replication Appliance from host "Host01"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
     <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Uninstall-ZertoVra.md</maml:uri>
+      </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.117.html#</maml:uri>
