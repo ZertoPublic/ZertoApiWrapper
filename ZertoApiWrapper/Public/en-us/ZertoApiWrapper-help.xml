@@ -513,7 +513,7 @@
       <maml:para>Updates a VRA with updated settings using the Zerto VRA end point.</maml:para>
       <maml:para>It is possible to update the Bandwidth group with the -groupName setting. If the group does not currently exist, it will be created.</maml:para>
       <maml:para>It is possible to update the static IP address, default gateway, or subnetmask.</maml:para>
-      <maml:para>It is suggested that you use Get-ZertoVra to get the vraIdentifer prameter.</maml:para>
+      <maml:para>It is suggested that you use Get-ZertoVra to get the vraIdentifer parameter.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7868,6 +7868,1537 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>New-ZertoVpg</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>ZertoVpg</command:noun>
+      <maml:description>
+        <maml:para>Creates a New VPG with default settings only. Customization of VM settings can be accomplished with other module level functions.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Creates a New VPG with minimal default settings only. If additional configuration is desired, the VPG settings identifier will be returned and can be passed to other VPG modifying functions to include additional details.</maml:para>
+      <maml:para>Finally, to save the settings, you need to pass the Vpg Settings Identifier to the `Save-ZertoVpgSettings` function to commit the the VPG.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>datastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHistoryInHours</maml:name>
+          <maml:Description>
+            <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>protectedVm</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryCluster</maml:name>
+          <maml:Description>
+            <maml:para>Name of the cluster where the VM(s) will be recovered.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryFolder</maml:name>
+          <maml:Description>
+            <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoverySite</maml:name>
+          <maml:Description>
+            <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>rpoInSeconds</maml:name>
+          <maml:Description>
+            <maml:para>RPO alert</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>300</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>serviceProfile</maml:name>
+          <maml:Description>
+            <maml:para>Service profile name to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testIntervalInMinutes</maml:name>
+          <maml:Description>
+            <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">43200</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">131040</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">262080</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">294560</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">252600</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>262080</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>useWanCompression</maml:name>
+          <maml:Description>
+            <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name of the VPG</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgPriority</maml:name>
+          <maml:Description>
+            <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">High</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Medium</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Low</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Medium</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>zorg</maml:name>
+          <maml:Description>
+            <maml:para>Name of ZORG to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>datastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHistoryInHours</maml:name>
+          <maml:Description>
+            <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>protectedVm</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryFolder</maml:name>
+          <maml:Description>
+            <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryHost</maml:name>
+          <maml:Description>
+            <maml:para>Name of the host where the VM(s) will be recovered.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoverySite</maml:name>
+          <maml:Description>
+            <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>rpoInSeconds</maml:name>
+          <maml:Description>
+            <maml:para>RPO alert</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>300</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>serviceProfile</maml:name>
+          <maml:Description>
+            <maml:para>Service profile name to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testIntervalInMinutes</maml:name>
+          <maml:Description>
+            <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">43200</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">131040</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">262080</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">294560</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">252600</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>262080</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>useWanCompression</maml:name>
+          <maml:Description>
+            <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name of the VPG</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgPriority</maml:name>
+          <maml:Description>
+            <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">High</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Medium</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Low</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Medium</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>zorg</maml:name>
+          <maml:Description>
+            <maml:para>Name of ZORG to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>datastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHistoryInHours</maml:name>
+          <maml:Description>
+            <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>protectedVm</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryFolder</maml:name>
+          <maml:Description>
+            <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryResourcePool</maml:name>
+          <maml:Description>
+            <maml:para>Name of the resource pool where the VM(s) will be recovered.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoverySite</maml:name>
+          <maml:Description>
+            <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>rpoInSeconds</maml:name>
+          <maml:Description>
+            <maml:para>RPO alert</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>300</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>serviceProfile</maml:name>
+          <maml:Description>
+            <maml:para>Service profile name to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testIntervalInMinutes</maml:name>
+          <maml:Description>
+            <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">43200</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">131040</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">262080</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">294560</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">252600</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>262080</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>useWanCompression</maml:name>
+          <maml:Description>
+            <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name of the VPG</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgPriority</maml:name>
+          <maml:Description>
+            <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">High</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Medium</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Low</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Medium</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>zorg</maml:name>
+          <maml:Description>
+            <maml:para>Name of ZORG to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>datastoreCluster</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHistoryInHours</maml:name>
+          <maml:Description>
+            <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>protectedVm</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryCluster</maml:name>
+          <maml:Description>
+            <maml:para>Name of the cluster where the VM(s) will be recovered.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryFolder</maml:name>
+          <maml:Description>
+            <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoverySite</maml:name>
+          <maml:Description>
+            <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>rpoInSeconds</maml:name>
+          <maml:Description>
+            <maml:para>RPO alert</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>300</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>serviceProfile</maml:name>
+          <maml:Description>
+            <maml:para>Service profile name to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testIntervalInMinutes</maml:name>
+          <maml:Description>
+            <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">43200</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">131040</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">262080</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">294560</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">252600</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>262080</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>useWanCompression</maml:name>
+          <maml:Description>
+            <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name of the VPG</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgPriority</maml:name>
+          <maml:Description>
+            <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">High</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Medium</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Low</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Medium</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>zorg</maml:name>
+          <maml:Description>
+            <maml:para>Name of ZORG to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>datastoreCluster</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHistoryInHours</maml:name>
+          <maml:Description>
+            <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>protectedVm</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryFolder</maml:name>
+          <maml:Description>
+            <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryHost</maml:name>
+          <maml:Description>
+            <maml:para>Name of the host where the VM(s) will be recovered.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoverySite</maml:name>
+          <maml:Description>
+            <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>rpoInSeconds</maml:name>
+          <maml:Description>
+            <maml:para>RPO alert</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>300</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>serviceProfile</maml:name>
+          <maml:Description>
+            <maml:para>Service profile name to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testIntervalInMinutes</maml:name>
+          <maml:Description>
+            <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">43200</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">131040</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">262080</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">294560</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">252600</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>262080</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>useWanCompression</maml:name>
+          <maml:Description>
+            <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name of the VPG</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgPriority</maml:name>
+          <maml:Description>
+            <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">High</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Medium</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Low</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Medium</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>zorg</maml:name>
+          <maml:Description>
+            <maml:para>Name of ZORG to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>datastoreCluster</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHistoryInHours</maml:name>
+          <maml:Description>
+            <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>protectedVm</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryFolder</maml:name>
+          <maml:Description>
+            <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoveryResourcePool</maml:name>
+          <maml:Description>
+            <maml:para>Name of the resource pool where the VM(s) will be recovered.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>recoverySite</maml:name>
+          <maml:Description>
+            <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>rpoInSeconds</maml:name>
+          <maml:Description>
+            <maml:para>RPO alert</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>300</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>serviceProfile</maml:name>
+          <maml:Description>
+            <maml:para>Service profile name to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testIntervalInMinutes</maml:name>
+          <maml:Description>
+            <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">0</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">43200</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">131040</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">262080</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">294560</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">252600</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>262080</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>testNetwork</maml:name>
+          <maml:Description>
+            <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>useWanCompression</maml:name>
+          <maml:Description>
+            <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+          <dev:type>
+            <maml:name>Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>True</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name of the VPG</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgPriority</maml:name>
+          <maml:Description>
+            <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">High</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Medium</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Low</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Medium</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>zorg</maml:name>
+          <maml:Description>
+            <maml:para>Name of ZORG to use.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>datastore</maml:name>
+        <maml:Description>
+          <maml:para>Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>datastoreCluster</maml:name>
+        <maml:Description>
+          <maml:para>Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>journalHistoryInHours</maml:name>
+        <maml:Description>
+          <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>24</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>protectedVm</maml:name>
+        <maml:Description>
+          <maml:para>Name(s) of the VM(s) to be protected.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>recoveryCluster</maml:name>
+        <maml:Description>
+          <maml:para>Name of the cluster where the VM(s) will be recovered.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>recoveryFolder</maml:name>
+        <maml:Description>
+          <maml:para>Name of folder at recovery location where the recovered virtual machine(s) will be created.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>recoveryHost</maml:name>
+        <maml:Description>
+          <maml:para>Name of the host where the VM(s) will be recovered.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>recoveryNetwork</maml:name>
+        <maml:Description>
+          <maml:para>Name of the network to use during a Failover Live \ Move VPG operation.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>recoveryResourcePool</maml:name>
+        <maml:Description>
+          <maml:para>Name of the resource pool where the VM(s) will be recovered.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>recoverySite</maml:name>
+        <maml:Description>
+          <maml:para>Name of the site where the VM(s) will be recoveryed</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>rpoInSeconds</maml:name>
+        <maml:Description>
+          <maml:para>RPO alert</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>300</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>serviceProfile</maml:name>
+        <maml:Description>
+          <maml:para>Service profile name to use.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>testIntervalInMinutes</maml:name>
+        <maml:Description>
+          <maml:para>Minimum test interval for this VPG. Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>262080</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>testNetwork</maml:name>
+        <maml:Description>
+          <maml:para>Name of the network to use during a Failover Test operation</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>useWanCompression</maml:name>
+        <maml:Description>
+          <maml:para>Turn on or off WAN and Journal Compression. Default is turned on.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>
+          <maml:name>Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>True</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>vpgName</maml:name>
+        <maml:Description>
+          <maml:para>Name of the VPG</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>vpgPriority</maml:name>
+        <maml:Description>
+          <maml:para>VPG Priority. High, Medium, or Low.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Medium</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>zorg</maml:name>
+        <maml:Description>
+          <maml:para>Name of ZORG to use.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para>Vpg Settings Identifier</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryCluster "Recovery Cluster Name" -recoveryDatastoreCluster "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute cluster "Recovery Cluster Name" on the datastore cluster "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>
+          <maml:para>- VpgPriority: Medium</maml:para>
+          <maml:para>- JournalHistoryInHours: 24</maml:para>
+          <maml:para>- RpoInSeconds: 300</maml:para>
+          <maml:para>- TestIntervalInMinutes: 262080</maml:para>
+          <maml:para>- UseWanCompression: True</maml:para>
+          <maml:para>- ServiceProfile: Null</maml:para>
+          <maml:para>- Zorg: Null</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryCluster "Recovery Cluster Name" -recoveryDatastore "Datastore Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute cluster "Recovery Cluster Name" on the datastore named "Datastore Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>
+          <maml:para>- VpgPriority: Medium</maml:para>
+          <maml:para>- JournalHistoryInHours: 24</maml:para>
+          <maml:para>- RpoInSeconds: 300</maml:para>
+          <maml:para>- TestIntervalInMinutes: 262080</maml:para>
+          <maml:para>- UseWanCompression: True</maml:para>
+          <maml:para>- ServiceProfile: Null</maml:para>
+          <maml:para>- Zorg: Null</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryHost "Recovery Host Name" -recoveryDatastore "Datastore Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute host "Recovery Cluster Name" on the datastore named "Datastore Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>
+          <maml:para>- VpgPriority: Medium</maml:para>
+          <maml:para>- JournalHistoryInHours: 24</maml:para>
+          <maml:para>- RpoInSeconds: 300</maml:para>
+          <maml:para>- TestIntervalInMinutes: 262080</maml:para>
+          <maml:para>- UseWanCompression: True</maml:para>
+          <maml:para>- ServiceProfile: Null</maml:para>
+          <maml:para>- Zorg: Null</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryHost "Recovery Host Name" -recoveryClusterDatastore "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute host "Recovery Name" on the datastore named "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>
+          <maml:para>- VpgPriority: Medium</maml:para>
+          <maml:para>- JournalHistoryInHours: 24</maml:para>
+          <maml:para>- RpoInSeconds: 300</maml:para>
+          <maml:para>- TestIntervalInMinutes: 262080</maml:para>
+          <maml:para>- UseWanCompression: True</maml:para>
+          <maml:para>- ServiceProfile: Null</maml:para>
+          <maml:para>- Zorg: Null</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryResourcePool "Recovery Resource Pool Name" -recoveryDatastore "Datastore Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the resource pool "Recovery Resource Pool Name" on the datastore named "Datastore Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>
+          <maml:para>- VpgPriority: Medium</maml:para>
+          <maml:para>- JournalHistoryInHours: 24</maml:para>
+          <maml:para>- RpoInSeconds: 300</maml:para>
+          <maml:para>- TestIntervalInMinutes: 262080</maml:para>
+          <maml:para>- UseWanCompression: True</maml:para>
+          <maml:para>- ServiceProfile: Null</maml:para>
+          <maml:para>- Zorg: Null</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryResourcePool "Recovery Resource Pool Name" -recoveryDatastoreCluster "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the resource pool "Recovery Resource Pool Name" on the datastore cluster named "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>
+          <maml:para>- VpgPriority: Medium</maml:para>
+          <maml:para>- JournalHistoryInHours: 24</maml:para>
+          <maml:para>- RpoInSeconds: 300</maml:para>
+          <maml:para>- TestIntervalInMinutes: 262080</maml:para>
+          <maml:para>- UseWanCompression: True</maml:para>
+          <maml:para>- ServiceProfile: Null</maml:para>
+          <maml:para>- Zorg: Null</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
+        <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Remove-ZertoVpg</command:name>
       <command:verb>Remove</command:verb>
       <command:noun>ZertoVpg</command:noun>
@@ -7896,10 +9427,11 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>force</maml:name>
           <maml:Description>
-            <maml:para>Use this switch to force delete the VPG.</maml:para>
+            <maml:para>Use this parameter to force delete the VPG, by setting this parameter equal to true.</maml:para>
           </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
-            <maml:name>SwitchParameter</maml:name>
+            <maml:name>Boolean</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
@@ -7907,10 +9439,11 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>keepRecoveryVolumes</maml:name>
           <maml:Description>
-            <maml:para>Use this switch to keep the recovery volumes at the target site. If the virtual machines in the deleted VPG are reprotected, these volumes can be used as preseeded volumes to speed up the initial synchronization of the new VPG.</maml:para>
+            <maml:para>Use this parameter to keep the recovery volumes at the target site, by setting it to True.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. Default is to remove Recovery Volumes</maml:para>
           </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
-            <maml:name>SwitchParameter</maml:name>
+            <maml:name>Boolean</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
@@ -7943,11 +9476,11 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>force</maml:name>
         <maml:Description>
-          <maml:para>Use this switch to force delete the VPG.</maml:para>
+          <maml:para>Use this parameter to force delete the VPG, by setting this parameter equal to true.</maml:para>
         </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
-          <maml:name>SwitchParameter</maml:name>
+          <maml:name>Boolean</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
@@ -7955,11 +9488,11 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>keepRecoveryVolumes</maml:name>
         <maml:Description>
-          <maml:para>Use this switch to keep the recovery volumes at the target site. If the virtual machines in the deleted VPG are reprotected, these volumes can be used as preseeded volumes to speed up the initial synchronization of the new VPG.</maml:para>
+          <maml:para>Use this parameter to keep the recovery volumes at the target site, by setting it to True.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. Default is to remove Recovery Volumes</maml:para>
         </maml:Description>
-        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
         <dev:type>
-          <maml:name>SwitchParameter</maml:name>
+          <maml:name>Boolean</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
@@ -8138,6 +9671,140 @@
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
         <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Save-ZertoVpgSettings</command:name>
+      <command:verb>Save</command:verb>
+      <command:noun>ZertoVpgSettings</command:noun>
+      <maml:description>
+        <maml:para>Commits the updated Vpg Settings with the configured Vpg Settings Identifier</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Commits the updated Vpg Settings with the configured Vpg Settings Identifier</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Save-ZertoVpgSettings</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+          <maml:name>vpgSettingsIdentifier</maml:name>
+          <maml:Description>
+            <maml:para>VpgSettings Identifier to save</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+        <maml:name>vpgSettingsIdentifier</maml:name>
+        <maml:Description>
+          <maml:para>VpgSettings Identifier to save</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:&gt; Save-ZertoVpgSettings -vpgSettingsIdentifier "MyVpgSettingsIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>Commits vpg settings with vpg settings identifier "MyVpgSettingsIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSettings.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
+        <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#</maml:uri>
       </maml:navigationLink>
     </command:relatedLinks>
   </command:command>

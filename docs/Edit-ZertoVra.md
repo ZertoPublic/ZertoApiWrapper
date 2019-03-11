@@ -24,7 +24,7 @@ It is possible to update the Bandwidth group with the -groupName setting. If the
 
 It is possible to update the static IP address, default gateway, or subnetmask.
 
-It is suggested that you use Get-ZertoVra to get the vraIdentifer prameter.
+It is suggested that you use Get-ZertoVra to get the vraIdentifer parameter.
 
 ## EXAMPLES
 
