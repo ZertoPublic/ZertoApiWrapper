@@ -8,12 +8,12 @@ function New-ZertoVpg {
         )]
         [string]$vpgName,
         [Parameter(
-            HelpMessage = "VPG Priority. High, Medium, or Low."
+            HelpMessage = "VPG Priority. High, Medium, or Low. Default value is Medium"
         )]
         [ValidateSet("High", "Medium", "Low")]
         [string]$vpgPriority = "Medium",
         [Parameter(
-            HelpMessage = "Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)"
+            HelpMessage = "Journal History in Hours. Min 1 hour, Max 720 Hours (30 days). Default value is 24 hours"
         )]
         [ValidateRange(1, 720)]
         [int]$journalHistoryInHours = 24,
