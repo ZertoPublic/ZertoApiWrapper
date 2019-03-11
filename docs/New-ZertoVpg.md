@@ -121,7 +121,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 24
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -241,7 +241,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 300
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -273,7 +273,7 @@ Accepted values: 0, 43200, 131040, 262080, 294560, 252600
 
 Required: False
 Position: Named
-Default value: None
+Default value: 262080
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -304,7 +304,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: True
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -336,7 +336,7 @@ Accepted values: High, Medium, Low
 
 Required: False
 Position: Named
-Default value: None
+Default value: Medium
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
