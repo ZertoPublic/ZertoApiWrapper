@@ -263,7 +263,7 @@ Accept wildcard characters: False
 
 ### -testIntervalInMinutes
 Minimum test interval for this VPG.
-Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months
+Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months
 
 ```yaml
 Type: Int32
