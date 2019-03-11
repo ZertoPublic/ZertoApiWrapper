@@ -67,16 +67,101 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Creates a New VPG with minimal default settings only. If additional configuration is desired, the VPG settings identifier will be returned and can be passed to other VPG modifying functions to include additional details.
+
+Finally, to save the settings, you need to pass the Vpg Settings Identifier to the `Save-ZertoVpgSettings` function to commit the the VPG.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:> {{ Add example code here }}
+PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryCluster "Recovery Cluster Name" -recoveryDatastoreCluster "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
 ```
 
-{{ Add example description here }}
+Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute cluster "Recovery Cluster Name" on the datastore cluster "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:
+
+- VpgPriority: Medium
+- JournalHistoryInHours: 24
+- RpoInSeconds: 300
+- TestIntervalInMinutes: 262080
+- UseWanCompression: True
+- ServiceProfile: Null
+- Zorg: Null
+
+### Example 2
+```powershell
+PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryCluster "Recovery Cluster Name" -recoveryDatastore "Datastore Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
+```
+
+Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute cluster "Recovery Cluster Name" on the datastore named "Datastore Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:
+
+- VpgPriority: Medium
+- JournalHistoryInHours: 24
+- RpoInSeconds: 300
+- TestIntervalInMinutes: 262080
+- UseWanCompression: True
+- ServiceProfile: Null
+- Zorg: Null
+
+### Example 3
+```powershell
+PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryHost "Recovery Host Name" -recoveryDatastore "Datastore Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
+```
+
+Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute host "Recovery Cluster Name" on the datastore named "Datastore Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:
+
+- VpgPriority: Medium
+- JournalHistoryInHours: 24
+- RpoInSeconds: 300
+- TestIntervalInMinutes: 262080
+- UseWanCompression: True
+- ServiceProfile: Null
+- Zorg: Null
+
+### Example 4
+```powershell
+PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryHost "Recovery Host Name" -recoveryClusterDatastore "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
+```
+
+Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the compute host "Recovery Name" on the datastore named "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:
+
+- VpgPriority: Medium
+- JournalHistoryInHours: 24
+- RpoInSeconds: 300
+- TestIntervalInMinutes: 262080
+- UseWanCompression: True
+- ServiceProfile: Null
+- Zorg: Null
+
+### Example 5
+```powershell
+PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryResourcePool "Recovery Resource Pool Name" -recoveryDatastore "Datastore Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
+```
+
+Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the resource pool "Recovery Resource Pool Name" on the datastore named "Datastore Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:
+
+- VpgPriority: Medium
+- JournalHistoryInHours: 24
+- RpoInSeconds: 300
+- TestIntervalInMinutes: 262080
+- UseWanCompression: True
+- ServiceProfile: Null
+- Zorg: Null
+
+### Example 5
+```powershell
+PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryResourcePool "Recovery Resource Pool Name" -recoveryDatastoreCluster "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
+```
+
+Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the resource pool "Recovery Resource Pool Name" on the datastore cluster named "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:
+
+- VpgPriority: Medium
+- JournalHistoryInHours: 24
+- RpoInSeconds: 300
+- TestIntervalInMinutes: 262080
+- UseWanCompression: True
+- ServiceProfile: Null
+- Zorg: Null
 
 ## PARAMETERS
 
@@ -365,6 +450,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.String
+Vpg Settings Identifier
 ## NOTES
 
 ## RELATED LINKS
