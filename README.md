@@ -47,11 +47,15 @@ Once you have found the command that you want to know about you can call `Get-He
 
 If you are using this as part of a larger script, I highly suggest explicitly ending your session with the `Disconnect-ZertoSession` command. This will delete the token authorization from the Zerto Virtual Manager as well as clear all Module scoped variables.
 
+## Recent Updates
+
+- March 11th, 2019: Create basic VPG completed. Please see [New-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md)
+
 ## TODO
 
 - Complete Help Markdown Files
 - JFLR Functionality
-- Create VPG
+- Create VPG (Per-VM modification and Backup Settings)
 - Edit VPG
 - Delete Zerto License
 - Flesh out Pester Tests
