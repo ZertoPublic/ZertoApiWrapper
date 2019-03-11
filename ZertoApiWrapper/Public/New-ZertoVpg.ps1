@@ -126,7 +126,22 @@ function New-ZertoVpg {
             HelpMessage = "Name of the network to use during a Failover Test operation",
             Mandatory = $true
         )]
-        [string]$testNetwork
+        [string]$testNetwork,
+        [Parameter(
+            HelpMessage = "Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.",
+            Mandatory = $false
+        )]
+        [string]$journalDatastore,
+        [Parameter(
+            HelpMessage = "Default journal hard limit in megabytes. Default set to 150MB.",
+            Mandatory = $false
+        )]
+        [int]$journalHardLimitInMb = 150,
+        [Parameter(
+            HelpMessage = "Default journal warning threshold in megabytes. If unset, will be set to 75% of the journal hard limit.",
+            Mandatory = $false
+        )]
+        [int]$journalWarningThresholdInMb = 0
     )
 
     begin {
@@ -141,6 +156,9 @@ function New-ZertoVpg {
         }
         if ($PSBoundParameters.ContainsKey("serviceProfile")) {
             $identifiersTable['serviceProfileIdentifier'] = $(Get-ZertoServiceProfile -siteIdentifier $identifiersTable['recoverySiteIdentifier'] | Where-Object {$_.ServiceProfileName -like $serviceProfile}).serviceProfileIdentifier
+        }
+        if ($PSBoundParameters.ContainsKey('journalDatastore')) {
+            $identifiersTable['journalDatastore'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object {$_.DatastoreName -like $journalDatastore}).DatastoreIdentifier
         }
         switch ($PSCmdlet.ParameterSetName) {
             "recoveryClusterDatastoreCluster" {
@@ -193,6 +211,9 @@ function New-ZertoVpg {
             $returnObject = New-Object PSObject
             $returnObject | Add-Member -MemberType NoteProperty -Name "VmIdentifier" -Value $vmIdentifier
             $returnObject
+        }
+        if (($journalWarningThresholdInMb -eq 0) -or ($journalWarningThresholdInMb -gt $journalHardLimitInMb)) {
+            $journalWarningThresholdInMb = $journalHardLimitInMb * .75
         }
     }
 
@@ -253,6 +274,11 @@ function New-ZertoVpg {
         } else {
             $baseSettings.Vms = $vmIdentifiers
         }
+        if ($identifiersTable.ContainsKey('journalDatastore')) {
+            $baseSettings.Journal.DatastoreIdentifier = $identifiersTable['journalDatastore']
+        }
+        $baseSettings.Journal.Limitation.HardLimitInMB = $journalHardLimitInMb
+        $baseSettings.Journal.Limitation.WarningThresholdInMB = $journalWarningThresholdInMb
         $settingsURI = "{0}/{1}" -f $baseUri, $vpgSettingsIdentifier
         Invoke-ZertoRestRequest -uri $settingsURI -body $($baseSettings | ConvertTo-Json -Depth 10) -method "PUT" | Out-Null
     }
