@@ -8,68 +8,80 @@ schema: 2.0.0
 # Get-ZertoVpg
 
 ## SYNOPSIS
+
 Returns information about VPGs
 
 ## SYNTAX
 
 ### main (Default)
-```
+
+```PowerShell
 Get-ZertoVpg [<CommonParameters>]
 ```
 
 ### stats
-```
+
+```PowerShell
 Get-ZertoVpg -protectionGroupIdentifier <String[]> [-checkpointsStats] [<CommonParameters>]
 ```
 
 ### checkpoints
-```
-Get-ZertoVpg -protectionGroupIdentifier <String[]> [-checkpoints] [-startDate <String>] [-endDate <String>]
- [<CommonParameters>]
+
+```PowerShell
+Get-ZertoVpg -protectionGroupIdentifier <String[]> [-checkpoints] [-startDate <String>] [-endDate <String>] [<CommonParameters>]
 ```
 
 ### protectionGroupIdentifier
-```
+
+```PowerShell
 Get-ZertoVpg -protectionGroupIdentifier <String[]> [<CommonParameters>]
 ```
 
 ### entityTypes
-```
+
+```PowerShell
 Get-ZertoVpg [-entityTypes] [<CommonParameters>]
 ```
 
 ### failoverCommitPolicies
-```
+
+```PowerShell
 Get-ZertoVpg [-failoverCommitPolicies] [<CommonParameters>]
 ```
 
 ### failoverShutdownPolicies
-```
+
+```PowerShell
 Get-ZertoVpg [-failoverShutdownPolicies] [<CommonParameters>]
 ```
 
 ### priorities
-```
+
+```PowerShell
 Get-ZertoVpg [-priorities] [<CommonParameters>]
 ```
 
 ### retentionPolicies
-```
+
+```PowerShell
 Get-ZertoVpg [-retentionPolicies] [<CommonParameters>]
 ```
 
 ### statuses
-```
+
+```PowerShell
 Get-ZertoVpg [-statuses] [<CommonParameters>]
 ```
 
 ### subStatuses
-```
+
+```PowerShell
 Get-ZertoVpg [-subStatuses] [<CommonParameters>]
 ```
 
 ### filter
-```
+
+```PowerShell
 Get-ZertoVpg [-name <String>] [-status <String>] [-subStatus <String>] [-protectedSiteType <String>]
  [-recoverySiteType <String>] [-protectedSiteIdentifier <String>] [-recoverySiteIdentifier <String>]
  [-organizationName <String>] [-zorgIdentifier <String>] [-priority <String>]
@@ -77,18 +89,21 @@ Get-ZertoVpg [-name <String>] [-status <String>] [-subStatus <String>] [-protect
 ```
 
 ## DESCRIPTION
+
 returns information about VPGs
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Get-ZertoVpg
 ```
 
 Returns information about all VPGs in the site processing the request
 
-### Example 1
+### Example 2
+
 ```powershell
 PS C:\> Get-ZertoVpg -name "MyVpg"
 ```
@@ -98,6 +113,7 @@ Returns information about VPG with the name "MyVpg"
 ## PARAMETERS
 
 ### -backupEnabled
+
 If backup is enabled.
 
 ```yaml
@@ -113,6 +129,7 @@ Accept wildcard characters: False
 ```
 
 ### -checkpoints
+
 Return checkpoints for the selected Virtual Protection Group.
 
 ```yaml
@@ -128,6 +145,7 @@ Accept wildcard characters: False
 ```
 
 ### -checkpointsStats
+
 Return earliest and latest checkpoints for the selected Virtual Protection Group
 
 ```yaml
@@ -143,6 +161,7 @@ Accept wildcard characters: False
 ```
 
 ### -endDate
+
 Return checkpoints before the specified start date.
 Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'.
 Adding Z to the end of the time sets the time to UTC.
@@ -160,6 +179,7 @@ Accept wildcard characters: False
 ```
 
 ### -entityTypes
+
 Return Valid VPG entityTypes
 
 ```yaml
@@ -175,6 +195,7 @@ Accept wildcard characters: False
 ```
 
 ### -failoverCommitPolicies
+
 Valid Failover Commit Policies
 
 ```yaml
@@ -190,6 +211,7 @@ Accept wildcard characters: False
 ```
 
 ### -failoverShutdownPolicies
+
 Valid Failover Shutdown Policies
 
 ```yaml
@@ -205,6 +227,7 @@ Accept wildcard characters: False
 ```
 
 ### -name
+
 The name of the VPG.
 
 ```yaml
@@ -220,6 +243,7 @@ Accept wildcard characters: False
 ```
 
 ### -organizationName
+
 The ZORG for this VPG.
 
 ```yaml
@@ -235,6 +259,7 @@ Accept wildcard characters: False
 ```
 
 ### -priorities
+
 Valid VPG priorities
 
 ```yaml
@@ -250,6 +275,7 @@ Accept wildcard characters: False
 ```
 
 ### -priority
+
 The VPG priority.
 Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'
 
@@ -266,6 +292,7 @@ Accept wildcard characters: False
 ```
 
 ### -protectedSiteIdentifier
+
 The identifier of the protected site where the VPG virtual machines are protected.
 
 ```yaml
@@ -281,6 +308,7 @@ Accept wildcard characters: False
 ```
 
 ### -protectedSiteType
+
 The protected site environment.
 This filter behaves in the same way as the sourceType filter.
 Please see Zerto API Documentation for vaild values and discriptions.
@@ -298,6 +326,7 @@ Accept wildcard characters: False
 ```
 
 ### -protectionGroupIdentifier
+
 The identifier(s) of the Virtual Protection Group to return
 
 ```yaml
@@ -313,6 +342,7 @@ Accept wildcard characters: False
 ```
 
 ### -recoverySiteIdentifier
+
 The identifier of the protected site where the VPG virtual machines are recovered.
 
 ```yaml
@@ -328,6 +358,7 @@ Accept wildcard characters: False
 ```
 
 ### -recoverySiteType
+
 The recovery site environment.
 This filter behaves in the same way as the sourceType filter.
 Please see Zerto API Documentation for vaild values and discriptions.
@@ -345,6 +376,7 @@ Accept wildcard characters: False
 ```
 
 ### -retentionPolicies
+
 Valid retention policies
 
 ```yaml
@@ -360,6 +392,7 @@ Accept wildcard characters: False
 ```
 
 ### -serviceProfileIdentifier
+
 The identifier of the service profile to use for the VPG when a Zerto Cloud Manager is used.
 
 ```yaml
@@ -375,6 +408,7 @@ Accept wildcard characters: False
 ```
 
 ### -startDate
+
 Return checkpoints after the specified start date.
 Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'.
 Adding Z to the end of the time sets the time to UTC.
@@ -392,6 +426,7 @@ Accept wildcard characters: False
 ```
 
 ### -status
+
 The status of the VPG.
 Please use 'Get-ZertoVpg -statuses' for valid values
 
@@ -408,6 +443,7 @@ Accept wildcard characters: False
 ```
 
 ### -statuses
+
 Valid VPG statuses
 
 ```yaml
@@ -423,6 +459,7 @@ Accept wildcard characters: False
 ```
 
 ### -subStatus
+
 The substatus of the VPG.
 Please use 'Get-ZertoVpg -substatuses' for valid values
 
@@ -439,6 +476,7 @@ Accept wildcard characters: False
 ```
 
 ### -subStatuses
+
 Valid VPG sub statuses
 
 ```yaml
@@ -454,6 +492,7 @@ Accept wildcard characters: False
 ```
 
 ### -zorgIdentifier
+
 The internal identifier for the ZORG.
 
 ```yaml
@@ -469,16 +508,21 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Object
+
+JSON data returned from the API as a PowerShell object containing settings for the selected VPG(s).
+
 ## NOTES
 
 ## RELATED LINKS
+
 [Zerto REST API VPG End Point Documentation](http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.100.html#)
