@@ -7895,6 +7895,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalDatastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHardLimitInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>153600</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>journalHistoryInHours</maml:name>
           <maml:Description>
             <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -7905,6 +7929,18 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalWarningThresholdInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>protectedVm</maml:name>
@@ -8091,6 +8127,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalDatastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHardLimitInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>153600</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>journalHistoryInHours</maml:name>
           <maml:Description>
             <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -8101,6 +8161,18 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalWarningThresholdInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>protectedVm</maml:name>
@@ -8287,6 +8359,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalDatastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHardLimitInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>153600</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>journalHistoryInHours</maml:name>
           <maml:Description>
             <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -8297,6 +8393,18 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalWarningThresholdInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>protectedVm</maml:name>
@@ -8483,6 +8591,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalDatastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHardLimitInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>153600</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>journalHistoryInHours</maml:name>
           <maml:Description>
             <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -8493,6 +8625,18 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalWarningThresholdInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>protectedVm</maml:name>
@@ -8679,6 +8823,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalDatastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHardLimitInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>153600</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>journalHistoryInHours</maml:name>
           <maml:Description>
             <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -8689,6 +8857,18 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalWarningThresholdInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>protectedVm</maml:name>
@@ -8875,6 +9055,30 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalDatastore</maml:name>
+          <maml:Description>
+            <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalHardLimitInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>153600</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>journalHistoryInHours</maml:name>
           <maml:Description>
             <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -8885,6 +9089,18 @@
             <maml:uri />
           </dev:type>
           <dev:defaultValue>24</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>journalWarningThresholdInMb</maml:name>
+          <maml:Description>
+            <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>protectedVm</maml:name>
@@ -9083,6 +9299,30 @@
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>journalDatastore</maml:name>
+        <maml:Description>
+          <maml:para>Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>journalHardLimitInMb</maml:name>
+        <maml:Description>
+          <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>153600</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>journalHistoryInHours</maml:name>
         <maml:Description>
           <maml:para>Journal History in Hours. Min 1 hour, Max 720 Hours (30 days)</maml:para>
@@ -9093,6 +9333,18 @@
           <maml:uri />
         </dev:type>
         <dev:defaultValue>24</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>journalWarningThresholdInMb</maml:name>
+        <maml:Description>
+          <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>protectedVm</maml:name>
@@ -9372,7 +9624,7 @@
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>-------------------------- Example 5 --------------------------</maml:title>
+        <maml:title>-------------------------- Example 6 --------------------------</maml:title>
         <dev:code>PS C:&gt; New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryResourcePool "Recovery Resource Pool Name" -recoveryDatastoreCluster "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"</dev:code>
         <dev:remarks>
           <maml:para>Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Machines "WebServer01", "AppServer01", and "DatabaseServer01" targeting site "Recovery Site." The Virtual machines will be placed on the resource pool "Recovery Resource Pool Name" on the datastore cluster named "Datastore Cluster Name." When the virtual machines are created at the recovery site, they will be created in the folder "Recovered VMs." Finally, the network to be used during a live event will be "VM Network" and during a test operation will be "VM Network." Other values set will be the defaults, such as:</maml:para>

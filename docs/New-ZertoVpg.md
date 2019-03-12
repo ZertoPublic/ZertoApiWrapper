@@ -18,6 +18,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryCluster <String> -datastoreCluster <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
  [<CommonParameters>]
 ```
 
@@ -27,6 +28,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryCluster <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
  [<CommonParameters>]
 ```
 
@@ -36,6 +38,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryHost <String> -datastoreCluster <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
  [<CommonParameters>]
 ```
 
@@ -45,6 +48,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryHost <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
  [<CommonParameters>]
 ```
 
@@ -54,6 +58,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryResourcePool <String> -datastoreCluster <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
  [<CommonParameters>]
 ```
 
@@ -63,6 +68,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryResourcePool <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
  [<CommonParameters>]
 ```
 
@@ -148,7 +154,7 @@ Creates a VPG Settings Object for a VPG called "MyVpg" and protecting Virtual Ma
 - ServiceProfile: Null
 - Zorg: Null
 
-### Example 5
+### Example 6
 ```powershell
 PS C:> New-ZertoVpg -vpgName "MyVpg" -protectedVm "WebServer01", "AppServer01", "DatabaseServer01" -recoverySite "Recovery Site" -recoveryFolder "Recovered VMs" -recoveryResourcePool "Recovery Resource Pool Name" -recoveryDatastoreCluster "Datastore Cluster Name" -testNetwork "Test Bubble Network" -recoveryNetwork "VM Network"
 ```
@@ -195,6 +201,36 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -journalDatastore
+Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -journalHardLimitInMb
+Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 153600
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -journalHistoryInHours
 Journal History in Hours.
 Min 1 hour, Max 720 Hours (30 days)
@@ -207,6 +243,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: 24
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -journalWarningThresholdInMb
+Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -451,7 +502,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.String
 Vpg Settings Identifier
+
 ## NOTES
 
 ## RELATED LINKS
+
 [Zerto REST API VPG Settings End Point Documentation](http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#)
