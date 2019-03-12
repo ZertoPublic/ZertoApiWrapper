@@ -133,7 +133,7 @@ function New-ZertoVpg {
         )]
         [string]$journalDatastore,
         [Parameter(
-            HelpMessage = "Default journal hard limit in megabytes. Default set to 150MB. Set to 0 to set the journal to unlimited",
+            HelpMessage = "Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited",
             Mandatory = $false
         )]
         [int]$journalHardLimitInMb = 153600,
