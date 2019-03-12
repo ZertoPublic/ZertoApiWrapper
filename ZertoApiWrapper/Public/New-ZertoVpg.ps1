@@ -133,18 +133,19 @@ function New-ZertoVpg {
         )]
         [string]$journalDatastore,
         [Parameter(
-            HelpMessage = "Default journal hard limit in megabytes. Default set to 150MB.",
+            HelpMessage = "Default journal hard limit in megabytes. Default set to 150MB. Set to 0 to set the journal to unlimited",
             Mandatory = $false
         )]
-        [int]$journalHardLimitInMb = 150,
+        [int]$journalHardLimitInMb = 153600,
         [Parameter(
-            HelpMessage = "Default journal warning threshold in megabytes. If unset, will be set to 75% of the journal hard limit.",
+            HelpMessage = "Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit.",
             Mandatory = $false
         )]
         [int]$journalWarningThresholdInMb = 0
     )
 
     begin {
+        # Create an identifiers table, and start converting names to identifiers.
         $identifiersTable = @{}
         $identifiersTable['recoverySiteIdentifier'] = $(Get-ZertoPeerSite -peerName $recoverySite).siteIdentifier
         $peerSiteNetworks = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -networks)
@@ -160,6 +161,7 @@ function New-ZertoVpg {
         if ($PSBoundParameters.ContainsKey('journalDatastore')) {
             $identifiersTable['journalDatastore'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object {$_.DatastoreName -like $journalDatastore}).DatastoreIdentifier
         }
+        # Get identifiers based on parameter set name
         switch ($PSCmdlet.ParameterSetName) {
             "recoveryClusterDatastoreCluster" {
                 $identifiersTable['clusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hostclusters | Where-Object {$_.VirtualizationClusterName -like $recoveryCluster}).ClusterIdentifier
@@ -193,11 +195,16 @@ function New-ZertoVpg {
         }
         $unprotectedVms = Get-ZertoUnprotectedVm
         $protectedVms = Get-ZertoProtectedVm
+        # Create array of VM identifiers
         $vmIdentifiers = @()
         $vmIdentifiers = foreach ($vm in $protectedVm) {
+            # If the VM is unprotected, get the identifier
             $vmIdentifier = $unprotectedVms | Where-Object {$_.vmName -like $vm} | Select-Object -ExpandProperty vmIdentifier
+            # If the VM is not unprotected, check the protected VMs
             if ( -not $vmIdentifier) {
+                # Get all identifiers to test if the VM is eligible to be a member of an additional VPG
                 $results = $protectedVms | Where-Object {$_.VmName -like $vm} | Select-Object -ExpandProperty vmIdentifier
+                # If VM is currently a member of 3 VPGs, skip it. If it cannot be found, skip it. Otherwise, set the identifier
                 if ($results.count -eq 3) {
                     Write-Warning "$vm is already a part of 3 VPGs and cannot be part of an additional VPG. Skipping $vm"
                     continue
@@ -208,6 +215,7 @@ function New-ZertoVpg {
                     $vmIdentifier = $results | Select-Object -First 1
                 }
             }
+            # Create a custom object to store the information to easily convert to JSON. Return to vmIdentifiers array.
             $returnObject = New-Object PSObject
             $returnObject | Add-Member -MemberType NoteProperty -Name "VmIdentifier" -Value $vmIdentifier
             $returnObject
@@ -219,8 +227,11 @@ function New-ZertoVpg {
 
     process {
         $baseUri = "vpgsettings"
+        # Create a VPG Settings Identifier
         $vpgSettingsIdentifier = Invoke-ZertoRestRequest -uri $baseUri -body "{}" -method "POST"
+        # Put base settings into an object easy to manipulate
         $baseSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
+        # Set settings equal to passed and default parameters
         $baseSettings.basic.name = $vpgName
         $baseSettings.basic.journalHistoryInHours = $journalHistoryInHours
         $baseSettings.basic.Priority = $vpgPriority
@@ -268,6 +279,7 @@ function New-ZertoVpg {
                 $baseSettings.Recovery.DefaultDatastoreIdentifier = $identifiersTable['datastoreIdentifier']
             }
         }
+        # If only 1 VM is selected, force VMs settings to be an array.
         If ($vmIdentifiers.count -eq 1) {
             $basesettings.Vms = @()
             $baseSettings.Vms += $vmIdentifiers
@@ -284,6 +296,7 @@ function New-ZertoVpg {
     }
 
     end {
+        # Return vpgSettings Identifier as a string to pass into Save function.
         return $vpgSettingsIdentifier.toString()
     }
 }
