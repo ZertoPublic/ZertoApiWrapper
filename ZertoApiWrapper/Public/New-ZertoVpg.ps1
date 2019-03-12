@@ -136,12 +136,12 @@ function New-ZertoVpg {
             HelpMessage = "Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited",
             Mandatory = $false
         )]
-        [int]$journalHardLimitInMb = 153600,
+        [uint64]$journalHardLimitInMb = 153600,
         [Parameter(
             HelpMessage = "Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit.",
             Mandatory = $false
         )]
-        [int]$journalWarningThresholdInMb = 0
+        [uint64]$journalWarningThresholdInMb = 0
     )
 
     begin {

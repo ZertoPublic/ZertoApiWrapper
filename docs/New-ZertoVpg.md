@@ -18,7 +18,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryCluster <String> -datastoreCluster <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -28,7 +28,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryCluster <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -38,7 +38,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryHost <String> -datastoreCluster <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -48,7 +48,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryHost <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -58,7 +58,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryResourcePool <String> -datastoreCluster <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -68,7 +68,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  -recoverySite <String> -recoveryResourcePool <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <Int32>] [-journalWarningThresholdInMb <Int32>]
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
  [<CommonParameters>]
 ```
 
@@ -220,7 +220,7 @@ Accept wildcard characters: False
 Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited
 
 ```yaml
-Type: Int32
+Type: UInt64
 Parameter Sets: (All)
 Aliases:
 
@@ -251,7 +251,7 @@ Accept wildcard characters: False
 Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.
 
 ```yaml
-Type: Int32
+Type: UInt64
 Parameter Sets: (All)
 Aliases:
 
