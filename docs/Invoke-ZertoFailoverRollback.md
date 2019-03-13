@@ -8,29 +8,33 @@ schema: 2.0.0
 # Invoke-ZertoFailoverRollback
 
 ## SYNOPSIS
-Rollsback a VPG in a Before Commit Failover State
+
+Rolls back a VPG in a Before Commit Failover State
 
 ## SYNTAX
 
-```
+```PowerShell
 Invoke-ZertoFailoverRollback [-vpgName] <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Rollsback a VPG in a Before Commit Failover State
+
+Rolls back a VPG in a Before Commit Failover State
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 PS C:\> Invoke-ZertoFailoverRollback -vpgName "MyVpg"
 ```
 
-Rollsback VPG "MyVPG" from a Before Commit State
+Rolls back VPG "MyVPG" from a Before Commit State
 
 ## PARAMETERS
 
 ### -vpgName
+
 Name(s) of VPG(s) to roll back from failing over
 
 ```yaml
@@ -46,14 +50,17 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS
