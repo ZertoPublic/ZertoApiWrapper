@@ -5015,7 +5015,7 @@
           <maml:name>System.Object</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para>JSON data returned from the API as a PowerShell object containing settings for the selected VPG(s).</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -5033,7 +5033,7 @@
         </dev:remarks>
       </command:example>
       <command:example>
-        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Get-ZertoVpg -name "MyVpg"</dev:code>
         <dev:remarks>
           <maml:para>Returns information about VPG with the name "MyVpg"</maml:para>
@@ -7911,9 +7911,9 @@
           <maml:Description>
             <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>153600</dev:defaultValue>
@@ -7935,9 +7935,9 @@
           <maml:Description>
             <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -8143,9 +8143,9 @@
           <maml:Description>
             <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>153600</dev:defaultValue>
@@ -8167,9 +8167,9 @@
           <maml:Description>
             <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -8375,9 +8375,9 @@
           <maml:Description>
             <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>153600</dev:defaultValue>
@@ -8399,9 +8399,9 @@
           <maml:Description>
             <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -8607,9 +8607,9 @@
           <maml:Description>
             <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>153600</dev:defaultValue>
@@ -8631,9 +8631,9 @@
           <maml:Description>
             <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -8839,9 +8839,9 @@
           <maml:Description>
             <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>153600</dev:defaultValue>
@@ -8863,9 +8863,9 @@
           <maml:Description>
             <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -9071,9 +9071,9 @@
           <maml:Description>
             <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>153600</dev:defaultValue>
@@ -9095,9 +9095,9 @@
           <maml:Description>
             <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
           <dev:type>
-            <maml:name>Int32</maml:name>
+            <maml:name>UInt64</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
@@ -9315,9 +9315,9 @@
         <maml:Description>
           <maml:para>Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
         <dev:type>
-          <maml:name>Int32</maml:name>
+          <maml:name>UInt64</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>153600</dev:defaultValue>
@@ -9339,9 +9339,9 @@
         <maml:Description>
           <maml:para>Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit. If the journalHardLimitInMB is set to 0 (unlimited), this will be set to unlimited as well.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">UInt64</command:parameterValue>
         <dev:type>
-          <maml:name>Int32</maml:name>
+          <maml:name>UInt64</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -9664,26 +9664,13 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Remove-ZertoVpg</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
-          <maml:name>vpgName</maml:name>
-          <maml:Description>
-            <maml:para>Name of the VPG to delete.</maml:para>
-          </maml:Description>
-          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-          <dev:type>
-            <maml:name>String</maml:name>
-            <maml:uri />
-          </dev:type>
-          <dev:defaultValue>None</dev:defaultValue>
-        </command:parameter>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>force</maml:name>
           <maml:Description>
-            <maml:para>Use this parameter to force delete the VPG, by setting this parameter equal to true.</maml:para>
+            <maml:para>Use this switch to force delete the VPG. If unused, a non-forced remove vpg operation will be executed.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
-            <maml:name>Boolean</maml:name>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
@@ -9691,11 +9678,81 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>keepRecoveryVolumes</maml:name>
           <maml:Description>
-            <maml:para>Use this parameter to keep the recovery volumes at the target site, by setting it to True.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. Default is to remove Recovery Volumes</maml:para>
+            <maml:para>Use this switch to keep the recovery volumes at the target site.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. If this switch is not set, recovery volumes will not be retained. If required to be retained, get the path to these volumes prior to the deletion to use as pre-seed volumes for an easier operation.</maml:para>
           </maml:Description>
-          <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
           <dev:type>
-            <maml:name>Boolean</maml:name>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+          <maml:name>vpgidentifier</maml:name>
+          <maml:Description>
+            <maml:para>vpgIdentifier(s) of the VPG(s) to delete.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Remove-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VPG(s) to delete.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>force</maml:name>
+          <maml:Description>
+            <maml:para>Use this switch to force delete the VPG. If unused, a non-forced remove vpg operation will be executed.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>keepRecoveryVolumes</maml:name>
+          <maml:Description>
+            <maml:para>Use this switch to keep the recovery volumes at the target site.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. If this switch is not set, recovery volumes will not be retained. If required to be retained, get the path to these volumes prior to the deletion to use as pre-seed volumes for an easier operation.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
             <maml:uri />
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
@@ -9728,11 +9785,11 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>force</maml:name>
         <maml:Description>
-          <maml:para>Use this parameter to force delete the VPG, by setting this parameter equal to true.</maml:para>
+          <maml:para>Use this switch to force delete the VPG. If unused, a non-forced remove vpg operation will be executed.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Boolean</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
@@ -9740,23 +9797,35 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>keepRecoveryVolumes</maml:name>
         <maml:Description>
-          <maml:para>Use this parameter to keep the recovery volumes at the target site, by setting it to True.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. Default is to remove Recovery Volumes</maml:para>
+          <maml:para>Use this switch to keep the recovery volumes at the target site.  If the virtual machines in the deleted VPG are re-protected, these volumes can be used as pre-seed volumes to speed up the initial synchronization of the new VPG. If this switch is not set, recovery volumes will not be retained. If required to be retained, get the path to these volumes prior to the deletion to use as pre-seed volumes for an easier operation.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">Boolean</command:parameterValue>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
         <dev:type>
-          <maml:name>Boolean</maml:name>
+          <maml:name>SwitchParameter</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <maml:name>vpgidentifier</maml:name>
+        <maml:Description>
+          <maml:para>vpgIdentifier(s) of the VPG(s) to delete.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
         <maml:name>vpgName</maml:name>
         <maml:Description>
-          <maml:para>Name of the VPG to delete.</maml:para>
+          <maml:para>Name(s) of the VPG(s) to delete.</maml:para>
         </maml:Description>
-        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
-          <maml:name>String</maml:name>
+          <maml:name>String[]</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -9802,7 +9871,7 @@
           <maml:name>System.Object</maml:name>
         </dev:type>
         <maml:description>
-          <maml:para></maml:para>
+          <maml:para>Task Identifier of the Remove operation</maml:para>
         </maml:description>
       </command:returnValue>
     </command:returnValues>
@@ -9821,9 +9890,23 @@
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Remove-ZertoVpg -vpgName "MyVpg" -keepRecoveryVolumes</dev:code>
+        <dev:code>PS C:\&gt; Remove-ZertoVpg -vpgName "MyVpg", "MyOtherVpg" -keepRecoveryVolumes</dev:code>
         <dev:remarks>
-          <maml:para>Deletes Zerto Virtual Protection Group named "MyVpg". Recovery volumes at the recovery site will be retained.</maml:para>
+          <maml:para>Deletes Zerto Virtual Protection Groups named "MyVpg" and "MyOtherVpg." Recovery volumes at the recovery site will be retained for both VPGs.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-ZertoVpg -vpgIdentifier "MyVpgIdentifier" -keepRecoveryVolumes</dev:code>
+        <dev:remarks>
+          <maml:para>Deletes Zerto Virtual Protection Group with vpgIdentifier "MyVpgIdentifier". Recovery volumes at the recovery site will be retained.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVpg -recoverySiteIdentifier "MyRecoverySiteIdentifier" | Remove-ZertoVpg</dev:code>
+        <dev:remarks>
+          <maml:para>Uses the `Get-ZertoVpg` function to get all VPGs currently being protected to recovery site with identifier "MyRecoverySiteIdentifier." This information is piped into the `Remove-ZertoVpg` function and will remove all VPGs being protected to the specified recovery site.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
