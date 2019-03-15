@@ -1,12 +1,29 @@
 function Export-ZertoVpg {
     [cmdletbinding()]
     param(
-        [string]$outputPath,
-        [string[]]$vpgName
+        [Parameter(
+            HelpMessage = "Location where to dump the resulting JSON files containing the VPG Settings",
+            Mandatory = $true
+        )]
+        [string]$outputFolder,
+        [parameter(
+            HelpMessage = "Name(s) of the VPG(s) to be exported",
+            ParameterSetName = "namedVpgs"
+        )]
+        [string[]]$vpgName,
+        [parameter(
+            HelpMessage = "Export all VPGs at this site",
+            ParameterSetName = "allVpgs",
+            valuefrompipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [switch]$allVpgs
     )
 
     begin {
-
+        if ($allVpgs) {
+            $vpgName = $(Get-ZertoVpg).vpgName
+        }
     }
 
     process {
