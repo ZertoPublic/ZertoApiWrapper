@@ -756,6 +756,163 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Export-ZertoVpg</command:name>
+      <command:verb>Export</command:verb>
+      <command:noun>ZertoVpg</command:noun>
+      <maml:description>
+        <maml:para>Exports a VPG Settings Object to a JSON file. This file can be used to re-import the VPG at a later time.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Exports a VPG Settings Object to a JSON file. This file can be used to re-import the VPG at a later time.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Export-ZertoVpg</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+          <maml:name>allVpgs</maml:name>
+          <maml:Description>
+            <maml:para>Export all VPGs at this site</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>outputFolder</maml:name>
+          <maml:Description>
+            <maml:para>Location where to dump the resulting JSON files containing the VPG Settings</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Export-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>outputFolder</maml:name>
+          <maml:Description>
+            <maml:para>Location where to dump the resulting JSON files containing the VPG Settings</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>vpgName</maml:name>
+          <maml:Description>
+            <maml:para>Name(s) of the VPG(s) to be exported</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <maml:name>allVpgs</maml:name>
+        <maml:Description>
+          <maml:para>Export all VPGs at this site</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>outputFolder</maml:name>
+        <maml:Description>
+          <maml:para>Location where to dump the resulting JSON files containing the VPG Settings</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>vpgName</maml:name>
+        <maml:Description>
+          <maml:para>Name(s) of the VPG(s) to be exported</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:&gt; Export-ZertoVpg -outputFolder "C:\ZertoVPGs" -vpgName "My Vpg", "My Other Vpg"</dev:code>
+        <dev:remarks>
+          <maml:para>Exports VPG settings for VPGs "My Vpg" and "My Other Vpg". Each settings object will be placed inside a JSON file at C:\ZertoVPGs\ with the name of the file being the name of the VPG.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:&gt; Export-ZertoVpg -outputFolder "C:\ZertoVPGs" -allVpgs</dev:code>
+        <dev:remarks>
+          <maml:para>Exports VPG settings for all Vpgs replicated to or from this site. Each settings object will be placed inside a JSON file at C:\ZertoVPGs\ with the name of the file being the name of the VPG. If a VPG is in an un-editable state, it cannot be exported.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/Export-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
+        <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-ZertoAlert</command:name>
       <command:verb>Get</command:verb>
       <command:noun>ZertoAlert</command:noun>
@@ -6416,6 +6573,94 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Import-ZertoVpg</command:name>
+      <command:verb>Import</command:verb>
+      <command:noun>ZertoVpg</command:noun>
+      <maml:description>
+        <maml:para>Reads in one or more JSON files and imports each one into a VPG.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Reads in one or several JSON files and imports each one into a VPG. Currently this method does not support using pre-seed volumes. We are working through a method to get this working, but it may be a while until this happens.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Import-ZertoVpg</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="FullName">
+          <maml:name>settingsFile</maml:name>
+          <maml:Description>
+            <maml:para>VPG settings JSON file(s) to import.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="FullName">
+        <maml:name>settingsFile</maml:name>
+        <maml:Description>
+          <maml:para>VPG settings JSON file(s) to import.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String[]</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:&gt; Import-ZertoVpg -settingsFile "C:\ZertoVpgs\My Vpg.json"</dev:code>
+        <dev:remarks>
+          <maml:para>Reads in "My Vpg.json", creates a new VPG object, applies all the settings and saves the VPG.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/Import-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
+        <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Install-ZertoVra</command:name>
       <command:verb>Install</command:verb>
       <command:noun>ZertoVra</command:noun>
@@ -7223,11 +7468,11 @@
       <command:verb>Invoke</command:verb>
       <command:noun>ZertoFailoverRollback</command:noun>
       <maml:description>
-        <maml:para>Rollsback a VPG in a Before Commit Failover State</maml:para>
+        <maml:para>Rolls back a VPG in a Before Commit Failover State</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Rollsback a VPG in a Before Commit Failover State</maml:para>
+      <maml:para>Rolls back a VPG in a Before Commit Failover State</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -7290,7 +7535,7 @@
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
         <dev:code>PS C:\&gt; Invoke-ZertoFailoverRollback -vpgName "MyVpg"</dev:code>
         <dev:remarks>
-          <maml:para>Rollsback VPG "MyVPG" from a Before Commit State</maml:para>
+          <maml:para>Rolls back VPG "MyVPG" from a Before Commit State</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
@@ -9642,6 +9887,127 @@
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
         <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md</maml:uri>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
+        <maml:uri>http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>New-ZertoVpgSettingsIdentifier</command:name>
+      <command:verb>New</command:verb>
+      <command:noun>ZertoVpgSettingsIdentifier</command:noun>
+      <maml:description>
+        <maml:para>Creates and returns a VPG Settings Identifier either for an existing VPG or a new VPG.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Creates and returns a VPG Settings Identifier either for an existing VPG or a new VPG.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpgSettingsIdentifier</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>newVpg</maml:name>
+          <maml:Description>
+            <maml:para>Use this switch when creating a vpgSettingsIdentifier for a new VPG</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>New-ZertoVpgSettingsIdentifier</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+          <maml:name>vpgIdentifier</maml:name>
+          <maml:Description>
+            <maml:para>Identifier of the VPG to create a VPG settings identifier. If a vpgIdentifier is not provided, a new VPG settings object is created without any configured settings. This would be used for creating a new VPG from scratch.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>newVpg</maml:name>
+        <maml:Description>
+          <maml:para>Use this switch when creating a vpgSettingsIdentifier for a new VPG</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <maml:name>vpgIdentifier</maml:name>
+        <maml:Description>
+          <maml:para>Identifier of the VPG to create a VPG settings identifier. If a vpgIdentifier is not provided, a new VPG settings object is created without any configured settings. This would be used for creating a new VPG from scratch.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Object</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpgSettingsIdentifier -newVpg</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a Vpg Settings Identifier for a new, blank VPG.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:&gt; New-ZertoVpgSettingsIdentifier -vpgIdentifier "MyVpgIdentifier"</dev:code>
+        <dev:remarks>
+          <maml:para>Creates a Vpg Settings Identifier for an existing VPG. This settings identifier points to a settings object that contains the current settings of the VPG.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Online Version:</maml:linkText>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/New-ZertoVpgSettingsIdentifier.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>

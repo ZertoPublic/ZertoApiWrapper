@@ -1,14 +1,14 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/Export-ZertoVpg.md
 schema: 2.0.0
 ---
 
 # Export-ZertoVpg
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Exports a VPG Settings Object to a JSON file. This file can be used to re-import the VPG at a later time.
 
 ## SYNTAX
 
@@ -23,16 +23,23 @@ Export-ZertoVpg -outputFolder <String> [-allVpgs] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Exports a VPG Settings Object to a JSON file. This file can be used to re-import the VPG at a later time.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:> {{ Add example code here }}
+PS C:> Export-ZertoVpg -outputFolder "C:\ZertoVPGs" -vpgName "My Vpg", "My Other Vpg"
 ```
 
-{{ Add example description here }}
+Exports VPG settings for VPGs "My Vpg" and "My Other Vpg". Each settings object will be placed inside a JSON file at C:\ZertoVPGs\ with the name of the file being the name of the VPG.
+
+### Example 2
+```powershell
+PS C:> Export-ZertoVpg -outputFolder "C:\ZertoVPGs" -allVpgs
+```
+
+Exports VPG settings for all Vpgs replicated to or from this site. Each settings object will be placed inside a JSON file at C:\ZertoVPGs\ with the name of the file being the name of the VPG. If a VPG is in an un-editable state, it cannot be exported.
 
 ## PARAMETERS
 
@@ -94,3 +101,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Zerto REST API VPG Settings End Point Documentation](http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#)

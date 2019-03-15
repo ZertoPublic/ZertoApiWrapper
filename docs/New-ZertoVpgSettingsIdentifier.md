@@ -1,14 +1,14 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/New-ZertoVpgSettingsIdentifier.md
 schema: 2.0.0
 ---
 
 # New-ZertoVpgSettingsIdentifier
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Creates and returns a VPG Settings Identifier either for an existing VPG or a new VPG.
 
 ## SYNTAX
 
@@ -23,16 +23,23 @@ New-ZertoVpgSettingsIdentifier [-newVpg] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Creates and returns a VPG Settings Identifier either for an existing VPG or a new VPG.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:> {{ Add example code here }}
+PS C:> New-ZertoVpgSettingsIdentifier -newVpg
 ```
 
-{{ Add example description here }}
+Creates a Vpg Settings Identifier for a new, blank VPG.
+
+### Example 2
+```powershell
+PS C:> New-ZertoVpgSettingsIdentifier -vpgIdentifier "MyVpgIdentifier"
+```
+
+Creates a Vpg Settings Identifier for an existing VPG. This settings identifier points to a settings object that contains the current settings of the VPG.
 
 ## PARAMETERS
 
@@ -81,3 +88,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Zerto REST API VPG Settings End Point Documentation](http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/RestfulAPIs/StatusAPIs.5.108.html#)
