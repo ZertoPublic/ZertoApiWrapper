@@ -228,7 +228,7 @@ function New-ZertoVpg {
     process {
         $baseUri = "vpgsettings"
         # Create a VPG Settings Identifier
-        $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier
+        $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -newVpg
         # Put base settings into an object easy to manipulate
         $baseSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
         # Set settings equal to passed and default parameters
