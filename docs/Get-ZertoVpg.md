@@ -14,74 +14,63 @@ Returns information about VPGs
 ## SYNTAX
 
 ### main (Default)
-
-```PowerShell
+```
 Get-ZertoVpg [<CommonParameters>]
 ```
 
 ### stats
-
-```PowerShell
+```
 Get-ZertoVpg -protectionGroupIdentifier <String[]> [-checkpointsStats] [<CommonParameters>]
 ```
 
 ### checkpoints
-
-```PowerShell
-Get-ZertoVpg -protectionGroupIdentifier <String[]> [-checkpoints] [-startDate <String>] [-endDate <String>] [<CommonParameters>]
+```
+Get-ZertoVpg -protectionGroupIdentifier <String[]> [-checkpoints] [-startDate <String>] [-endDate <String>]
+ [<CommonParameters>]
 ```
 
 ### protectionGroupIdentifier
-
-```PowerShell
+```
 Get-ZertoVpg -protectionGroupIdentifier <String[]> [<CommonParameters>]
 ```
 
 ### entityTypes
-
-```PowerShell
+```
 Get-ZertoVpg [-entityTypes] [<CommonParameters>]
 ```
 
 ### failoverCommitPolicies
-
-```PowerShell
+```
 Get-ZertoVpg [-failoverCommitPolicies] [<CommonParameters>]
 ```
 
 ### failoverShutdownPolicies
-
-```PowerShell
+```
 Get-ZertoVpg [-failoverShutdownPolicies] [<CommonParameters>]
 ```
 
 ### priorities
-
-```PowerShell
+```
 Get-ZertoVpg [-priorities] [<CommonParameters>]
 ```
 
 ### retentionPolicies
-
-```PowerShell
+```
 Get-ZertoVpg [-retentionPolicies] [<CommonParameters>]
 ```
 
 ### statuses
-
-```PowerShell
+```
 Get-ZertoVpg [-statuses] [<CommonParameters>]
 ```
 
 ### subStatuses
-
-```PowerShell
+```
 Get-ZertoVpg [-subStatuses] [<CommonParameters>]
 ```
 
 ### filter
-
-```PowerShell
+```
 Get-ZertoVpg [-name <String>] [-status <String>] [-subStatus <String>] [-protectedSiteType <String>]
  [-recoverySiteType <String>] [-protectedSiteIdentifier <String>] [-recoverySiteIdentifier <String>]
  [-organizationName <String>] [-zorgIdentifier <String>] [-priority <String>]
@@ -508,7 +497,6 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS

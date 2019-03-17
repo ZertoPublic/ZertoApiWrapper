@@ -14,15 +14,13 @@ Deletes a Zerto Virtual Protection Group
 ## SYNTAX
 
 ### vpgIdentifier (Default)
-
-```PowerShell
+```
 Remove-ZertoVpg -vpgidentifier <String[]> [-keepRecoveryVolumes] [-force] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### vpgName
-
-```PowerShell
+```
 Remove-ZertoVpg [-vpgName] <String[]> [-keepRecoveryVolumes] [-force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -164,7 +162,6 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
