@@ -23,7 +23,7 @@ function New-ZertoVpg {
         )]
         [ValidateNotNullOrEmpty()][string[]]$protectedVm,
         [Parameter(
-            HelpMessage = "Name of the site where the VM(s) will be recoveryed",
+            HelpMessage = "Name of the site where the VM(s) will be recovered",
             Mandatory = $true
         )]
         [string]$recoverySite,
