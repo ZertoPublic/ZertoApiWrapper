@@ -23,7 +23,7 @@ function New-ZertoVpg {
         )]
         [ValidateNotNullOrEmpty()][string[]]$protectedVm,
         [Parameter(
-            HelpMessage = "Name of the site where the VM(s) will be recoveryed",
+            HelpMessage = "Name of the site where the VM(s) will be recovered",
             Mandatory = $true
         )]
         [string]$recoverySite,
@@ -228,7 +228,7 @@ function New-ZertoVpg {
     process {
         $baseUri = "vpgsettings"
         # Create a VPG Settings Identifier
-        $vpgSettingsIdentifier = Invoke-ZertoRestRequest -uri $baseUri -body "{}" -method "POST"
+        $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -newVpg
         # Put base settings into an object easy to manipulate
         $baseSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
         # Set settings equal to passed and default parameters

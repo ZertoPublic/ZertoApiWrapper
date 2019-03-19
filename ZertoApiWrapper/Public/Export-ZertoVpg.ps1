@@ -1,0 +1,41 @@
+function Export-ZertoVpg {
+    [cmdletbinding()]
+    param(
+        [Parameter(
+            HelpMessage = "Location where to dump the resulting JSON files containing the VPG Settings",
+            Mandatory = $true
+        )]
+        [string]$outputFolder,
+        [parameter(
+            HelpMessage = "Name(s) of the VPG(s) to be exported",
+            ParameterSetName = "namedVpgs"
+        )]
+        [string[]]$vpgName,
+        [parameter(
+            HelpMessage = "Export all VPGs at this site",
+            ParameterSetName = "allVpgs",
+            valuefrompipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [switch]$allVpgs
+    )
+
+    begin {
+        if ($allVpgs) {
+            $vpgName = $(Get-ZertoVpg).vpgName
+        }
+    }
+
+    process {
+        foreach ($name in $vpgName) {
+            $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -vpgIdentifier $(Get-ZertoVpg -name $name).vpgIdentifier
+            $vpgSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
+            $filePath = "{0}\{1}.json" -f $outputFolder, $name
+            $vpgSettings | Convertto-Json -depth 10 | Out-File -FilePath $filePath
+        }
+    }
+
+    end {
+
+    }
+}
