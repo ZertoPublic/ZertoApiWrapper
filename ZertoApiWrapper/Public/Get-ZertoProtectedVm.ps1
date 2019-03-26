@@ -38,8 +38,9 @@ function Get-ZertoProtectedVm {
         [string]$organizationName,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The priority specified for the VPG. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'"
+            HelpMessage = "The priority specified for the VPG. Possible values are: 'Low', 'Medium', or 'High'"
         )]
+        [ValidateSet("Low", "Medium", "High")]
         [string]$priority,
         [Parameter(
             ParameterSetName = "filter",

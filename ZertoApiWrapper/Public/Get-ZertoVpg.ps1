@@ -130,8 +130,9 @@ function Get-ZertoVpg {
         [string]$zorgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The VPG priority. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'"
+            HelpMessage = "The VPG priority. Possible values are: 'Low', 'Medium', 'High'"
         )]
+        [ValidateSet("Low", "Medium", "High")]
         [string]$priority,
         [Parameter(
             ParameterSetName = "filter",

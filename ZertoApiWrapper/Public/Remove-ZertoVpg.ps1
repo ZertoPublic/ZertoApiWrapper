@@ -22,11 +22,11 @@ function Remove-ZertoVpg {
         [Parameter(
             HelpMessage = "Use this parameter to keep the recovery volumes at the target site, by setting it to True.  If the virtual machines in the deleted VPG are reprotected, these volumes can be used as preseeded volumes to speed up the initial synchronization of the new VPG. Default is to remove Recovery Volumes"
         )]
-        [switch]$keepRecoveryVolumes = $false,
+        [switch]$keepRecoveryVolumes,
         [Parameter(
             HelpMessage = "Use this parameter to force delete the VPG, by setting this parameter equal to true."
         )]
-        [switch]$force = $false
+        [switch]$force
     )
 
     begin {

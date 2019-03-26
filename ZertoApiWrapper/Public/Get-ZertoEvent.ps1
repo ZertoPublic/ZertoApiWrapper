@@ -47,8 +47,9 @@ function Get-ZertoEvent {
         [string]$zorgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The type of entity for which you wish to return results. Possible Values are: '0' or 'VPG', '1' or 'VRA', '2' or 'Unknown', or '3' or 'Site'"
+            HelpMessage = "The type of entity for which you wish to return results. Possible Values are: 'VPG', 'VRA', 'Unknown', or 'Site'"
         )]
+        [ValidateSet("VPG", "VRA", "Unknown", "Site")]
         [string]$entityType,
         [Parameter(
             ParameterSetName = "filter",
@@ -57,13 +58,15 @@ function Get-ZertoEvent {
         [string]$userName,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'"
+            HelpMessage = "The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'"
         )]
+
         [string]$category,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = " This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'"
+            HelpMessage = " This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: 'All', 'Events', 'Alerts'"
         )]
+        [ValidateSet("All", "Events", "Alerts")]
         [string]$eventCategory,
         [Parameter(
             ParameterSetName = "filter",
