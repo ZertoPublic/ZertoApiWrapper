@@ -110,7 +110,7 @@ Identifier of the VRA to be updated.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: vraId
 
 Required: True
 Position: Named

@@ -201,7 +201,7 @@ Returns information for provided VRA identifier(s)
 ```yaml
 Type: String[]
 Parameter Sets: vraIdentifier
-Aliases:
+Aliases: vraId
 
 Required: False
 Position: Named

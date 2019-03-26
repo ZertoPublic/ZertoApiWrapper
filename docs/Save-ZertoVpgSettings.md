@@ -36,7 +36,7 @@ VpgSettings Identifier to save
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: vpgSettingsId
 
 Required: True
 Position: 0

@@ -49,7 +49,7 @@ Identifier(s) of the ZORG.
 ```yaml
 Type: String[]
 Parameter Sets: zorgIdentifier
-Aliases:
+Aliases: zorgId
 
 Required: False
 Position: Named

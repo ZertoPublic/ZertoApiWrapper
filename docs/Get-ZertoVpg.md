@@ -265,8 +265,7 @@ Accept wildcard characters: False
 
 ### -priority
 
-The VPG priority.
-Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'
+The VPG priority. Possible values are: 'Low', 'Medium', 'High'
 
 ```yaml
 Type: String
@@ -321,7 +320,7 @@ The identifier(s) of the Virtual Protection Group to return
 ```yaml
 Type: String[]
 Parameter Sets: stats, checkpoints, protectionGroupIdentifier
-Aliases:
+Aliases: vpgId, protectionGroupId, pgId
 
 Required: True
 Position: Named

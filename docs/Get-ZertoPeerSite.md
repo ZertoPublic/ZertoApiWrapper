@@ -152,7 +152,7 @@ The identifier(s) of the peer site(s) for which information is to be returned.
 ```yaml
 Type: String[]
 Parameter Sets: siteIdentifier
-Aliases:
+Aliases: siteId
 
 Required: True
 Position: Named

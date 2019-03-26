@@ -162,7 +162,7 @@ The identifier of the host at the selected site to return information for only o
 ```yaml
 Type: String
 Parameter Sets: devices, hosts
-Aliases:
+Aliases: hostId
 
 Required: False
 Position: Named
@@ -223,7 +223,7 @@ The identifier of the Zerto Virtual Manager site.
 ```yaml
 Type: String
 Parameter Sets: folders, devices, vms, resourcePools, networks, hosts, hostClusters, datastores, datastoreClusters, siteIdentifier
-Aliases:
+Aliases: siteId
 
 Required: True
 Position: Named

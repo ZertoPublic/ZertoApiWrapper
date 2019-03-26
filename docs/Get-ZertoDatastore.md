@@ -49,7 +49,7 @@ datastoreIdentifier or array of datastoreIdentifiers to be queried
 ```yaml
 Type: String[]
 Parameter Sets: datastoreIdentifier
-Aliases:
+Aliases: datastoreId
 
 Required: False
 Position: Named

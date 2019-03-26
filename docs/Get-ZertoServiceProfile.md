@@ -62,7 +62,7 @@ The identifier of the site for which service profiles should be returned.
 ```yaml
 Type: String
 Parameter Sets: siteIdentifier
-Aliases:
+Aliases: siteId
 
 Required: False
 Position: Named

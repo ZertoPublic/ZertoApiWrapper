@@ -66,7 +66,7 @@ This would be used for creating a new VPG from scratch.
 ```yaml
 Type: String
 Parameter Sets: existingVpg
-Aliases:
+Aliases: vpgId
 
 Required: True
 Position: Named
