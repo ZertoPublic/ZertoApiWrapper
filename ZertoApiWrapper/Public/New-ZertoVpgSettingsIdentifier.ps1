@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function New-ZertoVpgSettingsIdentifier {
     [cmdletbinding()]
     param(
