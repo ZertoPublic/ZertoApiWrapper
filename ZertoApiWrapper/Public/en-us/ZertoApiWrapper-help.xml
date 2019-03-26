@@ -285,7 +285,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Connect-ZertoServer</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="server, zvm">
           <maml:name>zertoServer</maml:name>
           <maml:Description>
             <maml:para>IP address or FQDN of your Zerto Management Server</maml:para>
@@ -297,7 +297,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="port">
           <maml:name>zertoPort</maml:name>
           <maml:Description>
             <maml:para>Zerto Virtual Manager management port. Default value is 9669.</maml:para>
@@ -359,7 +359,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="port">
         <maml:name>zertoPort</maml:name>
         <maml:Description>
           <maml:para>Zerto Virtual Manager management port. Default value is 9669.</maml:para>
@@ -371,7 +371,7 @@
         </dev:type>
         <dev:defaultValue>"9669"</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="server, zvm">
         <maml:name>zertoServer</maml:name>
         <maml:Description>
           <maml:para>IP address or FQDN of your Zerto Management Server</maml:para>
@@ -554,7 +554,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vraId">
           <maml:name>vraIdentifier</maml:name>
           <maml:Description>
             <maml:para>Identifier of the VRA to be updated.</maml:para>
@@ -639,7 +639,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vraId">
         <maml:name>vraIdentifier</maml:name>
         <maml:Description>
           <maml:para>Identifier of the VRA to be updated.</maml:para>
@@ -967,7 +967,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="helpId">
           <maml:name>helpIdentifier</maml:name>
           <maml:Description>
             <maml:para>Returns alerts for the specified helpIdentifier</maml:para>
@@ -1003,7 +1003,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>Returns alerts for the specified siteIdentifier</maml:para>
@@ -1027,7 +1027,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId">
           <maml:name>vpgIdentifier</maml:name>
           <maml:Description>
             <maml:para>Returns alerts for the specified vraIdentifier</maml:para>
@@ -1039,7 +1039,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zorgId">
           <maml:name>zorgIdentifier</maml:name>
           <maml:Description>
             <maml:para>Returns alerts for the specified zorgIdentifier</maml:para>
@@ -1144,7 +1144,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="helpId">
         <maml:name>helpIdentifier</maml:name>
         <maml:Description>
           <maml:para>Returns alerts for the specified helpIdentifier</maml:para>
@@ -1204,7 +1204,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
         <maml:name>siteIdentifier</maml:name>
         <maml:Description>
           <maml:para>Returns alerts for the specified siteIdentifier</maml:para>
@@ -1228,7 +1228,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId">
         <maml:name>vpgIdentifier</maml:name>
         <maml:Description>
           <maml:para>Returns alerts for the specified vraIdentifier</maml:para>
@@ -1240,7 +1240,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zorgId">
         <maml:name>zorgIdentifier</maml:name>
         <maml:Description>
           <maml:para>Returns alerts for the specified zorgIdentifier</maml:para>
@@ -1348,7 +1348,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-ZertoDatastore</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="datastoreId">
           <maml:name>datastoreIdentifier</maml:name>
           <maml:Description>
             <maml:para>datastoreIdentifier or array of datastoreIdentifiers to be queried</maml:para>
@@ -1363,7 +1363,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="datastoreId">
         <maml:name>datastoreIdentifier</maml:name>
         <maml:Description>
           <maml:para>datastoreIdentifier or array of datastoreIdentifiers to be queried</maml:para>
@@ -1444,7 +1444,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-ZertoEvent</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="alertId">
           <maml:name>alertIdentifier</maml:name>
           <maml:Description>
             <maml:para>The internal alert identifier for the Event</maml:para>
@@ -1459,7 +1459,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>category</maml:name>
           <maml:Description>
-            <maml:para>The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'</maml:para>
+            <maml:para>The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1483,7 +1483,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>entityType</maml:name>
           <maml:Description>
-            <maml:para>The type of entity for which you wish to return results. Possible Values are: '0' or 'VPG', '1' or 'VRA', '2' or 'Unknown', or '3' or 'Site'</maml:para>
+            <maml:para>The type of entity for which you wish to return results. Possible Values are: 'VPG', 'VRA', 'Unknown', or 'Site'</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1495,7 +1495,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>eventCategory</maml:name>
           <maml:Description>
-            <maml:para>This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'</maml:para>
+            <maml:para>This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: 'All', 'Events', 'Alerts'</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -1516,7 +1516,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The internal site identifier for which you want to return events.</maml:para>
@@ -1564,7 +1564,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgName">
           <maml:name>vpg</maml:name>
           <maml:Description>
             <maml:para>The name of the VPG for which you want to return events.</maml:para>
@@ -1576,7 +1576,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId">
           <maml:name>vpgIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG for which you want to return events.</maml:para>
@@ -1588,7 +1588,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zorgId">
           <maml:name>zorgIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the ZORG, Zerto organization, defined in the Zerto Cloud Manager for which you want to return results.</maml:para>
@@ -1660,7 +1660,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="alertId">
         <maml:name>alertIdentifier</maml:name>
         <maml:Description>
           <maml:para>The internal alert identifier for the Event</maml:para>
@@ -1687,7 +1687,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>category</maml:name>
         <maml:Description>
-          <maml:para>The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'</maml:para>
+          <maml:para>The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1723,7 +1723,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>entityType</maml:name>
         <maml:Description>
-          <maml:para>The type of entity for which you wish to return results. Possible Values are: '0' or 'VPG', '1' or 'VRA', '2' or 'Unknown', or '3' or 'Site'</maml:para>
+          <maml:para>The type of entity for which you wish to return results. Possible Values are: 'VPG', 'VRA', 'Unknown', or 'Site'</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1735,7 +1735,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>eventCategory</maml:name>
         <maml:Description>
-          <maml:para>This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'</maml:para>
+          <maml:para>This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: 'All', 'Events', 'Alerts'</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -1768,7 +1768,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
         <maml:name>siteIdentifier</maml:name>
         <maml:Description>
           <maml:para>The internal site identifier for which you want to return events.</maml:para>
@@ -1828,7 +1828,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgName">
         <maml:name>vpg</maml:name>
         <maml:Description>
           <maml:para>The name of the VPG for which you want to return events.</maml:para>
@@ -1840,7 +1840,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId">
         <maml:name>vpgIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the VPG for which you want to return events.</maml:para>
@@ -1852,7 +1852,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zorgId">
         <maml:name>zorgIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the ZORG, Zerto organization, defined in the Zerto Cloud Manager for which you want to return results.</maml:para>
@@ -2166,7 +2166,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoPeerSite</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier(s) of the peer site(s) for which information is to be returned.</maml:para>
@@ -2253,7 +2253,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="siteId">
         <maml:name>siteIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier(s) of the peer site(s) for which information is to be returned.</maml:para>
@@ -2349,7 +2349,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>priority</maml:name>
           <maml:Description>
-            <maml:para>The priority specified for the VPG. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'</maml:para>
+            <maml:para>The priority specified for the VPG. Possible values are: 'Low', 'Medium', or 'High'</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -2358,7 +2358,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="protectedSiteId">
           <maml:name>protectedSiteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the protected site where the VPG virtual machines are protected.</maml:para>
@@ -2382,7 +2382,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="recoverySiteId">
           <maml:name>recoverySiteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the recovery site where the VPG virtual machines are recovered.</maml:para>
@@ -2457,7 +2457,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoProtectedVm</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="vmId">
           <maml:name>vmIdentifier</maml:name>
           <maml:Description>
             <maml:para>vmIdentifier(s) for which to return information</maml:para>
@@ -2487,7 +2487,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>priority</maml:name>
         <maml:Description>
-          <maml:para>The priority specified for the VPG. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'</maml:para>
+          <maml:para>The priority specified for the VPG. Possible values are: 'Low', 'Medium', or 'High'</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -2496,7 +2496,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="protectedSiteId">
         <maml:name>protectedSiteIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the protected site where the VPG virtual machines are protected.</maml:para>
@@ -2520,7 +2520,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="recoverySiteId">
         <maml:name>recoverySiteIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the recovery site where the VPG virtual machines are recovered.</maml:para>
@@ -2568,7 +2568,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="vmId">
         <maml:name>vmIdentifier</maml:name>
         <maml:Description>
           <maml:para>vmIdentifier(s) for which to return information</maml:para>
@@ -3437,7 +3437,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoServiceProfile</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the site for which service profiles should be returned.</maml:para>
@@ -3464,7 +3464,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
         <maml:name>siteIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the site for which service profiles should be returned.</maml:para>
@@ -3588,7 +3588,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>status</maml:name>
           <maml:Description>
-            <maml:para>The status of the task. Possible values are: '1' or 'InProgress', '3' or 'Paused', '4' or 'Failed', '6' or 'Completed', '7' or 'Cancelling'</maml:para>
+            <maml:para>The status of the task. Possible values are: 'InProgress', 'Paused', 'Failed', 'Completed', or 'Cancelling'</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -3612,7 +3612,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoTask</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="taskId">
           <maml:name>taskIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier(s) for which task information is to be returned.</maml:para>
@@ -3692,7 +3692,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>status</maml:name>
         <maml:Description>
-          <maml:para>The status of the task. Possible values are: '1' or 'InProgress', '3' or 'Paused', '4' or 'Failed', '6' or 'Completed', '7' or 'Cancelling'</maml:para>
+          <maml:para>The status of the task. Possible values are: 'InProgress', 'Paused', 'Failed', 'Completed', or 'Cancelling'</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -3701,7 +3701,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="taskId">
         <maml:name>taskIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier(s) for which task information is to be returned.</maml:para>
@@ -3879,7 +3879,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -3905,7 +3905,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -3931,7 +3931,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="hostId">
           <maml:name>hostIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the host at the selected site to return information for only one host.</maml:para>
@@ -3943,7 +3943,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -3969,7 +3969,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -3995,7 +3995,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4010,7 +4010,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVirtualizationSite</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="hostId">
           <maml:name>hostIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the host at the selected site to return information for only one host.</maml:para>
@@ -4033,7 +4033,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4059,7 +4059,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4085,7 +4085,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4100,7 +4100,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVirtualizationSite</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4126,7 +4126,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVirtualizationSite</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
           <maml:name>siteIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4201,7 +4201,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="hostId">
         <maml:name>hostIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the host at the selected site to return information for only one host.</maml:para>
@@ -4249,7 +4249,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="siteId">
         <maml:name>siteIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the Zerto Virtual Manager site.</maml:para>
@@ -4334,7 +4334,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-ZertoVolume</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="datastoreId, dsId">
           <maml:name>datastoreIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the datastore.</maml:para>
@@ -4346,7 +4346,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="owningVmId">
           <maml:name>owningVmIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the owning virtual machine.</maml:para>
@@ -4358,7 +4358,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="protectedVmId">
           <maml:name>protectedVmIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the protected virtual machine.</maml:para>
@@ -4382,7 +4382,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId">
           <maml:name>vpgIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG.</maml:para>
@@ -4397,7 +4397,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="datastoreId, dsId">
         <maml:name>datastoreIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the datastore.</maml:para>
@@ -4409,7 +4409,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="owningVmId">
         <maml:name>owningVmIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the owning virtual machine.</maml:para>
@@ -4421,7 +4421,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="protectedVmId">
         <maml:name>protectedVmIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the protected virtual machine.</maml:para>
@@ -4445,7 +4445,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId">
         <maml:name>vpgIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the VPG.</maml:para>
@@ -4570,7 +4570,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>priority</maml:name>
           <maml:Description>
-            <maml:para>The VPG priority. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'</maml:para>
+            <maml:para>The VPG priority. Possible values are: 'Low', 'Medium', 'High'</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -4701,7 +4701,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId, protectionGroupId, pgId">
           <maml:name>protectionGroupIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier(s) of the Virtual Protection Group to return</maml:para>
@@ -4739,7 +4739,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId, protectionGroupId, pgId">
           <maml:name>protectionGroupIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier(s) of the Virtual Protection Group to return</maml:para>
@@ -4810,7 +4810,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVpg</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId, protectionGroupId, pgId">
           <maml:name>protectionGroupIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier(s) of the Virtual Protection Group to return</maml:para>
@@ -4990,7 +4990,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>priority</maml:name>
         <maml:Description>
-          <maml:para>The VPG priority. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'</maml:para>
+          <maml:para>The VPG priority. Possible values are: 'Low', 'Medium', 'High'</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -5023,7 +5023,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vpgId, protectionGroupId, pgId">
         <maml:name>protectionGroupIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier(s) of the Virtual Protection Group to return</maml:para>
@@ -5235,7 +5235,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5261,7 +5261,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5287,7 +5287,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5313,7 +5313,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5339,7 +5339,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5365,7 +5365,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5380,7 +5380,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVpgSetting</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="nicId">
           <maml:name>nicIdentifier</maml:name>
           <maml:Description>
             <maml:para>Return NIC information for specified NIC of the specified VM</maml:para>
@@ -5392,7 +5392,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vmId">
           <maml:name>vmIdentifier</maml:name>
           <maml:Description>
             <maml:para>VM Identifier</maml:para>
@@ -5404,7 +5404,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5430,7 +5430,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vmId">
           <maml:name>vmIdentifier</maml:name>
           <maml:Description>
             <maml:para>VM Identifier</maml:para>
@@ -5442,7 +5442,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5468,7 +5468,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5494,7 +5494,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5520,7 +5520,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5546,7 +5546,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5572,7 +5572,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5587,7 +5587,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVpgSetting</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vmId">
           <maml:name>vmIdentifier</maml:name>
           <maml:Description>
             <maml:para>VM Identifier</maml:para>
@@ -5599,7 +5599,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="volumeId">
           <maml:name>volumeIdentifier</maml:name>
           <maml:Description>
             <maml:para>Return volume information for the specified volume of the specified VM</maml:para>
@@ -5611,7 +5611,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5626,7 +5626,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVpgSetting</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vmId">
           <maml:name>vmIdentifier</maml:name>
           <maml:Description>
             <maml:para>VM Identifier</maml:para>
@@ -5649,7 +5649,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5664,7 +5664,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVpgSetting</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vmId">
           <maml:name>vmIdentifier</maml:name>
           <maml:Description>
             <maml:para>VM Identifier</maml:para>
@@ -5676,7 +5676,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5702,7 +5702,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5717,7 +5717,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVpgSetting</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -5804,7 +5804,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="nicId">
         <maml:name>nicIdentifier</maml:name>
         <maml:Description>
           <maml:para>Return NIC information for specified NIC of the specified VM</maml:para>
@@ -5888,7 +5888,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vmId">
         <maml:name>vmIdentifier</maml:name>
         <maml:Description>
           <maml:para>VM Identifier</maml:para>
@@ -5912,7 +5912,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="volumeId">
         <maml:name>volumeIdentifier</maml:name>
         <maml:Description>
           <maml:para>Return volume information for the specified volume of the specified VM</maml:para>
@@ -5936,7 +5936,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="named" aliases="vpgSettingsId, settingsId">
         <maml:name>vpgSettingsIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the VPG settings object for which information is retrieved.</maml:para>
@@ -6176,7 +6176,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-ZertoVra</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vraId">
           <maml:name>vraIdentifier</maml:name>
           <maml:Description>
             <maml:para>Returns information for provided VRA identifier(s)</maml:para>
@@ -6299,7 +6299,7 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="vraId">
         <maml:name>vraIdentifier</maml:name>
         <maml:Description>
           <maml:para>Returns information for provided VRA identifier(s)</maml:para>
@@ -6403,7 +6403,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-ZertoZorg</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zorgId">
           <maml:name>zorgIdentifier</maml:name>
           <maml:Description>
             <maml:para>Identifier(s) of the ZORG.</maml:para>
@@ -6418,7 +6418,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zorgId">
         <maml:name>zorgIdentifier</maml:name>
         <maml:Description>
           <maml:para>Identifier(s) of the ZORG.</maml:para>
@@ -6498,7 +6498,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-ZertoZsspSession</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zsspSessionId">
           <maml:name>zsspSessionIdentifier</maml:name>
           <maml:Description>
             <maml:para>ZSSP Session Id(s) to get information.</maml:para>
@@ -6513,7 +6513,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="zsspSessionId">
         <maml:name>zsspSessionIdentifier</maml:name>
         <maml:Description>
           <maml:para>ZSSP Session Id(s) to get information.</maml:para>
@@ -7103,7 +7103,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="checkpointId">
           <maml:name>checkpointIdentifier</maml:name>
           <maml:Description>
             <maml:para>Checkpoint Identifier to use as the Point-In-Time to rollback to.</maml:para>
@@ -7118,9 +7118,9 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
           <maml:name>commitPolicy</maml:name>
           <maml:Description>
-            <maml:para>0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
-            <maml:para>1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
-            <maml:para>2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
+            <maml:para>'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
+            <maml:para>'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
+            <maml:para>'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
             <maml:para>Default is the Site Settings setting.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -7184,7 +7184,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="7" aliases="none">
           <maml:name>vmName</maml:name>
           <maml:Description>
-            <maml:para>Name(s) of VMs in the</maml:para>
+            <maml:para>Name(s) of VMs in the VPG to failover</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
           <dev:type>
@@ -7196,7 +7196,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="checkpointId">
         <maml:name>checkpointIdentifier</maml:name>
         <maml:Description>
           <maml:para>Checkpoint Identifier to use as the Point-In-Time to rollback to.</maml:para>
@@ -7211,9 +7211,9 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
         <maml:name>commitPolicy</maml:name>
         <maml:Description>
-          <maml:para>0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
-          <maml:para>1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
-          <maml:para>2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
+          <maml:para>'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
+          <maml:para>'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
+          <maml:para>'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
           <maml:para>Default is the Site Settings setting.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -7277,7 +7277,7 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="7" aliases="none">
         <maml:name>vmName</maml:name>
         <maml:Description>
-          <maml:para>Name(s) of VMs in the</maml:para>
+          <maml:para>Name(s) of VMs in the VPG to failover</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
         <dev:type>
@@ -7668,7 +7668,10 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
           <maml:name>commitPolicy</maml:name>
           <maml:Description>
-            <maml:para>The policy to use after the move enters a 'Before Commit' state. If omitted, the site settings default will be applied. Valid values are: '0' or 'Rollback', '1' or 'Commit', '2' or 'None'. Please see Zerto API Documentation for additional information.</maml:para>
+            <maml:para>'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
+            <maml:para>'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
+            <maml:para>'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
+            <maml:para>Default is the Site Settings setting.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -7752,7 +7755,10 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
         <maml:name>commitPolicy</maml:name>
         <maml:Description>
-          <maml:para>The policy to use after the move enters a 'Before Commit' state. If omitted, the site settings default will be applied. Valid values are: '0' or 'Rollback', '1' or 'Commit', '2' or 'None'. Please see Zerto API Documentation for additional information.</maml:para>
+          <maml:para>'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.</maml:para>
+          <maml:para>'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.</maml:para>
+          <maml:para>'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.</maml:para>
+          <maml:para>Default is the Site Settings setting.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -9923,7 +9929,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>New-ZertoVpgSettingsIdentifier</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="vpgId">
           <maml:name>vpgIdentifier</maml:name>
           <maml:Description>
             <maml:para>Identifier of the VPG to create a VPG settings identifier. If a vpgIdentifier is not provided, a new VPG settings object is created without any configured settings. This would be used for creating a new VPG from scratch.</maml:para>
@@ -9950,7 +9956,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="vpgId">
         <maml:name>vpgIdentifier</maml:name>
         <maml:Description>
           <maml:para>Identifier of the VPG to create a VPG settings identifier. If a vpgIdentifier is not provided, a new VPG settings object is created without any configured settings. This would be used for creating a new VPG from scratch.</maml:para>
@@ -10052,7 +10058,7 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="vpgId">
           <maml:name>vpgidentifier</maml:name>
           <maml:Description>
             <maml:para>vpgIdentifier(s) of the VPG(s) to delete.</maml:para>
@@ -10172,7 +10178,7 @@
         </dev:type>
         <dev:defaultValue>False</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="vpgId">
         <maml:name>vpgidentifier</maml:name>
         <maml:Description>
           <maml:para>vpgIdentifier(s) of the VPG(s) to delete.</maml:para>
@@ -10390,7 +10396,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Save-ZertoVpgSettings</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="vpgSettingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>VpgSettings Identifier to save</maml:para>
@@ -10427,7 +10433,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="none">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="vpgSettingsId">
         <maml:name>vpgSettingsIdentifier</maml:name>
         <maml:Description>
           <maml:para>VpgSettings Identifier to save</maml:para>
@@ -10524,7 +10530,7 @@
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Set-ZertoAlert</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="identifier">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="alertIdentifier, identifier">
           <maml:name>alertId</maml:name>
           <maml:Description>
             <maml:para>Alert identifier(s) to be dismissed or undismissed.</maml:para>
@@ -10572,7 +10578,7 @@
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Set-ZertoAlert</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="identifier">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="alertIdentifier, identifier">
           <maml:name>alertId</maml:name>
           <maml:Description>
             <maml:para>Alert identifier(s) to be dismissed or undismissed.</maml:para>
@@ -10620,7 +10626,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="identifier">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="named" aliases="alertIdentifier, identifier">
         <maml:name>alertId</maml:name>
         <maml:Description>
           <maml:para>Alert identifier(s) to be dismissed or undismissed.</maml:para>
@@ -10894,7 +10900,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="checkpointId">
           <maml:name>checkpointIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the checkpoint to use for cloning. If unspecified, the latest checkpoint will be used.</maml:para>
@@ -10933,7 +10939,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="checkpointId">
         <maml:name>checkpointIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the checkpoint to use for cloning. If unspecified, the latest checkpoint will be used.</maml:para>
@@ -11054,7 +11060,7 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="checkpointId">
           <maml:name>checkpointIdentifier</maml:name>
           <maml:Description>
             <maml:para>The identifier of the checkpoint to use for testing. If unspecified, the latest checkpoint will be used.</maml:para>
@@ -11081,7 +11087,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="checkpointId">
         <maml:name>checkpointIdentifier</maml:name>
         <maml:Description>
           <maml:para>The identifier of the checkpoint to use for testing. If unspecified, the latest checkpoint will be used.</maml:para>

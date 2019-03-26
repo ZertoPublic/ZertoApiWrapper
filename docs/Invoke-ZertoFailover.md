@@ -38,7 +38,7 @@ Checkpoint Identifier to use as the Point-In-Time to rollback to.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: checkpointId
 
 Required: False
 Position: 1
@@ -48,11 +48,11 @@ Accept wildcard characters: False
 ```
 
 ### -commitPolicy
-0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
 
-1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
 
-2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
 
 Default is the Site Settings setting.
 
@@ -143,7 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### -vmName
-Name(s) of VMs in the
+Name(s) of VMs in the VPG to failover
 
 ```yaml
 Type: String[]

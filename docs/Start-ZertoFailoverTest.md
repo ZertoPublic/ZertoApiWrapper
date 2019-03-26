@@ -38,7 +38,7 @@ If unspecified, the latest checkpoint will be used.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: checkpointId
 
 Required: False
 Position: 1

@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function New-ZertoVpgSettingsIdentifier {
     [cmdletbinding()]
     param(
@@ -8,6 +9,7 @@ function New-ZertoVpgSettingsIdentifier {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter(
             HelpMessage = "Use this switch when creating a vpgSettingsIdentifier for a new VPG",

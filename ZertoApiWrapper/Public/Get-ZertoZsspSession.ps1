@@ -6,6 +6,7 @@ function Get-ZertoZsspSession {
             ParameterSetName = "zsspSessionIdentifier",
             HelpMessage = "ZSSP Session Id(s) to get information."
         )]
+        [Alias("zsspSessionId")]
         [string[]]$zsspSessionIdentifier
     )
 

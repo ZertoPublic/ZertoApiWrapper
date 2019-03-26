@@ -11,21 +11,25 @@ function Get-ZertoVolume {
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the VPG."
         )]
+        [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the datastore."
         )]
+        [Alias("datastoreId", "dsId")]
         [string]$datastoreIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the protected virtual machine."
         )]
+        [Alias("protectedVmId")]
         [string]$protectedVmIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the owning virtual machine."
         )]
+        [Alias("owningVmId")]
         [string]$owningVmIdentifier
     )
 

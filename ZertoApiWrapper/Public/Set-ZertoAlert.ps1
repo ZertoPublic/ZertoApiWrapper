@@ -9,6 +9,7 @@ function Set-ZertoAlert {
             Mandatory = $true,
             HelpMessage = "Alert identifier(s) to be dismissed or undismissed."
         )]
+        [Alias("alertIdentifier")]
         [string[]]$alertId,
         [Parameter(
             ParameterSetName = "dismiss",

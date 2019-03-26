@@ -68,7 +68,7 @@ Default value is 9669.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: port
 
 Required: False
 Position: 1
@@ -83,7 +83,7 @@ IP address or FQDN of your Zerto Management Server
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: server, zvm
 
 Required: True
 Position: 0

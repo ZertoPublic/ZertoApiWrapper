@@ -18,6 +18,7 @@ function Get-ZertoVra {
             ParameterSetName = "vraIdentifier",
             HelpMessage = "Returns information for provided VRA identifier(s)"
         )]
+        [Alias("vraId")]
         [string[]]$vraIdentifier,
         [Parameter(
             ParameterSetName = "filter",

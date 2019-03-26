@@ -123,8 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -status
-The status of the task.
-Possible values are: '1' or 'InProgress', '3' or 'Paused', '4' or 'Failed', '6' or 'Completed', '7' or 'Cancelling'
+The status of the task. Possible values are: 'InProgress', 'Paused', 'Failed', 'Completed', or 'Cancelling'
 
 ```yaml
 Type: String
@@ -144,7 +143,7 @@ The identifier(s) for which task information is to be returned.
 ```yaml
 Type: String[]
 Parameter Sets: taskIdentifier
-Aliases:
+Aliases: taskId
 
 Required: False
 Position: Named

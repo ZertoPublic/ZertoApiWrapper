@@ -6,6 +6,7 @@ function Get-ZertoTask {
             ParameterSetName = "taskIdentifier",
             HelpMessage = "The identifier(s) for which task information is to be returned."
         )]
+        [Alias("taskId")]
         [string[]]$taskIdentifier,
         [Parameter(
             ParameterSetName = "types",
@@ -39,8 +40,9 @@ function Get-ZertoTask {
         [string]$type,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The status of the task. Possible values are: '1' or 'InProgress', '3' or 'Paused', '4' or 'Failed', '6' or 'Completed', '7' or 'Cancelling'"
+            HelpMessage = "The status of the task. Possible values are: 'InProgress', 'Paused', 'Failed', 'Completed', or 'Cancelling'"
         )]
+        [ValidateSet("InProgress", "Paused", "Failed", "Completed", "Cancelling")]
         [string]$status
     )
 

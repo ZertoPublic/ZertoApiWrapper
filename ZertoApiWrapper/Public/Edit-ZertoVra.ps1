@@ -6,6 +6,7 @@ function Edit-ZertoVra {
             Mandatory = $true,
             HelpMessage = "Identifier of the VRA to be updated."
         )]
+        [Alias("vraId")]
         [string]$vraIdentifier,
         [Parameter(
             HelpMessage = "Bandwidth group to assign to the VRA. If unspecified will not modify current assignment"

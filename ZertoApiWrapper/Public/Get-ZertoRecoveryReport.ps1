@@ -36,6 +36,7 @@ function Get-ZertoRecoveryReport {
             ParameterSetName = "filter",
             HelpMessage = "The type of recovery operations. Possible values are: 'Failover', 'Failover Test', or 'Move'"
         )]
+        [ValidateSet("Failover", "Failover Test", "Move")]
         [string]$recoveryType,
         [Parameter(
             ParameterSetName = "filter",

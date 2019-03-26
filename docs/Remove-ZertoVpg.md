@@ -103,7 +103,7 @@ vpgIdentifier(s) of the VPG(s) to delete.
 ```yaml
 Type: String[]
 Parameter Sets: vpgIdentifier
-Aliases:
+Aliases: vpgId
 
 Required: True
 Position: Named

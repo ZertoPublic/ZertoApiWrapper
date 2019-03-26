@@ -42,16 +42,19 @@ function Get-ZertoAlert {
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified vraIdentifier"
         )]
+        [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified siteIdentifier"
         )]
+        [Alias("siteId")]
         [string]$siteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified zorgIdentifier"
         )]
+        [Alias("zorgId")]
         [string]$zorgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
@@ -62,6 +65,7 @@ function Get-ZertoAlert {
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified helpIdentifier"
         )]
+        [Alias("helpId")]
         [string]$helpIdentifier,
         [Parameter(
             ParameterSetName = "filter",

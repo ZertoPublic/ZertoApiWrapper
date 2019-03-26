@@ -33,10 +33,13 @@ Starts a move operation of VPG "MyVpg"
 ## PARAMETERS
 
 ### -commitPolicy
-The policy to use after the move enters a 'Before Commit' state.
-If omitted, the site settings default will be applied.
-Valid values are: '0' or 'Rollback', '1' or 'Commit', '2' or 'None'.
-Please see Zerto API Documentation for additional information.
+'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+
+'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+
+'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+
+Default is the Site Settings setting.
 
 ```yaml
 Type: String

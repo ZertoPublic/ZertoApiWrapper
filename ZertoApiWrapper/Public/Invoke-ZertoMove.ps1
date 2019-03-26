@@ -8,8 +8,12 @@ function Invoke-ZertoMove {
         )]
         [string[]]$vpgName,
         [Parameter(
-            HelpMessage = "The policy to use after the move enters a 'Before Commit' state. If omitted, the site settings default will be applied. Valid values are: '0' or 'Rollback', '1' or 'Commit', '2' or 'None'. Please see Zerto API Documentation for additional information."
+            HelpMessage = "'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+            'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+            'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+            Default is the Site Settings setting."
         )]
+        [ValidateSet("Rollback", "Commit", "None")]
         [string]$commitPolicy,
         [Parameter(
             HelpMessage = "The amount of time, in seconds, the Move is in a 'Before Commit' state, before performing the commitPolicy setting. If omitted, the site settings default will be applied."

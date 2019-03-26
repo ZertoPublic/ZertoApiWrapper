@@ -42,7 +42,7 @@ ZSSP Session Id(s) to get information.
 ```yaml
 Type: String[]
 Parameter Sets: zsspSessionIdentifier
-Aliases:
+Aliases: zsspSessionId
 
 Required: False
 Position: Named

@@ -10,13 +10,15 @@ function Invoke-ZertoFailover {
         [Parameter(
             HelpMessage = "Checkpoint Identifier to use as the Point-In-Time to rollback to."
         )]
+        [Alias("checkpointId")]
         [string]$checkpointIdentifier,
         [Parameter(
-            HelpMessage = "0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
-            1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
-            2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+            HelpMessage = "'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+            'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+            'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
             Default is the Site Settings setting."
         )]
+        [ValidateSet("Rollback", "Commit", "None")]
         [string]$commitPolicy,
         [Parameter(
             HelpMessage = "The amount of time in seconds the failover waits in a Before Commit state to enable checking that the failover is as required before performing the commitPolicy setting. Default is the Site Setting"
@@ -27,6 +29,7 @@ function Invoke-ZertoFailover {
         1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.
         2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint."
         )]
+        [ValidateSet(0, 1, 2)]
         [int]$shutdownPolicy = 0,
         [Parameter(
             HelpMessage = "Time, in seconds, before VMs are forcibly turned off if the Force Shutdown option is seclected after attempting to gracefully shut down the VMs"
@@ -38,7 +41,7 @@ function Invoke-ZertoFailover {
         )]
         [bool]$reverseProtection,
         [Parameter(
-            HelpMessage = "Name(s) of VMs in the "
+            HelpMessage = "Name(s) of VMs in the VPG to failover"
         )]
         [string[]]$vmName
     )

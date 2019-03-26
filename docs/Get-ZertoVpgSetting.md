@@ -249,7 +249,7 @@ Return NIC information for specified NIC of the specified VM
 ```yaml
 Type: String
 Parameter Sets: nicIdentifier
-Aliases:
+Aliases: nicId
 
 Required: True
 Position: Named
@@ -354,7 +354,7 @@ VM Identifier
 ```yaml
 Type: String
 Parameter Sets: volumeIdentifier, volumes, nicIdentifier, nics, vmIdentifier
-Aliases:
+Aliases: vmId
 
 Required: True
 Position: Named
@@ -384,7 +384,7 @@ Return volume information for the specified volume of the specified VM
 ```yaml
 Type: String
 Parameter Sets: volumeIdentifier
-Aliases:
+Aliases: volumeId
 
 Required: True
 Position: Named
@@ -414,7 +414,7 @@ The identifier of the VPG settings object for which information is retrieved.
 ```yaml
 Type: String
 Parameter Sets: volumeIdentifier, volumes, nicIdentifier, nics, vmIdentifier, vms, scripting, recovery, priority, networks, journal, bootGroup
-Aliases:
+Aliases: vpgSettingsId, settingsId
 
 Required: True
 Position: Named
@@ -426,7 +426,7 @@ Accept wildcard characters: False
 ```yaml
 Type: String
 Parameter Sets: basic, schedulerPeriod, retentionPeriod, dayOfWeek, backup, vpgSettingsIdentifier
-Aliases:
+Aliases: vpgSettingsId, settingsId
 
 Required: True
 Position: Named

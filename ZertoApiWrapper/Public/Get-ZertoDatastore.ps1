@@ -2,6 +2,7 @@
 function Get-ZertoDatastore {
     [cmdletbinding( DefaultParameterSetName = "main" )]
     param(
+        [Alias("datastoreId")]
         [Parameter(
             ParameterSetName = "datastoreIdentifier",
             HelpMessage = "datastoreIdentifier or array of datastoreIdentifiers to be queried"

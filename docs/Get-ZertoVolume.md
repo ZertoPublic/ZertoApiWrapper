@@ -57,7 +57,7 @@ The identifier of the datastore.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: datastoreId, dsId
 
 Required: False
 Position: Named
@@ -72,7 +72,7 @@ The identifier of the owning virtual machine.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: owningVmId
 
 Required: False
 Position: Named
@@ -87,7 +87,7 @@ The identifier of the protected virtual machine.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: protectedVmId
 
 Required: False
 Position: Named
@@ -118,7 +118,7 @@ The identifier of the VPG.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: vpgId
 
 Required: False
 Position: Named

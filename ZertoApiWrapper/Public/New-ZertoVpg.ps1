@@ -21,7 +21,8 @@ function New-ZertoVpg {
             HelpMessage = "Name(s) of the VM(s) to be protected.",
             Mandatory = $true
         )]
-        [ValidateNotNullOrEmpty()][string[]]$protectedVm,
+        [ValidateNotNullOrEmpty()]
+        [string[]]$protectedVm,
         [Parameter(
             HelpMessage = "Name of the site where the VM(s) will be recovered",
             Mandatory = $true
@@ -100,11 +101,13 @@ function New-ZertoVpg {
         [Parameter(
             HelpMessage = "RPO alert"
         )]
-        [ValidateRange(60, 864200)][Int32]$rpoInSeconds = 300,
+        [ValidateRange(60, 864200)]
+        [Int32]$rpoInSeconds = 300,
         [Parameter(
             HelpMessage = "Minimum test interval for this VPG. Valid values are 0: Off, 43200: 1 Month, 131040: 3 Months, 262080: 6 Months, 294560: 9 Months, 252600: 12 Months"
         )]
-        [ValidateSet(0, 43200, 131040, 262080, 294560, 252600)][int]$testIntervalInMinutes = 262080,
+        [ValidateSet(0, 43200, 131040, 262080, 294560, 252600)]
+        [int]$testIntervalInMinutes = 262080,
         [Parameter(
             HelpMessage = "Service profile name to use."
         )]
