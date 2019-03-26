@@ -9,6 +9,7 @@ function Get-ZertoProtectedVm {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "vmIdentifier(s) for which to return information"
         )]
+        [Alias("vmId")]
         [string[]]$vmIdentifier,
         [Parameter(
             ParameterSetName = "filter",
@@ -54,11 +55,13 @@ function Get-ZertoProtectedVm {
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the protected site where the VPG virtual machines are protected."
         )]
+        [Alias("protectedSiteId")]
         [string]$protectedSiteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the recovery site where the VPG virtual machines are recovered."
         )]
+        [Alias("recoverySiteId")]
         [string]$recoverySiteIdentifier
     )
 

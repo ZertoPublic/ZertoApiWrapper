@@ -16,11 +16,13 @@ function Get-ZertoEvent {
             ParameterSetName = "filter",
             HelpMessage = "The name of the VPG for which you want to return events."
         )]
+        [Alias("vpgName")]
         [string]$vpg,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the VPG for which you want to return events."
         )]
+        [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter( ParameterSetName = "filter",
             HelpMessage = "The type of event. For the description of events, refer to the Zerto Virtual Replication documentation about alerts and events. Please see Zerto API Documentation for possible values."
@@ -35,11 +37,13 @@ function Get-ZertoEvent {
             ParameterSetName = "filter",
             HelpMessage = "The internal site identifier for which you want to return events."
         )]
+        [Alias("siteId")]
         [string]$siteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the ZORG, Zerto organization, defined in the Zerto Cloud Manager for which you want to return results."
         )]
+        [Alias("zorgId")]
         [string]$zorgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
@@ -65,6 +69,7 @@ function Get-ZertoEvent {
             ParameterSetName = "filter",
             HelpMessage = "The internal alert identifier for the Event"
         )]
+        [Alias("alertId")]
         [string]$alertIdentifier,
         [Parameter(
             ParameterSetName = "eventId",

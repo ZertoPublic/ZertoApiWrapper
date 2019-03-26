@@ -6,6 +6,7 @@ function Get-ZertoServiceProfile {
             ParameterSetName = "siteIdentifier",
             HelpMessage = "The identifier of the site for which service profiles should be returned."
         )]
+        [Alias("siteId")]
         [string]$siteIdentifier,
         [Parameter(
             ParameterSetName = "serviceProfileId",

@@ -17,6 +17,7 @@ function Get-ZertoVpg {
             Mandatory = $true,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
+        [Alias("vpgId", "protectionGroupId", "pgId")]
         [string[]]$protectionGroupIdentifier,
         [Parameter(
             ParameterSetName = "checkpoints",

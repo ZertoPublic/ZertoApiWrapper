@@ -6,6 +6,7 @@ function Get-ZertoTask {
             ParameterSetName = "taskIdentifier",
             HelpMessage = "The identifier(s) for which task information is to be returned."
         )]
+        [Alias("taskId")]
         [string[]]$taskIdentifier,
         [Parameter(
             ParameterSetName = "types",

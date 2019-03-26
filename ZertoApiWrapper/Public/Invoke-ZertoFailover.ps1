@@ -10,6 +10,7 @@ function Invoke-ZertoFailover {
         [Parameter(
             HelpMessage = "Checkpoint Identifier to use as the Point-In-Time to rollback to."
         )]
+        [Alias("checkpointId")]
         [string]$checkpointIdentifier,
         [Parameter(
             HelpMessage = "0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.

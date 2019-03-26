@@ -6,6 +6,7 @@ function Get-ZertoZorg {
             ParameterSetName = "zorgIdentifier",
             HelpMessage = "Identifier(s) of the ZORG."
         )]
+        [Alias("zorgId")]
         [string[]]$zorgIdentifier
     )
 

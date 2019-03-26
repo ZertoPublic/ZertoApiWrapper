@@ -7,10 +7,12 @@ function Connect-ZertoServer {
             HelpMessage = "IP address or FQDN of your Zerto Management Server"
         )]
         [ValidateNotNullOrEmpty()]
+        [Alias("server", "zvm")]
         [string]$zertoServer,
         [Parameter(
             HelpMessage = "Zerto Virtual Manager management port. Default value is 9669."
         )]
+        [Alias("port")]
         [string]$zertoPort = "9669",
         [Parameter(
             Mandatory = $true,

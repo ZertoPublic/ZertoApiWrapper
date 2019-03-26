@@ -15,6 +15,7 @@ function Get-ZertoPeerSite {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "The identifier(s) of the peer site(s) for which information is to be returned."
         )]
+        [Alias("siteId")]
         [string[]]$siteIdentifier,
         [Parameter(
             ParameterSetName = "filter",

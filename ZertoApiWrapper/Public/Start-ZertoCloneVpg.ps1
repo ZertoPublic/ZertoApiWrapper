@@ -10,6 +10,7 @@ function Start-ZertoCloneVpg {
         [Parameter(
             HelpMessage = "The identifier of the checkpoint to use for cloning. If unspecified, the latest checkpoint will be used."
         )]
+        [Alias("checkpointId")]
         [string]$checkpointIdentifier,
         [Parameter(
             HelpMessage = "The datastore name where the clone is to be created. If unspecified, will auto select the datastore with the most free space."
