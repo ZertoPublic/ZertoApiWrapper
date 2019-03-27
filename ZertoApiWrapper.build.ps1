@@ -21,3 +21,12 @@ task Analyze {
     }
 }
 
+task FileTests {
+    Invoke-Pester "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1"
+}
+
+task BuildPsd1 {
+    $functionsToExportPath = "{0}\ZertoApiWrapper\Public\" -f $MyInvocation.MyCommand.PSPath
+    $functionsToExport = (Get-ChildItem -Path $functionsToExportPath -File).name.Replace('.ps1', '')
+    $functionsToExport
+}

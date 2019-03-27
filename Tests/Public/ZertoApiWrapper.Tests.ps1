@@ -1,6 +1,7 @@
 $moduleName = "ZertoApiWrapper"
 $moduleFileName = "ZertoApiWrapper.psm1"
 $filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
+$docsPath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests/Public', 'docs'
 $fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
 $modulePath = $filePath -replace "Public", ""
 $userName = "zerto\build"
@@ -18,20 +19,19 @@ Describe "File Tests" {
     Import-Module $modulePath\$moduleFileName
     $commands = Get-Command -Module $moduleName | Select-Object -ExpandProperty Name
     foreach ($command in $commands) {
+        $externalHelpFile = "{0}/{1}.md" -f $docsPath, $command
         $path = "{0}/{1}.ps1" -f $filePath, $command
-        it "$command is backed by a file with the same name" {
-            $path | should exist
+        context "$command File Tests" {
+            it "$command is backed by a file with the same name" {
+                $path | should exist
+            }
+            it "$command has an external help file" {
+                $externalHelpFile | should exist
+            }
+            it "$command has the External Help File Defined" {
+                Get-Content -Path $path -First 1 | should be "<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>"
+            }
         }
     }
 }
 
-describe "External Help Defination Present" {
-    $publicFiles = Get-ChildItem "$filePath" -File
-    foreach ($file in $publicFiles) {
-        it "External Help File is Defined" {
-            Get-Content -Path $file.fullName -First 1 | should be "<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>"
-        }
-    }
-}
-
-Describe "Connection Tests"
