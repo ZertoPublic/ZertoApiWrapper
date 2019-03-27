@@ -1,13 +1,15 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Remove-ZertoPeerSite.md
 schema: 2.0.0
 ---
 
 # Remove-ZertoPeerSite
 
 ## SYNOPSIS
+
+Unpair the current site from another site paired to it.
 
 ## SYNTAX
 
@@ -27,16 +29,31 @@ Remove-ZertoPeerSite -hostName <String[]> [-keepTargetDisks] [-WhatIf] [-Confirm
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+
+Unpair the current site from another site paired to it.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Remove-ZertoPeerSite -siteIdentifier "MySiteIdentifier"
 ```
 
-{{ Add example description here }}
+Unpairs the current site for the site with siteIdentifier "MySiteIdentifier"
+
+### Example 2
+```powershell
+PS C:\> Remove-ZertoPeerSite -peerSiteName "Recovery Site"
+```
+
+Unpairs the current site for the site with site name "Recovery Site"
+
+### Example 1
+```powershell
+PS C:\> Remove-ZertoPeerSite -hostName "192.168.1.100"
+```
+
+Unpairs the current site for the site with ip address "192.168.1.100"
 
 ## PARAMETERS
 
@@ -143,3 +160,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+
+[Zerto REST API Peer Site End Point Documentation](http://s3.amazonaws.com/zertodownload_docs/Latest/Zerto%20Virtual%20Replication%20Zerto%20Virtual%20Manager%20%28ZVM%29%20-%20vSphere%20Online%20Help/index.html#page/RestfulAPIs%2FStatusAPIs.5.044.html%23)
