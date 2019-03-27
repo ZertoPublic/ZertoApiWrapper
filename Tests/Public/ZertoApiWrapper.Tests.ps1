@@ -1,7 +1,7 @@
 $moduleName = "ZertoApiWrapper"
 $moduleFileName = "ZertoApiWrapper.psm1"
 $filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
-$docsPath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests/Public', 'docs'
+$docsPath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests[\\\/]Public', 'docs'
 $fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
 $modulePath = $filePath -replace "Public", ""
 $userName = "zerto\build"
@@ -24,6 +24,17 @@ Describe "File Tests" {
         context "$command File Tests" {
             it "$command is backed by a file with the same name" {
                 $path | should exist
+            }
+            it "$command file has openbraces on the same line as the statement" {
+                $content = Get-Content -Path $path
+                $openingBracesExist = $content | Where-Object {$_.Trim() -eq '{'}
+                if ($openingBracesExist) {
+                    Write-Warning "Found the following opening brances on their own line:"
+                    foreach ($openingBrace in $openingBracesExist) {
+                        Write-Warning "Opening Brace on it's own line - $openingBrace"
+                    }
+                }
+                $openingBracesExist | should benullorempty
             }
             it "$command has an external help file" {
                 $externalHelpFile | should exist

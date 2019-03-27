@@ -9,7 +9,7 @@ $password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
 $credential = New-Object -TypeName System.Management.Automation.PSCredential($userName, $password)
 
 # $credential = Import-Clixml -Path C:\ZertoScripts\Creds.xml
-$zertoServer = "172.16.219.128"
+$zertoServer = "192.168.1.100"
 $zertoPort = "7669"
 
 Describe "Connect-ZertoServer" {
