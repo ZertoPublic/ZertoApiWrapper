@@ -3,12 +3,16 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
+
 jobs:
   - job: Build_PS_Win2016
+    timeoutInMinutes: 10
+    cancelTimeoutInMinutes: 2
     pool:
       vmImage: vs2017-win2016
     steps:
-    - powershell: |
+    - script: |
         pwsh -c '.\build.ps1 -Verbose'
       displayName: 'Build and Test'
     - task: PublishTestResults@2
@@ -19,22 +23,14 @@ jobs:
       displayName: 'Publish Test Results'
 
   - job: Build_PSCore_Ubuntu1604
-
+    timeoutInMinutes: 10
+    cancelTimeoutInMinutes: 2
     pool:
       vmImage: ubuntu-16.04
-
     steps:
     - script: |
-        curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-        curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
-        sudo apt-get update
-        sudo apt-get install -y powershell
-      displayName: 'Install PowerShell Core'
-
-    - script: |
-        pwsh -c '.\build.ps1'
+        pwsh -c '.\build.ps1 -verbose'
       displayName: 'Build and Test'
-
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
@@ -43,19 +39,14 @@ jobs:
       displayName: 'Publish Test Results'
 
   - job: Build_PSCore_MacOS1013
+    timeoutInMinutes: 10
+    cancelTimeoutInMinutes: 2
     pool:
       vmImage: xcode9-macos10.13
     steps:
     - script: |
-        brew update
-        brew tap caskroom/cask
-        brew cask install powershell
-      displayName: 'Install PowerShell Core'
-
-    - script: |
-        pwsh -c '.\build.ps1'
+        pwsh -c '.\build.ps1 -verbose'
       displayName: 'Build and Test'
-
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
