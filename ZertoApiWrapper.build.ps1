@@ -38,7 +38,7 @@ task Analyze CheckPSScriptAnalyzerInstalled, CheckPesterInstalled, CheckPlatyPSI
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @('PSUseDeclaredVarsMoreThanAssignments', 'PSUseShouldProcessForStateChangingFunctions')
+        ExcludeRule = @('PSUseDeclaredVarsMoreThanAssignments', 'PSUseShouldProcessForStateChangingFunctions', 'PSUseToExportFieldsInManifest')
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
 
