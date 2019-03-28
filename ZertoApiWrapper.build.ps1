@@ -51,3 +51,21 @@ task Analyze CheckPSScriptAnalyzerInstalled, CheckPesterInstalled, CheckPlatyPSI
 task FileTests CheckPesterInstalled, {
     Invoke-Pester "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -Show Fails
 }
+
+$buildMamlParams = @{
+    Inputs  = { Get-ChildItem docs\*.md }
+    Outputs = ".\ZertoApiWrapper\Public\en-us\ZertoApiWrapper-help.xml"
+}
+
+task BuildMamlHelp CheckPlatyPSInstalled, {
+    if (Test-Path $buildMamlParams.Outputs) {
+        Remove-Item $buildMamlParams.Outputs
+    }
+    platyPS\New-ExternalHelp .\docs -Force -OutputPath $buildMamlParams.Outputs
+}
+
+task UpdateMarkdownHelp CheckPlatyPSInstalled, {
+    remove-module ZertoApiWrapper -force -ErrorAction SilentlyContinue
+    Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
+    Update-MarkDownHelp -Path docs -AlphabeticParamsOrder
+}
