@@ -1,13 +1,13 @@
 #Requires -Modules 'InvokeBuild'
 
 . '.\ZertoApiWrapper.settings.ps1'
-import-module .\ZertoApiWrapper\ZertoApiWrapper.psd1
+# import-module "$BuildRoot\ZertoApiWrapper\ZertoApiWrapper.psd1" -Verbose -Force
 
-[CmdletBinding()]
+<# [CmdletBinding()]
 param([switch]$Install,
     [string]$Configuration = (property Configuration Release))
 
-$targetDir = "temp/$Configuration/ZertoApiWrapper"
+$targetDir = "temp/$Configuration/ZertoApiWrapper" #>
 
 task . Analyze
 
@@ -62,10 +62,29 @@ task FileTests CheckPesterInstalled, {
     Invoke-Pester "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -Show Fails
 }
 
-task UpdateModuleManifest {
+task UpdateModuleFunctions {
     $functionsToExportPath = "$BuildRoot\ZertoApiWrapper\Public\"
-    $functionsToExport = (Get-ChildItem -Path $functionsToExportPath -File).name.Replace('.ps1', '')
-    $version = Get-Module -Name ZertoApiWrapper | select Version
-    $buildVersion = $version.Build
+    Update-ModuleManifest -Path "$BuildRoot\ZertoApiWrapper\ZertoApiWrapper.psd1" -FunctionsToExport $(Get-ChildItem -Path $functionsToExportPath -File).name.Replace('.ps1', '')
+}
 
+task UpdateVersion {
+    try {
+        $moduleManifestFile = "$BuildRoot\ZertoApiWrapper\ZertoApiWrapper.psd1"
+        $manifestContent = Get-Content $moduleManifestFile -Raw
+        [version]$version = [regex]::matches($manifestContent, "ModuleVersion\s=\s\'(?<version>(\d+\.)?(\d+\.)?(\*|\d+))") | ForEach-Object {$_.groups['version'].value}
+        $newVersion = "{0}.{1}.{2}" -f $version.Major, $version.Minor, ($version.Build + 1)
+
+        $replacements = @{
+            "ModuleVersion = '.*'" = "ModuleVersion = '$newVersion'"
+        }
+
+        $replacements.GetEnumerator() | ForEach-Object {
+            $manifestContent = $manifestContent -replace $_.Key, $_.Value
+        }
+
+        $manifestContent | Set-Content -Path "$moduleManifestFile"
+    } catch {
+        Write-Error -Message $_.Exception.Message
+        $host.SetShouldExit($LastExitCode)
+    }
 }
