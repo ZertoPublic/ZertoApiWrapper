@@ -118,35 +118,35 @@ It is important to note that only once a VPG settings object has been created, w
 
 ### Example 1
 ```powershell
-PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier"
+PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier"
 ```
 
 Returns all current settings for vpgSettingsIdentifier "MySettingsIdentifier"
 
 ### Example 2
 ```powershell
-PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId"
+PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId"
 ```
 
 Returns all current vm level settings for the vmIdentifier "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"
 
 ### Example 3
 ```powershell
-PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId" -volumes
+PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId" -volumes
 ```
 
 Returns current vm level settings for volumes for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"
 
 ### Example 4
 ```powershell
-PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -nics
+PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -nics
 ```
 
 Returns current vm level settings for nics for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"
 
 ### Example 5
 ```powershell
-PS C:\> Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -basic
+PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -basic
 ```
 
 Returns current basic settings for vpgSettingsIdentifier "MySettingsIdentifier"
