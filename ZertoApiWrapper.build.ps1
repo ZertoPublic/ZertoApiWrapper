@@ -49,7 +49,8 @@ task Analyze CheckPSScriptAnalyzerInstalled, CheckPesterInstalled, CheckPlatyPSI
 }
 
 task FileTests CheckPesterInstalled, {
-    Invoke-Pester "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -Show Fails
+    $testResultsFile = "$BuildRoot\Tests\Public\TestResults.xml"
+    Invoke-Pester -Script "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -OutputFile $testResultsFile -PassThru
 }
 
 $buildMamlParams = @{
