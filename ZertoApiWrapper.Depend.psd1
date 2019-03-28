@@ -20,7 +20,7 @@
         }
         Target         = 'CurrentUser'
         Version        = '4.6.0'
-        Tags           = 'Test'
+        Tags           = 'Bootstrap'
     }
 
     PSScriptAnalyzer = @{
@@ -32,7 +32,7 @@
         }
         Target         = 'CurrentUser'
         Version        = '1.17.1'
-        Tags           = 'Test'
+        Tags           = 'Bootstrap'
     }
 
     Platyps          = @{
@@ -44,7 +44,7 @@
         }
         Target         = 'CurrentUser'
         Version        = '0.12.0'
-        Tags           = 'Build'
+        Tags           = 'Bootstrap'
     }
 
 }
