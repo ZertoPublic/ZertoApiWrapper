@@ -5977,35 +5977,35 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier"</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier"</dev:code>
         <dev:remarks>
           <maml:para>Returns all current settings for vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 2 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId"</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId"</dev:code>
         <dev:remarks>
           <maml:para>Returns all current vm level settings for the vmIdentifier "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 3 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId" -volumes</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -vmIdentifier "MyVmId" -volumes</dev:code>
         <dev:remarks>
           <maml:para>Returns current vm level settings for volumes for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 4 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -nics</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -nics</dev:code>
         <dev:remarks>
           <maml:para>Returns current vm level settings for nics for vmId "MyVmId" in vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
         </dev:remarks>
       </command:example>
       <command:example>
         <maml:title>-------------------------- Example 5 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-ZertoVpgSettings -vpgSettingsIdentifier "MySettingsIdentifier" -basic</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -basic</dev:code>
         <dev:remarks>
           <maml:para>Returns current basic settings for vpgSettingsIdentifier "MySettingsIdentifier"</maml:para>
         </dev:remarks>
@@ -10656,9 +10656,9 @@
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
-      <command:name>Save-ZertoVpgSettings</command:name>
+      <command:name>Save-ZertoVpgSetting</command:name>
       <command:verb>Save</command:verb>
-      <command:noun>ZertoVpgSettings</command:noun>
+      <command:noun>ZertoVpgSetting</command:noun>
       <maml:description>
         <maml:para>Commits the updated Vpg Settings with the configured Vpg Settings Identifier</maml:para>
       </maml:description>
@@ -10668,8 +10668,8 @@
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
-        <maml:name>Save-ZertoVpgSettings</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="vpgSettingsId">
+        <maml:name>Save-ZertoVpgSetting</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="1" aliases="vpgSettingsId">
           <maml:name>vpgSettingsIdentifier</maml:name>
           <maml:Description>
             <maml:para>VpgSettings Identifier to save</maml:para>
@@ -10706,7 +10706,7 @@
       </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="0" aliases="vpgSettingsId">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByPropertyName, ByValue)" position="1" aliases="vpgSettingsId">
         <maml:name>vpgSettingsIdentifier</maml:name>
         <maml:Description>
           <maml:para>VpgSettings Identifier to save</maml:para>
@@ -10771,7 +10771,7 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:&gt; Save-ZertoVpgSettings -vpgSettingsIdentifier "MyVpgSettingsIdentifier"</dev:code>
+        <dev:code>PS C:&gt; Save-ZertoVpgSetting -vpgSettingsIdentifier "MyVpgSettingsIdentifier"</dev:code>
         <dev:remarks>
           <maml:para>Commits vpg settings with vpg settings identifier "MyVpgSettingsIdentifier"</maml:para>
         </dev:remarks>
@@ -10780,7 +10780,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSettings.md</maml:uri>
+        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSetting.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
