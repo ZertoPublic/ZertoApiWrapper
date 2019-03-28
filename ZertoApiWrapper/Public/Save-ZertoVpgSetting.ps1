@@ -1,5 +1,5 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-function Save-ZertoVpgSettings {
+function Save-ZertoVpgSetting {
     [cmdletbinding(
         SupportsShouldProcess = $true
     )]
