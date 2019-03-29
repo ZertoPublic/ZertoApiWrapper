@@ -6,6 +6,7 @@ function Add-ZertoPeerSite {
             Mandatory = $true,
             HelpMessage = "Target Hostname or IP address to pair the localsite to."
         )]
+        [ValidateScript( {$_ -match [IPAddress]$_ } )]
         [string]$targetHost,
         [Parameter(
             HelpMessage = "Target communication port. Default is 9081"
