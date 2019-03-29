@@ -3859,11 +3859,11 @@
       <command:verb>Get</command:verb>
       <command:noun>ZertoVirtualizationSite</command:noun>
       <maml:description>
-        <maml:para>{{Fill in the Synopsis}}</maml:para>
+        <maml:para>Returns information about the hypervisor site where the API is run and all the sites paired with this site. The information returned can be tailored to specific information about the resources managed at a specified site.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>{{Fill in the Description}}</maml:para>
+      <maml:para>Returns information about the hypervisor site where the API is run and all the sites paired with this site. The information returned can be tailored to specific information about the resources managed at a specified site.</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
@@ -4302,9 +4302,30 @@
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; {{ Add example code here }}</dev:code>
+        <dev:code>PS C:\&gt; Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier"</dev:code>
         <dev:remarks>
-          <maml:para>{{ Add example description here }}</maml:para>
+          <maml:para>Returns information about the site with identifier "MySiteIdentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier" -datastoreClusters</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about datastore clusters at site with site identifier "MySiteidentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier" -datastores</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about datastores at site with site identifier "MySiteidentifier"</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 4 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier" -devices</dev:code>
+        <dev:remarks>
+          <maml:para>Returns information about devices at site with site identifier "MySiteidentifier"</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>
