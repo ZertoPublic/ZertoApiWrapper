@@ -69,7 +69,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, {
 
 task FileTests CheckPesterInstalled, {
     $testResultsFile = "$BuildRoot\Tests\Public\TestResults.xml"
-    $results = Invoke-Pester -Script "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -OutputFile $testResultsFile -OutputFormat NUnitXML -EnableExit -PassThru
+    $script:results = Invoke-Pester -Script "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -OutputFile $testResultsFile -PassThru
     $FailureMessage = '{0} Unit test(s) failed. Aborting build' -f $results.FailedCount
     assert ($results.FailedCount -eq 0) $FailureMessage
 }

@@ -21,6 +21,7 @@ jobs:
         testResultsFiles: '**/Public/TestResults.xml'
         testRunTitle: 'PS_Win2016'
       displayName: 'Publish Test Results'
+      condition: always()
 
   - job: Build_PSCore_Ubuntu1604
     timeoutInMinutes: 10
@@ -37,6 +38,7 @@ jobs:
         testResultsFiles: '**/Public/TestResults.xml'
         testRunTitle: 'PSCore_Ubuntu1604'
       displayName: 'Publish Test Results'
+      condition: always()
 
   - job: Build_PSCore_MacOS1013
     timeoutInMinutes: 10
@@ -53,3 +55,4 @@ jobs:
         testResultsFiles: '**/Public/TestResults.xml'
         testRunTitle: 'PSCore_MacOS1013'
       displayName: 'Publish Test Results'
+      condition: always()
