@@ -18,7 +18,7 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/Public/TestResults.xml'
+        testResultsFiles: '**/TestResults.xml'
         testRunTitle: 'PS_Win2016'
       displayName: 'Publish Test Results'
       condition: always()
@@ -35,7 +35,7 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/Public/TestResults.xml'
+        testResultsFiles: '**/TestResults.xml'
         testRunTitle: 'PSCore_Ubuntu1604'
       displayName: 'Publish Test Results'
       condition: always()
@@ -52,7 +52,7 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/Public/TestResults.xml'
+        testResultsFiles: '**/TestResults.xml'
         testRunTitle: 'PSCore_MacOS1013'
       displayName: 'Publish Test Results'
       condition: always()
