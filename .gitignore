@@ -1,3 +1,4 @@
 
 *.zip
 temp/*
+Tests/Public/TestResults.xml
