@@ -10,7 +10,7 @@ $targetDir = "temp/$Configuration/ZertoApiWrapper" #>
 
 $versionMajor = '0'
 $versionMinor = '1'
-$versionBuild = "{0}.{1}" -f $(get-date -format 'yyyyMMdd'), $env:Rev
+$versionBuild = "{0}.{1}" -f $(get-date -format 'yyyyMMdd'), "$env:Rev:.r"
 
 task . AnalyzeSourceFiles, CreateModule
 
@@ -112,6 +112,8 @@ task CreatePsd1ForRelease CleanTemp, {
         VariablesToExport = @()
         AliasesToExport   = @()
     }
+    $myEnv = Get-Item Env:
+    Write-Output $myEnv
     Write-Output $ManifestParams.ModuleVersion
     New-ModuleManifest @ManifestParams
 }
