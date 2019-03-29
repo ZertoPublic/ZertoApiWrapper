@@ -1,3 +1,4 @@
+#Requires -Modules Pester
 $testPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 $docsPath = $testPath -replace 'Tests', 'docs'
 $modulePath = $testPath -replace 'Tests', 'ZertoApiWrapper'
