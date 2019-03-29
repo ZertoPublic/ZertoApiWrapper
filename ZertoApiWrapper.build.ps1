@@ -51,7 +51,7 @@ task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
     }
 }
 
-task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, {
+task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
     $scriptAnalyzerParams = @{
         Path        = "$BuildRoot\temp\"
         Severity    = @('Error', 'Warning')
@@ -126,8 +126,20 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
     $emptyLine = ""
     $psm1Path = "$BuildRoot\temp\ZertoApiWrapper.psm1"
     $lines = '#------------------------------------------------------------#'
-    $Public = @( Get-ChildItem -Path $PSScriptRoot\ZertoApiWrapper\Public\*.ps1 -ErrorAction SilentlyContinue )
-    $Private = @( Get-ChildItem -Path $PSScriptRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction SilentlyContinue )
+    $Public = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Public\*.ps1 -ErrorAction SilentlyContinue )
+    $functionCount = 0
+    $exportString = ""
+    foreach ($file in $Public) {
+        if ($functionCount -eq 0) {
+            $functionCount++
+            $exportString = "{0}" -f $file.BaseName
+        } else {
+            $functionCount++
+            $exportString = "{0}, {1}" -f $exportString, $file.BaseName
+        }
+    }
+    $export = "Export-ModuleMember -Function $exportString"
+    $Private = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction SilentlyContinue )
     Add-Content -Path $psm1Path -Value $lines
     Add-Content -Path $psm1Path -Value "#---------------------Private Functions----------------------#"
     Add-Content -Path $psm1Path -Value $lines
@@ -144,9 +156,10 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
         Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw)
         Add-Content -Path $psm1Path -Value $emptyLine
     }
+    Add-Content -Path $psm1Path -Value $emptyLine
+    Add-Content -Path $psm1Path -Value "Export-ModuleMember -Function $exportString"
 }
 
-task CreateModule CleanTemp, FileTests, CreatePsd1ForRelease, CreatePsm1ForRelease, AnalyzeBuiltFiles, BuildMamlHelp, {
+task CreateModule CleanTemp, FileTests, AnalyzeBuiltFiles, BuildMamlHelp, {
 
 }
-
