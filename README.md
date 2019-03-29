@@ -2,6 +2,10 @@
 
 PowerShell Core wrapper for Zerto Virtual Manager API
 
+## Current Build Status
+
+[![Build Status](https://dev.azure.com/wescarroll/ZertoApiWrapper/_apis/build/status/wcarroll.ZertoApiWrapper?branchName=master)](https://dev.azure.com/wescarroll/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
+
 ## Legal Disclaimer
 
 This script is an example script and is not supported under any Zerto support program or service. The author and Zerto further disclaim all implied warranties including, without limitation, any implied warranties of merchantability or of fitness for a particular purpose.

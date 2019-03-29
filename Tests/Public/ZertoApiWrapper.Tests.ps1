@@ -2,15 +2,9 @@ $moduleName = "ZertoApiWrapper"
 $moduleFileName = "ZertoApiWrapper.psm1"
 $filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
 $docsPath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests[\\\/]Public', 'docs'
-$fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
 $modulePath = $filePath -replace "Public", ""
-$userName = "zerto\build"
-$password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
-$credential = New-Object -TypeName System.Management.Automation.PSCredential($userName, $password)
 
-# $credential = Import-Clixml -Path C:\ZertoScripts\Creds.xml
-$zertoServer = "192.168.1.100"
-$zertoPort = "7669"
+Import-Module $modulePath\$moduleFileName
 
 Import-Module $modulePath\$moduleFileName
 
@@ -42,7 +36,14 @@ Describe "File Tests" {
             it "$command has the External Help File Defined" {
                 Get-Content -Path $path -First 1 | should be "<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>"
             }
+            it "$command external Help file is filled out" {
+                $stubExist = Get-Content -Path $externalHelpFile | Where-Object {$_.Trim() -like '*{{*}}*'}
+                if ($stubExist) {
+                    Write-Warning "Found a stub in the Markdown File $externalHelpFile"
+                    Write-Warning "$stubExist"
+                }
+                $stubExist | should benullorempty
+            }
         }
     }
 }
-
