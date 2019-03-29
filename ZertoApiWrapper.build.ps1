@@ -53,7 +53,7 @@ task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
 
 task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, {
     $scriptAnalyzerParams = @{
-        Path        = "$BuildRoot\Temp\"
+        Path        = "$BuildRoot\temp\"
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
@@ -76,7 +76,7 @@ task FileTests CheckPesterInstalled, {
 
 $buildMamlParams = @{
     Inputs  = { Get-ChildItem docs\*.md }
-    Outputs = "temp\en-us\ZertoApiWrapper-help.xml"
+    Outputs = "$BuildRoot\temp\en-us\ZertoApiWrapper-help.xml"
 }
 
 task BuildMamlHelp CheckPlatyPSInstalled, {
@@ -95,7 +95,7 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
 task CreatePsd1ForRelease CleanTemp, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
     $ManifestParams = @{
-        Path              = "temp\ZertoApiWrapper.psd1"
+        Path              = "$BuildRoot\temp\ZertoApiWrapper.psd1"
         RootModule        = 'ZertoApiWrapper.psm1'
         ModuleVersion     = '{0}.{1}.{2}' -f $versionMajor, $versionMinor, $versionBuild
         GUID              = '4c0b9e17-141b-4dd5-8549-fb21cccaa325'
@@ -119,12 +119,12 @@ task CleanTemp {
     if (-not $(Test-Path "$BuildRoot\temp")) {
         New-Item -Path $BuildRoot -Name "temp" -ItemType "Directory"
     }
-    Remove-Item -Recurse -Path 'temp\*'
+    Remove-Item -Recurse -Path "$BuildRoot\temp\*"
 }
 
 task CreatePsm1ForRelease CreatePsd1ForRelease, {
     $emptyLine = ""
-    $psm1Path = "temp\ZertoApiWrapper.psm1"
+    $psm1Path = "$BuildRoot\temp\ZertoApiWrapper.psm1"
     $lines = '#------------------------------------------------------------#'
     $Public = @( Get-ChildItem -Path $PSScriptRoot\ZertoApiWrapper\Public\*.ps1 -ErrorAction SilentlyContinue )
     $Private = @( Get-ChildItem -Path $PSScriptRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction SilentlyContinue )
