@@ -34,6 +34,14 @@ Describe "File Tests" {
             it "$command has the External Help File Defined" {
                 Get-Content -Path $path -First 1 | should be "<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>"
             }
+            it "$command external Help file is filled out" {
+                $stubExist = Get-Content -Path $externalHelpFile | Where-Object {$_.Trim() -like '*{{*}}*'}
+                if ($stubExist) {
+                    Write-Warning "Found a stub in the Markdown File $externalHelpFile"
+                    Write-Warning "$stubExist"
+                }
+                $stubExist | should benullorempty
+            }
         }
     }
 }
