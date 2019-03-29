@@ -1,5 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Stop-ZertoCloneVpg {
+    [cmdletbinding()]
     param(
         [Parameter(
             HelpMessage = "Name of the VPG to stop cloning",
