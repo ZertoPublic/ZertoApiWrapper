@@ -8,7 +8,11 @@ param([switch]$Install,
     [string]$Configuration = (property Configuration Release))
 $targetDir = "temp/$Configuration/ZertoApiWrapper" #>
 
-task . Analyze, FileTests
+$versionMajor = '0'
+$versionMinor = '1'
+$versionBuild = "{0}.{1}" -f $(get-date -format 'yyyyMMdd'), $env:Rev
+
+task . AnalyzeSourceFiles, CreateModule
 
 <# Synopsis: Ensure platyPS is installed #>
 task CheckPlatyPSInstalled {
@@ -32,9 +36,24 @@ task CheckPSScriptAnalyzerInstalled {
 }
 
 <# Synopsis: Analyze ZertoApiWrapper functions for Code Violations #>
-task Analyze CheckPSScriptAnalyzerInstalled, CheckPesterInstalled, CheckPlatyPSInstalled, {
+task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
     $scriptAnalyzerParams = @{
         Path        = "$BuildRoot\ZertoApiWrapper\"
+        Severity    = @('Error', 'Warning')
+        Recurse     = $true
+        Verbose     = $false
+        ExcludeRule = @('PSUseDeclaredVarsMoreThanAssignments', 'PSUseShouldProcessForStateChangingFunctions', 'PSUseToExportFieldsInManifest')
+    }
+    $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
+    if ($saResults) {
+        $saResults | Format-Table
+        throw "One or more PSScriptAnalyzer errors/warnings were found"
+    }
+}
+
+task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, {
+    $scriptAnalyzerParams = @{
+        Path        = "$BuildRoot\Temp\"
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
@@ -50,12 +69,14 @@ task Analyze CheckPSScriptAnalyzerInstalled, CheckPesterInstalled, CheckPlatyPSI
 
 task FileTests CheckPesterInstalled, {
     $testResultsFile = "$BuildRoot\Tests\Public\TestResults.xml"
-    Invoke-Pester -Script "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -OutputFile $testResultsFile -PassThru
+    $results = Invoke-Pester -Script "$BuildRoot\Tests\Public\ZertoApiWrapper.Tests.ps1" -OutputFile $testResultsFile -OutputFormat NUnitXML -EnableExit -PassThru
+    $FailureMessage = '{0} Unit test(s) failed. Aborting build' -f $results.FailedCount
+    assert ($results.FailedCount -eq 0) $FailureMessage
 }
 
 $buildMamlParams = @{
     Inputs  = { Get-ChildItem docs\*.md }
-    Outputs = ".\ZertoApiWrapper\Public\en-us\ZertoApiWrapper-help.xml"
+    Outputs = "temp\en-us\ZertoApiWrapper-help.xml"
 }
 
 task BuildMamlHelp CheckPlatyPSInstalled, {
@@ -70,3 +91,60 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
     Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
     Update-MarkDownHelp -Path docs -AlphabeticParamsOrder
 }
+
+task CreatePsd1ForRelease CleanTemp, {
+    $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
+    $ManifestParams = @{
+        Path              = "temp\ZertoApiWrapper.psd1"
+        RootModule        = 'ZertoApiWrapper.psm1'
+        ModuleVersion     = '{0}.{1}.{2}' -f $versionMajor, $versionMinor, $versionBuild
+        GUID              = '4c0b9e17-141b-4dd5-8549-fb21cccaa325'
+        Author            = 'Wes Carroll'
+        CompanyName       = 'Zerto'
+        Copyright         = '(c) {0} Wes Carroll. All rights reserved.' -f $(Get-Date -format 'yyyy')
+        Description       = 'PowerShell Core Wrapper Module for Zerto Virtual Manager API'
+        PowerShellVersion = '6.0.0'
+        ProjectUri        = 'https://github.com/wcarroll/ZertoApiWrapper'
+        LicenseUri        = 'https://github.com/wcarroll/ZertoApiWrapper/blob/master/LICENSE'
+        Tags              = @("Zerto", "Automation")
+        FunctionsToExport = $functionsToExport
+        CmdletsToExport   = @()
+        VariablesToExport = @()
+        AliasesToExport   = @()
+    }
+    Write-Output $ManifestParams.ModuleVersion
+    New-ModuleManifest @ManifestParams
+}
+
+task CleanTemp {
+    Remove-Item -Recurse -Path 'temp\*'
+}
+
+task CreatePsm1ForRelease CreatePsd1ForRelease, {
+    $emptyLine = ""
+    $psm1Path = "temp\ZertoApiWrapper.psm1"
+    $lines = '#------------------------------------------------------------#'
+    $Public = @( Get-ChildItem -Path $PSScriptRoot\ZertoApiWrapper\Public\*.ps1 -ErrorAction SilentlyContinue )
+    $Private = @( Get-ChildItem -Path $PSScriptRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction SilentlyContinue )
+    Add-Content -Path $psm1Path -Value $lines
+    Add-Content -Path $psm1Path -Value "#---------------------Private Functions----------------------#"
+    Add-Content -Path $psm1Path -Value $lines
+    Add-Content -Path $psm1Path -Value $emptyLine
+    foreach ($file in $private) {
+        Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw)
+        Add-Content -Path $psm1Path -Value $emptyLine
+    }
+    Add-Content -Path $psm1Path -Value $lines
+    Add-Content -Path $psm1Path -Value "#----------------------Public Functions----------------------#"
+    Add-Content -Path $psm1Path -Value $lines
+    Add-Content -Path $psm1Path -Value $emptyLine
+    foreach ($file in $public) {
+        Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw)
+        Add-Content -Path $psm1Path -Value $emptyLine
+    }
+}
+
+task CreateModule CleanTemp, FileTests, CreatePsd1ForRelease, CreatePsm1ForRelease, AnalyzeBuiltFiles, BuildMamlHelp, {
+
+}
+
