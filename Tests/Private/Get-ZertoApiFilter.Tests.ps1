@@ -1,23 +1,30 @@
 $filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
 $fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
-$modulePath = $filePath -replace "Private", ""
+$file = Get-ChildItem "$filePath\$fileName"
 
-. "$filePath\$fileName"
-$oneItemTest = [ordered]@{"OneItem" = "Test"}
-$twoItemTest = [ordered]@{"OneItem" = "Test"; "SecondItem" = "Yours"}
-$boolItemTest = [ordered]@{"OneItem" = "Test"; "BoolItem" = $true}
+. $file.FullName
+$singleBoolItemTest = @{"BoolItem" = $True}
+$oneItemTest = @{"OneItem" = "Test"}
+$twoItemTest = @{"OneItem" = "Test"; "SecondItem" = "Yours"}
+$boolItemTest = @{"OneItem" = "Test"; "BoolItem" = $true}
 
-Describe "Get-ZertoApiFilter" {
+Describe $file.BaseName -Tag Unit {
     it "file should exist" {
-        "$filePath\$fileName" | should exist
+        $file.Fullname | should exist
+    }
+
+    It "is valid Powershell (Has no script errors)" {
+        $contents = Get-Content -Path $file.Fullname -ErrorAction Stop
+        $errors = $null
+        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
+        $errors | Should -HaveCount 0
+    }
+
+    it "converts bool to text" {
+        Get-ZertoApiFilter -filtertable $singleBoolItemTest | should -Be "?BoolItem=True"
     }
     it "one item test" {
         Get-ZertoApiFilter -filtertable $oneItemTest | should be "?OneItem=Test"
     }
-    it "two item test" {
-        Get-ZertoApiFilter -filtertable $twoItemTest | should be "?OneItem=Test&SecondItem=Yours"
-    }
-    it "bool item test" {
-        Get-ZertoApiFilter -filtertable $boolItemTest | should be "?OneItem=Test&BoolItem=True"
-    }
+    #TODO:: Figure out multi-item tests
 }
