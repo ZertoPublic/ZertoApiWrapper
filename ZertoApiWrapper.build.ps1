@@ -117,6 +117,9 @@ task CreatePsd1ForRelease CleanTemp, {
 }
 
 task CleanTemp {
+    if (-not $(Test-Path "$BuildRoot\temp")) {
+        New-Item -Path $BuildRoot -Name "temp" -ItemType "Directory"
+    }
     Remove-Item -Recurse -Path 'temp\*'
 }
 
