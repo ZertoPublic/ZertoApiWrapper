@@ -9,11 +9,24 @@ Get-Module -Name ZertoApiWrapper | Remove-Module -Force
 Import-Module $moduleFile -Force
 
 Describe $file.BaseName -Tag 'Unit' {
+    Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
+        $null
+    }
+    Mock -ModuleName ZertoApiWrapper -CommandName Remove-Variable {
 
+    }
     It "is valid Powershell (Has no script errors)" {
         $contents = Get-Content -Path $file -ErrorAction Stop
         $errors = $null
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
         $errors | Should -HaveCount 0
+    }
+
+    it "Does not return anything" {
+        Disconnect-ZertoServer | Should -BeNullOrEmpty
+    }
+
+    it "Does not take any parameters" {
+        (get-command disconnect-zertoserver).parameters.count | Should -BeExactly 11
     }
 }
