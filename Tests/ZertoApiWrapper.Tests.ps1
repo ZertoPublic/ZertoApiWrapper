@@ -32,22 +32,22 @@ Describe "Module: $module" -Tags 'Unit' {
 
         It "Has a public functions folder" {
 
-            "$modulePath\public" | Should -Exist
+            "$modulePath\Public" | Should -Exist
         }
 
         It "Has functions in the public functions folder" {
 
-            "$modulePath\public\*.ps1" | Should -Exist
+            "$modulePath\Public\*.ps1" | Should -Exist
         }
 
         It "Has a private functions folder" {
 
-            "$modulePath\private" | Should -Exist
+            "$modulePath\Private" | Should -Exist
         }
 
         It "Has functions in the private functions folder" {
 
-            "$modulePath\private\*.ps1" | Should -Exist
+            "$modulePath\Private\*.ps1" | Should -Exist
         }
     }
 
