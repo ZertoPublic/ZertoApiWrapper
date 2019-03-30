@@ -4,6 +4,15 @@
 # https://aka.ms/yaml
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
+trigger:
+  branches:
+    include:
+      - master
+      - develop
+      - TestingBranch
+pr:
+  - master
+  - develop
 
 jobs:
   - job: Build_PS_Win2016
@@ -12,8 +21,8 @@ jobs:
     pool:
       vmImage: vs2017-win2016
     steps:
-    - script: |
-        pwsh -c ".\build.ps1 -Verbose"
+    - pwsh: |
+        .\build.ps1 -Verbose
       displayName: 'Build and Test'
     - task: PublishTestResults@2
       inputs:
@@ -29,8 +38,8 @@ jobs:
     pool:
       vmImage: ubuntu-16.04
     steps:
-    - script: |
-        pwsh -c '.\build.ps1 -verbose'
+    - pwsh: |
+        .\build.ps1 -verbose
       displayName: 'Build and Test'
     - task: PublishTestResults@2
       inputs:
@@ -46,8 +55,8 @@ jobs:
     pool:
       vmImage: xcode9-macos10.13
     steps:
-    - script: |
-        pwsh -c '.\build.ps1 -verbose'
+    - pwsh: |
+        .\build.ps1 -verbose
       displayName: 'Build and Test'
     - task: PublishTestResults@2
       inputs:
