@@ -11,6 +11,7 @@ function Add-ZertoPeerSite {
         [Parameter(
             HelpMessage = "Target communication port. Default is 9081"
         )]
+        [ValidateRange(1024, 65535)]
         [int]$targetPort = 9081
     )
 
