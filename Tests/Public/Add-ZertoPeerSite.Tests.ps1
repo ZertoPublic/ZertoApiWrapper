@@ -22,14 +22,16 @@ Describe $file.BaseName -Tag 'Unit' {
             $errors | Should -HaveCount 0
         }
 
-        it "Should be return a string value" {
+        it "Should return a string value" {
             $results = Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort '9081'
             $results | should not benullorempty
-            $results.gettype().name | should -be "String"
+            $results | should -BeOfType "String"
+            $results | Should -BeExactly "9a49f42e-2bbd-4bf8-b571-77908a2e5e98.928a122b-1763-4664-ad37-cc00bb883f2f"
         }
 
         it "Should not take a non-int as a port" {
             {Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort 'string'} | should -Throw
+            {Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort $true} | should -Throw
         }
 
         it "Should not take a non-ip address as a 'TargetHost'" {
@@ -43,8 +45,10 @@ Describe $file.BaseName -Tag 'Unit' {
         }
 
         it "Should support '-whatif'" {
-            {Add-ZertoPeerSite -targetHost '192.168.1.100' -WhatIf| out-null} | Should -Not -Throw
+            {Add-ZertoPeerSite -targetHost '192.168.1.100' -WhatIf} | Should -Not -Throw
         }
+
+        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest
     }
 }
 
