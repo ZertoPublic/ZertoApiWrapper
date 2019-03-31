@@ -29,7 +29,7 @@ Describe $file.BaseName -Tag 'Unit' {
 
         it "Returns a string value" {
             $results = Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort '9081'
-            $results | should not benullorempty
+            $results | should -Not -BeNullOrEmpty
             $results | should -BeOfType "String"
             $results | Should -BeExactly "9a49f42e-2bbd-4bf8-b571-77908a2e5e98.928a122b-1763-4664-ad37-cc00bb883f2f"
         }
@@ -37,12 +37,14 @@ Describe $file.BaseName -Tag 'Unit' {
         it "Will not take a non-int as a port" {
             {Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort 'string'} | should -Throw
             {Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort $true} | should -Throw
+            {Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort $null} | should -Throw
         }
 
         it "Will not take a non-ip address as a 'TargetHost'" {
             {Add-ZertoPeerSite -targetHost 'MyZVMHost' -targetPort '9081'} | should -Throw
             {Add-ZertoPeerSite -targetHost '192.168.1.266' -targetPort '9081'} | should -Throw
             {Add-ZertoPeerSite -targetHost '192.168.1' -targetPort '9081'} | should -Throw
+            {Add-ZertoPeerSite -targetHost $null -targetPort '9081'} | should -Throw
         }
 
         it "Will not require a target port to be defined" {
