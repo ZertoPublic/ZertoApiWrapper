@@ -37,12 +37,14 @@ Describe $file.BaseName -Tag 'Unit' {
         $results | should -BeExactly "3b687246-ac63-40da-9a59-b99863769eb0.928a122b-1763-4664-ad37-cc00bb883f2f"
     }
 
-    it "Throws and error when an empty checkpointName is specified" {
+    it "Throws and error when an empty or null checkpointName is specified" {
         {Checkpoint-ZertoVpg -vpgName "MyVpg" -checkpointName ""} | Should -Throw
+        {Checkpoint-ZertoVpg -vpgName "MyVpg" -checkpointName $null} | Should -Throw
     }
 
-    it "Throws an error when an empty vpgName is specified" {
+    it "Throws an error when an empty or null vpgName is specified" {
         {Checkpoint-ZertoVpg -vpgName "" -checkpointName "MyCheckPoint"} | Should -Throw
+        {Checkpoint-ZertoVpg -vpgName $null -checkpointName "MyCheckPoint"} | Should -Throw
     }
 
     it "Does not support 'SupportsShouldProcess'" {
