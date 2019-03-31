@@ -29,6 +29,19 @@ Describe $file.BaseName -Tag Unit {
             $errors | Should -HaveCount 0
         }
 
+        it "has a mandatory String parameter for the server vairable" {
+            Get-Command $file.BaseName | Should -HaveParameter zertoserver -Mandatory -Type String
+        }
+
+        it "has a non-mandatory String parameter for the port variable" {
+            Get-Command $file.BaseName | Should -HaveParameter zertoPort -Not -Mandatory
+            Get-Command $file.BaseName | Should -HaveParameter zertoPort -Type String
+        }
+
+        it "has a mandatory PSCredential parameter for the credential vairable" {
+            Get-Command $file.BaseName | Should -HaveParameter credential -Mandatory -Type PSCredential
+        }
+
         it "returns null when -ReturnHeaders is not used" {
             Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential | Should -BeNullOrEmpty
         }

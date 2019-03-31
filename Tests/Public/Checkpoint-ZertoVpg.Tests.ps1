@@ -22,19 +22,34 @@ Describe $file.BaseName -Tag 'Unit' {
         $errors | Should -HaveCount 0
     }
 
-    it "should return a string" {
+    it "Has a parameter for the VpgName that is Mandatory" {
+        Get-Command $file.BaseName | Should -HaveParameter vpgName -Mandatory -Type String
+    }
+
+    it "Has a parameter for the CheckpointName that is Mandatory" {
+        Get-Command $file.BaseName | Should -HaveParameter CheckpointName -Mandatory -Type String
+    }
+
+    it "should return a not null or empty string" {
         $results = Checkpoint-ZertoVpg -vpgName "MyVpg" -checkpointName "My Checkpoint Name"
         $results | should -not -BeNullOrEmpty
         $results | should -BeOfType "String"
         $results | should -BeExactly "3b687246-ac63-40da-9a59-b99863769eb0.928a122b-1763-4664-ad37-cc00bb883f2f"
     }
 
-    it "should require a tag name" {
+    it "Throws and error when an empty checkpointName is specified" {
         {Checkpoint-ZertoVpg -vpgName "MyVpg" -checkpointName ""} | Should -Throw
     }
 
-    it "should NOT support '-WhatIf'" {
-        {Checkpoint-ZertoVpg -vpgName "MyVpg" -checkpointName "Checkers" -whatif} | Should -Throw
+    it "Throws an error when an empty vpgName is specified" {
+        {Checkpoint-ZertoVpg -vpgName "" -checkpointName "MyCheckPoint"} | Should -Throw
+    }
+
+    it "Does not support 'SupportsShouldProcess'" {
+        Get-Command $file.BaseName | Should -Not -HaveParameter WhatIf
+        Get-Command $file.BaseName | Should -Not -HaveParameter Confirm
+        $file | Should -Not -FileContentMatch 'SupportsShouldProcess'
+        $file | Should -Not -FileContentMatch '\$PSCmdlet\.ShouldProcess\(.+\)'
     }
 
     Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest
