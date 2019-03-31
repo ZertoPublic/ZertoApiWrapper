@@ -6,11 +6,13 @@ function Edit-ZertoVra {
             Mandatory = $true,
             HelpMessage = "Identifier of the VRA to be updated."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vraId")]
         [string]$vraIdentifier,
         [Parameter(
             HelpMessage = "Bandwidth group to assign to the VRA. If unspecified will not modify current assignment"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$groupName,
         [Parameter(
             ParameterSetName = "StaticIp",
@@ -49,7 +51,7 @@ function Edit-ZertoVra {
             $vraUpdate['GroupName'] = $vra.VraGroup
         }
         # If ParameterSetName StaticIp is used, update the parameters submitted
-        if ( $PSCmdlet.ParameterSetName -eq 'StaticIp' ) {
+        if ( $PSCmdlet.ParameterSetName -eq 'StaticIp' -or $vra.VraNetworkDataApi.VraIPConfigurationTypeApi -eq "Static" ) {
             if ( $PSBoundParameters.ContainsKey('defaultGateway') ) {
                 $vraNetwork['DefaultGateway'] = $defaultGateway
             } else {
@@ -67,6 +69,9 @@ function Edit-ZertoVra {
             }
             $vraNetwork['VraIPConfigurationTypeApi'] = "Static"
             # Add network information to update object.
+            $vraUpdate['VraNetworkDataApi'] = $vraNetwork
+        } else {
+            $vraNetwork['VraIPConfigurationTypeApi'] = "Dhcp"
             $vraUpdate['VraNetworkDataApi'] = $vraNetwork
         }
         # -WhatIf processing and submit!
