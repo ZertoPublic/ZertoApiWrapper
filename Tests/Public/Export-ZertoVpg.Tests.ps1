@@ -1,4 +1,5 @@
 #Requires -Modules Pester
+#Region - Test Setup
 $moduleFileName = "ZertoApiWrapper.psd1"
 $here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
@@ -7,6 +8,7 @@ $modulePath = $here -replace "Public", ""
 $moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
 Get-Module -Name ZertoApiWrapper | Remove-Module -Force
 Import-Module $moduleFile -Force
+#EndRegion
 
 Describe $file.BaseName -Tag 'Unit' {
 
@@ -18,7 +20,7 @@ Describe $file.BaseName -Tag 'Unit' {
     }
 
     it "has a mantatory string parameter for the output path" {
-        Get-Command $file.BaseName | Should -HaveParameter outputPath -Mandatory -Type String
+        Get-Command $file.BaseName | Should -HaveParameter outputPath -Type String -Mandatory
     }
 
     it "has a non-mandatory string array parameter for vpgName(s) to export" {
@@ -31,5 +33,15 @@ Describe $file.BaseName -Tag 'Unit' {
 
     it "No defined vpgName or AllVpg switch should throw an error" {
         {Export-ZertoVpg -outputPath "."} | Should -Throw
+    }
+
+    it "Output path does not take null or empty string" {
+        {Export-ZertoVpg -outputPath "" -allVpgs} | Should -Throw
+        {Export-ZertoVpg -outputPath $null -allVpgs} | Should -Throw
+    }
+
+    it "Vpg Name parameter does not take null or empty string" {
+        {Export-ZertoVpg -outputPath "." -vpgName = ""} | Should -Throw
+        {Export-ZertoVpg -outputPath "." -vpgName = $null} | Should -Throw
     }
 }
