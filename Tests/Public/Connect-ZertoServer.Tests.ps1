@@ -125,6 +125,12 @@ Describe $file.BaseName -Tag Unit {
 
     InModuleScope ZertoApiWrapper {
         Context "InModuleScope Tests" {
+
+            $userName = "zerto\build"
+            $password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
+            $credential = New-Object -TypeName System.Management.Automation.PSCredential($userName, $password)
+
+
             Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
                 $xZertoSession = @("7ecf544d-e7ed-4108-86f3-fb355c51cdfa")
                 $Headers = @{'x-zerto-session' = $xZertoSession}
