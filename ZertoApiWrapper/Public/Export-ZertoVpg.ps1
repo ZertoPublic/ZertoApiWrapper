@@ -14,6 +14,7 @@ function Export-ZertoVpg {
             ParameterSetName = "namedVpgs",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [parameter(
             HelpMessage = "Export all VPGs at this site",
