@@ -41,6 +41,7 @@ Describe $file.BaseName -Tag Unit {
         it "port variable has a non-mandatory String parameter" {
             Get-Command $file.BaseName | Should -HaveParameter zertoPort -Not -Mandatory
             Get-Command $file.BaseName | Should -HaveParameter zertoPort -Type String
+            Get-Command $file.BaseName | Should -HaveParameter zertoPort -DefaultValue "9669"
         }
 
         it "port variable does not accecpt an empty or null input" {
