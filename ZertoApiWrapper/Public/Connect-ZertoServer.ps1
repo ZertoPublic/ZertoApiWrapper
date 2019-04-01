@@ -20,8 +20,7 @@ function Connect-ZertoServer {
             Mandatory = $true,
             HelpMessage = "Valid credentials to connect to the Zerto Management Server"
         )]
-        [System.Management.Automation.PSCredential]
-        $credential,
+        [System.Management.Automation.PSCredential]$credential,
         [switch]$returnHeaders
     )
 
@@ -39,7 +38,7 @@ function Connect-ZertoServer {
 
     process {
         # Send authorization request to the function and send back the results including headers
-        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST
+        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST -ErrorAction Stop
     }
 
     end {
