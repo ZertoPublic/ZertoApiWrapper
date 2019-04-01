@@ -11,14 +11,16 @@ function Export-ZertoVpg {
         [string]$outputPath,
         [parameter(
             HelpMessage = "Name(s) of the VPG(s) to be exported",
-            ParameterSetName = "namedVpgs"
+            ParameterSetName = "namedVpgs",
+            Mandatory = $true
         )]
         [string[]]$vpgName,
         [parameter(
             HelpMessage = "Export all VPGs at this site",
             ParameterSetName = "allVpgs",
             valuefrompipeline = $true,
-            ValueFromPipelineByPropertyName = $true
+            ValueFromPipelineByPropertyName = $true,
+            Mandatory = $true
         )]
         [switch]$allVpgs
     )
