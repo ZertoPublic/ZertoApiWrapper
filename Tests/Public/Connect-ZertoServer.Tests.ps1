@@ -10,7 +10,7 @@ Import-Module $moduleFile -Force
 $userName = "zerto\build"
 $password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
 $credential = New-Object -TypeName System.Management.Automation.PSCredential($userName, $password)
-$zertoServer = "192.168.1.100"
+$Server = "192.168.1.100"
 $zertoPort = "7669"
 
 Describe $file.BaseName -Tag Unit {
@@ -19,6 +19,30 @@ Describe $file.BaseName -Tag Unit {
             $xZertoSession = @("7ecf544d-e7ed-4108-86f3-fb355c51cdfa")
             $Headers = @{'x-zerto-session' = $xZertoSession}
             $results = @{'Headers' = $Headers}
+            return $results
+        }
+
+        Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
+            $results = @{
+                BandwidthThrottlingInMBs   = -1
+                ContactEmail               = "vSphere-Site01@zerto.com"
+                ContactName                = "vSphere-Site01@zerto.com"
+                ContactPhone               = "066-6666666"
+                IpAddress                  = "192.168.200.1"
+                IsReplicationToSelfEnabled = $True
+                Link                       = @{
+                    href       = "https://192.168.24.1:7669/v1/localsite"
+                    identifier = "928a122b-1763-4664-ad37-cc00bb883f2f"
+                    rel        = $null
+                    type       = "LocalSiteApi"
+                }
+                Location                   = "vSphere-Site01"
+                SiteName                   = "vSphere-Site01 at Zerto"
+                SiteType                   = "VCenter"
+                UtcOffsetInMinutes         = -240
+                Version                    = "7.0.0"
+                SiteIdentifier             = "928a122b-1763-4664-ad37-cc00bb883f2f"
+            }
             return $results
         }
 
@@ -50,8 +74,8 @@ Describe $file.BaseName -Tag Unit {
         }
 
         it "port variable should fall between 1024 and 65535" {
-            {Connect-ZertoServer -zertoServer $zertoServer -zertoPort 1023 -credential $credential} | Should -Throw
-            {Connect-ZertoServer -zertoServer $zertoServer -zertoPort 65536 -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer $Server -zertoPort 1023 -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer $Server -zertoPort 65536 -credential $credential} | Should -Throw
         }
 
         it "has a mandatory PSCredential parameter for the credential vairable" {
@@ -59,10 +83,10 @@ Describe $file.BaseName -Tag Unit {
         }
 
         it "returns null when -ReturnHeaders is not used" {
-            Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential | Should -BeNullOrEmpty
+            Connect-ZertoServer -zertoServer $Server -zertoPort $zertoPort -credential $credential | Should -BeNullOrEmpty
         }
 
-        $headers = Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential -returnHeaders
+        $headers = Connect-ZertoServer -zertoServer $Server -zertoPort $zertoPort -credential $credential -returnHeaders
         it "returns a Hashtable with 2 keys" {
             $headers | Should -BeOfType Hashtable
             $headers.keys.count | should be 2
@@ -86,7 +110,7 @@ Describe $file.BaseName -Tag Unit {
         }
 
         it "should not require a port to be specified" {
-            Connect-ZertoServer -zertoServer $zertoServer -credential $credential
+            Connect-ZertoServer -zertoServer $Server -credential $credential
         }
 
         it "should require a PSCredentialObject for the credentials" {
@@ -96,6 +120,81 @@ Describe $file.BaseName -Tag Unit {
         }
 
         Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest
+        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite
+    }
+
+    InModuleScope ZertoApiWrapper {
+        Context "InModuleScope Tests" {
+            Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
+                $xZertoSession = @("7ecf544d-e7ed-4108-86f3-fb355c51cdfa")
+                $Headers = @{'x-zerto-session' = $xZertoSession}
+                $results = @{'Headers' = $Headers}
+                return $results
+            }
+
+            Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
+                $results = @{
+                    BandwidthThrottlingInMBs   = -1
+                    ContactEmail               = "vSphere-Site01@zerto.com"
+                    ContactName                = "vSphere-Site01@zerto.com"
+                    ContactPhone               = "066-6666666"
+                    IpAddress                  = "192.168.200.1"
+                    IsReplicationToSelfEnabled = $True
+                    Link                       = @{
+                        href       = "https://192.168.24.1:7669/v1/localsite"
+                        identifier = "928a122b-1763-4664-ad37-cc00bb883f2f"
+                        rel        = $null
+                        type       = "LocalSiteApi"
+                    }
+                    Location                   = "vSphere-Site01"
+                    SiteName                   = "vSphere-Site01 at Zerto"
+                    SiteType                   = "VCenter"
+                    UtcOffsetInMinutes         = -240
+                    Version                    = "7.0.0"
+                    SiteIdentifier             = "928a122b-1763-4664-ad37-cc00bb883f2f"
+                }
+                return $results
+            }
+
+            $now = $(Get-Date).ticks
+            Connect-ZertoServer -zertoServer '192.168.1.100' -credential $credential
+
+            it "Module Scope zvmServer variable tests" {
+                $script:zvmServer | Should -Not -BeNullOrEmpty
+                $script:zvmServer | Should -Be '192.168.1.100'
+            }
+
+            it "Module Scope zvmPort variable tests" {
+                $script:zvmPort | Should -Not -BeNullOrEmpty
+                $script:zvmPort | Should -Be '9669'
+            }
+
+            it "Module Scope zvmLastAction variable tests" {
+                $script:zvmLastAction | Should -Not -BeNullOrEmpty
+                $script:zvmLastAction | Should -BeGreaterOrEqual $now
+            }
+
+            it "Module Scope zvmHeaders variable tests" {
+                $script:zvmHeaders | Should -Not -BeNullOrEmpty
+                $script:zvmHeaders | Should -BeOfType Hashtable
+                $script:zvmHeaders.keys.count | Should -BeExactly 2
+                $script:zvmHeaders.ContainsKey('x-zerto-session') | Should -BeTrue
+                $script:zvmHeaders.ContainsKey('Accept') | Should -BeTrue
+                $script:zvmHeaders['x-zerto-session'] | Should -BeOfType String
+                $script:zvmHeaders['Accept'] | Should -BeOfType String
+            }
+
+            it "Module Scope zvmLocalInfo variable tests" {
+                $script:zvmLocalInfo | Should -Not -BeNullOrEmpty
+                $script:zvmLocalInfo | Should -BeOfType Hashtable
+                $script:zvmLocalInfo['SiteIdentifier'] | Should -BeOfType String
+                $script:zvmLocalInfo.ContainsKey('SiteIdentifier') | Should -BeTrue
+                $script:zvmLocalInfo['SiteIdentifier'] | Should -BeOfType String
+            }
+
+            Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest
+            Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite
+        }
     }
 }
 <#
@@ -106,7 +205,7 @@ Describe "Connect-ZertoServer" -Tag Integration {
     it "has a function called Connect-ZertoServer" {
         get-command Connect-ZertoServer | should be $true
     }
-    $headers = Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential -returnHeaders
+    $headers = Connect-ZertoServer -zertoServer $Server -zertoPort $zertoPort -credential $credential -returnHeaders
     it "returns a Hashtable with 2 keys" {
         $headers.keys.count | should be 2
     }
