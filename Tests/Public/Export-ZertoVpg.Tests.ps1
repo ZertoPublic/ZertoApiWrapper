@@ -16,4 +16,20 @@ Describe $file.BaseName -Tag 'Unit' {
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
         $errors | Should -HaveCount 0
     }
+
+    it "has a mantatory string parameter for the output path" {
+        Get-Command $file.BaseName | Should -HaveParameter outputPath -Mandatory -Type String
+    }
+
+    it "has a non-mandatory string array parameter for vpgName(s) to export" {
+        Get-Command $file.BaseName | Should -HaveParameter vpgName -Type String[] -Mandatory
+    }
+
+    it "has a non-mandatory switch parameter to export all vpgs" {
+        Get-Command $file.BaseName | Should -HaveParameter allVpgs -Type Switch -Mandatory
+    }
+
+    it "No defined vpgName or AllVpg switch should throw an error" {
+        {Export-ZertoVpg -outputPath "."} | Should -Throw
+    }
 }
