@@ -29,13 +29,28 @@ Describe $file.BaseName -Tag Unit {
             $errors | Should -HaveCount 0
         }
 
-        it "has a mandatory String parameter for the server vairable" {
+        it "server vairable has a mandatory String parameter" {
             Get-Command $file.BaseName | Should -HaveParameter zertoserver -Mandatory -Type String
         }
 
-        it "has a non-mandatory String parameter for the port variable" {
+        it "server variable does not accecpt an empty or null input" {
+            {Connect-ZertoServer -zertoServer $null -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer "" -credential $credential} | Should -Throw
+        }
+
+        it "port variable has a non-mandatory String parameter" {
             Get-Command $file.BaseName | Should -HaveParameter zertoPort -Not -Mandatory
             Get-Command $file.BaseName | Should -HaveParameter zertoPort -Type String
+        }
+
+        it "port variable does not accecpt an empty or null input" {
+            {Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "" -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort $null -credential $credential} | Should -Throw
+        }
+
+        it "port variable should fall between 1024 and 65535" {
+            {Connect-ZertoServer -zertoServer $zertoServer -zertoPort 1023 -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer $zertoServer -zertoPort 65536 -credential $credential} | Should -Throw
         }
 
         it "has a mandatory PSCredential parameter for the credential vairable" {
@@ -48,6 +63,7 @@ Describe $file.BaseName -Tag Unit {
 
         $headers = Connect-ZertoServer -zertoServer $zertoServer -zertoPort $zertoPort -credential $credential -returnHeaders
         it "returns a Hashtable with 2 keys" {
+            $headers | Should -BeOfType Hashtable
             $headers.keys.count | should be 2
         }
 
