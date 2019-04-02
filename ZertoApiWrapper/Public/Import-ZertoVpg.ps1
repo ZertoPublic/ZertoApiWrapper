@@ -8,6 +8,7 @@ function Import-ZertoVpg {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("FullName")]
         [string[]]$settingsFile
     )
