@@ -16,4 +16,14 @@ Describe $file.BaseName -Tag 'Unit' {
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
         $errors | Should -HaveCount 0
     }
+
+    Context "$($file.BaseName)::Parameter Unit Tests" {
+
+        it "Has a mandatory string parameter for the Alert identifier" {
+            Get-Command $file.BaseName | Should -HaveParameter alertId -Mandatory -Type String[]
+        }
+
+    }
+
 }
+
