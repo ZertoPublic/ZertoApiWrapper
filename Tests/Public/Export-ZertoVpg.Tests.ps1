@@ -48,6 +48,14 @@ Describe $file.BaseName -Tag 'Unit' {
     }
 
     Context "$($file.BaseName)::Function Unit Tests" {
+        Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
 
+        }
+
+        $outputPath = "TestDrive:\"
+
+        it "Should Exist" {
+            $outputPath | Should -Exist
+        }
     }
 }
