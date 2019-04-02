@@ -70,7 +70,7 @@ Describe $file.BaseName -Tag 'Unit' {
         $errors | Should -HaveCount 0
     }
 
-    Context "$($File.BaseName)::Parameter Tests" {
+    Context "$($File.BaseName)::Parameter Unit Tests" {
 
         It "has a mandatory String variable for the vraIdentifier" {
             Get-Command $file.BaseName | Should -HaveParameter vraIdentifier -Mandatory -Type String
@@ -108,7 +108,8 @@ Describe $file.BaseName -Tag 'Unit' {
         @{vraIpAddress = 192.168.1}, `
         @{vraIpAddress = 192.168.1.246}, `
         @{vraIpAddress = 32}, `
-        @{vraIpAddress = ""}
+        @{vraIpAddress = ""}, `
+        @{vraIpAddress = $null}
         It "IpAddress field require valid IP addresses as a String" -TestCases $cases {
             param ( $vraIpAddress )
             {Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -vraIpaddress $vraIpAddress} | Should -Throw
@@ -121,7 +122,8 @@ Describe $file.BaseName -Tag 'Unit' {
         @{subnetMask = 192.168.1}, `
         @{subnetMask = 192.168.1.246}, `
         @{subnetMask = 32}, `
-        @{subnetMask = ""}
+        @{subnetMask = ""}, `
+        @{subnetMask = $null}
         It "subnetMask field require valid IP addresses as a String" -TestCases $cases {
             param ( $vraIpAddress )
             {Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -subnetMask $subnetMask} | Should -Throw
@@ -134,7 +136,8 @@ Describe $file.BaseName -Tag 'Unit' {
         @{defaultGateway = 192.168.1}, `
         @{defaultGateway = 192.168.1.246}, `
         @{defaultGateway = 32}, `
-        @{defaultGateway = ""}
+        @{defaultGateway = ""}, `
+        @{defaultGateway = $null}
         It "defaultGateway field require valid IP addresses as a String" -TestCases $cases {
             param ( $vraIpAddress )
             {Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -defaultGateway $defaultGateway} | Should -Throw
@@ -142,12 +145,17 @@ Describe $file.BaseName -Tag 'Unit' {
 
         $cases = `
         @{vraIdentifier = ""; paramName = "vraIdentifier"; paramValue = ""}, `
+        @{vraIdentifier = $null; paramName = "vraIdentifier"; paramValue = ""}, `
         @{vraIdentifier = "MyVraIdentifier"; paramName = "groupName"; paramValue = ""}, `
+        @{vraIdentifier = "MyVraIdentifier"; paramName = "groupName"; paramValue = $null}, `
         @{vraIdentifier = "MyVraIdentifier"; paramName = "vraIpAddress"; paramValue = ""}, `
+        @{vraIdentifier = "MyVraIdentifier"; paramName = "vraIpAddress"; paramValue = $null}, `
         @{vraIdentifier = "MyVraIdentifier"; paramName = "subnetMask"; paramValue = ""}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "defaultGateway"; paramValue = ""}
+        @{vraIdentifier = "MyVraIdentifier"; paramName = "subnetMask"; paramValue = $null}, `
+        @{vraIdentifier = "MyVraIdentifier"; paramName = "defaultGateway"; paramValue = ""}, `
+        @{vraIdentifier = "MyVraIdentifier"; paramName = "defaultGateway"; paramValue = $null}
 
-        It "<paramName> does not take empty strings" -TestCases $cases {
+        It "<paramName> does not take empty or null" -TestCases $cases {
             param($vraIdentifier, $paramValue, $paramName )
             if ([String]::IsNullOrEmpty($vraIdentifier)) {
                 {Edit-ZertoVra -vraIdentifier $vraIdentifier} | Should -Throw
@@ -157,7 +165,7 @@ Describe $file.BaseName -Tag 'Unit' {
         }
     }
 
-    Context "$($File.BaseName)::Function Tests" {
+    Context "$($File.BaseName)::Function Unit Tests" {
 
         It "Returns a string" {
             $results = Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -groupName "MyGroup"

@@ -14,44 +14,15 @@ $Server = "192.168.1.100"
 $zertoPort = "7669"
 
 Describe $file.BaseName -Tag Unit {
-    Context "Basic Features" {
-        Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
-            $xZertoSession = @("7ecf544d-e7ed-4108-86f3-fb355c51cdfa")
-            $Headers = @{'x-zerto-session' = $xZertoSession}
-            $results = @{'Headers' = $Headers}
-            return $results
-        }
 
-        Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
-            $results = @{
-                BandwidthThrottlingInMBs   = -1
-                ContactEmail               = "vSphere-Site01@zerto.com"
-                ContactName                = "vSphere-Site01@zerto.com"
-                ContactPhone               = "066-6666666"
-                IpAddress                  = "192.168.200.1"
-                IsReplicationToSelfEnabled = $True
-                Link                       = @{
-                    href       = "https://192.168.24.1:7669/v1/localsite"
-                    identifier = "928a122b-1763-4664-ad37-cc00bb883f2f"
-                    rel        = $null
-                    type       = "LocalSiteApi"
-                }
-                Location                   = "vSphere-Site01"
-                SiteName                   = "vSphere-Site01 at Zerto"
-                SiteType                   = "VCenter"
-                UtcOffsetInMinutes         = -240
-                Version                    = "7.0.0"
-                SiteIdentifier             = "928a122b-1763-4664-ad37-cc00bb883f2f"
-            }
-            return $results
-        }
+    It "is valid Powershell (Has no script errors)" {
+        $contents = Get-Content -Path $file -ErrorAction Stop
+        $errors = $null
+        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
+        $errors | Should -HaveCount 0
+    }
 
-        It "is valid Powershell (Has no script errors)" {
-            $contents = Get-Content -Path $file -ErrorAction Stop
-            $errors = $null
-            $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-            $errors | Should -HaveCount 0
-        }
+    Context "$($file.BaseName)::Parameter Unit Tests" {
 
         it "server vairable has a mandatory String parameter" {
             Get-Command $file.BaseName | Should -HaveParameter zertoserver -Mandatory -Type String
@@ -76,41 +47,12 @@ Describe $file.BaseName -Tag Unit {
         it "port variable should fall between 1024 and 65535" {
             {Connect-ZertoServer -zertoServer $Server -zertoPort 1023 -credential $credential} | Should -Throw
             {Connect-ZertoServer -zertoServer $Server -zertoPort 65536 -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer $Server -zertoPort 0 -credential $credential} | Should -Throw
+            {Connect-ZertoServer -zertoServer $Server -zertoPort -1 -credential $credential} | Should -Throw
         }
 
         it "has a mandatory PSCredential parameter for the credential vairable" {
             Get-Command $file.BaseName | Should -HaveParameter credential -Mandatory -Type PSCredential
-        }
-
-        it "returns null when -ReturnHeaders is not used" {
-            Connect-ZertoServer -zertoServer $Server -zertoPort $zertoPort -credential $credential | Should -BeNullOrEmpty
-        }
-
-        $headers = Connect-ZertoServer -zertoServer $Server -zertoPort $zertoPort -credential $credential -returnHeaders
-        it "returns a Hashtable with 2 keys" {
-            $headers | Should -BeOfType Hashtable
-            $headers.keys.count | should be 2
-        }
-
-        it "return value has a key called 'x-zerto-session'" {
-            $headers.ContainsKey('x-zerto-session') | should be $true
-        }
-
-        it "return key 'x-zerto-session' value should be a string" {
-            $headers['x-zerto-session'] | should -BeOfType "String"
-            $headers['x-zerto-session'] | Should -BeExactly "7ecf544d-e7ed-4108-86f3-fb355c51cdfa"
-        }
-
-        it "return value has a key called 'accept'" {
-            $headers.ContainsKey('accept') | should be $true
-        }
-
-        it "return key 'accept' value should be 'application/json'" {
-            $headers['accept'] | should be 'application/json'
-        }
-
-        it "should not require a port to be specified" {
-            Connect-ZertoServer -zertoServer $Server -credential $credential
         }
 
         it "should require a PSCredentialObject for the credentials" {
@@ -118,14 +60,12 @@ Describe $file.BaseName -Tag Unit {
             {Connect-ZertoServer -zertoServer -credential 1234} | Should -Throw
             {Connect-ZertoServer -zertoServer -credential $(@{Username = "zerto\build"; Password = 'SecureString'})} | Should -Throw
         }
-
-        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest
-        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite
     }
 
     InModuleScope ZertoApiWrapper {
-        Context "InModuleScope Tests" {
+        Context "$($file.BaseName)::InModuleScope Function Unit Tests" {
 
+            $server = '192.168.1.100'
             $userName = "zerto\build"
             $password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
             $credential = New-Object -TypeName System.Management.Automation.PSCredential($userName, $password)
@@ -163,11 +103,11 @@ Describe $file.BaseName -Tag Unit {
             }
 
             $now = $(Get-Date).ticks
-            Connect-ZertoServer -zertoServer '192.168.1.100' -credential $credential
+            Connect-ZertoServer -zertoServer $server -credential $credential
 
             it "Module Scope zvmServer variable tests" {
                 $script:zvmServer | Should -Not -BeNullOrEmpty
-                $script:zvmServer | Should -Be '192.168.1.100'
+                $script:zvmServer | Should -Be $server
             }
 
             it "Module Scope zvmPort variable tests" {
@@ -196,6 +136,37 @@ Describe $file.BaseName -Tag Unit {
                 $script:zvmLocalInfo['SiteIdentifier'] | Should -BeOfType String
                 $script:zvmLocalInfo.ContainsKey('SiteIdentifier') | Should -BeTrue
                 $script:zvmLocalInfo['SiteIdentifier'] | Should -BeOfType String
+            }
+
+            $headers = Connect-ZertoServer -zertoServer $Server -credential $credential -returnHeaders
+            it "returns a Hashtable with 2 keys" {
+                $headers | Should -BeOfType Hashtable
+                $headers.keys.count | should be 2
+            }
+
+            it "return value has a key called 'x-zerto-session'" {
+                $headers.ContainsKey('x-zerto-session') | should be $true
+            }
+
+            it "return key 'x-zerto-session' value should be a string" {
+                $headers['x-zerto-session'] | should -BeOfType "String"
+                $headers['x-zerto-session'] | Should -BeExactly "7ecf544d-e7ed-4108-86f3-fb355c51cdfa"
+            }
+
+            it "return value has a key called 'accept'" {
+                $headers.ContainsKey('accept') | should be $true
+            }
+
+            it "return key 'accept' value should be 'application/json'" {
+                $headers['accept'] | should be 'application/json'
+            }
+
+            it "should not require a port to be specified" {
+                Connect-ZertoServer -zertoServer $Server -credential $credential
+            }
+
+            it "returns null when -ReturnHeaders is not used" {
+                Connect-ZertoServer -zertoServer $Server -credential $credential | Should -BeNullOrEmpty
             }
 
             Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest

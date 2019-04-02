@@ -19,29 +19,35 @@ Describe $file.BaseName -Tag 'Unit' {
         $errors | Should -HaveCount 0
     }
 
-    it "has a mantatory string parameter for the output path" {
-        Get-Command $file.BaseName | Should -HaveParameter outputPath -Type String -Mandatory
+    Context "$($file.BaseName)::Parameter Unit Tests" {
+        it "has a mantatory string parameter for the output path" {
+            Get-Command $file.BaseName | Should -HaveParameter outputPath -Type String -Mandatory
+        }
+
+        it "has a non-mandatory string array parameter for vpgName(s) to export" {
+            Get-Command $file.BaseName | Should -HaveParameter vpgName -Type String[] -Mandatory
+        }
+
+        it "has a non-mandatory switch parameter to export all vpgs" {
+            Get-Command $file.BaseName | Should -HaveParameter allVpgs -Type Switch -Mandatory
+        }
+
+        it "No defined vpgName or AllVpg switch should throw an error" {
+            {Export-ZertoVpg -outputPath "."} | Should -Throw
+        }
+
+        it "Output path does not take null or empty string" {
+            {Export-ZertoVpg -outputPath "" -allVpgs} | Should -Throw
+            {Export-ZertoVpg -outputPath $null -allVpgs} | Should -Throw
+        }
+
+        it "Vpg Name parameter does not take null or empty string" {
+            {Export-ZertoVpg -outputPath "." -vpgName = ""} | Should -Throw
+            {Export-ZertoVpg -outputPath "." -vpgName = $null} | Should -Throw
+        }
     }
 
-    it "has a non-mandatory string array parameter for vpgName(s) to export" {
-        Get-Command $file.BaseName | Should -HaveParameter vpgName -Type String[] -Mandatory
-    }
+    Context "$($file.BaseName)::Function Unit Tests" {
 
-    it "has a non-mandatory switch parameter to export all vpgs" {
-        Get-Command $file.BaseName | Should -HaveParameter allVpgs -Type Switch -Mandatory
-    }
-
-    it "No defined vpgName or AllVpg switch should throw an error" {
-        {Export-ZertoVpg -outputPath "."} | Should -Throw
-    }
-
-    it "Output path does not take null or empty string" {
-        {Export-ZertoVpg -outputPath "" -allVpgs} | Should -Throw
-        {Export-ZertoVpg -outputPath $null -allVpgs} | Should -Throw
-    }
-
-    it "Vpg Name parameter does not take null or empty string" {
-        {Export-ZertoVpg -outputPath "." -vpgName = ""} | Should -Throw
-        {Export-ZertoVpg -outputPath "." -vpgName = $null} | Should -Throw
     }
 }

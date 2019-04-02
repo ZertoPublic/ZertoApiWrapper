@@ -15,6 +15,7 @@ Describe $file.BaseName -Tag 'Unit' {
     Mock -ModuleName ZertoApiWrapper -CommandName Remove-Variable {
 
     }
+
     It "is valid Powershell (Has no script errors)" {
         $contents = Get-Content -Path $file -ErrorAction Stop
         $errors = $null
@@ -22,11 +23,15 @@ Describe $file.BaseName -Tag 'Unit' {
         $errors | Should -HaveCount 0
     }
 
-    it "Does not return anything" {
-        Disconnect-ZertoServer | Should -BeNullOrEmpty
+    Context "$($file.BaseName)::Parameter Unit Tests" {
+        it "Does not take any parameters" {
+            (get-command disconnect-zertoserver).parameters.count | Should -BeExactly 11
+        }
     }
 
-    it "Does not take any parameters" {
-        (get-command disconnect-zertoserver).parameters.count | Should -BeExactly 11
+    Context "$($file.BaseName)::Function Unit Tests" {
+        it "Does not return anything" {
+            Disconnect-ZertoServer | Should -BeNullOrEmpty
+        }
     }
 }
