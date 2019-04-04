@@ -11,11 +11,13 @@ trigger:
     include:
       - master
       - develop
+      - TestingBranch
 
 # Trigger CI on pull requests to master and develop branches
 pr:
   - master
   - develop
+  - TestingBranch
 
 jobs:
   # Windows Build Job
