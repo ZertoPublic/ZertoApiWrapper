@@ -4,10 +4,13 @@ function Install-ZertoVra {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter( Mandatory = $true, HelpMessage = "Host name where the VRA is to be installed." )]
+        [ValidateNotNullOrEmpty()]
         [string]$hostName,
         [Parameter( Mandatory = $true, HelpMessage = "Datastore name where the VRA is to be installed." )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreName,
         [Parameter( Mandatory = $true, HelpMessage = "Network name the VRA is to be assigned." )]
+        [ValidateNotNullOrEmpty()]
         [string]$networkName,
         [Parameter( HelpMessage = "Initial amount of memory to assign to the VRA in GB. Default is 3, Minimum is 1, Maximum is 16" )]
         [ValidateRange(1, 16)]
