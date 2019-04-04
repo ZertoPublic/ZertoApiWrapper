@@ -1,6 +1,7 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Connect-ZertoServer {
     [cmdletbinding()]
+    [OutputType([hashtable])]
     param(
         [Parameter(
             Mandatory = $true,
