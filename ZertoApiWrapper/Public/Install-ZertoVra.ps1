@@ -1,5 +1,5 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-#TODO - Add ability to installed with root password.
+#TODO - Add ability to installed with root password, Move to Begin, Process, End Format
 function Install-ZertoVra {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
