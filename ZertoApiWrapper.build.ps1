@@ -66,8 +66,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
 
 task FileTests CheckPesterInstalled, {
     $testResultsFile = "$BuildRoot\Tests\TestResults.xml"
-    $codeCoverageFile = "$BuildRoot\Tests\CoverageResults.xml"
-    $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru -CodeCoverage "$BuildRoot\ZertoApiWrapper\Public\*" -CodeCoverageOutputFile $codeCoverageFile
+    $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru
     $FailureMessage = '{0} Unit test(s) failed. Aborting build' -f $results.FailedCount
     assert ($results.FailedCount -eq 0) $FailureMessage
 }
