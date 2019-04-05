@@ -7,10 +7,7 @@
 param([switch]$Install,
     [string]$Configuration = (property Configuration Release))
 $targetDir = "temp/$Configuration/ZertoApiWrapper" #>
-
-$versionMajor = '0'
-$versionMinor = '1'
-$versionBuild = "{0}" -f $(get-date -format 'yyyyMMdd')
+$version = "{0}.{1}" -f $(Get-Content .\version.txt), $(get-date -format 'yyyyMMdd')
 
 task . AnalyzeSourceFiles, CreateModule
 
@@ -57,7 +54,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @('PSUseDeclaredVarsMoreThanAssignments', 'PSUseShouldProcessForStateChangingFunctions', 'PSUseToExportFieldsInManifest')
+        ExcludeRule = @()
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
 
@@ -97,7 +94,7 @@ task CreatePsd1ForRelease CleanTemp, {
     $ManifestParams = @{
         Path              = "$BuildRoot\temp\ZertoApiWrapper.psd1"
         RootModule        = 'ZertoApiWrapper.psm1'
-        ModuleVersion     = '{0}.{1}.{2}' -f $versionMajor, $versionMinor, $versionBuild
+        ModuleVersion     = $version
         GUID              = '4c0b9e17-141b-4dd5-8549-fb21cccaa325'
         Author            = 'Wes Carroll'
         CompanyName       = 'Zerto'
@@ -138,7 +135,6 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
             $exportString = "{0}, {1}" -f $exportString, $file.BaseName
         }
     }
-    $export = "Export-ModuleMember -Function $exportString"
     $Private = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction SilentlyContinue )
     Add-Content -Path $psm1Path -Value $lines
     Add-Content -Path $psm1Path -Value "#---------------------Private Functions----------------------#"
