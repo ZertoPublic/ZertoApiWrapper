@@ -40,9 +40,9 @@ jobs:
       displayName: 'Publish Test Results'
       condition: always()
     - task: PublishCodeCoverageResults@1
-        inputs:
-          codeCoverageTool: 'JaCoCo'
-          summaryFileLocation: '**/CoverageResults.xml'
+      inputs:
+        codeCoverageTool: 'JaCoCo'
+        summaryFileLocation: '**/CoverageResults.xml'
 
   # Linux Build Job
   - job: Build_PSCore_Ubuntu1604
