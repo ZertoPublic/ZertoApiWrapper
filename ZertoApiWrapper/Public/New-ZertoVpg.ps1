@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function New-ZertoVpg {
-    [cmdletbinding()]
+    [cmdletbinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(
             HelpMessage = "Name of the VPG",
@@ -226,6 +226,24 @@ function New-ZertoVpg {
         if (($journalWarningThresholdInMb -eq 0) -or ($journalWarningThresholdInMb -gt $journalHardLimitInMb)) {
             $journalWarningThresholdInMb = $journalHardLimitInMb * .75
         }
+
+        #Validate all items in the hashtable are populated with valid data.
+        $validSettings = $true
+        foreach ($item in $identifiersTable.GetEnumerator()) {
+            if ([String]::IsNullOrEmpty($item.value)) {
+                $validSettings = $false
+                Write-Error "$($item.key) is not associated with a valid identifier. Please check the submitted values and try again."
+            }
+        }
+        if ($vmIdentifiers.count -eq 0) {
+            $validSettings = $false
+            Write-Error "No valid VM names were passed or all passed VMs are already protected and cannot be further protected."
+        }
+
+        if ( -not $validSettings ) {
+            Write-Error "One or more parameters passed do not have valid identifiers or 0 valid VMs were found. Please check your settings and try again."
+            Break
+        }
     }
 
     process {
@@ -295,7 +313,9 @@ function New-ZertoVpg {
         $baseSettings.Journal.Limitation.HardLimitInMB = $journalHardLimitInMb
         $baseSettings.Journal.Limitation.WarningThresholdInMB = $journalWarningThresholdInMb
         $settingsURI = "{0}/{1}" -f $baseUri, $vpgSettingsIdentifier
-        Invoke-ZertoRestRequest -uri $settingsURI -body $($baseSettings | ConvertTo-Json -Depth 10) -method "PUT" | Out-Null
+        if ($PSCmdlet.ShouldProcess($($baseSettings | ConvertTo-Json -Depth 10))) {
+            $results = Invoke-ZertoRestRequest -uri $settingsURI -body $($baseSettings | ConvertTo-Json -Depth 10) -method "PUT"
+        }
     }
 
     end {
