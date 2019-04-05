@@ -50,10 +50,6 @@ function Invoke-ZertoFailover {
         if ( -not $vpgId) {
             Write-Error "VPG: $vpgName Not Found. Please check the name and try again!" -ErrorAction Stop
         }
-        $uniqueVmNames = $vmName | Select-Object -Unique
-        if ($uniqueVmNames.Count -ne $vmName.Count) {
-            Write-Error "The VM names you submitted contains a duplicate. Please check the values you submitted and try again. VALUES: $vmName" -ErrorAction Stop
-        }
         $baseUri = "vpgs/{0}/failover" -f $vpgId
         $body = [ordered]@{}
         # Setup Defaults
@@ -65,13 +61,17 @@ function Invoke-ZertoFailover {
             }
         }
         if ($PSBoundParameters.ContainsKey('vmName')) {
-            [array]$vmIdentifiers = @()
-            $vmIdentifiers = foreach ( $name in $vmName ) {
-                $result = $(Get-ZertoProtectedVm -vmName $name -vpgName $vpgName).vmIdentifier
-                if ($null -eq $result) {
-                    Write-Error "VM: $name NOT found in VPG: $vpgName. Please check the names and try again." -ErrorAction Stop
+            $vpgVmInformation = Get-ZertoProtectedVm -vpgName $vpgName
+            [System.Collections.ArrayList]$vmIdentifiers = @()
+            foreach ( $name in $vmName ) {
+                $selectedVm = $vpgVmInformation | Where-Object {$_.VmName.toLower() -eq $name.toLower()}
+                if ($null -eq $selectedVm) {
+                    Write-Error "VM: $name NOT found in VPG $vpgName. Check the name and try again." -ErrorAction Stop
+                } elseif ($vmIdentifiers.Contains($selectedVm.vmIdentifier.toString())) {
+                    Write-Error "VM: $($selectedVm.VmName) specified more than once. Please check parameters and try again." -ErrorAction Stop
+                } else {
+                    $vmIdentifiers.Add($selectedVm.vmIdentifier.toString()) | Out-Null
                 }
-                $result
             }
             $body['VmIdentifiers'] = $vmIdentifiers
         }
