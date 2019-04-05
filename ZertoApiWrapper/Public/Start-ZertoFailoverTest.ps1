@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Start-ZertoFailoverTest {
-    [cmdletbinding()]
+    [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter(
             HelpMessage = "Name of VPG to failover test",
@@ -42,7 +42,11 @@ function Start-ZertoFailoverTest {
             }
             $body['VmIdentifiers'] = $vmIdentifiers
         }
-        Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+        if ($PSCmdlet.ShouldProcess("Starting Failover Test")) {
+            Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+        }
+
+
     }
 
     end {

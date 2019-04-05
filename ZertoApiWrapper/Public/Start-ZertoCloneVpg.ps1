@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Start-ZertoCloneVpg {
-    [cmdletbinding()]
+    [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter(
             HelpMessage = "Name of the VPG you wish to clone.",
@@ -53,7 +53,9 @@ function Start-ZertoCloneVpg {
             $body['VmIdentifiers'] = $vmIdentifiers
         }
         Write-Verbose $body
-        Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -method "POST"
+        if ($PSCmdlet.ShouldProcess("Clone Vpg")) {
+            Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -method "POST"
+        }
     }
 
     end {

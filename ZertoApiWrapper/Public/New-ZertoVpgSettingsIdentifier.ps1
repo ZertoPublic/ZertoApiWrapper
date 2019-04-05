@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function New-ZertoVpgSettingsIdentifier {
-    [cmdletbinding()]
+    [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter(
             HelpMessage = "Identifier of the VPG to create a VPG settings identifier. If a vpgIdentifier is not provided, a new VPG settings object is created without any configured settings. This would be used for creating a new VPG from scratch.",
@@ -33,7 +33,10 @@ function New-ZertoVpgSettingsIdentifier {
     }
 
     process {
-        Invoke-ZertoRestRequest -uri $baseUri -body $body -Method "POST"
+        if ($PSCmdlet.ShouldProcess("Creating VPG Settings Object")) {
+            Invoke-ZertoRestRequest -uri $baseUri -body $body -Method "POST"
+        }
+
     }
 
     end {

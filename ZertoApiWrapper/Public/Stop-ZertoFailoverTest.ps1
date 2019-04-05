@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Stop-ZertoFailoverTest {
-    [cmdletbinding()]
+    [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter(
             HelpMessage = "Name(s) of VPG(s) to stop testing.",
@@ -26,7 +26,10 @@ function Stop-ZertoFailoverTest {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
             $uri = "{0}/{1}/FailoverTestStop" -f $baseUri, $vpgId
-            Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+            if ($PSCmdlet.ShouldProcess("Stopping Failover Test")) {
+                Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+            }
+
         }
     }
 
