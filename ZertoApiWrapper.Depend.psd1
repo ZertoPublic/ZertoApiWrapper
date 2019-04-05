@@ -1,4 +1,16 @@
 @{
+    InvokeBuild      = @{
+        Name           = 'InvokeBuild'
+        DependencyType = 'PSGalleryModule'
+        Parameters     = @{
+            Repository         = 'PSGallery'
+            SkipPublisherCheck = $true
+        }
+        Target         = 'CurrentUser'
+        Version        = '5.4.3'
+        Tags           = 'Bootstrap'
+    }
+
     Pester           = @{
         Name           = 'Pester'
         DependencyType = 'PSGalleryModule'
