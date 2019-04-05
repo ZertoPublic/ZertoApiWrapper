@@ -9,7 +9,7 @@ param([switch]$Install,
 $targetDir = "temp/$Configuration/ZertoApiWrapper" #>
 $version = "{0}.{1}" -f $(Get-Content .\version.txt), $(get-date -format 'yyyyMMdd')
 
-task . AnalyzeSourceFiles, CreateModule
+task . CreateArtifacts
 
 <# Synopsis: Ensure platyPS is installed #>
 task CheckPlatyPSInstalled {
