@@ -8,7 +8,7 @@ Describe "Module: $module" -Tags 'Unit' {
 
     Context "Module Configuration" {
 
-        It "Has a rood module file ($module.psm1)" {
+        It "Has a root module file ($module.psm1)" {
             "$modulePath\$module.psm1" | should -Exist
         }
 
