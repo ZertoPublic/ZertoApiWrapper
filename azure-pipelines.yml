@@ -59,13 +59,13 @@ jobs:
         testRunTitle: 'PSCore_Ubuntu1604'
       displayName: 'Publish Test Results'
       condition: always()
-    - task: PublishPipelineArtifact@2
+    - task: PublishPipelineArtifact@0
       displayName: 'Publish compiled module Artifact'
       inputs:
         artifactName: 'ZertoApiWrapper'
         targetPath: ./temp
       condition: always()
-    - task: PublishPipelineArtifact@2
+    - task: PublishPipelineArtifact@0
       displayName: 'Publish Data'
       inputs:
         artifactName: 'ReleaseData'
