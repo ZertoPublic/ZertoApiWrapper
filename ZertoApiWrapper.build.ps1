@@ -91,6 +91,8 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
 
 task CreatePsd1ForRelease CleanTemp, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
+    $releaseNotes = "# {0}{1}" -f $version, $(Get-Content .\RELEASENOTES.md -Raw)
+
     $ManifestParams = @{
         Path              = "$BuildRoot\temp\ZertoApiWrapper.psd1"
         RootModule        = 'ZertoApiWrapper.psm1'
@@ -108,6 +110,7 @@ task CreatePsd1ForRelease CleanTemp, {
         CmdletsToExport   = @()
         VariablesToExport = @()
         AliasesToExport   = @()
+        ReleaseNotes      = $releaseNotes
     }
     New-ModuleManifest @ManifestParams
 }
@@ -154,6 +157,23 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
     }
     Add-Content -Path $psm1Path -Value $emptyLine
     Add-Content -Path $psm1Path -Value "Export-ModuleMember -Function $exportString"
+}
+
+task CreateArtifacts CleanPublish, CreateModule, {
+    if (-not $(Test-Path "$BuildRoot\publish")) {
+        New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
+    }
+    Compress-Archive -Path .\temp\* -DestinationPath .\publish\ZertoApiWrapper.zip
+    Get-Module -Name ZertoApiWrapper | Remove-Module -Force
+    Import-Module .\temp\ZertoApiWrapper.psd1 -Force
+    (Get-Module ZertoApiWrapper).ReleaseNotes | Add-Content .\publish\release-notes.txt
+    (Get-Module ZertoApiWrapper).Version.ToString() | Add-Content .\publish\release-version.txt
+}
+
+task CleanPublish {
+    if ($(Test-Path "$BuildRoot\publish")) {
+        Remove-Item -Recurse -Path "$BuildRoot\publish\*"
+    }
 }
 
 task CreateModule CleanTemp, FileTests, AnalyzeBuiltFiles, BuildMamlHelp, {
