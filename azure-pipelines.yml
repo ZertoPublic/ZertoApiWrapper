@@ -60,6 +60,21 @@ jobs:
       displayName: 'Publish Test Results'
       condition: always()
 
+    - task: PublishPipelineArtifact@2
+      displayName: 'Publish compiled module Artifact'
+      inputs:
+        artifactName: 'ZertoApiWrapper'
+        targetPath: ./temp
+      condition: always()
+
+    - task: PublishPipelineArtifact@2
+      displayName: 'Publish Data'
+      inputs:
+        artifactName: 'ReleaseData'
+        targetPath: ./publish
+      condition: always()
+
+
   # MacOS Build Job
   - job: Build_PSCore_MacOS1013
     timeoutInMinutes: 10
