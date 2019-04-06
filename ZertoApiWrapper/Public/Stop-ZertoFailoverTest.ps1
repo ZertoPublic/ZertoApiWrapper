@@ -6,6 +6,7 @@ function Stop-ZertoFailoverTest {
             HelpMessage = "Name(s) of VPG(s) to stop testing.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
             HelpMessage = "Was the test successful? True or False. True is Default."
@@ -25,11 +26,13 @@ function Stop-ZertoFailoverTest {
     process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
+            if ( -not $vpgId) {
+                Write-Error "VPG: $vpgName Not Found. Please check the name and try again!" -ErrorAction Stop
+            }
             $uri = "{0}/{1}/FailoverTestStop" -f $baseUri, $vpgId
             if ($PSCmdlet.ShouldProcess("Stopping Failover Test")) {
                 Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
             }
-
         }
     }
 

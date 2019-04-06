@@ -12,6 +12,9 @@ function Stop-ZertoCloneVpg {
     begin {
         $baseUri = "vpgs"
         $vpgIdentifier = $(Get-ZertoVpg -name $vpgName).vpgIdentifier
+        if ( -not $vpgIdentifier ) {
+            Write-Error "VPG: $vpgName could not be found. Please check the name and try again." -ErrorAction Stop
+        }
     }
 
     process {

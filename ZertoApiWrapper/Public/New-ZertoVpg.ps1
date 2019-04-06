@@ -241,8 +241,7 @@ function New-ZertoVpg {
         }
 
         if ( -not $validSettings ) {
-            Write-Error "One or more parameters passed do not have valid identifiers or 0 valid VMs were found. Please check your settings and try again."
-            Break
+            Write-Error "One or more parameters passed do not have valid identifiers or 0 valid VMs were found. Please check your settings and try again." -ErrorAction Stop
         }
     }
 

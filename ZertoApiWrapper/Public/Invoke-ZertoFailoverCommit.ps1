@@ -25,8 +25,12 @@ function Invoke-ZertoFailoverCommit {
     process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/FailoverCommit" -f $baseUri, $vpgId
-            Invoke-ZertoRestRequest -uri $uri -body $($body | convertto-json) -method "POST"
+            if ( -not $vpgId ) {
+                Write-Error "VPG: $name could not be found. Please check the name and try again. Skipping."
+            } else {
+                $uri = "{0}/{1}/FailoverCommit" -f $baseUri, $vpgId
+                Invoke-ZertoRestRequest -uri $uri -body $($body | convertto-json) -method "POST"
+            }
         }
     }
 

@@ -49,6 +49,7 @@ function Invoke-ZertoMove {
     begin {
         $baseUri = "vpgs"
         $body = [ordered]@{}
+        #TODO - use a foreach loop to populate the body without all the if statments
         if ($PSBoundParameters.ContainsKey('commitPolicy')) {
             $body['commitPolicy'] = $commitPolicy
         }
@@ -72,8 +73,12 @@ function Invoke-ZertoMove {
     process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/move" -f $baseUri, $vpgId
-            Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+            if ( -not $vpgId ) {
+                Write-Error "VPG: $name not found. Please check the name and try again. Skipping"
+            } else {
+                $uri = "{0}/{1}/move" -f $baseUri, $vpgId
+                Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+            }
         }
     }
 

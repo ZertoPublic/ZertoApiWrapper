@@ -38,6 +38,9 @@ function Edit-ZertoVra {
         $baseUri = "vras/{0}" -f $vraIdentifier
         # Get the current VRA information for use if an updated parameter is not supplied
         $vra = Get-ZertoVra -vraIdentifier $vraIdentifier
+        if ( -not $vra ) {
+            Write-Error "VRA with Identifier: $vraIdentifier could not be found. Please check the ID and try again."
+        }
     }
 
     process {

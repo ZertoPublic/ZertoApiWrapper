@@ -36,10 +36,9 @@ function New-ZertoVpgSettingsIdentifier {
         if ($PSCmdlet.ShouldProcess("Creating VPG Settings Object")) {
             Invoke-ZertoRestRequest -uri $baseUri -body $body -Method "POST"
         }
-
     }
 
     end {
-
+        #Nothing to do
     }
 }

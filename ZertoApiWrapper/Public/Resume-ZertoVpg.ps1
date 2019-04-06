@@ -16,8 +16,12 @@ function Resume-ZertoVpg {
     process {
         foreach ($name in $vpgName) {
             $id = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/resume" -f $baseUri, $id
-            Invoke-ZertoRestRequest -uri $uri -method "POST"
+            if ( -not $id ) {
+                Write-Error "VPG: $name not found. Please check the name and try again. Skipping."
+            } else {
+                $uri = "{0}/{1}/resume" -f $baseUri, $id
+                Invoke-ZertoRestRequest -uri $uri -method "POST"
+            }
         }
     }
 

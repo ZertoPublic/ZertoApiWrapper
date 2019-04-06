@@ -55,7 +55,7 @@ function Remove-ZertoVpg {
                             Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -Method "DELETE"
                         }
                     } else {
-                        Write-Output "VPG with name $vpgName not found. Please check the name and try again"
+                        Write-Error "VPG with name $vpgName not found. Please check the name and try again"
                     }
                 }
             }

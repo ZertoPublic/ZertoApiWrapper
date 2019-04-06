@@ -29,8 +29,12 @@ function Invoke-ZertoMoveCommit {
     process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/MoveCommit" -f $baseUri, $vpgId
-            Invoke-ZertoRestRequest -uri $uri -body $($body | convertto-json) -method "POST"
+            if ( -not $vpgId ) {
+                Write-Error "VPG: $name not found. Please check the name and try again. Skipping."
+            } else {
+                $uri = "{0}/{1}/MoveCommit" -f $baseUri, $vpgId
+                Invoke-ZertoRestRequest -uri $uri -body $($body | convertto-json) -method "POST"
+            }
         }
     }
 
