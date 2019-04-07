@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoMoveRollback {
-    [cmdletbinding()]
+    [cmdletbinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(
             HelpMessage = "Name(s) of VPG(s) to roll back from failing over",
@@ -20,7 +20,9 @@ function Invoke-ZertoMoveRollback {
                 Write-Error "VPG: $name not found. Please check the name and try again."
             } else {
                 $uri = "{0}/{1}/moveRollBack" -f $baseUri, $id
-                Invoke-ZertoRestRequest -uri $uri -method "POST"
+                if ($PSCmdlet.ShouldProcess("Rolling back VPG: $name")) {
+                    Invoke-ZertoRestRequest -uri $uri -method "POST"
+                }
             }
         }
     }
