@@ -13,7 +13,7 @@ Commit a running VPG failover
 ## SYNTAX
 
 ```
-Invoke-ZertoFailoverCommit [-vpgName] <String[]> [-reverseProtect] [<CommonParameters>]
+Invoke-ZertoFailoverCommit [-vpgName] <String[]> [-reverseProtection] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,14 +30,14 @@ Commits VPG "MyVpg" without reverse protection
 
 ### Example 1
 ```powershell
-PS C:\> Invoke-ZertoFailoverCommit -vpgName "MyVpg" -reverseProtect
+PS C:\> Invoke-ZertoFailoverCommit -vpgName "MyVpg" -reverseProtection
 ```
 
 Commits a VPG with reverse protection
 
 ## PARAMETERS
 
-### -reverseProtect
+### -reverseProtection
 Use this switch to reverse protect the VPG(s) to the source site.
 
 ```yaml
