@@ -26,12 +26,14 @@ function Invoke-ZertoMove {
         [switch]$forceShutdown,
         [Parameter(
             ParameterSetName = "disableReverseProtection",
-            HelpMessage = "Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set."
+            HelpMessage = "Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.",
+            Mandatory = $true
         )]
         [switch]$disableReverseProtection,
         [Parameter(
             ParameterSetName = "keepSourceVms",
-            HelpMessage = "Prevent the protected virtual machines from being deleted in the protected site. Using this setting disables reverse protection."
+            HelpMessage = "Prevent the protected virtual machines from being deleted in the protected site. Using this setting disables reverse protection.",
+            Mandatory = $true
         )]
         [switch]$keepSourceVms,
         [Parameter(
