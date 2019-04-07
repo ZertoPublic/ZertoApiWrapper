@@ -56,9 +56,9 @@ function Invoke-ZertoFailover {
         # Setup Defaults
         $body['commitpolicy'] = $commitPolicy
         $body['TimeToWaitBeforeShutdownInSec'] = $timeToWaitBeforeShutdownInSec
-        foreach ($key in $PSBoundParameters.Keys) {
-            if ($key -notlike 'vpgName' -and $key -notlike 'vmName' -and $key -notlike 'WhatIf' -and $key -notlike 'TimeToWaitBeforeShutdownInSec' -and $key -notlike 'commitpolicy') {
-                $body[$key] = $PSBoundParameters['key']
+        foreach ($param in $PSBoundParameters.GetEnumerator()) {
+            if ($param.key -notlike 'vpgName' -and $param.key -notlike 'vmName' -and $param.key -notlike 'WhatIf' -and $param.key -notlike 'TimeToWaitBeforeShutdownInSec' -and $param.key -notlike 'commitpolicy') {
+                $body[$param.key] = $param.value
             }
         }
         if ($PSBoundParameters.ContainsKey('vmName')) {
