@@ -10,15 +10,15 @@ function Invoke-ZertoFailoverCommit {
         [Parameter(
             HelpMessage = "Use this switch to reverse protect the VPG(s) to the source site."
         )]
-        [switch]$reverseProtect
+        [switch]$reverseProtection
     )
 
     begin {
         $baseUri = "vpgs"
-        if ( $reverseProtect ) {
-            $body = @{"IsReverseProtect" = $true}
+        if ( $reverseProtection ) {
+            $body = @{"IsReverseProtection" = $true}
         } else {
-            $body = @{"IsReverseProtect" = $false}
+            $body = @{"IsReverseProtection" = $false}
         }
     }
 
