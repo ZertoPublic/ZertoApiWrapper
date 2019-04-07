@@ -82,7 +82,6 @@ function Invoke-ZertoFailover {
         if ($PSCmdlet.ShouldProcess("$vpgName with identifier $vpgId and these options $($body | convertto-json)")) {
             Invoke-ZertoRestRequest -uri $baseUri -body $($body | ConvertTo-Json) -method "POST"
         }
-
     }
 
     end {
