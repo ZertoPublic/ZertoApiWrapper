@@ -173,9 +173,9 @@ function Get-ZertoVpg {
                 if ( $PSBoundParameters.ContainsKey("startDate") -or $PSBoundParameters.ContainsKey("endDate") ) {
                     $filter = $true
                     $filterTable = @{}
-                    foreach ( $key in $PSBoundParameters.Keys ) {
-                        if ( $key -eq "startDate" -or $key -eq "endDate") {
-                            $filterTable[$key] = $PSBoundParameters[$key]
+                    foreach ( $param in $PSBoundParameters.GetEnumerator() ) {
+                        if ( $param.key -eq "startDate" -or $param.key -eq "endDate") {
+                            $filterTable[$param.key] = $param.value
                         }
                     }
                     $filter = Get-ZertoApiFilter -filterTable $filterTable
