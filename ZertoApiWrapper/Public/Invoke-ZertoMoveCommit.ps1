@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoMoveCommit {
-    [cmdletbinding()]
+    [cmdletbinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) to commit.",
@@ -10,7 +10,7 @@ function Invoke-ZertoMoveCommit {
         [Parameter(
             HelpMessage = "Set this to True to reverse protect the VPG(s) to the source site. If not set, will use selection made during move initiation. True or False"
         )]
-        [bool]$reverseProtect,
+        [switch]$reverseProtection,
         [Parameter(
             HelpMessage = "Use this switch to keep the source VMs. If not set, they will be destroyed."
         )]
@@ -19,10 +19,11 @@ function Invoke-ZertoMoveCommit {
 
     begin {
         $baseUri = "vpgs"
-        if ($reverseProtect) {
-            $body = @{"ReverseProtection" = $reverseProtect; "KeepSourceVms" = $keepSourceVms}
-        } else {
-            $body = @{"KeepSourceVms" = $keepSourceVms}
+        $body = @{}
+        if ($reverseProtection) {
+            $body["ReverseProtection"] = $true
+        } elseif ($keepSourceVms) {
+            $body["KeepSourceVms"] = $true
         }
     }
 
@@ -33,7 +34,9 @@ function Invoke-ZertoMoveCommit {
                 Write-Error "VPG: $name not found. Please check the name and try again. Skipping."
             } else {
                 $uri = "{0}/{1}/MoveCommit" -f $baseUri, $vpgId
-                Invoke-ZertoRestRequest -uri $uri -body $($body | convertto-json) -method "POST"
+                if ($PSCmdlet.ShouldProcess("Commiting VPG: $name with settings $($body | convertto-json)")) {
+                    Invoke-ZertoRestRequest -uri $uri -body $($body | convertto-json) -method "POST"
+                }
             }
         }
     }
