@@ -30,7 +30,7 @@ function Stop-ZertoFailoverTest {
                 Write-Error "VPG: $vpgName Not Found. Please check the name and try again!" -ErrorAction Stop
             }
             $uri = "{0}/{1}/FailoverTestStop" -f $baseUri, $vpgId
-            if ($PSCmdlet.ShouldProcess("Stopping Failover Test")) {
+            if ($PSCmdlet.ShouldProcess("Stopping Failover Test on VPG: $name")) {
                 Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
             }
         }
