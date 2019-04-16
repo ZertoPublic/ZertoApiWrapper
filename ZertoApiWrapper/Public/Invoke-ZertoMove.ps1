@@ -19,7 +19,9 @@ function Invoke-ZertoMove {
         [Parameter(
             HelpMessage = "The amount of time, in seconds, the Move is in a 'Before Commit' state, before performing the commitPolicy setting. If omitted, the site settings default will be applied."
         )]
-        [Int32]$commitPolicyTimeout,
+        # Min 5 Minutes, Max 24 Hours, Default 1 Hour.
+        [ValidateRange(300, 86400)]
+        [Int]$commitPolicyTimeout,
         [Parameter(
             HelpMessage = "If this switch is specified, Zerto will attempt to gracefully shut down the Virtual Machines. If the machines do not poweroff within 5 minutes, they will be forcibly powering them off."
         )]

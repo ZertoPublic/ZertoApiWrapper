@@ -6,6 +6,7 @@ function Invoke-ZertoFailoverCommit {
             HelpMessage = "Name(s) of the VPG(s) to commit.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
             HelpMessage = "Use this switch to reverse protect the VPG(s) to the source site."

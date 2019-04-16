@@ -33,6 +33,8 @@ function Invoke-ZertoFailover {
         [Parameter(
             HelpMessage = "The amount of time in seconds the failover waits in a Before Commit state to enable checking that the failover is as required before performing the commitPolicy setting. Default is 60 Minutes (3600 Seconds)"
         )]
+        # Min 5 Minutes, Max 24 Hours, Default 1 Hour.
+        [ValidateRange(300, 86400)]
         [int]$timeToWaitBeforeShutdownInSec = 3600,
         [Parameter(
             HelpMessage = "True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.

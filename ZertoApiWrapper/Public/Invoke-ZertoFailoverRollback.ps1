@@ -6,6 +6,7 @@ function Invoke-ZertoFailoverRollback {
             HelpMessage = "Name(s) of VPG(s) to roll back from failing over",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName
     )
 

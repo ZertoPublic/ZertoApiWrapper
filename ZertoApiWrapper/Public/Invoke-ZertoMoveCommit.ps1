@@ -6,6 +6,7 @@ function Invoke-ZertoMoveCommit {
             HelpMessage = "Name(s) of the VPG(s) to commit.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
             HelpMessage = "Set this to True to reverse protect the VPG(s) to the source site. If not set, will use selection made during move initiation. True or False"
