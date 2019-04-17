@@ -10,6 +10,7 @@ function Save-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgSettingsId")]
         [string]$vpgSettingsIdentifier
     )

@@ -6,15 +6,18 @@ function Start-ZertoFailoverTest {
             HelpMessage = "Name of VPG to failover test",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName,
         [Parameter(
             HelpMessage = "The identifier of the checkpoint to use for testing. If unspecified, the latest checkpoint will be used."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("checkpointId")]
         [string]$checkpointIdentifier,
         [Parameter(
             HelpMessage = "The name(s) of the VMs within the selected VPG you wish to test. If unspecified, all VMs in the VPG will be tested."
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vmName
     )
 

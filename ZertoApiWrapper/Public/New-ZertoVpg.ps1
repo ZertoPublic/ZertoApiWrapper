@@ -6,6 +6,7 @@ function New-ZertoVpg {
             HelpMessage = "Name of the VPG",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName,
         [Parameter(
             HelpMessage = "VPG Priority. High, Medium, or Low. Default value is Medium"
@@ -27,6 +28,7 @@ function New-ZertoVpg {
             HelpMessage = "Name of the site where the VM(s) will be recovered",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoverySite,
         [Parameter(
             HelpMessage = "Name of the cluster where the VM(s) will be recovered.",
@@ -38,6 +40,7 @@ function New-ZertoVpg {
             ParameterSetName = "recoveryClusterDatastoreCluster",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoveryCluster,
         [Parameter(
             HelpMessage = "Name of the host where the VM(s) will be recovered.",
@@ -49,6 +52,7 @@ function New-ZertoVpg {
             ParameterSetName = "recoveryHostDatastoreCluster",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoveryHost,
         [Parameter(
             HelpMessage = "Name of the resource pool where the VM(s) will be recovered.",
@@ -60,6 +64,7 @@ function New-ZertoVpg {
             ParameterSetName = "recoveryResourcePoolDatastoreCluster",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoveryResourcePool,
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
@@ -76,6 +81,7 @@ function New-ZertoVpg {
             ParameterSetName = "recoveryResourcePoolDatastore",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastore,
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
@@ -92,11 +98,13 @@ function New-ZertoVpg {
             ParameterSetName = "recoveryResourcePoolDatastoreCluster",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreCluster,
         [Parameter(
             HelpMessage = "Name of folder at recovery location where the recovered virtual machine(s) will be created.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoveryFolder,
         [Parameter(
             HelpMessage = "RPO alert"
@@ -111,6 +119,7 @@ function New-ZertoVpg {
         [Parameter(
             HelpMessage = "Service profile name to use."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$serviceProfile,
         [Parameter(
             HelpMessage = "Turn on or off WAN and Journal Compression. Default is turned on."
@@ -119,31 +128,37 @@ function New-ZertoVpg {
         [Parameter(
             HelpMessage = "Name of ZORG to use."
         )]
+        [ValidateNotNullOrEmpty()]
         [String]$zorg,
         [Parameter(
             HelpMessage = "Name of the network to use during a Failover Live \ Move VPG operation.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [String]$recoveryNetwork,
         [Parameter(
             HelpMessage = "Name of the network to use during a Failover Test operation",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$testNetwork,
         [Parameter(
             HelpMessage = "Name of the datastore to utilize to store Journal data. If not specified, the default datastore will be used.",
             Mandatory = $false
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$journalDatastore,
         [Parameter(
             HelpMessage = "Default journal hard limit in megabytes. Default set to 153600 MB (150 GB). Set to 0 to set the journal to unlimited",
             Mandatory = $false
         )]
+        [ValidateNotNullOrEmpty()]
         [uint64]$journalHardLimitInMb = 153600,
         [Parameter(
             HelpMessage = "Default journal warning threshold in megabytes. If unset or greater than the hard limit, will be set to 75% of the journal hard limit.",
             Mandatory = $false
         )]
+        [ValidateNotNullOrEmpty()]
         [uint64]$journalWarningThresholdInMb = 0
     )
 

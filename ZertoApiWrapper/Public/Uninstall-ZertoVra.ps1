@@ -6,6 +6,7 @@ function Uninstall-ZertoVra {
             Mandatory = $true,
             HelpMessage = "Host Name attached to the VRA to be removed."
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$hostName
     )
 

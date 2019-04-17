@@ -15,6 +15,7 @@ function Stop-ZertoFailoverTest {
         [Parameter(
             HelpMessage = "Free text field for any notes to add to the test report."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$failoverTestSummary = "Stop Failover Test for $vpgName"
     )
 

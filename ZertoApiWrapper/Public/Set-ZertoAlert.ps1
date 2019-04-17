@@ -2,14 +2,14 @@
 function Set-ZertoAlert {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param (
-        [Alias("identifier")]
         [Parameter(
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             Mandatory = $true,
             HelpMessage = "Alert identifier(s) to be dismissed or undismissed."
         )]
-        [Alias("alertIdentifier")]
+        [ValidateNotNullOrEmpty()]
+        [Alias("alertIdentifier", "identifier", "id")]
         [string[]]$alertId,
         [Parameter(
             ParameterSetName = "dismiss",

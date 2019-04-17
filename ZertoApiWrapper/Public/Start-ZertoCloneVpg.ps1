@@ -6,19 +6,23 @@ function Start-ZertoCloneVpg {
             HelpMessage = "Name of the VPG you wish to clone.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName,
         [Parameter(
             HelpMessage = "The identifier of the checkpoint to use for cloning. If unspecified, the latest checkpoint will be used."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("checkpointId")]
         [string]$checkpointIdentifier,
         [Parameter(
             HelpMessage = "The datastore name where the clone is to be created. If unspecified, will auto select the datastore with the most free space."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreName,
         [Parameter(
             HelpMessage = "The name(s) of the VMs you wish to clone. If unspecified, all VMs in the VPG will be cloned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vmName
     )
 

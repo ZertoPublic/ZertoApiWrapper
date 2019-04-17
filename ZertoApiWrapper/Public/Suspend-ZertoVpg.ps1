@@ -6,6 +6,7 @@ function Suspend-ZertoVpg {
             HelpMessage = "Name(s) of VPG(s) to pause replication",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName
     )
 

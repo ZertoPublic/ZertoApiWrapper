@@ -6,6 +6,7 @@ function Resume-ZertoVpg {
             HelpMessage = "Name(s) of VPG(s) to resume replication",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName
     )
 

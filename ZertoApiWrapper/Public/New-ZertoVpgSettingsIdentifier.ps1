@@ -9,6 +9,7 @@ function New-ZertoVpgSettingsIdentifier {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter(

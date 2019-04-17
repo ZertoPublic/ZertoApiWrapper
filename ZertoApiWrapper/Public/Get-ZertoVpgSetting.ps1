@@ -131,6 +131,7 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgSettingsId", "settingsId")]
         [string]$vpgSettingsIdentifier,
         [Parameter(
@@ -230,6 +231,7 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "VM Identifier"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vmId")]
         [string]$vmIdentifier,
         [Parameter(
@@ -243,6 +245,7 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "Return NIC information for specified NIC of the specified VM"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("nicId")]
         [string]$nicIdentifier,
         [Parameter(
@@ -256,6 +259,7 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "Return volume information for the specified volume of the specified VM"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("volumeId")]
         [string]$volumeIdentifier
     )

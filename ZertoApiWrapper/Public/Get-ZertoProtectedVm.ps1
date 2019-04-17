@@ -9,32 +9,38 @@ function Get-ZertoProtectedVm {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "vmIdentifier(s) for which to return information"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vmId")]
         [string[]]$vmIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The name of the VPG which protects the virtual machine."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The name of the virtual machine."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vmName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The status of the VPG. Please see Zerto API documentation for possible values."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$status,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The substatus of the VPG, for example the VPG is in a bitmap sync. For the description of substatuses, refer to the Zerto Virtual Manager Administration Guide. Please see Zerto API documentation for possible values."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$substatus,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The ZORG for this VPG."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$organizationName,
         [Parameter(
             ParameterSetName = "filter",
@@ -46,22 +52,26 @@ function Get-ZertoProtectedVm {
             ParameterSetName = "filter",
             HelpMessage = "The protected site type. Please see Zerto API documentation for possible values."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$protectedSiteType,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The recovery site type. Please see Zerto API documentation for possible values."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoverySiteType,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the protected site where the VPG virtual machines are protected."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("protectedSiteId")]
         [string]$protectedSiteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the recovery site where the VPG virtual machines are recovered."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("recoverySiteId")]
         [string]$recoverySiteIdentifier
     )

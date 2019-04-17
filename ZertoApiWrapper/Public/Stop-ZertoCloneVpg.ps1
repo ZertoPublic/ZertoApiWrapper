@@ -6,6 +6,7 @@ function Stop-ZertoCloneVpg {
             HelpMessage = "Name of the VPG to stop cloning",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName
     )
 

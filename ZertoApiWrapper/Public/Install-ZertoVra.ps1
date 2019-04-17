@@ -16,6 +16,7 @@ function Install-ZertoVra {
         [ValidateRange(1, 16)]
         [int]$memoryInGB = 3,
         [Parameter( HelpMessage = "Bandwidth group to assign to the VRA. If unspecified will assign to the 'default_group'" )]
+        [ValidateNotNullOrEmpty()]
         [string]$groupName,
         [Parameter( ParameterSetName = "Dhcp", Mandatory = $true, HelpMessage = "Assign a DHCP address to the VRA." )]
         [switch]$Dhcp,
