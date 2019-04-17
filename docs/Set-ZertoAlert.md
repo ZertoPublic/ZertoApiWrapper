@@ -49,7 +49,7 @@ Alert identifier(s) to be dismissed or undismissed.
 ```yaml
 Type: String[]
 Parameter Sets: (All)
-Aliases: alertIdentifier, identifier
+Aliases: alertIdentifier, identifier, id
 
 Required: True
 Position: Named
