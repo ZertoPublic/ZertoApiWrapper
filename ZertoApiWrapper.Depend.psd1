@@ -7,7 +7,7 @@
             SkipPublisherCheck = $true
         }
         Target         = 'CurrentUser'
-        Version        = '5.5.0'
+        Version        = '5.5.1'
         Tags           = 'Bootstrap'
     }
 
