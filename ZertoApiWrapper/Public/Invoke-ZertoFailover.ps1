@@ -1,16 +1,19 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoFailover {
-    [cmdletbinding()]
+    [cmdletbinding( SupportsShouldProcess = $true )]
     param(
+        #TODO - Refactor?
         [Parameter(
             Mandatory = $true,
             HelpMessage = "Name of the VPG to Failover"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName,
         [Parameter(
             HelpMessage = "Checkpoint Identifier to use as the Point-In-Time to rollback to."
         )]
         [Alias("checkpointId")]
+        [ValidateNotNullOrEmpty()]
         [string]$checkpointIdentifier,
         [Parameter(
             HelpMessage = "'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
@@ -19,22 +22,20 @@ function Invoke-ZertoFailover {
             Default is the Site Settings setting."
         )]
         [ValidateSet("Rollback", "Commit", "None")]
-        [string]$commitPolicy,
+        [string]$commitPolicy = "Rollback",
         [Parameter(
-            HelpMessage = "The amount of time in seconds the failover waits in a Before Commit state to enable checking that the failover is as required before performing the commitPolicy setting. Default is the Site Setting"
-        )]
-        [string]$commitValue,
-        [Parameter(
-            HelpMessage = "0: The protected virtual machines are not touched before starting the failover. This assumes that you do not have access to the protected virtual machines. -- DEFAULT
-        1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.
-        2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint."
+            HelpMessage = "0: The protected virtual machines are not touched before starting the failover. -- DEFAULT
+        1: If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the virtual machines are gracefully shut down, otherwise the failover operation fails. This is similar to performing a Move operation to a specified checkpoint.  This assumes that you do not have access to the protected virtual machines.
+        2: The protected virtual machines are forcibly shut down before starting the failover. If the protected virtual machines have VMware Tools or Microsoft Integration Services available, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off. This is similar to performing a Move operation to a specified checkpoint.  This assumes that you do not have access to the protected virtual machines"
         )]
         [ValidateSet(0, 1, 2)]
         [int]$shutdownPolicy = 0,
         [Parameter(
-            HelpMessage = "Time, in seconds, before VMs are forcibly turned off if the Force Shutdown option is seclected after attempting to gracefully shut down the VMs"
+            HelpMessage = "The amount of time in seconds the failover waits in a Before Commit state to enable checking that the failover is as required before performing the commitPolicy setting. Default is 60 Minutes (3600 Seconds)"
         )]
-        [long]$timeToWaitBeforeShutdownInSec = 300,
+        # Min 5 Minutes, Max 24 Hours, Default 1 Hour.
+        [ValidateRange(300, 86400)]
+        [int]$timeToWaitBeforeShutdownInSec = 3600,
         [Parameter(
             HelpMessage = "True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.
             False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set."
@@ -43,29 +44,56 @@ function Invoke-ZertoFailover {
         [Parameter(
             HelpMessage = "Name(s) of VMs in the VPG to failover"
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vmName
     )
 
     begin {
-        $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
-        $baseUri = "vpgSettings/{0}/failover" -f $vpgId
-        $body = [ordered]@{}
-        foreach ($key in $PSBoundParameters.Keys) {
-            if ($key -notlike 'vpgGroup' -or $key -notlike 'vmName') {
-                $body[$key] = $PSBoundParameters['key']
-            }
+        $vpgId = $(Get-ZertoVpg -name $vpgName).vpgIdentifier
+        if ( -not $vpgId) {
+            Write-Error "VPG: $vpgName Not Found. Please check the name and try again!" -ErrorAction Stop
         }
-        if ($PSBoundParameters.ContainsKey('vmName')) {
-            $vmIdentifiers = @()
-            $vmIdentifiers = foreach ( $name in $vmName ) {
-                $(Get-ZertoProtectedVm -vmName $name).vmIdentifier
+        $baseUri = "vpgs/{0}/failover" -f $vpgId
+        $body = @{}
+        # Setup Required Defaults
+        $body['commitpolicy'] = $commitPolicy
+        $body['TimeToWaitBeforeShutdownInSec'] = $timeToWaitBeforeShutdownInSec
+
+        Switch ($PSBoundParameters.Keys) {
+            "checkpointIdentifier" {
+                $body['checkpointIdentifier'] = $checkpointIdentifier
             }
-            $body['VmIdentifiers'] = $vmIdentifiers
+
+            "shutdownPolicy" {
+                $body['shutdownPolicy'] = $shutdownPolicy
+            }
+
+            "reverseProtection" {
+                $body['reverseProtection'] = $reverseProtection
+            }
+
+            "vmName" {
+                $vpgVmInformation = Get-ZertoProtectedVm -vpgName $vpgName
+                [System.Collections.ArrayList]$vmIdentifiers = @()
+                foreach ( $name in $vmName ) {
+                    $selectedVm = $vpgVmInformation | Where-Object {$_.VmName.toLower() -eq $name.toLower()}
+                    if ($null -eq $selectedVm) {
+                        Write-Error "VM: $name NOT found in VPG $vpgName. Check the name and try again." -ErrorAction Stop
+                    } elseif ($vmIdentifiers.Contains($selectedVm.vmIdentifier.toString())) {
+                        Write-Error "VM: $($selectedVm.VmName) specified more than once. Please check parameters and try again." -ErrorAction Stop
+                    } else {
+                        $vmIdentifiers.Add($selectedVm.vmIdentifier.toString()) | Out-Null
+                    }
+                }
+                $body['VmIdentifiers'] = $vmIdentifiers
+            }
         }
     }
 
     process {
-        Invoke-ZertoRestRequest -uri $baseUri -body $($body | ConvertTo-Json) -method "POST"
+        if ($PSCmdlet.ShouldProcess("$vpgName with identifier $vpgId and these options $($body | convertto-json)")) {
+            Invoke-ZertoRestRequest -uri $baseUri -body $($body | ConvertTo-Json) -method "POST"
+        }
     }
 
     end {

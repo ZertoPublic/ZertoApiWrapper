@@ -15,6 +15,7 @@ function Get-ZertoPeerSite {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "The identifier(s) of the peer site(s) for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("siteId")]
         [string[]]$siteIdentifier,
         [Parameter(
@@ -26,21 +27,25 @@ function Get-ZertoPeerSite {
             ParameterSetName = "filter",
             HelpMessage = "The pairing status for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$paringStatus,
         [Parameter (
             ParameterSetName = "filter",
             HelpMessage = "The site location, as specified in the site information, for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$location,
         [Parameter (
             ParameterSetName = "filter",
             HelpMessage = "The IP address of a Zerto Virtual Manager, paired with this site, for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$hostName,
         [Parameter (
             ParameterSetName = "filter",
             HelpMessage = "The port used to access peer sites for which information is to be returned. The default port is 9081."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$port
     )
 

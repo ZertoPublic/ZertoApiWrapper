@@ -9,7 +9,7 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule        = 'ZertoApiWrapper.psm1'
+    RootModule        = '.\ZertoApiWrapper.psm1'
 
     # Version number of this module.
     ModuleVersion     = '0.0.1'
@@ -69,16 +69,16 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = '*'
+    FunctionsToExport = 'Add-ZertoPeerSite', 'Checkpoint-ZertoVpg', 'Connect-ZertoServer', 'Disconnect-ZertoServer', 'Edit-ZertoVra', 'Export-ZertoVpg', 'Get-ZertoAlert', 'Get-ZertoDatastore', 'Get-ZertoEvent', 'Get-ZertoLicense', 'Get-ZertoLocalSite', 'Get-ZertoPeerSite', 'Get-ZertoProtectedVm', 'Get-ZertoRecoveryReport', 'Get-ZertoResourcesReport', 'Get-ZertoServiceProfile', 'Get-ZertoTask', 'Get-ZertoUnprotectedVm', 'Get-ZertoVirtualizationSite', 'Get-ZertoVolume', 'Get-ZertoVpg', 'Get-ZertoVpgSetting', 'Get-ZertoVra', 'Get-ZertoZorg', 'Get-ZertoZsspSession', 'Import-ZertoVpg', 'Install-ZertoVra', 'Invoke-ZertoFailover', 'Invoke-ZertoFailoverCommit', 'Invoke-ZertoFailoverRollback', 'Invoke-ZertoForceSync', 'Invoke-ZertoMove', 'Invoke-ZertoMoveCommit', 'Invoke-ZertoMoveRollback', 'New-ZertoVpg', 'New-ZertoVpgSettingsIdentifier', 'Remove-ZertoPeerSite', 'Remove-ZertoVpg', 'Resume-ZertoVpg', 'Save-ZertoVpgSettings', 'Set-ZertoAlert', 'Set-ZertoLicense', 'Start-ZertoCloneVpg', 'Start-ZertoFailoverTest', 'Stop-ZertoCloneVpg', 'Stop-ZertoFailoverTest', 'Suspend-ZertoVpg', 'Uninstall-ZertoVra'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-    CmdletsToExport   = '*'
+    CmdletsToExport   = @()
 
     # Variables to export from this module
-    VariablesToExport = '*'
+    VariablesToExport = @()
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-    AliasesToExport   = '*'
+    AliasesToExport   = @()
 
     # DSC resources to export from this module
     # DscResourcesToExport = @()

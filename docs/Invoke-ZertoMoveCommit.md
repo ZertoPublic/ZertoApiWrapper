@@ -13,7 +13,7 @@ Commit a VPG currently undergoing a move operation.
 ## SYNTAX
 
 ```
-Invoke-ZertoMoveCommit [-vpgName] <String[]> [[-reverseProtect] <Boolean>] [-keepSourceVms]
+Invoke-ZertoMoveCommit [-vpgName] <String[]> [-reverseProtection] [-keepSourceVms] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -47,18 +47,16 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -reverseProtect
-Set this to True to reverse protect the VPG(s) to the source site.
-If not set, will use selection made during move initiation.
-True or False
+### -reverseProtection
+Set this to True to reverse protect the VPG(s) to the source site. If not set, will use selection made during move initiation. True or False
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -74,6 +72,36 @@ Aliases:
 
 Required: True
 Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

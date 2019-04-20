@@ -6,6 +6,7 @@ function Invoke-ZertoFailoverRollback {
             HelpMessage = "Name(s) of VPG(s) to roll back from failing over",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName
     )
 
@@ -16,8 +17,12 @@ function Invoke-ZertoFailoverRollback {
     process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/FailoverRollback" -f $baseUri, $vpgId
-            Invoke-ZertoRestRequest -uri $uri -method "POST"
+            if ( -not $vpgId ) {
+                Write-Error "VPG: $name not found. Please check the name and try again. Skipping"
+            } else {
+                $uri = "{0}/{1}/FailoverRollback" -f $baseUri, $vpgId
+                Invoke-ZertoRestRequest -uri $uri -method "POST"
+            }
         }
     }
 

@@ -6,6 +6,7 @@ function Invoke-ZertoForceSync {
             HelpMessage = "Name(s) of VPG(s) to force sync",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName
     )
 
@@ -16,8 +17,12 @@ function Invoke-ZertoForceSync {
     process {
         foreach ($name in $vpgName) {
             $id = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/forcesync" -f $baseUri, $id
-            Invoke-ZertoRestRequest -uri $uri -method "POST"
+            if ( -not $id ) {
+                Write-Error "VPG: $name not found. Please check the name and try again. Skipping"
+            } else {
+                $uri = "{0}/{1}/forcesync" -f $baseUri, $id
+                Invoke-ZertoRestRequest -uri $uri -method "POST"
+            }
         }
     }
 

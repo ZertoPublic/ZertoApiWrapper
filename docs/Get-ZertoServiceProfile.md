@@ -47,7 +47,7 @@ The service profile ID for which information should be returned.
 ```yaml
 Type: String[]
 Parameter Sets: serviceProfileId
-Aliases:
+Aliases: serviceProfileIdentifier
 
 Required: False
 Position: Named

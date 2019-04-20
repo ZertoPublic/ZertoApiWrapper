@@ -2,3 +2,6 @@
 *.zip
 temp/*
 Tests/Public/TestResults.xml
+Tests/TestResults.xml
+publish/*
+CodeCoverage.xml

@@ -9,6 +9,7 @@ function Get-ZertoAlert {
             ValueFromPipelineByPropertyName = $true ,
             HelpMessage = "AlertId or array of AlertIds to be queried"
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$alertId,
         [Parameter(
             ParameterSetName = "entities",
@@ -32,45 +33,53 @@ function Get-ZertoAlert {
             ParameterSetName = "filter",
             HelpMessage = "Returns Alerts after the Start Date. Provide the string in the format of 'yyyy-MM-ddTHH:mm:ss.fff'"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$startDate,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns Alerts before the End Date. Provide the string in the format of 'yyyy-MM-ddTHH:mm:ss.fff'"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$endDate,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified vraIdentifier"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified siteIdentifier"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("siteId")]
         [string]$siteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified zorgIdentifier"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("zorgId")]
         [string]$zorgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified level"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$level,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified helpIdentifier"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("helpId")]
         [string]$helpIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Returns alerts for the specified entity"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$entity,
         [Parameter(
             ParameterSetName = "filter",

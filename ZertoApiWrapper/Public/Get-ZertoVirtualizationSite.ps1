@@ -52,6 +52,7 @@ function Get-ZertoVirtualizationSite {
             Mandatory = $true,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("siteId")]
         [string]$siteIdentifier,
         [Parameter(
@@ -82,6 +83,7 @@ function Get-ZertoVirtualizationSite {
             Mandatory = $false,
             HelpMessage = "The identifier of the host at the selected site to return information for only one host."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("hostId")]
         [string]$hostIdentifier,
         [Parameter(

@@ -7,6 +7,7 @@ function Get-ZertoDatastore {
             ParameterSetName = "datastoreIdentifier",
             HelpMessage = "datastoreIdentifier or array of datastoreIdentifiers to be queried"
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$datastoreIdentifier
     )
 

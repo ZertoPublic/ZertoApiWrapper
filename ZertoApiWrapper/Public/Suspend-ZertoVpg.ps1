@@ -6,6 +6,7 @@ function Suspend-ZertoVpg {
             HelpMessage = "Name(s) of VPG(s) to pause replication",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName
     )
 
@@ -16,8 +17,12 @@ function Suspend-ZertoVpg {
     process {
         foreach ($name in $vpgName) {
             $id = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/pause" -f $baseUri, $id
-            Invoke-ZertoRestRequest -uri $uri -method "POST"
+            if ( -not $id ) {
+                Write-Error "VPG: $name not found. Skipping."
+            } else {
+                $uri = "{0}/{1}/pause" -f $baseUri, $id
+                Invoke-ZertoRestRequest -uri $uri -method "POST"
+            }
         }
     }
 

@@ -9,6 +9,7 @@ function Remove-ZertoVpg {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "Name(s) of the VPG(s) to delete."
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
             Mandatory = $true,
@@ -17,6 +18,7 @@ function Remove-ZertoVpg {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "vpgIdentifier(s) of the VPG(s) to delete."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgId")]
         [string[]]$vpgidentifier,
         [Parameter(
@@ -55,7 +57,7 @@ function Remove-ZertoVpg {
                             Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -Method "DELETE"
                         }
                     } else {
-                        Write-Output "VPG with name $vpgName not found. Please check the name and try again"
+                        Write-Error "VPG with name $vpgName not found. Please check the name and try again"
                     }
                 }
             }

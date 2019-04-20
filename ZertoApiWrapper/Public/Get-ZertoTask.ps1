@@ -6,6 +6,7 @@ function Get-ZertoTask {
             ParameterSetName = "taskIdentifier",
             HelpMessage = "The identifier(s) for which task information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("taskId")]
         [string[]]$taskIdentifier,
         [Parameter(
@@ -17,26 +18,31 @@ function Get-ZertoTask {
             ParameterSetName = "filter",
             HelpMessage = "Tasks started before this time (inclusive) are displayed. Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'. Adding Z to the end of the time sets the time to UTC."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$startedBeforeDate,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Tasks started after this time (inclusive) are displayed. Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'. Adding Z to the end of the time sets the time to UTC."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$startedAfterDate,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Tasks completed after this time (inclusive) are displayed. Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'. Adding Z to the end of the time sets the time to UTC."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$completedAfterDate,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Tasks completed before this time (inclusive) are displayed. Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'. Adding Z to the end of the time sets the time to UTC."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$completedBeforeDate,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The type of task. For the description of the tasks, refer to the Zerto Virtual Replication documentation about monitoring tasks. Please see Zerto API Documentation for possible types and values."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$type,
         [Parameter(
             ParameterSetName = "filter",

@@ -18,52 +18,62 @@ function Get-ZertoVra {
             ParameterSetName = "vraIdentifier",
             HelpMessage = "Returns information for provided VRA identifier(s)"
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vraId")]
         [string[]]$vraIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "VRA Name to return information for."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vraName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs in a specific status"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$status,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs of a specific version"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vraVersion,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs paired to a specific host version"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$hostVersion,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for a VRA with the specified IP address"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$ipAddress,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs belonging to a specific group"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vraGroup,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs on a specific datastore"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs on a specific datastore cluster"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreClusterName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "Search for VRAs on a specific network"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$networkName
     )
 
@@ -84,7 +94,7 @@ function Get-ZertoVra {
             }
 
             # When vra ids are provided, return for each id provided
-            "vraIdentifierifierifier" {
+            "vraIdentifier" {
                 $returnObject = foreach ( $vraId in $vraIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $vraId
                     Invoke-ZertoRestRequest -uri $uri

@@ -1,18 +1,22 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-#TODO - Add ability to installed with root password.
+#TODO - Add ability to installed with root password, Move to Begin, Process, End Format
 function Install-ZertoVra {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter( Mandatory = $true, HelpMessage = "Host name where the VRA is to be installed." )]
+        [ValidateNotNullOrEmpty()]
         [string]$hostName,
         [Parameter( Mandatory = $true, HelpMessage = "Datastore name where the VRA is to be installed." )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreName,
         [Parameter( Mandatory = $true, HelpMessage = "Network name the VRA is to be assigned." )]
+        [ValidateNotNullOrEmpty()]
         [string]$networkName,
         [Parameter( HelpMessage = "Initial amount of memory to assign to the VRA in GB. Default is 3, Minimum is 1, Maximum is 16" )]
         [ValidateRange(1, 16)]
         [int]$memoryInGB = 3,
         [Parameter( HelpMessage = "Bandwidth group to assign to the VRA. If unspecified will assign to the 'default_group'" )]
+        [ValidateNotNullOrEmpty()]
         [string]$groupName,
         [Parameter( ParameterSetName = "Dhcp", Mandatory = $true, HelpMessage = "Assign a DHCP address to the VRA." )]
         [switch]$Dhcp,

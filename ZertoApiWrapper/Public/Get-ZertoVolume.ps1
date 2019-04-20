@@ -6,29 +6,34 @@ function Get-ZertoVolume {
             ParameterSetName = "filter",
             HelpMessage = "The type of volume. Please see Zerto API Documentation for possible values."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$volumeType,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the VPG."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgId")]
         [string]$vpgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the datastore."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("datastoreId", "dsId")]
         [string]$datastoreIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the protected virtual machine."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("protectedVmId")]
         [string]$protectedVmIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the owning virtual machine."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("owningVmId")]
         [string]$owningVmIdentifier
     )

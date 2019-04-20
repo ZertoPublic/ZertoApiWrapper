@@ -14,12 +14,12 @@ Creates and returns a VPG Settings Identifier either for an existing VPG or a ne
 
 ### existingVpg
 ```
-New-ZertoVpgSettingsIdentifier -vpgIdentifier <String> [<CommonParameters>]
+New-ZertoVpgSettingsIdentifier -vpgIdentifier <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### newVpg
 ```
-New-ZertoVpgSettingsIdentifier [-newVpg] [<CommonParameters>]
+New-ZertoVpgSettingsIdentifier [-newVpg] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -72,6 +72,36 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

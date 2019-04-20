@@ -12,6 +12,7 @@ function Remove-ZertoPeerSite {
             ValueFromPipelineByPropertyName = $true,
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("siteId")]
         [string[]]$siteIdentifier,
         [Parameter(
@@ -21,6 +22,7 @@ function Remove-ZertoPeerSite {
             ValueFromPipelineByPropertyName = $true,
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$peerSiteName,
         [Parameter(
             HelpMessage = "IP address of the peer site to be removed from the connected site",

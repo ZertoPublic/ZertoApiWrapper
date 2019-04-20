@@ -6,6 +6,7 @@ function Set-ZertoLicense {
             Mandatory = $true,
             HelpMessage = "License Key to apply to the Zerto Virtual Manager"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$licenseKey
     )
 

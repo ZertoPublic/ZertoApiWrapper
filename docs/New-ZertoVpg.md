@@ -19,7 +19,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### recoveryClusterDatastore
@@ -29,7 +29,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### recoveryHostDatastoreCluster
@@ -39,7 +39,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### recoveryHostDatastore
@@ -49,7 +49,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### recoveryResourcePoolDatastoreCluster
@@ -59,7 +59,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### recoveryResourcePoolDatastore
@@ -69,7 +69,7 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [<CommonParameters>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -484,6 +484,36 @@ Name of ZORG to use.
 Type: String
 Parameter Sets: (All)
 Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
 
 Required: False
 Position: Named
