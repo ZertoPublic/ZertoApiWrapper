@@ -19,94 +19,94 @@ Get-ZertoVpgSetting [<CommonParameters>]
 
 ### volumeIdentifier
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> -vmIdentifier <String> -volumeIdentifier <String>
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> -vmIdentifier <String> -volumeIdentifier <String>
  [<CommonParameters>]
 ```
 
 ### volumes
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> -vmIdentifier <String> [-volumes] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> -vmIdentifier <String> [-volumes] [<CommonParameters>]
 ```
 
 ### nicIdentifier
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> -vmIdentifier <String> -nicIdentifier <String>
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> -vmIdentifier <String> -nicIdentifier <String>
  [<CommonParameters>]
 ```
 
 ### nics
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> -vmIdentifier <String> [-nics] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> -vmIdentifier <String> [-nics] [<CommonParameters>]
 ```
 
 ### vmIdentifier
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> -vmIdentifier <String> [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> -vmIdentifier <String> [<CommonParameters>]
 ```
 
 ### vms
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-vms] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-vms] [<CommonParameters>]
 ```
 
 ### scripting
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-scripting] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-scripting] [<CommonParameters>]
 ```
 
 ### recovery
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-rcovery] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-rcovery] [<CommonParameters>]
 ```
 
 ### priority
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-priority] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-priority] [<CommonParameters>]
 ```
 
 ### networks
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-networks] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-networks] [<CommonParameters>]
 ```
 
 ### journal
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-journal] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-journal] [<CommonParameters>]
 ```
 
 ### bootGroup
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-bootgroup] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-bootgroup] [<CommonParameters>]
 ```
 
 ### basic
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-basic] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-basic] [<CommonParameters>]
 ```
 
 ### schedulerPeriod
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-schedulerPeriod] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-schedulerPeriod] [<CommonParameters>]
 ```
 
 ### retentionPeriod
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-retentionPeriod] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-retentionPeriod] [<CommonParameters>]
 ```
 
 ### dayOfWeek
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-dayOfWeek] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-dayOfWeek] [<CommonParameters>]
 ```
 
 ### backup
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [-backup] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-backup] [<CommonParameters>]
 ```
 
 ### vpgSettingsIdentifier
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String> [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -412,31 +412,19 @@ Accept wildcard characters: False
 The identifier of the VPG settings object for which information is retrieved.
 
 ```yaml
-Type: String
-Parameter Sets: volumeIdentifier, volumes, nicIdentifier, nics, vmIdentifier, vms, scripting, recovery, priority, networks, journal, bootGroup
+Type: String[]
+Parameter Sets: volumeIdentifier, volumes, nicIdentifier, nics, vmIdentifier, vms, scripting, recovery, priority, networks, journal, bootGroup, basic, schedulerPeriod, retentionPeriod, dayOfWeek, backup, vpgSettingsIdentifier
 Aliases: vpgSettingsId, settingsId
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-```yaml
-Type: String
-Parameter Sets: basic, schedulerPeriod, retentionPeriod, dayOfWeek, backup, vpgSettingsIdentifier
-Aliases: vpgSettingsId, settingsId
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
