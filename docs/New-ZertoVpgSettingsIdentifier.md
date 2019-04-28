@@ -12,14 +12,14 @@ Creates and returns a VPG Settings Identifier either for an existing VPG or a ne
 
 ## SYNTAX
 
-### existingVpg
-```
-New-ZertoVpgSettingsIdentifier -vpgIdentifier <String> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### newVpg
+### newVpg (Default)
 ```
 New-ZertoVpgSettingsIdentifier [-newVpg] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### existingVpg
+```
+New-ZertoVpgSettingsIdentifier -vpgIdentifier <String[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -64,7 +64,7 @@ If a vpgIdentifier is not provided, a new VPG settings object is created without
 This would be used for creating a new VPG from scratch.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: existingVpg
 Aliases: vpgId
 
@@ -106,7 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
