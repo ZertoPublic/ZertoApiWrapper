@@ -164,7 +164,7 @@ Returns alerts for the specified helpIdentifier
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: helpId
 
 Required: False
 Position: Named
@@ -239,7 +239,7 @@ Returns alerts for the specified siteIdentifier
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: siteId
 
 Required: False
 Position: Named
@@ -270,7 +270,7 @@ Returns alerts for the specified vraIdentifier
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: vpgId
 
 Required: False
 Position: Named
@@ -285,7 +285,7 @@ Returns alerts for the specified zorgIdentifier
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: zorgId
 
 Required: False
 Position: Named
@@ -295,7 +295,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

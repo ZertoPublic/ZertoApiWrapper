@@ -1,5 +1,5 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-function Save-ZertoVpgSettings {
+function Save-ZertoVpgSetting {
     [cmdletbinding(
         SupportsShouldProcess = $true
     )]
@@ -10,6 +10,8 @@ function Save-ZertoVpgSettings {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("vpgSettingsId")]
         [string]$vpgSettingsIdentifier
     )
 

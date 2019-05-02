@@ -14,12 +14,12 @@ Exports a VPG Settings Object to a JSON file. This file can be used to re-import
 
 ### namedVpgs
 ```
-Export-ZertoVpg -outputFolder <String> [-vpgName <String[]>] [<CommonParameters>]
+Export-ZertoVpg -outputPath <String> -vpgName <String[]> [<CommonParameters>]
 ```
 
 ### allVpgs
 ```
-Export-ZertoVpg -outputFolder <String> [-allVpgs] [<CommonParameters>]
+Export-ZertoVpg -outputPath <String> [-allVpgs] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,14 +29,14 @@ Exports a VPG Settings Object to a JSON file. This file can be used to re-import
 
 ### Example 1
 ```powershell
-PS C:> Export-ZertoVpg -outputFolder "C:\ZertoVPGs" -vpgName "My Vpg", "My Other Vpg"
+PS C:> Export-ZertoVpg -outputPath "C:\ZertoVPGs" -vpgName "My Vpg", "My Other Vpg"
 ```
 
 Exports VPG settings for VPGs "My Vpg" and "My Other Vpg". Each settings object will be placed inside a JSON file at C:\ZertoVPGs\ with the name of the file being the name of the VPG.
 
 ### Example 2
 ```powershell
-PS C:> Export-ZertoVpg -outputFolder "C:\ZertoVPGs" -allVpgs
+PS C:> Export-ZertoVpg -outputPath "C:\ZertoVPGs" -allVpgs
 ```
 
 Exports VPG settings for all Vpgs replicated to or from this site. Each settings object will be placed inside a JSON file at C:\ZertoVPGs\ with the name of the file being the name of the VPG. If a VPG is in an un-editable state, it cannot be exported.
@@ -51,20 +51,20 @@ Type: SwitchParameter
 Parameter Sets: allVpgs
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -outputFolder
+### -outputPath
 Location where to dump the resulting JSON files containing the VPG Settings
 
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: outputFolder
 
 Required: True
 Position: Named
@@ -81,7 +81,7 @@ Type: String[]
 Parameter Sets: namedVpgs
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -89,7 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

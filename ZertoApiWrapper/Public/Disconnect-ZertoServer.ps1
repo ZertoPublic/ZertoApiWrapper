@@ -1,6 +1,7 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Disconnect-ZertoServer {
     [cmdletbinding()]
+    param()
     $uri = "session"
 
     # Delete API Authorization

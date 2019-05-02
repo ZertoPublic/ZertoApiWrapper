@@ -82,8 +82,7 @@ Accept wildcard characters: False
 ```
 
 ### -priority
-The priority specified for the VPG.
-Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'
+The priority specified for the VPG. Possible values are: 'Low', 'Medium', or 'High'
 
 ```yaml
 Type: String
@@ -103,7 +102,7 @@ The identifier of the protected site where the VPG virtual machines are protecte
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: protectedSiteId
 
 Required: False
 Position: Named
@@ -134,7 +133,7 @@ The identifier of the recovery site where the VPG virtual machines are recovered
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: recoverySiteId
 
 Required: False
 Position: Named
@@ -198,7 +197,7 @@ vmIdentifier(s) for which to return information
 ```yaml
 Type: String[]
 Parameter Sets: vmIdentifier
-Aliases:
+Aliases: vmId
 
 Required: True
 Position: Named
@@ -238,7 +237,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

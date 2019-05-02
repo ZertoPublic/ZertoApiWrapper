@@ -1,50 +1,53 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoMove {
-    [CmdletBinding()]
+    [CmdletBinding( DefaultParameterSetName = "main", SupportsShouldProcess = $true )]
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) you want to move.",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
-            HelpMessage = "The policy to use after the move enters a 'Before Commit' state. If omitted, the site settings default will be applied. Valid values are: '0' or 'Rollback', '1' or 'Commit', '2' or 'None'. Please see Zerto API Documentation for additional information."
+            HelpMessage = "'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+            'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+            'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+            Default is the Site Settings setting."
         )]
+        [ValidateSet("Rollback", "Commit", "None")]
         [string]$commitPolicy,
         [Parameter(
             HelpMessage = "The amount of time, in seconds, the Move is in a 'Before Commit' state, before performing the commitPolicy setting. If omitted, the site settings default will be applied."
         )]
-        [Int32]$commitPolicyTimeout,
+        # Min 5 Minutes, Max 24 Hours, Default 1 Hour.
+        [ValidateRange(300, 86400)]
+        [Int]$commitPolicyTimeout,
         [Parameter(
-            HelpMessage = "False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.
-            True: To force a shutdown of the virtual machines.
-            Default: True"
+            HelpMessage = "If this switch is specified, Zerto will attempt to gracefully shut down the Virtual Machines. If the machines do not poweroff within 5 minutes, they will be forcibly powering them off."
         )]
-        [bool]$forceShutdown,
+        [switch]$forceShutdown,
         [Parameter(
-            HelpMessage = "False: Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.
-            True: Enable reverse protection. The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.
-            Default Value: True
-            Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached."
+            ParameterSetName = "disableReverseProtection",
+            HelpMessage = "Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.",
+            Mandatory = $true
         )]
-        [bool]$reverseProtection = $false,
+        [switch]$disableReverseProtection,
         [Parameter(
-            HelpMessage = "False: Remove the protected virtual machines from the protected site.
-            True: Prevent the protected virtual machines from being deleted in the protected site.
-            Default: False"
+            ParameterSetName = "keepSourceVms",
+            HelpMessage = "Prevent the protected virtual machines from being deleted in the protected site. Using this setting disables reverse protection.",
+            Mandatory = $true
         )]
-        [bool]$keepSourceVms = $false,
+        [switch]$keepSourceVms,
         [Parameter(
-            HelpMessage = "False: Do not continue the Move operation in case of failure of script executing prior the operation.
-            True: Continue the Move operation in case of failure of script executing prior the operation.
-            Default: False"
+            HelpMessage = "Continue the Move operation in case of failure of script executing prior the operation. If this switch is not set a failure of the script executing prior to the operation will cause the operation to fail."
         )]
-        [bool]$continueOnPreScriptFailure
+        [switch]$ContinueOnPreScriptFailure
     )
 
     begin {
         $baseUri = "vpgs"
         $body = [ordered]@{}
+        #TODO - use a foreach loop to populate the body without all the if statments
         if ($PSBoundParameters.ContainsKey('commitPolicy')) {
             $body['commitPolicy'] = $commitPolicy
         }
@@ -52,24 +55,44 @@ function Invoke-ZertoMove {
             $body['commitPolicyTimeout'] = $commitPolicyTimeout
         }
         if ($PSBoundParameters.ContainsKey('forceShutdown')) {
-            $body['forceShutdown'] = $forceShutdown
+            $body['forceShutdown'] = $true
+        } else {
+            $body['forceShutdown'] = $false
         }
-        if ($PSBoundParameters.ContainsKey('reverseProtection')) {
-            $body['reverseProtection'] = $reverseProtection
+        if ($PSBoundParameters.ContainsKey('ContinueOnPreScriptFailure')) {
+            $body['ContinueOnPreScriptFailure'] = $true
+        } else {
+            $body['ContinueOnPreScriptFailure'] = $false
         }
-        if ($PSBoundParameters.ContainsKey('keepSourceVms')) {
-            $body['keepSourceVms'] = $keepSourceVms
-        }
-        if ($PSBoundParameters.ContainsKey('continueOnPreScriptFail')) {
-            $body['continueOnPreScriptFail'] = $continueOnPreScriptFailure
+        switch ($PSCmdlet.ParameterSetName) {
+            "disableReverseProtection" {
+                $body['reverseProtection'] = $false
+                $body['keepSourceVms'] = $false
+            }
+
+            "keepSourceVms" {
+                $body['reverseProtection'] = $false
+                $body['keepSourceVms'] = $true
+            }
+
+            "main" {
+                $body['reverseProtection'] = $true
+                $body['keepSourceVms'] = $false
+            }
         }
     }
 
     process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
-            $uri = "{0}/{1}/move" -f $baseUri, $vpgId
-            Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+            if ( -not $vpgId ) {
+                Write-Error "VPG: $name not found. Please check the name and try again. Skipping"
+            } else {
+                $uri = "{0}/{1}/move" -f $baseUri, $vpgId
+                if ($PSCmdlet.ShouldProcess("Moving VPG: $name wiht settings: $($body | convertto-json)")) {
+                    Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
+                }
+            }
         }
     }
 

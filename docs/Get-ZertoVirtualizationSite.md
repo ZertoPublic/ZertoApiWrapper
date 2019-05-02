@@ -8,7 +8,8 @@ schema: 2.0.0
 # Get-ZertoVirtualizationSite
 
 ## SYNOPSIS
-{{Fill in the Synopsis}}
+
+Returns information about the hypervisor site where the API is run and all the sites paired with this site. The information returned can be tailored to specific information about the resources managed at a specified site.
 
 ## SYNTAX
 
@@ -68,16 +69,38 @@ Get-ZertoVirtualizationSite -siteIdentifier <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+
+Returns information about the hypervisor site where the API is run and all the sites paired with this site. The information returned can be tailored to specific information about the resources managed at a specified site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier"
 ```
 
-{{ Add example description here }}
+Returns information about the site with identifier "MySiteIdentifier"
+
+### Example 2
+```powershell
+PS C:\> Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier" -datastoreClusters
+```
+
+Returns information about datastore clusters at site with site identifier "MySiteidentifier"
+
+### Example 3
+```powershell
+PS C:\> Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier" -datastores
+```
+
+Returns information about datastores at site with site identifier "MySiteidentifier"
+
+### Example 4
+```powershell
+PS C:\> Get-ZertoVirtualizationSite -siteIdentifier "MySiteIdentifier" -devices
+```
+
+Returns information about devices at site with site identifier "MySiteidentifier"
 
 ## PARAMETERS
 
@@ -162,7 +185,7 @@ The identifier of the host at the selected site to return information for only o
 ```yaml
 Type: String
 Parameter Sets: devices, hosts
-Aliases:
+Aliases: hostId
 
 Required: False
 Position: Named
@@ -223,7 +246,7 @@ The identifier of the Zerto Virtual Manager site.
 ```yaml
 Type: String
 Parameter Sets: folders, devices, vms, resourcePools, networks, hosts, hostClusters, datastores, datastoreClusters, siteIdentifier
-Aliases:
+Aliases: siteId
 
 Required: True
 Position: Named
@@ -248,7 +271,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

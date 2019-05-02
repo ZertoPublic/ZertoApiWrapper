@@ -47,7 +47,7 @@ The service profile ID for which information should be returned.
 ```yaml
 Type: String[]
 Parameter Sets: serviceProfileId
-Aliases:
+Aliases: serviceProfileIdentifier
 
 Required: False
 Position: Named
@@ -62,7 +62,7 @@ The identifier of the site for which service profiles should be returned.
 ```yaml
 Type: String
 Parameter Sets: siteIdentifier
-Aliases:
+Aliases: siteId
 
 Required: False
 Position: Named
@@ -72,7 +72,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

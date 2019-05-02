@@ -15,6 +15,8 @@ function Get-ZertoPeerSite {
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "The identifier(s) of the peer site(s) for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("siteId")]
         [string[]]$siteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
@@ -25,27 +27,30 @@ function Get-ZertoPeerSite {
             ParameterSetName = "filter",
             HelpMessage = "The pairing status for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$paringStatus,
         [Parameter (
             ParameterSetName = "filter",
             HelpMessage = "The site location, as specified in the site information, for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$location,
         [Parameter (
             ParameterSetName = "filter",
             HelpMessage = "The IP address of a Zerto Virtual Manager, paired with this site, for which information is to be returned."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$hostName,
         [Parameter (
             ParameterSetName = "filter",
             HelpMessage = "The port used to access peer sites for which information is to be returned. The default port is 9081."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$port
     )
 
     begin {
         $baseUri = "peersites"
-        $returnObject = [System.Collections.ArrayList]@()
     }
 
     process {
@@ -53,14 +58,14 @@ function Get-ZertoPeerSite {
             "main" {
                 $uri = "{0}" -f $baseUri
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                return $results
             }
 
             "siteIdentifier" {
                 foreach ( $id in $siteIdentifier ) {
                     $uri = "{0}/{1}" -f $baseUri, $id
                     $results = Invoke-ZertoRestRequest -uri $uri
-                    $returnObject.Add($results) | Out-Null
+                    return $results
                 }
             }
 
@@ -68,18 +73,18 @@ function Get-ZertoPeerSite {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                return $results
             }
 
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName.ToLower()
                 $results = Invoke-ZertoRestRequest -uri $uri
-                $returnObject.Add($results) | Out-Null
+                return $results
             }
         }
     }
 
     end {
-        return $returnObject
+        #Nothing to do!
     }
 }

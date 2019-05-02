@@ -13,7 +13,7 @@ Commit a running VPG failover
 ## SYNTAX
 
 ```
-Invoke-ZertoFailoverCommit [-vpgName] <String[]> [-reverseProtect] [<CommonParameters>]
+Invoke-ZertoFailoverCommit [-vpgName] <String[]> [-reverseProtection] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,14 +30,14 @@ Commits VPG "MyVpg" without reverse protection
 
 ### Example 1
 ```powershell
-PS C:\> Invoke-ZertoFailoverCommit -vpgName "MyVpg" -reverseProtect
+PS C:\> Invoke-ZertoFailoverCommit -vpgName "MyVpg" -reverseProtection
 ```
 
 Commits a VPG with reverse protection
 
 ## PARAMETERS
 
-### -reverseProtect
+### -reverseProtection
 Use this switch to reverse protect the VPG(s) to the source site.
 
 ```yaml
@@ -68,7 +68,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

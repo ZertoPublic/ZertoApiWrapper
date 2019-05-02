@@ -1,11 +1,11 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSettings.md
+online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSetting.md
 schema: 2.0.0
 ---
 
-# Save-ZertoVpgSettings
+# Save-ZertoVpgSetting
 
 ## SYNOPSIS
 Commits the updated Vpg Settings with the configured Vpg Settings Identifier
@@ -13,7 +13,7 @@ Commits the updated Vpg Settings with the configured Vpg Settings Identifier
 ## SYNTAX
 
 ```
-Save-ZertoVpgSettings [-vpgSettingsIdentifier] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Save-ZertoVpgSetting [-vpgSettingsIdentifier] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,7 +23,7 @@ Commits the updated Vpg Settings with the configured Vpg Settings Identifier
 
 ### Example 1
 ```powershell
-PS C:> Save-ZertoVpgSettings -vpgSettingsIdentifier "MyVpgSettingsIdentifier"
+PS C:> Save-ZertoVpgSetting -vpgSettingsIdentifier "MyVpgSettingsIdentifier"
 ```
 
 Commits vpg settings with vpg settings identifier "MyVpgSettingsIdentifier"
@@ -36,10 +36,10 @@ VpgSettings Identifier to save
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: vpgSettingsId
 
 Required: True
-Position: 0
+Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
@@ -77,7 +77,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

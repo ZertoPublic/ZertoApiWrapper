@@ -9,6 +9,7 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "vpgSettingsIdentifier",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
@@ -16,6 +17,7 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "backup",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
@@ -23,6 +25,7 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "dayOfWeek",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
@@ -30,6 +33,7 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "retentionPeriod",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
@@ -37,6 +41,7 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "schedulerPeriod",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
@@ -44,12 +49,14 @@ function Get-ZertoVpgSetting {
             ParameterSetName = "basic",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
             ParameterSetName = "bootGroup",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -57,6 +64,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "journal",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -64,6 +72,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "networks",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -71,6 +80,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "priority",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -78,6 +88,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "recovery",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -85,6 +96,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "scripting",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -92,6 +104,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "vms",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -99,6 +112,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "vmIdentifier",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -106,6 +120,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "nics",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -113,6 +128,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "nicIdentifier",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -120,6 +136,7 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "volumes",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
@@ -127,11 +144,14 @@ function Get-ZertoVpgSetting {
         [Parameter(
             ParameterSetName = "volumeIdentifier",
             ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
-        [string]$vpgSettingsIdentifier,
+        [ValidateNotNullOrEmpty()]
+        [Alias("vpgSettingsId", "settingsId")]
+        [string[]]$vpgSettingsIdentifier,
         [Parameter(
             ParameterSetName = "backup",
             Mandatory = $true,
@@ -229,6 +249,8 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "VM Identifier"
         )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("vmId")]
         [string]$vmIdentifier,
         [Parameter(
             ParameterSetName = "nics",
@@ -241,6 +263,8 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "Return NIC information for specified NIC of the specified VM"
         )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("nicId")]
         [string]$nicIdentifier,
         [Parameter(
             ParameterSetName = "volumes",
@@ -253,43 +277,105 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "Return volume information for the specified volume of the specified VM"
         )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("volumeId")]
         [string]$volumeIdentifier
     )
 
     begin {
         $baseUri = "vpgSettings"
-        $returnObject = @()
     }
 
-    #TODO - Update to Switch Logic
     process {
-        if ( $PSCmdlet.ParameterSetName -eq "main" ) {
-            $returnObject = Invoke-ZertoRestRequest -uri $baseUri
-        } elseif ($PSCmdlet.ParameterSetName -eq "vpgSettingsIdentifier") {
-            $uri = "{0}/{1}" -f $baseUri, $vpgSettingsIdentifier
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
-        } elseif ( $PSCmdlet.ParameterSetName -eq "dayOfWeek" -or $PSCmdlet.ParameterSetName -eq "retentionPeriod" -or $PSCmdlet.ParameterSetName -eq "schedulerPeriod"  ) {
-            $uri = "{0}/{1}/backup/{2}" -f $baseUri, $vpgSettingsIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
-        } elseif ( $PSCmdlet.ParameterSetName -eq "nics" -or $PSCmdlet.ParameterSetName -eq "volumes" ) {
-            $uri = "{0}/{1}/vms/{2}/{3}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
-        } elseif ( $PSCmdlet.ParameterSetName -eq "vmIdentifier" ) {
-            $uri = "{0}/{1}/vms/{2}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
-        } elseif ( $PSCmdlet.ParameterSetName -eq "nicIdentifier" ) {
-            $uri = "{0}/{1}/vms/{2}/nics/{3}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier, $nicIdentifier
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
-        } elseif ( $PSCmdlet.ParameterSetName -eq "volumeIdentifier" ) {
-            $uri = "{0}/{1}/vms/{2}/volumes/{3}" -f $baseUri, $vpgSettingsIdentifier, $vmIdentifier, $volumeIdentifier
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
-        } else {
-            $uri = "{0}/{1}/{2}" -f $baseUri, $vpgSettingsIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-            $returnObject = Invoke-ZertoRestRequest -uri $uri
+        switch ( $PSCmdlet.ParameterSetName ) {
+            "main" {
+                Invoke-ZertoRestRequest -uri $baseUri
+                break
+            }
+
+            "vpgSettingsIdentifier" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}" -f $baseUri, $id
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "dayOfWeek" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/backup/{2}" -f $baseUri, $id, $PSCmdlet.ParameterSetName.ToLower()
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "retentionPeriod" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/backup/{2}" -f $baseUri, $id, $PSCmdlet.ParameterSetName.ToLower()
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "schedulerPeriod" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/backup/{2}" -f $baseUri, $id, $PSCmdlet.ParameterSetName.ToLower()
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "nics" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/vms/{2}/{3}" -f $baseUri, $id, $vmIdentifier, $PSCmdlet.ParameterSetName.ToLower()
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "volumes" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/vms/{2}/{3}" -f $baseUri, $id, $vmIdentifier, $PSCmdlet.ParameterSetName.ToLower()
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "vmIdentifier" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/vms/{2}" -f $baseUri, $id, $vmIdentifier
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "nicIdentifier" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/vms/{2}/nics/{3}" -f $baseUri, $id, $vmIdentifier, $nicIdentifier
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            "volumeIdentifier" {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/vms/{2}/volumes/{3}" -f $baseUri, $id, $vmIdentifier, $volumeIdentifier
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
+
+            default {
+                foreach ($id in $vpgSettingsIdentifier) {
+                    $uri = "{0}/{1}/{2}" -f $baseUri, $id, $PSCmdlet.ParameterSetName.ToLower()
+                    Invoke-ZertoRestRequest -uri $uri
+                }
+                break
+            }
         }
     }
 
     end {
-        return $returnObject
+        #Nothing to do!
     }
 }

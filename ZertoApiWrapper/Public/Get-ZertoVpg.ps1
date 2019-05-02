@@ -17,6 +17,8 @@ function Get-ZertoVpg {
             Mandatory = $true,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("vpgId", "protectionGroupId", "pgId")]
         [string[]]$protectionGroupIdentifier,
         [Parameter(
             ParameterSetName = "checkpoints",
@@ -28,11 +30,13 @@ function Get-ZertoVpg {
             ParameterSetName = "checkpoints",
             HelpMessage = "Return checkpoints after the specified start date. Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'. Adding Z to the end of the time sets the time to UTC."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$startDate,
         [Parameter(
             ParameterSetName = "checkpoints",
             HelpMessage = "Return checkpoints before the specified start date. Valid formats include: 'yyyy-MM-ddTHH:mm:ss.fffZ', 'yyyy-MM-ddTHH:mm:ssZ', 'yyyy-MM-ddTHH:mmZ', 'yyyy-MM-ddTHHZ', 'yyyy-MM-dd', 'yyyy-MM', 'yyyy'. Adding Z to the end of the time sets the time to UTC."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$endDate,
         [Parameter(
             ParameterSetName = "stats", Mandatory = $true,
@@ -85,57 +89,68 @@ function Get-ZertoVpg {
             ParameterSetName = "filter",
             HelpMessage = "The name of the VPG."
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("vpgName")]
         [string]$name,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The status of the VPG. Please use 'Get-ZertoVpg -statuses' for valid values"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$status,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The substatus of the VPG. Please use 'Get-ZertoVpg -substatuses' for valid values"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$subStatus,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The protected site environment. This filter behaves in the same way as the sourceType filter. Please see Zerto API Documentation for vaild values and discriptions."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$protectedSiteType,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The recovery site environment. This filter behaves in the same way as the sourceType filter. Please see Zerto API Documentation for vaild values and discriptions."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoverySiteType,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the protected site where the VPG virtual machines are protected."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$protectedSiteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the protected site where the VPG virtual machines are recovered."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$recoverySiteIdentifier,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The ZORG for this VPG."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$organizationName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The internal identifier for the ZORG."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$zorgIdentifier,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The VPG priority. Possible values are: '0' or 'Low', '1' or 'Medium', '2' or 'High'"
+            HelpMessage = "The VPG priority. Possible values are: 'Low', 'Medium', 'High'"
         )]
+        [ValidateSet("Low", "Medium", "High")]
         [string]$priority,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the service profile to use for the VPG when a Zerto Cloud Manager is used."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$serviceProfileIdentifier,
         [Parameter(
             ParameterSetName = "filter",
@@ -171,9 +186,9 @@ function Get-ZertoVpg {
                 if ( $PSBoundParameters.ContainsKey("startDate") -or $PSBoundParameters.ContainsKey("endDate") ) {
                     $filter = $true
                     $filterTable = @{}
-                    foreach ( $key in $PSBoundParameters.Keys ) {
-                        if ( $key -eq "startDate" -or $key -eq "endDate") {
-                            $filterTable[$key] = $PSBoundParameters[$key]
+                    foreach ( $param in $PSBoundParameters.GetEnumerator() ) {
+                        if ( $param.key -eq "startDate" -or $param.key -eq "endDate") {
+                            $filterTable[$param.key] = $param.value
                         }
                     }
                     $filter = Get-ZertoApiFilter -filterTable $filterTable

@@ -81,7 +81,7 @@ The internal alert identifier for the Event
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: alertId
 
 Required: False
 Position: Named
@@ -106,9 +106,7 @@ Accept wildcard characters: False
 ```
 
 ### -category
-The type of event to return.
-This filter behaves in the same way as the eventCategory filter.
-Possible Values are: Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'
+The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'
 
 ```yaml
 Type: String
@@ -155,8 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -entityType
-The type of entity for which you wish to return results.
-Possible Values are: '0' or 'VPG', '1' or 'VRA', '2' or 'Unknown', or '3' or 'Site'
+The type of entity for which you wish to return results. Possible Values are: 'VPG', 'VRA', 'Unknown', or 'Site'
 
 ```yaml
 Type: String
@@ -171,10 +168,7 @@ Accept wildcard characters: False
 ```
 
 ### -eventCategory
-This filter behaves in the same way as the category filter.
-If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored.
-The type of event to return.
-Possible Values are: '0' or 'All', '1' or 'Events', '2' or 'Alerts'
+This filter behaves in the same way as the category filter. If both category and eventCategory filters are specified, only the category filter value is used and the eventCategory filter value is ignored. The type of event to return. Possible Values are: 'All', 'Events', 'Alerts'
 
 ```yaml
 Type: String
@@ -226,7 +220,7 @@ The internal site identifier for which you want to return events.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: siteId
 
 Required: False
 Position: Named
@@ -304,7 +298,7 @@ The name of the VPG for which you want to return events.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: vpgName
 
 Required: False
 Position: Named
@@ -319,7 +313,7 @@ The identifier of the VPG for which you want to return events.
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: vpgId
 
 Required: False
 Position: Named
@@ -334,7 +328,7 @@ The identifier of the ZORG, Zerto organization, defined in the Zerto Cloud Manag
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases:
+Aliases: zorgId
 
 Required: False
 Position: Named
@@ -344,7 +338,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

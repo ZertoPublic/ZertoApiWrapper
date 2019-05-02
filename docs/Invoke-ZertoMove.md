@@ -12,10 +12,23 @@ Start a move of a VPG.
 
 ## SYNTAX
 
+### main (Default)
 ```
 Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolicyTimeout] <Int32>]
- [[-forceShutdown] <Boolean>] [[-reverseProtection] <Boolean>] [[-keepSourceVms] <Boolean>]
- [[-continueOnPreScriptFailure] <Boolean>] [<CommonParameters>]
+ [-forceShutdown] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### disableReverseProtection
+```
+Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolicyTimeout] <Int32>]
+ [-forceShutdown] [-disableReverseProtection] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### keepSourceVms
+```
+Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolicyTimeout] <Int32>]
+ [-forceShutdown] [-keepSourceVms] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,10 +46,13 @@ Starts a move operation of VPG "MyVpg"
 ## PARAMETERS
 
 ### -commitPolicy
-The policy to use after the move enters a 'Before Commit' state.
-If omitted, the site settings default will be applied.
-Valid values are: '0' or 'Rollback', '1' or 'Commit', '2' or 'None'.
-Please see Zerto API Documentation for additional information.
+'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+
+'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+
+'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+
+Default is the Site Settings setting.
 
 ```yaml
 Type: String
@@ -66,15 +82,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -continueOnPreScriptFailure
-False: Do not continue the Move operation in case of failure of script executing prior the operation.
-
-True: Continue the Move operation in case of failure of script executing prior the operation.
-
-Default: False
+### -ContinueOnPreScriptFailure
+Use this switch to continue the Move operation even if the Pre-Script fails to run properly.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -85,15 +97,26 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -forceShutdown
-False: If a utility (VMware Tools) is installed on the protected virtual machines, the procedure waits five minutes for the virtual machines to be gracefully shut down before forcibly powering them off.
-
-True: To force a shutdown of the virtual machines.
-
-Default: True
+### -disableReverseProtection
+Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.
 
 ```yaml
-Type: Boolean
+Type: SwitchParameter
+Parameter Sets: disableReverseProtection
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -forceShutdown
+By default all virtual machines will attempt to be gracefully shutdown. If a source VM is not running VMware tools or cannot be gracefully shutdown, use this switch to force shutdown the source VMs.
+
+```yaml
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
@@ -105,42 +128,15 @@ Accept wildcard characters: False
 ```
 
 ### -keepSourceVms
-False: Remove the protected virtual machines from the protected site.
-
-True: Prevent the protected virtual machines from being deleted in the protected site.
-
-Default: False
+Use this switch to Prevent the protected virtual machines from being deleted in the protected site. Reverse protection is not automatic with this selection and should reverse protection be required, must be manually configured post commit.
 
 ```yaml
-Type: Boolean
-Parameter Sets: (All)
+Type: SwitchParameter
+Parameter Sets: keepSourceVms
 Aliases:
 
-Required: False
+Required: True
 Position: 5
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -reverseProtection
-False: Do not enable reverse protection.
-The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.
-
-True: Enable reverse protection.
-The virtual machines are recovered on the recovery site and then protected using the default reverse protection settings.
-
-Default Value: True
-
-Note: If ReverseProtection is set to True, the KeepSourceVMs should be ignored because the virtual disks of the VMs are used for replication and cannot have VMs attached.
-
-```yaml
-Type: Boolean
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -161,8 +157,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

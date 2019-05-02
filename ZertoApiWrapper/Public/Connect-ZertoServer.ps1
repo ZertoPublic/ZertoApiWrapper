@@ -1,23 +1,27 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Connect-ZertoServer {
     [cmdletbinding()]
+    [OutputType([hashtable])]
     param(
         [Parameter(
             Mandatory = $true,
             HelpMessage = "IP address or FQDN of your Zerto Management Server"
         )]
         [ValidateNotNullOrEmpty()]
+        [Alias("server", "zvm")]
         [string]$zertoServer,
         [Parameter(
             HelpMessage = "Zerto Virtual Manager management port. Default value is 9669."
         )]
+        [ValidateNotNullOrEmpty()]
+        [ValidateRange(1024, 65535)]
+        [Alias("port")]
         [string]$zertoPort = "9669",
         [Parameter(
             Mandatory = $true,
             HelpMessage = "Valid credentials to connect to the Zerto Management Server"
         )]
-        [System.Management.Automation.PSCredential]
-        $credential,
+        [System.Management.Automation.PSCredential]$credential,
         [switch]$returnHeaders
     )
 
@@ -35,7 +39,7 @@ function Connect-ZertoServer {
 
     process {
         # Send authorization request to the function and send back the results including headers
-        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST
+        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST -ErrorAction Stop
     }
 
     end {

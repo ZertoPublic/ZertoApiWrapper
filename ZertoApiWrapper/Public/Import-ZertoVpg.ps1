@@ -1,3 +1,4 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Import-ZertoVpg {
     [cmdletbinding()]
     param(
@@ -7,6 +8,7 @@ function Import-ZertoVpg {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [Alias("FullName")]
         [string[]]$settingsFile
     )
@@ -23,7 +25,7 @@ function Import-ZertoVpg {
             $importedSettings.VpgSettingsIdentifier = $vpgSettingsIdentifier
             $uri = "{0}/{1}" -f $baseUri, $vpgSettingsIdentifier
             Invoke-ZertoRestRequest -uri $uri -method "PUT" -body $($importedSettings | convertto-json -Depth 10)
-            $vpgSettingsIdentifier | Save-ZertoVpgSettings
+            $vpgSettingsIdentifier | Save-ZertoVpgSetting
             if ($settingsFile.Count -gt 1) {
                 Start-Sleep 5
             }

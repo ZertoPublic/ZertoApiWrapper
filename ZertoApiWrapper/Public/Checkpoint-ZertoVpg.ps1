@@ -6,11 +6,13 @@ function Checkpoint-ZertoVpg {
             Mandatory = $true,
             HelpMessage = "Name of the VPG to tag."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgName,
         [Parameter(
             Mandatory = $true,
             HelpMessage = "Text to tag the checkpoint with."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$checkpointName
     )
 

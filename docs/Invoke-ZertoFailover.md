@@ -14,8 +14,8 @@ Start a failover of a VPG
 
 ```
 Invoke-ZertoFailover [-vpgName] <String> [[-checkpointIdentifier] <String>] [[-commitPolicy] <String>]
- [[-commitValue] <String>] [[-shutdownPolicy] <Int32>] [[-timeToWaitBeforeShutdownInSec] <Int64>]
- [[-reverseProtection] <Boolean>] [[-vmName] <String[]>] [<CommonParameters>]
+ [[-shutdownPolicy] <Int32>] [[-timeToWaitBeforeShutdownInSec] <Int32>] [[-reverseProtection] <Boolean>]
+ [[-vmName] <String[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,6 +30,13 @@ PS C:\> Invoke-ZertoFailover -vpgName "MyVpg"
 
 Start a failover of VPG "MyVpg" with the latest checkpoint and site default policies.
 
+### Example 2
+```powershell
+PS C:\> Invoke-ZertoFailover -vpgName "MyVpg" -shutdownPolicy 2 -reverseProtection $false -commitPolicy 'Commit' -timeToWaitBeforeShutdownInSec 7200
+```
+
+Start a failover of VPG "MyVpg" with the latest checkpoint. VMs will attempt to be gracefully shutdown and if unsuccessful will be forcibly powered off. After 2 hours, if the VPG has not been committed or rolled back, the VPG will auto commit. Reverse protection will not be enabled.
+
 ## PARAMETERS
 
 ### -checkpointIdentifier
@@ -38,7 +45,7 @@ Checkpoint Identifier to use as the Point-In-Time to rollback to.
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: checkpointId
 
 Required: False
 Position: 1
@@ -48,11 +55,11 @@ Accept wildcard characters: False
 ```
 
 ### -commitPolicy
-0: After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
+'Rollback': After the seconds specified in the commitValue setting have elapsed, the failover is rolled back.
 
-1: After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
+'Commit': After the seconds specified in the commitValue setting have elapsed, the failover continues, committing the virtual machines in the recovery site.
 
-2: The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
+'None': The virtual machines in the VPG being failed over remain in the Before Commit state until either they are committed with Commit a failover, or rolled back with Roll back a failover.
 
 Default is the Site Settings setting.
 
@@ -63,22 +70,6 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -commitValue
-The amount of time in seconds the failover waits in a Before Commit state to enable checking that the failover is as required before performing the commitPolicy setting.
-Default is the Site Setting
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -128,10 +119,10 @@ Accept wildcard characters: False
 ```
 
 ### -timeToWaitBeforeShutdownInSec
-Time, in seconds, before VMs are forcibly turned off if the Force Shutdown option is seclected after attempting to gracefully shut down the VMs
+Time, in seconds, before the commitPolicy is invoked. Default setting is 3600 seconds (60 Minutes). Min value is 300 seconds (5 minutes). Max Value is 86,400 seconds (24 Hours).
 
 ```yaml
-Type: Int64
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
@@ -143,7 +134,7 @@ Accept wildcard characters: False
 ```
 
 ### -vmName
-Name(s) of VMs in the
+Name(s) of VMs in the VPG to failover
 
 ```yaml
 Type: String[]
@@ -172,8 +163,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: cf
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs. The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

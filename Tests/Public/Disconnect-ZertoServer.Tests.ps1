@@ -1,23 +1,37 @@
-$moduleFileName = "ZertoApiWrapper.psm1"
-$filePath = (Split-Path -Parent $MyInvocation.MyCommand.Path) -replace 'Tests', 'ZertoApiWrapper'
-$fileName = (Split-Path -Leaf $MyInvocation.MyCommand.Path ) -replace '.Tests.', '.'
-$commandName = $fileName -replace '.ps1', ''
-$modulePath = $filePath -replace "Public", ""
-Import-Module $modulePath\$moduleFileName -Force
+#Requires -Modules Pester
+$moduleFileName = "ZertoApiWrapper.psd1"
+$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
+$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
+$file = Get-ChildItem "$here\$sut"
+$modulePath = $here -replace "Public", ""
+$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
+Get-Module -Name ZertoApiWrapper | Remove-Module -Force
+Import-Module $moduleFile -Force
 
-$userName = "zerto\build"
-$password = ConvertTo-SecureString -String "ZertoBuild" -AsPlainText -Force
-$credential = New-Object -TypeName System.Management.Automation.PSCredential($userName, $password)
-
-# $credential = Import-Clixml -Path C:\ZertoScripts\Creds.xml
-$zertoServer = "192.168.1.100"
-$zertoPort = "7669"
-
-Describe "$commandName" {
-    it "file should exist" {
-        "$filePath\$fileName" | should exist
+Describe $file.BaseName -Tag 'Unit' {
+    Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
+        $null
     }
-    it "module should have a function called $commandName" {
-        get-command $commandName | should be $true
+    Mock -ModuleName ZertoApiWrapper -CommandName Remove-Variable {
+
+    }
+
+    It "is valid Powershell (Has no script errors)" {
+        $contents = Get-Content -Path $file -ErrorAction Stop
+        $errors = $null
+        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
+        $errors | Should -HaveCount 0
+    }
+
+    Context "$($file.BaseName)::Parameter Unit Tests" {
+        it "Does not take any parameters" {
+            (get-command disconnect-zertoserver).parameters.count | Should -BeExactly 11
+        }
+    }
+
+    Context "$($file.BaseName)::Function Unit Tests" {
+        it "Does not return anything" {
+            Disconnect-ZertoServer | Should -BeNullOrEmpty
+        }
     }
 }
