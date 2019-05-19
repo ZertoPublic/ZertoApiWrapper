@@ -19,7 +19,7 @@ function Invoke-ZertoMove {
         [Parameter(
             HelpMessage = "The amount of time, in seconds, the Move is in a 'Before Commit' state, before performing the commitPolicy setting. If omitted, the site settings default will be applied."
         )]
-        # Min 5 Minutes, Max 24 Hours, Default 1 Hour.
+        # Min 5 Minutes, Max 24 Hours, Default Site Settigns.
         [ValidateRange(300, 86400)]
         [Int]$commitPolicyTimeout,
         [Parameter(
@@ -46,7 +46,10 @@ function Invoke-ZertoMove {
 
     begin {
         $baseUri = "vpgs"
-        $body = [ordered]@{}
+    }
+
+    process {
+        $body = @{ }
         #TODO - use a foreach loop to populate the body without all the if statments
         if ($PSBoundParameters.ContainsKey('commitPolicy')) {
             $body['commitPolicy'] = $commitPolicy
@@ -80,9 +83,6 @@ function Invoke-ZertoMove {
                 $body['keepSourceVms'] = $false
             }
         }
-    }
-
-    process {
         foreach ($name in $vpgName) {
             $vpgId = $(Get-ZertoVpg -name $name).vpgIdentifier
             if ( -not $vpgId ) {
