@@ -16,4 +16,13 @@ Describe $file.BaseName -Tag 'Unit' {
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
         $errors | Should -HaveCount 0
     }
+
+    Context "$($file.BaseName)::Parameter Unit Tests" {
+
+        it "has a mandatory string parameter for the vpgName" {
+            Get-Command $file.BaseName | Should -HaveParameter vpgName
+            Get-Command $file.BaseName | Should -HaveParameter vpgName -Type string[]
+            Get-Command $file.BaseName | Should -HaveParameter vpgName -Mandatory
+        }
+    }
 }
