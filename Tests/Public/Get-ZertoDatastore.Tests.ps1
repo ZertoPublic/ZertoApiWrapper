@@ -16,4 +16,9 @@ Describe $file.BaseName -Tag 'Unit' {
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
         $errors | Should -HaveCount 0
     }
+
+    It "has a non-mandatory string parameter for the datacenterIdentifier" {
+        Get-Command $file.BaseName | Should -HaveParameter datastoreIdentifier
+        Get-Command $file.BaseName | Should -HaveParameter datastoreIdentifier -Type String[]
+    }
 }
