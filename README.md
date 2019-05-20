@@ -5,7 +5,7 @@ PowerShell Core wrapper for Zerto Virtual Manager API
 ## Current Build Status
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e31e5cdad534271ac688a82cc3ca17d)](https://app.codacy.com/app/wcarroll/ZertoApiWrapper?utm_source=github.com&utm_medium=referral&utm_content=wcarroll/ZertoApiWrapper&utm_campaign=Badge_Grade_Settings)
-[![Build Status](https://dev.azure.com/wescarroll/ZertoApiWrapper/_apis/build/status/wcarroll.ZertoApiWrapper?branchName=master)](https://dev.azure.com/wescarroll/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_apis/build/status/ZertoPublic.ZertoApiWrapper?branchName=master)](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
 
 ## Legal Disclaimer
 
