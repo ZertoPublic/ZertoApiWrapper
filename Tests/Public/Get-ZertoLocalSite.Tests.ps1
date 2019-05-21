@@ -16,4 +16,12 @@ Describe $file.BaseName -Tag 'Unit' {
         $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
         $errors | Should -HaveCount 0
     }
+
+    Context "$($file.BaseName)::Parameter Unit Tests" {
+
+        it "Has a non-mandatory switch parameter for the pairing Statuses" {
+            Get-Command $file.BaseName | Should -HaveParameter pairingstatuses
+            Get-Command $file.BaseName | Should -HaveParameter pairingstatuses -Type switch
+        }
+    }
 }
