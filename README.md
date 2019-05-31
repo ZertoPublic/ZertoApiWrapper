@@ -54,8 +54,8 @@ If you are using this as part of a larger script, I highly suggest explicitly en
 
 ## Recent Updates
 
-- March 15th, 2019: Implement Export and Import Functionality. Please See [Export-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Export-ZertoVpg.md) and [Import-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Import-ZertoVpg.md) for assistance. No current pre-seed support.
-- March 11th, 2019: Create basic VPG completed. Please see [New-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md)
+- March 15th, 2019: Implement Export and Import Functionality. Please See [Export-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Export-ZertoVpg.md) and [Import-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Import-ZertoVpg.md) for assistance. No current pre-seed support.
+- March 11th, 2019: Create basic VPG completed. Please see [New-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md)
 
 ## TODO
 

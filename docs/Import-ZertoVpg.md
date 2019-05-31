@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/Import-ZertoVpg.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/Master/docs/Import-ZertoVpg.md
 schema: 2.0.0
 ---
 

@@ -150,7 +150,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Add-ZertoPeerSite.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Add-ZertoPeerSite.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Peer Site End Point Documentation</maml:linkText>
@@ -262,7 +262,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Checkpoint-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Checkpoint-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -421,7 +421,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Connect-ZertoServer.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Connect-ZertoServer.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Session End Point Documentation</maml:linkText>
@@ -492,7 +492,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Disconnect-ZertoServer.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Disconnect-ZertoServer.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Session End Point Documentation</maml:linkText>
@@ -746,7 +746,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
@@ -903,7 +903,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/Export-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/Master/docs/Export-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
@@ -1325,7 +1325,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoAlert.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoAlert.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Alerts End Point Documentation</maml:linkText>
@@ -1420,7 +1420,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoDatastore.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoDatastore.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Datastore Information End Point Documentation</maml:linkText>
@@ -1916,7 +1916,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoEvent.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoEvent.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Events End Point Documentation</maml:linkText>
@@ -1979,7 +1979,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoLicense.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoLicense.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API License Information</maml:linkText>
@@ -2066,7 +2066,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoLocalSite.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoLocalSite.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Local Site End Point Documentation</maml:linkText>
@@ -2310,7 +2310,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoPeerSite.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoPeerSite.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Peer Site End Point Documentation</maml:linkText>
@@ -2663,7 +2663,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoProtectedVm.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoProtectedVm.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Protected VMs End Point Documentation</maml:linkText>
@@ -2926,7 +2926,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoRecoveryReport.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoRecoveryReport.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Recovery Report End Point Documentation</maml:linkText>
@@ -3399,7 +3399,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoResourcesReport.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoResourcesReport.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Resources Report End Point Documentation</maml:linkText>
@@ -3514,7 +3514,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoServiceProfile.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoServiceProfile.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Service Profile End Point Documentation</maml:linkText>
@@ -3782,7 +3782,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoTask.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoTask.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Task End Point Documentation</maml:linkText>
@@ -3845,7 +3845,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoUnprotectedVm.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoUnprotectedVm.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Virtualization Sites End Point Documentation</maml:linkText>
@@ -4332,7 +4332,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVirtualizationSite.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoVirtualizationSite.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Virtualization Sites End Point Documentation</maml:linkText>
@@ -4530,7 +4530,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVolume.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoVolume.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Volumes End Point Documentation</maml:linkText>
@@ -5221,7 +5221,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -6035,7 +6035,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVpgSetting.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoVpgSetting.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
@@ -6401,7 +6401,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVra.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoVra.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
@@ -6496,7 +6496,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoZorg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoZorg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API ZOrg End Point Documentation</maml:linkText>
@@ -6584,7 +6584,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertpZsspSession.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertpZsspSession.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API ZSSP Session End Point Documentation</maml:linkText>
@@ -6672,7 +6672,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/Import-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/Master/docs/Import-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
@@ -7089,7 +7089,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
@@ -7386,7 +7386,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailover.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailover.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -7504,7 +7504,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailoverCommit.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailoverCommit.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -7592,7 +7592,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailoverRollback.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Invoke-ZertoFailoverRollback.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -7680,7 +7680,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoForceSync.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Invoke-ZertoForceSync.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -8046,7 +8046,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoMove.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Invoke-ZertoMove.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -8360,7 +8360,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Invoke-ZertoMoveRollback.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Invoke-ZertoMoveRollback.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -10299,7 +10299,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
@@ -10488,7 +10488,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/Master/docs/New-ZertoVpgSettingsIdentifier.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/Master/docs/New-ZertoVpgSettingsIdentifier.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
@@ -10761,7 +10761,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Remove-ZertoPeerSite.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Remove-ZertoPeerSite.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Peer Site End Point Documentation</maml:linkText>
@@ -11033,7 +11033,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -11121,7 +11121,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Resume-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Resume-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -11255,7 +11255,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSetting.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSetting.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG Settings End Point Documentation</maml:linkText>
@@ -11479,7 +11479,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Set-ZertoAlert.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Set-ZertoAlert.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API Alerts End Point Documentation</maml:linkText>
@@ -11613,7 +11613,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Set-ZertoLicense.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Set-ZertoLicense.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API License Information</maml:linkText>
@@ -11819,7 +11819,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Start-ZertoCloneVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Start-ZertoCloneVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -12001,7 +12001,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Start-ZertoFailoverTest.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Start-ZertoFailoverTest.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -12135,7 +12135,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Stop-ZertoCloneVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Stop-ZertoCloneVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -12317,7 +12317,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Stop-ZertoFailoverTest.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Stop-ZertoFailoverTest.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -12405,7 +12405,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Suspend-ZertoVpg.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Suspend-ZertoVpg.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VPG End Point Documentation</maml:linkText>
@@ -12493,7 +12493,7 @@
     <command:relatedLinks>
       <maml:navigationLink>
         <maml:linkText>Online Version:</maml:linkText>
-        <maml:uri>https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Uninstall-ZertoVra.md</maml:uri>
+        <maml:uri>https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Uninstall-ZertoVra.md</maml:uri>
       </maml:navigationLink>
       <maml:navigationLink>
         <maml:linkText>Zerto REST API VRA End Point Documentation</maml:linkText>
