@@ -33,7 +33,7 @@
     Description       = 'PowerShell Core Wrapper Module for Zerto Virtual Manager API'
 
     # Minimum version of the PowerShell engine required by this module
-    PowerShellVersion = '6.0.0'
+    PowerShellVersion = '5.1.0'
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''
