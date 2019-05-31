@@ -28,7 +28,45 @@ function Invoke-ZertoRestRequest {
         try {
             # Set the zvmLastAction time and try to submit the REST Request
             $script:zvmLastAction = (get-date).Ticks
-            $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -SkipCertificateCheck -ResponseHeadersVariable responseHeaders -TimeoutSec 100
+            # If running PwSh - Use this Invoke-RestMethod with passed Variables
+            if ($PSVersionTable.PSVersion.Major -ge 6) {
+                $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -SkipCertificateCheck -ResponseHeadersVariable responseHeaders -TimeoutSec 100
+            } else {
+                # If running PowerShell 5.1 --> Do the Following
+                # Check to see if All Certs are Trusted. If not, Create the Policy to Trust All Certificates
+                if ([System.Net.ServicePointManager]::CertificatePolicy.GetType().Name -ne "TrustAllCertsPolicy") {
+                    Try {
+                        $type = @'
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+public class TrustAllCertsPolicy : ICertificatePolicy {
+    public bool CheckValidationResult( ServicePoint srvPoint, X509Certificate certificate, WebRequest request, int certificateProblem) {
+        return true;
+    }
+}
+'@
+                        Add-Type -TypeDefinition $type -ErrorAction SilentlyContinue
+                    } Catch {
+                        if ($error[0].Exception -ne "Cannot add type. The type name 'TrustAllCertsPolicy already exists.") {
+                            Write-Debug $error[0]
+                        }
+                    }
+                    [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+
+                }
+                # If we are authenticating to the ZVM, Use this block to use Invoke-WebRequest and format the Headers as expected.
+                if ($uri -eq "session/add" -and $method -eq "POST") {
+                    $apiRequestResults = Invoke-WebRequest -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
+                    $responseHeaders = @{}
+                    $responseHeaders['x-zerto-session'] = @($apiRequestResults.Headers['x-zerto-session'])
+                } elseif ($method -ne "GET") {
+                    # If the Method is something other than 'GET' use this call with a body parameter
+                    $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
+                } else {
+                    # If the Method we are calling is 'GET' use this call without a body parameter
+                    $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -ContentType $contentType -Credential $credential -TimeoutSec 100
+                }
+            }
         } catch {
             # If an error is encountered, Catch
             Write-Error -ErrorRecord $_ -ErrorAction $callerErrorActionPreference
