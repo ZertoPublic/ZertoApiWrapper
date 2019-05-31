@@ -1,6 +1,4 @@
 
 
-* New Feature 1
-* New Feature 2
-  * New SubFeature 1
-* What is happening???
+* Initial Release
+* Updated 'Invoke-ZertoRestRequest' to work in Powershell 5.1 as well as Powershell core
