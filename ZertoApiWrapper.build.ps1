@@ -101,10 +101,10 @@ task CreatePsd1ForRelease CleanTemp, {
         Author            = 'Wes Carroll'
         CompanyName       = 'Zerto'
         Copyright         = '(c) {0} Wes Carroll. All rights reserved.' -f $(Get-Date -format 'yyyy')
-        Description       = 'PowerShell Core Wrapper Module for Zerto Virtual Manager API'
-        PowerShellVersion = '6.0.0'
-        ProjectUri        = 'https://github.com/wcarroll/ZertoApiWrapper'
-        LicenseUri        = 'https://github.com/wcarroll/ZertoApiWrapper/blob/master/LICENSE'
+        Description       = 'Windows PowerShell and PowerShell Core API Wrapper Module for Zerto Virtual Manager'
+        PowerShellVersion = '5.1.0'
+        ProjectUri        = 'https://github.com/ZertoPublic/ZertoApiWrapper'
+        LicenseUri        = 'https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/LICENSE'
         Tags              = @("Zerto", "Automation")
         FunctionsToExport = $functionsToExport
         CmdletsToExport   = @()
