@@ -15,7 +15,7 @@ function Get-ZAAlert {
         [ValidateRange(1, 1000000)]
         [int]$limitTo,
         [Parameter(
-            HelpMessage = "The VPG Idnetifier",
+            HelpMessage = "The alert Idnetifier",
             ParameterSetName = "alertId",
             Mandatory = $true
         )]
