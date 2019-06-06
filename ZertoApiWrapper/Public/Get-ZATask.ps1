@@ -1,28 +1,28 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-function Get-ZAAlert {
+function Get-ZATask {
     [cmdletbinding( DefaultParameterSetName = "zOrg")]
     param(
         [Parameter(
-            HelpMessage = "The ZORG identifier by which to filter the alert list. If the ZORG identifier is omitted, a list of all the alerts is retrieved.",
+            HelpMessage = "The ZORG identifier by which to filter the task list. If the ZORG identifier is omitted, a list of all the tasks is retrieved.",
             ParameterSetName = "zOrg"
         )]
         [ValidateNotNullOrEmpty()]
         [string]$zOrgIdentifier,
         [Parameter(
-            HelpMessage = "The maximum number of alerts to return.",
+            HelpMessage = "The maximum number of tasks to return.",
             ParameterSetName = "zOrg"
         )]
         [ValidateRange(1, 1000000)]
         [int]$limitTo,
         [Parameter(
-            HelpMessage = "The alert Idnetifier",
-            ParameterSetName = "alertId",
+            HelpMessage = "The task Idnetifier",
+            ParameterSetName = "taskId",
             Mandatory = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [string]$alertIdentifier
+        [string]$taskIdentifier
     )
-    $uri = "monitoring/alerts"
+    $uri = "monitoring/tasks"
     switch ($PSCmdlet.ParameterSetName) {
         zOrg {
             if ( $PSBoundParameters.Keys.Count -gt 0 ) {
@@ -31,8 +31,8 @@ function Get-ZAAlert {
             }
         }
 
-        alertId {
-            $uri = "{0}/{1}" -f $uri, $alertIdentifier
+        taskId {
+            $uri = "{0}/{1}" -f $uri, $taskIdentifier
         }
     }
     Invoke-ZARestRequest -uri $uri
