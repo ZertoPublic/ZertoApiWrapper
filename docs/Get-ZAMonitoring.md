@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Retrieve statistics related to all the user’s sites - belonging to a single account.
+Retrieve statistics related to all the user's sites - belonging to a single account.
 
 ## SYNTAX
 
@@ -19,7 +19,7 @@ Get-ZAMonitoring [[-zOrgIdentifier] <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-Retrieve statistics related to all the user’s sites - belonging to a single account.
+Retrieve statistics related to all the user's sites - belonging to a single account.
 
 ## EXAMPLES
 
@@ -28,7 +28,7 @@ Retrieve statistics related to all the user’s sites - belonging to a single ac
 PS C:\> Get-ZAMonitoring
 ```
 
-Retrieve statistics related to all the user’s sites - belonging to a single account.
+Retrieve statistics related to all the user's sites - belonging to a single account.
 
 ### Example 1
 ```powershell
