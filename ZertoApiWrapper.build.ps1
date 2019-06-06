@@ -89,6 +89,12 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
     Update-MarkDownHelp -Path docs -AlphabeticParamsOrder
 }
 
+task UpdateMarkdownHelpModule CheckPlatyPSInstalled, {
+    remove-module ZertoApiWrapper -force -ErrorAction SilentlyContinue
+    Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
+    Update-MarkDownHelpModule -Path docs -AlphabeticParamsOrder
+}
+
 task CreatePsd1ForRelease CleanTemp, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
     $releaseNotes = "# {0}{1}" -f $version, $(Get-Content .\RELEASENOTES.md -Raw)
