@@ -16,10 +16,10 @@ function Get-ZAAlert {
         [int]$limitTo,
         [Parameter(
             HelpMessage = "The VPG Idnetifier",
-            ParameterSetName = "vpgId"
+            ParameterSetName = "alertId"
         )]
         [ValidateNotNullOrEmpty()]
-        [string]$vpgIdentifier
+        [string]$alertIdentifier
     )
     $uri = "monitoring/alerts"
     switch ($PSCmdlet.ParameterSetName) {
@@ -30,8 +30,8 @@ function Get-ZAAlert {
             }
         }
 
-        vpgId {
-            $uri = "{0}/{1}" -f $uri, $vpgIdentifier
+        alertId {
+            $uri = "{0}/{1}" -f $uri, $alertIdentifier
         }
     }
     Invoke-ZARestRequest -uri $uri
