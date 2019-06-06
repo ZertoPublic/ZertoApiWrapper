@@ -19,7 +19,7 @@ Get-ZAAlert [-zOrgIdentifier <String>] [-limitTo <Int32>] [<CommonParameters>]
 
 ### alertId
 ```
-Get-ZAAlert [-alertIdentifier <String>] [<CommonParameters>]
+Get-ZAAlert -alertIdentifier <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -72,7 +72,7 @@ Type: String
 Parameter Sets: alertId
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
