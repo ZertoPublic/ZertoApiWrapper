@@ -9,7 +9,7 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
-Retrieves a collection of Sites topology information structures for all the available user’s sites, including disabled and non-transmitting due to lack of a transmitter (older ZVR versions).
+Retrieves a collection of Sites topology information structures for all the available user's sites, including disabled and non-transmitting due to lack of a transmitter (older ZVR versions).
 
 ## SYNTAX
 
@@ -19,7 +19,7 @@ Get-ZASiteTopology [[-zOrgIdentifier] <String>] [<CommonParameters>]
 
 ## DESCRIPTION
 
-Retrieves a collection of Sites topology information structures for all the available user’s sites, including disabled and non-transmitting due to lack of a transmitter (older ZVR versions). | The following note should be taken into consideration:
+Retrieves a collection of Sites topology information structures for all the available user's sites, including disabled and non-transmitting due to lack of a transmitter (older ZVR versions). | The following note should be taken into consideration:
 The information might not be complete, since there are sites that do not transmit (disabled), yet this API concludes their presence and VPG count from the VPGs they share with transmitting sites. Such a disabled site might have relations with other disabled sites, which this API does not reveal.
 
 ## EXAMPLES
@@ -29,14 +29,14 @@ The information might not be complete, since there are sites that do not transmi
 PS C:\> Get-ZASiteTopology
 ```
 
-Retrieves a collection of Sites topology information structures for all the available user’s sites.
+Retrieves a collection of Sites topology information structures for all the available user's sites.
 
 ### Example 2
 ```powershell
 PS C:\> Get-ZASiteTopology -zOrgIdentifier "1234-5678-9012"
 ```
 
-Retrieves a collection of Sites topology information structures for all the available user’s sites within zOrgIdentifier "1234-5678-9012".
+Retrieves a collection of Sites topology information structures for all the available user's sites within zOrgIdentifier "1234-5678-9012".
 
 ## PARAMETERS
 
