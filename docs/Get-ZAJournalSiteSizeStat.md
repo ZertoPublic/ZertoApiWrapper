@@ -95,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -recoverySiteIdentifier
-The identifier of the VPG.
+The identifier of the recovery site.
 
 ```yaml
 Type: String

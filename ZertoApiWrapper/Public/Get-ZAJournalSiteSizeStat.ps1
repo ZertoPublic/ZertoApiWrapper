@@ -7,7 +7,7 @@ function Get-ZAJournalSiteSizeStat {
             Mandatory
         )]
         [ValidateNotNullOrEmpty()]
-        [string]$vpgIdentifier,
+        [string]$recoverySiteIdentifier,
         [Parameter(
             HelpMessage = "The starting date of the report, in RFC 3339 standard ('1970-01-01T00:00:00Z'). If only the end date is added, the start date by default will be the end date minus 7 days."
         )]
