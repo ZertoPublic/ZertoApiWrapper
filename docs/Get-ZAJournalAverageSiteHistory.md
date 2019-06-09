@@ -14,7 +14,7 @@ Get list of samples of average Journal History values for all VPGs replicating t
 ## SYNTAX
 
 ```
-Get-ZAJournalAverageSiteHistory [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
+Get-ZAJournalAverageSiteHistory [-recoverySiteIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
  [[-interval] <Int32>] [<CommonParameters>]
 ```
 
