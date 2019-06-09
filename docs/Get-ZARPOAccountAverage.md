@@ -106,4 +106,4 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[Zerto Analytics REST API Endpoint for RPO Average](https://docs.api.zerto.com/#/RPO_Reports/get_v2_reports_account_rpo_average)
+[Zerto Analytics REST API Endpoint for Account RPO Average](https://docs.api.zerto.com/#/RPO_Reports/get_v2_reports_account_rpo_average)
