@@ -1,11 +1,11 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAJournalAverageSiteSize.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAJournalSiteAverageSize.md
 schema: 2.0.0
 ---
 
-# Get-ZAJournalAverageSiteSize
+# Get-ZAJournalSiteAverageSize
 
 ## SYNOPSIS
 
@@ -14,7 +14,7 @@ Get list of samples of total Journal Size of all VPGs replicating to a specified
 ## SYNTAX
 
 ```
-Get-ZAJournalAverageSiteSize [-recoverySiteIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
+Get-ZAJournalSiteAverageSize [-recoverySiteIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
  [[-interval] <Int32>] [<CommonParameters>]
 ```
 
@@ -26,21 +26,21 @@ Get list of samples of total Journal Size of all VPGs replicating to a specified
 
 ### Example 1
 ```powershell
-PS C:\> Get-ZAJournalAverageSiteSize -recoverySiteIdentifier "9876-5432-1098"
+PS C:\> Get-ZAJournalSiteAverageSize -recoverySiteIdentifier "9876-5432-1098"
 ```
 
 Returns Journal Average Size information for the recovery site with identifier "9876-5432-1098"
 
 ### Example 2
 ```powershell
-PS C:\> Get-ZAJournalAverageSiteSize -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
+PS C:\> Get-ZAJournalSiteAverageSize -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
 ```
 
 Returns Journal Average Size information for the recovery site with identifier "9876-5432-1098" between the dates specified.
 
 ### Example 3
 ```powershell
-PS C:\> Get-ZAJournalAverageSiteSize -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08" -interval 7200
+PS C:\> Get-ZAJournalSiteAverageSize -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08" -interval 7200
 ```
 
 Returns Journal Average Size information for the recovery site with identifier "9876-5432-1098" between the dates specified with a 2 hour interval.

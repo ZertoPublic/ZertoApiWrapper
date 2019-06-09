@@ -1,5 +1,5 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-function Get-ZAJournalAverageSiteSize {
+function Get-ZAJournalSiteAverageSize {
     [CmdletBinding()]
     param (
         [Parameter(
