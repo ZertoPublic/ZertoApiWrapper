@@ -14,7 +14,7 @@ Get average RPO for all VPGs in a single account, filtered by last 30 days.
 ## SYNTAX
 
 ```
-Get-RPOAccountAverage [[-zOrgIdentifier] <String>] [[-startDate] <String>] [[-endDate] <String>]
+Get-ZARPOAccountAverage [[-zOrgIdentifier] <String>] [[-startDate] <String>] [[-endDate] <String>]
  [<CommonParameters>]
 ```
 
