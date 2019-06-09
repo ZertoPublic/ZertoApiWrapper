@@ -33,6 +33,7 @@ function Get-ZAVolume {
             Mandatory,
             ParameterSetName = "VpgIdentifier"
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$vpgIdentifier
 
     )

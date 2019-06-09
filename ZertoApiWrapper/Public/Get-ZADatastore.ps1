@@ -29,6 +29,7 @@ function Get-ZADatastore {
             ParameterSetName = "datastore",
             Mandatory = $true
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$datastoreIdentifier
 
     )
