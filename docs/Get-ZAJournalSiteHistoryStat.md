@@ -1,11 +1,11 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAJournalHistorySiteStat.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAJournalSiteHistoryStat.md
 schema: 2.0.0
 ---
 
-# Get-ZAJournalHistorySiteStat
+# Get-ZAJournalSiteHistoryStat
 
 ## SYNOPSIS
 
@@ -14,7 +14,7 @@ Get Max, Avg. and Min Journal History statistics for all VPGs replicating to a s
 ## SYNTAX
 
 ```
-Get-ZAJournalHistorySiteStat [-recoverySiteIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
+Get-ZAJournalSiteHistoryStat [-recoverySiteIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
  [[-interval] <Int32>] [<CommonParameters>]
 ```
 
@@ -26,21 +26,21 @@ Get Max, Avg. and Min Journal History statistics for all VPGs replicating to a s
 
 ### Example 1
 ```powershell
-PS C:\> Get-ZAJournalHistorySiteStat -recoverySiteIdentifier "9876-5432-1098"
+PS C:\> Get-ZAJournalSiteHistoryStat -recoverySiteIdentifier "9876-5432-1098"
 ```
 
 Returns Journal Average History information for the recovery site with identifier "9876-5432-1098"
 
 ### Example 2
 ```powershell
-PS C:\> Get-ZAJournalHistorySiteStat -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
+PS C:\> Get-ZAJournalSiteHistoryStat -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
 ```
 
 Returns Journal Average History information for the recovery site with identifier "9876-5432-1098" between the dates specified.
 
 ### Example 3
 ```powershell
-PS C:\> Get-ZAJournalHistorySiteStat -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08" -interval 7200
+PS C:\> Get-ZAJournalSiteHistoryStat -recoverySiteIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08" -interval 7200
 ```
 
 Returns Journal Average History information for the recovery site with identifier "9876-5432-1098" between the dates specified with a 2 hour interval.
