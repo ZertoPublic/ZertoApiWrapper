@@ -9,6 +9,8 @@ schema: 2.0.0
 
 ## SYNOPSIS
 
+Retrieves Rpo min, max and avg. Stats.
+
 ## SYNTAX
 
 ```
@@ -16,7 +18,8 @@ Get-ZARPOStat [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <Str
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+Retrieves Rpo min, max and avg. Stats.
 
 ## EXAMPLES
 
