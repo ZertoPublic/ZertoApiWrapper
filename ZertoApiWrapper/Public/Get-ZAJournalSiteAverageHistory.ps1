@@ -1,5 +1,5 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
-function Get-ZAJournalAverageSiteHistory {
+function Get-ZAJournalSiteAverageHistory {
     [CmdletBinding()]
     param (
         [Parameter(
