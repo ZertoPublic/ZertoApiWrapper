@@ -14,8 +14,8 @@ Get list of samples of average Journal History values for all VPGs replicating t
 ## SYNTAX
 
 ```
-Get-ZAJournalSiteAverageHistory [-recoverySiteIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
- [[-interval] <Int32>] [<CommonParameters>]
+Get-ZAJournalSiteAverageHistory [-recoverySiteIdentifier] <String> [[-startDate] <String>]
+ [[-endDate] <String>] [[-interval] <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -78,6 +78,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -recoverySiteIdentifier
+The identifier of the recovery site.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -startDate
 The starting date of the report, in RFC 3339 standard ('1970-01-01T00:00:00Z').
 If only the end date is added, the start date by default will be the end date minus 7 days.
@@ -89,21 +104,6 @@ Aliases:
 
 Required: False
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -recoverySiteIdentifier
-The identifier of the VPG.
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
