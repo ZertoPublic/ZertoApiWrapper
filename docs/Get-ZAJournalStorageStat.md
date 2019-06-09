@@ -5,7 +5,7 @@ online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/
 schema: 2.0.0
 ---
 
-# Get-ZAJournalSummary
+# Get-ZAJournalStorageStat
 
 ## SYNOPSIS
 
@@ -14,7 +14,7 @@ Retrieves Journal Storage minimum, maximum and average. Statistics over the sele
 ## SYNTAX
 
 ```
-Get-ZAJournalSummary [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
+Get-ZAJournalStorageStat [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
  [<CommonParameters>]
 ```
 

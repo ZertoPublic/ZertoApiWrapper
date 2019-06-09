@@ -5,7 +5,7 @@ online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/
 schema: 2.0.0
 ---
 
-# Get-ZAJournalSummary
+# Get-ZAJournalBreach
 
 ## SYNOPSIS
 
@@ -14,7 +14,7 @@ Retrieves the journal history breaches over the selected timeframe.
 ## SYNTAX
 
 ```
-Get-ZAJournalSummary [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
+Get-ZAJournalBreach [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
  [<CommonParameters>]
 ```
 
@@ -26,14 +26,14 @@ Retrieves the journal history breaches over the selected timeframe.
 
 ### Example 1
 ```powershell
-PS C:\> Get-ZAJournalSummary -vpgIdentifier "9876-5432-1098"
+PS C:\> Get-ZAJournalBreach -vpgIdentifier "9876-5432-1098"
 ```
 
 Returns Journal Breach information for VPG with identifier "9876-5432-1098"
 
 ### Example 2
 ```powershell
-PS C:\> Get-ZAJournalSummary -vpgIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
+PS C:\> Get-ZAJournalBreach -vpgIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
 ```
 
 Returns Journal Breach information for VPG with identifier "9876-5432-1098" between the dates specified.

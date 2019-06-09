@@ -5,7 +5,7 @@ online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/
 schema: 2.0.0
 ---
 
-# Get-ZAJournalSummary
+# Get-ZAJournalHistoryStat
 
 ## SYNOPSIS
 
@@ -14,7 +14,7 @@ Retrieves Journal history min, max and avg Statistics over the selected timefram
 ## SYNTAX
 
 ```
-Get-ZAJournalSummary [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
+Get-ZAJournalHistoryStat [-vpgIdentifier] <String> [[-startDate] <String>] [[-endDate] <String>]
  [<CommonParameters>]
 ```
 
@@ -26,14 +26,14 @@ Retrieves Journal history min, max and avg Statistics over the selected timefram
 
 ### Example 1
 ```powershell
-PS C:\> Get-ZAJournalStorageStat -vpgIdentifier "9876-5432-1098"
+PS C:\> Get-ZAJournalHistoryStat -vpgIdentifier "9876-5432-1098"
 ```
 
 Returns Journal History Stats for VPG with identifier "9876-5432-1098"
 
 ### Example 2
 ```powershell
-PS C:\> Get-ZAJournalStorageStat -vpgIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
+PS C:\> Get-ZAJournalHistoryStat -vpgIdentifier "9876-5432-1098" -startDate "2019-06-01" -endDate "2019-06-08"
 ```
 
 Returns Journal History Stats for VPG with identifier "9876-5432-1098" between the dates specified.
