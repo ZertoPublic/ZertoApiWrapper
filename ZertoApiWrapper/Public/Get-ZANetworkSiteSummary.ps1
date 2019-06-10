@@ -35,7 +35,7 @@ function Get-ZANetworkSiteSummary {
         [ValidateNotNullOrEmpty()]
         [string]$endDate,
         [Parameter(
-            HelpMessage = "The ZORG identifier by which to filter the excutive summary."
+            HelpMessage = "The ZORG identifier by which to filter the executive summary."
         )]
         [ValidateNotNullOrEmpty()]
         [string]$zOrgIdentifier
