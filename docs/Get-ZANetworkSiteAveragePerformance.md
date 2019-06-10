@@ -31,7 +31,7 @@ Get list of samples of average and maximum network performance metrics (throughp
 The following options are available:
 
 * To view average and maximum network performance of throughput vs. WAN traffic of all outgoing traffic from a protected site to all its replicating sites, specify only the protected site identifier.
-* To view average and maximum network performance of throughput and WAN traffic between two sites, specifiy both the protected site identifier and the recovery site identifier.
+* To view average and maximum network performance of throughput and WAN traffic between two sites, specify both the protected site identifier and the recovery site identifier.
 
 ## EXAMPLES
 
