@@ -16,13 +16,13 @@ Get average and maximum IOPS performance for sites, filtered by start date and e
 ### ProtectedSite (Default)
 ```
 Get-ZANetworkSiteAverageIOPS -protectedSiteIdentifier <String> [-recoverySiteIdentifier <String>]
- [-startDate <String>] [-endDate <String>] [-zOrgIdentifier <String>] [<CommonParameters>]
+ [-startDate <String>] [-endDate <String>] [-zOrgIdentifier <String>] [-interval <Int32>] [<CommonParameters>]
 ```
 
 ### RecoverySite
 ```
 Get-ZANetworkSiteAverageIOPS [-protectedSiteIdentifier <String>] -recoverySiteIdentifier <String>
- [-startDate <String>] [-endDate <String>] [-zOrgIdentifier <String>] [<CommonParameters>]
+ [-startDate <String>] [-endDate <String>] [-zOrgIdentifier <String>] [-interval <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -63,6 +63,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -interval
+The interval selected within the duration of the report. The interval can be per hour, for up to 15 days' time frame or per day, for between 15 to 30 days' time frame. Submit value in Seconds
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -38,7 +38,13 @@ function Get-ZANetworkSiteAverageIOPS {
             HelpMessage = "The ZORG identifier by which to filter the executive summary."
         )]
         [ValidateNotNullOrEmpty()]
-        [string]$zOrgIdentifier
+        [string]$zOrgIdentifier,
+        [Parameter(
+            HelpMessage = "The interval selected within the duration of the report. The interval can be per hour, for up to 15 days’ time frame or per day, for between 15 to 30 days' time frame. Submit value in Seconds"
+        )]
+        [ValidateRange(60, 2678400)]
+        [Int32]$interval
+
     )
 
     $filter = Get-ZertoAPIFilter -filtertable $PSBoundParameters
