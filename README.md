@@ -15,7 +15,12 @@ In no event shall Zerto, its authors or anyone else involved in the creation, pr
 
 ## Disclaimer
 
-This code is still under development!! USE AT YOUR OWN RISK AND ONLY IF YOU KNOW WHAT YOU ARE DOING!!
+This code is still under development! Please use carefully and if you encounter any issues or have an idea, please submit an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues). Along the same lines, should you be proficient in PowerShell, please feel free to submit any [Pull Requests](https://github.com/ZertoPublic/ZertoApiWrapper/pulls) with enhancements and bug fixes.
+
+## Installing the Module
+
+This module can be installed directly from the [PowerShell Gallery](https://www.powershellgallery.com/packages/ZertoApiWrapper) with the following command.
+`PS> Install-Module -name ZertoApiWrapper
 
 ## Getting Started
 
@@ -24,7 +29,7 @@ This code is still under development!! USE AT YOUR OWN RISK AND ONLY IF YOU KNOW
 
 ## Recent Updates
 
-* June 10th, 2019: Added functionality for Zerto Analytics.
+* June 16th, 2019: Added functionality for Zerto Analytics.
 * May 31st, 2019: Implement logic to allow use of this module in both Windows PowerShell 5.1 and PowerShell Core.
 * March 15th, 2019: Implement Export and Import Functionality. Please See [Export-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Export-ZertoVpg.md) and [Import-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Import-ZertoVpg.md) for assistance. No current pre-seed support.
 * March 11th, 2019: Create basic VPG completed. Please see [New-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md)
