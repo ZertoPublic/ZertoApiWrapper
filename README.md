@@ -20,7 +20,9 @@ This code is still under development! Please use carefully and if you encounter 
 ## Installing the Module
 
 This module can be installed directly from the [PowerShell Gallery](https://www.powershellgallery.com/packages/ZertoApiWrapper) with the following command.
-`PS> Install-Module -name ZertoApiWrapper
+```
+PS> Install-Module -name ZertoApiWrapper
+```
 
 ## Getting Started
 
