@@ -1,12 +1,5 @@
 #Requires -Modules 'InvokeBuild'
 
-. '.\ZertoApiWrapper.settings.ps1'
-# import-module "$BuildRoot\ZertoApiWrapper\ZertoApiWrapper.psd1" -Verbose -Force
-
-<# [CmdletBinding()]
-param([switch]$Install,
-    [string]$Configuration = (property Configuration Release))
-$targetDir = "temp/$Configuration/ZertoApiWrapper" #>
 $version = "{0}.{1}" -f $(Get-Content .\version.txt), $(get-date -format 'yyyyMMdd')
 
 task . CreateArtifacts
@@ -54,7 +47,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @()
+        ExcludeRule = @("PSUseBOMForUnicodeEncodedFile", "PSUseSingularNouns")
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
 
@@ -87,6 +80,12 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
     remove-module ZertoApiWrapper -force -ErrorAction SilentlyContinue
     Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
     Update-MarkDownHelp -Path docs -AlphabeticParamsOrder
+}
+
+task UpdateMarkdownHelpModule CheckPlatyPSInstalled, {
+    remove-module ZertoApiWrapper -force -ErrorAction SilentlyContinue
+    Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
+    Update-MarkDownHelpModule -Path docs -AlphabeticParamsOrder
 }
 
 task CreatePsd1ForRelease CleanTemp, {
