@@ -47,7 +47,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @("PSUseBOMForUnicodeEncodedFile")
+        ExcludeRule = @("PSUseBOMForUnicodeEncodedFile", "PSUseSingularNouns")
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
 
