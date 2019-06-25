@@ -11,7 +11,7 @@ function Invoke-ZARestRequest {
     if ( -not ((Test-Path variable:script:zaLastActionTime) -and (Test-Path variable:script:zaHeaders)) ) {
         Write-Error -Message "Zerto Analytics Connection does not Exist. Please run Connect-ZertoAnalytics first to establish a connection"
         break
-    } elseif ( (Test-Path variable:script:zaHeaders) -and $([datetime]$script:zaLastAction).addMinutes(60) -lt $(get-date) ) {
+    } elseif ( (Test-Path variable:script:zaHeaders) -and $([datetime]$script:zaLastActionTime).addMinutes(60) -lt $(get-date) ) {
         Write-Error -Message "Authorization Token has Expired. Please re-authorize to the Zerto Analytics Portal"
         break
     } else {
