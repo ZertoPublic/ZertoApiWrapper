@@ -1,6 +1,6 @@
 #Requires -Modules 'InvokeBuild'
 
-$version = "{0}.{1}" -f $(Get-Content .\version.txt), $(get-date -format 'yyyyMMdd')
+$version = "{0}.{1}" -f $(Get-Content .\version.txt), $(Get-Date -format 'yyyyMMdd')
 
 task . CreateArtifacts
 
@@ -59,9 +59,9 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
 
 task FileTests CheckPesterInstalled, {
     $testResultsFile = "$BuildRoot\Tests\TestResults.xml"
-    $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru
+    $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru -Show Fails
     $FailureMessage = '{0} Unit test(s) failed. Aborting build' -f $results.FailedCount
-    assert ($results.FailedCount -eq 0) $FailureMessage
+    Assert ($results.FailedCount -eq 0) $FailureMessage
 }
 
 $buildMamlParams = @{
@@ -77,15 +77,15 @@ task BuildMamlHelp CheckPlatyPSInstalled, {
 }
 
 task UpdateMarkdownHelp CheckPlatyPSInstalled, {
-    remove-module ZertoApiWrapper -force -ErrorAction SilentlyContinue
+    Remove-Module ZertoApiWrapper -force -ErrorAction SilentlyContinue
     Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
-    Update-MarkDownHelp -Path docs -AlphabeticParamsOrder
+    Update-MarkdownHelp -Path docs -AlphabeticParamsOrder
 }
 
 task UpdateMarkdownHelpModule CheckPlatyPSInstalled, {
-    remove-module ZertoApiWrapper -force -ErrorAction SilentlyContinue
+    Remove-Module ZertoApiWrapper -force -ErrorAction SilentlyContinue
     Import-Module .\ZertoApiWrapper\ZertoApiWrapper.psm1 -Force
-    Update-MarkDownHelpModule -Path docs -AlphabeticParamsOrder
+    Update-MarkdownHelpModule -Path docs -AlphabeticParamsOrder
 }
 
 task CreatePsd1ForRelease CleanTemp, {
