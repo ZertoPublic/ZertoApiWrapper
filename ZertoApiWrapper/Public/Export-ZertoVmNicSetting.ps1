@@ -77,7 +77,7 @@ function Export-ZertoVmNicSetting {
                 $nicInfo
             }
         }
-        $nicSettings | ConvertTo-Csv | Out-File $OutputFile
+        $nicSettings | Export-Csv -Path $OutputFile
     }
 
     end {
