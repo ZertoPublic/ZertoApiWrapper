@@ -1,19 +1,72 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$script:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
-
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+Describe $script:function -Tag 'Unit', 'Source', 'Built' {
+    BeforeAll {
+        $script:ScriptBlock = (Get-Command $script:function).ScriptBlock
     }
+
+    Context "$($script:function)::Parameter Unit Tests" {
+        It "Has a parameter for the Required Credentials that is Mandatory" {
+            Get-Command $script:function | Should -HaveParameter credential -Mandatory -Type PSCredential
+        }
+    }
+
+
+
+    Context "$($script:function)::Function Unit Tests" {
+
+        InModuleScope -ModuleName ZertoApiWrapper {
+            Mock -CommandName Invoke-ZARestRequest {
+                return (Get-Content "$global:here\Mocks\ZAToken.json"-Raw | ConvertFrom-Json)
+            }
+
+            $password = 'NotARealPassword' | ConvertTo-SecureString -AsPlainText -Force
+            $cred = New-Object pscredential('NotARealUser', $password)
+
+            $results = Connect-ZertoAnalytics -credential $cred
+
+            It "Creates a Script Level Hashtable Variable for the ZertoAnalytics Headers" {
+                $script:zaHeaders | Should -BeOfType Hashtable
+            }
+
+            It "the ZertoAnalytics Headers variable contains 2 items" {
+                $script:zaHeaders.keys | Should -HaveCount 2
+            }
+
+            It "the ZertoAnalytics Headers variable has an 'Accept' key" {
+                $script:zaHeaders.keys | Should -Contain 'Accept'
+            }
+
+            It "thh ZertoAnalytics headers variable 'Accept' key should be JSON" {
+                $script:zaHeaders['Accept'] | Should -match 'application/json'
+            }
+
+            It "the ZertoAnalytics Headers variable has an 'Authorization' key" {
+                $script:zaHeaders.keys | Should -Contain 'Authorization'
+            }
+
+            It "the ZertoAnalytics Headers variable 'Authorization' key should start with 'Bearer'" {
+                $script:zaHeaders['Authorization'] | Should -Match '^Bearer '
+            }
+
+            It "Creates a Script Level Variable for the LastActionTime" {
+                $script:zaLastActionTime | Should -BeOfType Long
+            }
+
+            It "LastActionTime Variable should be in the past" {
+                $script:zaLastActionTime | Should -BeLessThan (Get-Date).Ticks
+            }
+
+            It "Returns Header Information" {
+                $results | Should -not -BeNullOrEmpty
+                $results['Authorization'] | Should -MatchExactly 'Bearer N074r34l70k3n'
+                $results['Accept'] | Should -Match 'application/json'
+            }
+        }
+
+        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZARestRequest -Exactly 1
+    }
+
 }
