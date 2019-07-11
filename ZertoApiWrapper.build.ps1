@@ -6,7 +6,7 @@ $version = "{0}.{1}" -f $(Get-Content .\version.txt), $(Get-Date -format 'yyyyMM
 task . CreateArtifacts
 
 #Region - Helper Functions
-function ImportRawModule() {
+function ImportSourceModule() {
     If (Get-Module -Name ZertoApiWrapper) {
         Remove-Module -Name ZertoApiWrapper -Force -ErrorAction Stop
     }
@@ -94,9 +94,9 @@ task CleanPublish {
 #EndRegion
 
 #Region - Pester Tests
-task RawFileTests CheckPesterInstalled, {
-    ImportRawModule
-    $testResultsFile = "$BuildRoot\Tests\RawTestResults.xml"
+task SourceFileTests CheckPesterInstalled, {
+    ImportSourceModule
+    $testResultsFile = "$BuildRoot\Tests\SourceTestResults.xml"
     $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru -Show Fails
     $FailureMessage = '{0} Unit test(s) failed. Aborting build' -f $results.FailedCount
     Assert ($results.FailedCount -eq 0) $FailureMessage
@@ -125,7 +125,7 @@ task BuildMamlHelp CheckPlatyPSInstalled, {
 }
 
 task UpdateMarkdownHelp CheckPlatyPSInstalled, {
-    ImportRawModule
+    ImportSourceModule
     Update-MarkdownHelpModule -Path docs -AlphabeticParamsOrder
 }
 #EndRegion
@@ -197,7 +197,7 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
 
 #Region - Artifacts \ Publish
 # Full Build Process - No Publishing
-task CreateArtifacts CleanPublish, CleanTemp, AnalyzeSourceFiles, RawFileTests, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
+task CreateArtifacts CleanPublish, CleanTemp, AnalyzeSourceFiles, SourceFileTests, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
     if (-not $(Test-Path "$BuildRoot\publish")) {
         New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
     }
