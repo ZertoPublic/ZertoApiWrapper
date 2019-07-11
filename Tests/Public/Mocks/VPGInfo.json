@@ -1,0 +1,75 @@
+{
+  "ActiveProcessesApi": {
+    "RunningFailOverTestApi": null
+  },
+  "ActualRPO": 6,
+  "BackupEnabled": false,
+  "ConfiguredRpoSeconds": 300,
+  "Entities": {
+    "Protected": 0,
+    "Recovery": 0,
+    "Source": 0,
+    "Target": 0
+  },
+  "FailSafeHistory": {
+    "ActualFailSafeHistory": 60,
+    "ConfiguredFailSafeHistory": 60,
+    "FailSafeDescription": ""
+  },
+  "HistoryStatusApi": {
+    "ActualHistoryInMinutes": 225,
+    "ConfiguredHistoryInMinutes": 60,
+    "EarliestCheckpoint": {
+      "CheckpointIdentifier": "166834",
+      "Tag": null,
+      "TimeStamp": "2019-07-11T13:47:23Z"
+    }
+  },
+  "IOPs": 8,
+  "LastTest": "2019-07-11T16:51:07.022Z",
+  "Link": {
+    "href": "https://192.168.222.1:7669/v1/vpgs/99c460c1-a4ec-48dd-8921-bbcca9cd29b9",
+    "identifier": "99c460c1-a4ec-48dd-8921-bbcca9cd29b9",
+    "rel": null,
+    "type": "VpgApi"
+  },
+  "Link_{0}": {
+    "href": "https://192.168.222.1:7669/v1/vpgs/99c460c1-a4ec-48dd-8921-bbcca9cd29b9",
+    "rel": "self",
+    "type": "VpgApi"
+  },
+  "OrganizationName": "",
+  "Priority": 1,
+  "ProgressPercentage": 0,
+  "ProtectedSite": {
+    "href": "https://192.168.222.1:7669/v1/localsite",
+    "identifier": "63a62dc2-ef6f-45aa-809f-9dbaeb8c06cf",
+    "rel": null,
+    "type": "LocalSiteApi"
+  },
+  "ProvisionedStorageInMB": 400,
+  "RecoverySite": {
+    "href": "https://192.168.222.1:7669/v1/peersites/3e4cdd0d-1064-4022-921f-6265ad6d335a",
+    "identifier": "3e4cdd0d-1064-4022-921f-6265ad6d335a",
+    "rel": null,
+    "type": "PeerSiteApi"
+  },
+  "ServiceProfile": null,
+  "ServiceProfileIdentifier": null,
+  "ServiceProfileName": "",
+  "SourceSite": "vSphere-Site01 at Zerto",
+  "Status": 1,
+  "SubStatus": 0,
+  "TargetSite": "vSphere-Site02 at Zerto",
+  "ThroughputInMB": 58.55859375,
+  "UsedStorageInMB": 400,
+  "VmsCount": 4,
+  "VpgIdentifier": "99c460c1-a4ec-48dd-8921-bbcca9cd29b9",
+  "VpgName": "Exchange",
+  "Zorg": {
+    "href": "https://192.168.222.1:7669/v1/zorgs/00000000-0000-0000-0000-000000000000",
+    "identifier": "00000000-0000-0000-0000-000000000000",
+    "rel": null,
+    "type": "ZorgApi"
+  }
+}
