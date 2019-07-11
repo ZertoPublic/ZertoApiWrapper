@@ -32,10 +32,18 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/TestResults.xml'
-        testRunTitle: 'PS_Win2016'
+        testResultsFiles: '**/RawTestResults.xml'
+        testRunTitle: 'PS_Win2016_Raw'
       displayName: 'Publish Test Results'
       condition: always()
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: 'NUnit'
+        testResultsFiles: '**/BuiltTestResults.xml'
+        testRunTitle: 'PS_Win2016_Built'
+      displayName: 'Publish Test Results'
+      condition: always()
+
 
   # Windows PowerShell Core Build Job
   - job: Build_PSCore_Win2016
@@ -52,8 +60,15 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/TestResults.xml'
-        testRunTitle: 'PS_Win2016'
+        testResultsFiles: '**/RawTestResults.xml'
+        testRunTitle: 'PSCore_Win2016_Raw'
+      displayName: 'Publish Test Results'
+      condition: always()
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: 'NUnit'
+        testResultsFiles: '**/BuiltTestResults.xml'
+        testRunTitle: 'PSCore_Win2016_Built'
       displayName: 'Publish Test Results'
       condition: always()
 
@@ -72,8 +87,15 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/TestResults.xml'
-        testRunTitle: 'PSCore_Ubuntu1604'
+        testResultsFiles: '**/RawTestResults.xml'
+        testRunTitle: 'PSCore_Ubuntu_Raw'
+      displayName: 'Publish Test Results'
+      condition: always()
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: 'NUnit'
+        testResultsFiles: '**/BuiltTestResults.xml'
+        testRunTitle: 'PSCore_Ubuntu_Built'
       displayName: 'Publish Test Results'
       condition: always()
     - task: PublishPipelineArtifact@0
@@ -104,7 +126,14 @@ jobs:
     - task: PublishTestResults@2
       inputs:
         testRunner: 'NUnit'
-        testResultsFiles: '**/TestResults.xml'
-        testRunTitle: 'PSCore_MacOS1013'
+        testResultsFiles: '**/RawTestResults.xml'
+        testRunTitle: 'PSCore_MacOS1013_Raw'
+      displayName: 'Publish Test Results'
+      condition: always()
+    - task: PublishTestResults@2
+      inputs:
+        testRunner: 'NUnit'
+        testResultsFiles: '**/BuiltTestResults.xml'
+        testRunTitle: 'PSCore_MacOS1013_Built'
       displayName: 'Publish Test Results'
       condition: always()
