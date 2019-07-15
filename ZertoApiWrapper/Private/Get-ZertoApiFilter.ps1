@@ -2,7 +2,8 @@ function Get-ZertoApiFilter {
     [cmdletbinding()]
     [Outputtype([String])]
     param(
-        [Parameter( Mandatory = $true,
+        [Parameter(
+            Mandatory = $true,
             HelpMessage = "Hashtable that contains filter keys and values"
         )]
         [ValidateNotNullOrEmpty()]
