@@ -4,7 +4,7 @@ function New-Map {
     param(
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
-        $inputObject,
+        [PSCustomObject]$inputObject,
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [string]$key,
