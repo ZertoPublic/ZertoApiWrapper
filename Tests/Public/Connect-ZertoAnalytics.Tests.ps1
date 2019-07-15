@@ -1,21 +1,21 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$script:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $script:function -Tag 'Unit', 'Source', 'Built' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
-        $script:ScriptBlock = (Get-Command $script:function).ScriptBlock
+        $script:ScriptBlock = (Get-Command $global:function).ScriptBlock
     }
 
-    Context "$($script:function)::Parameter Unit Tests" {
+    Context "$($global:function)::Parameter Unit Tests" {
         It "Has a parameter for the Required Credentials that is Mandatory" {
-            Get-Command $script:function | Should -HaveParameter credential -Mandatory -Type PSCredential
+            Get-Command $global:function | Should -HaveParameter credential -Mandatory -Type PSCredential
         }
     }
 
 
 
-    Context "$($script:function)::Function Unit Tests" {
+    Context "$($global:function)::Function Unit Tests" {
 
         InModuleScope -ModuleName ZertoApiWrapper {
             Mock -CommandName Invoke-ZARestRequest {
@@ -70,3 +70,6 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
     }
 
 }
+
+Remove-Variable -Name function -Scope Global
+Remove-Variable -Name here -Scope Global

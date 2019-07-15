@@ -1,16 +1,16 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$script:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $script:function -Tag 'Unit', 'Source', 'Built' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
-        $script:ScriptBlock = (Get-Command $script:function).ScriptBlock
+        $script:ScriptBlock = (Get-Command $global:function).ScriptBlock
     }
 
-    Context "$script:function::Parameter Unit Tests" {
+    Context "$global:function::Parameter Unit Tests" {
 
         It "Has a mandatory string parameter for the target host" {
-            Get-Command $script:function | Should -HaveParameter TargetHost -Mandatory -Type String
+            Get-Command $global:function | Should -HaveParameter TargetHost -Mandatory -Type String
         }
 
         It "Will not take a non-ip address as a 'TargetHost'" {
@@ -40,8 +40,8 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "Supports 'SupportsShouldProcess'" {
-            Get-Command $script:function | Should -HaveParameter WhatIf
-            Get-Command $script:function | Should -HaveParameter Confirm
+            Get-Command $global:function | Should -HaveParameter WhatIf
+            Get-Command $global:function | Should -HaveParameter Confirm
             $script:ScriptBlock | Should -match 'SupportsShouldProcess'
             $script:ScriptBlock | Should -match '\$PSCmdlet\.ShouldProcess\(.+\)'
         }
@@ -67,4 +67,5 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 1
     }
 }
-
+Remove-Variable -Name here -Scope Global
+Remove-Variable -Name function -Scope Global

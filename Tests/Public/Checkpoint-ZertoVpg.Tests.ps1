@@ -1,10 +1,10 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$script:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $script:function -Tag 'Unit', 'Source', 'Built' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
-        $script:ScriptBlock = (Get-Command $script:function).ScriptBlock
+        $script:ScriptBlock = (Get-Command $global:function).ScriptBlock
     }
 
     Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
@@ -14,13 +14,13 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         return (Get-Content "$global:here\Mocks\VPGInfo.json" -Raw | ConvertFrom-Json)
     }
 
-    Context "$($script:function)::Parameter Unit Tests" {
+    Context "$($global:function)::Parameter Unit Tests" {
         It "Has a parameter for the VpgName that is Mandatory" {
-            Get-Command $script:function | Should -HaveParameter vpgName -Mandatory -Type String
+            Get-Command $global:function | Should -HaveParameter vpgName -Mandatory -Type String
         }
 
         It "Has a parameter for the CheckpointName that is Mandatory" {
-            Get-Command $script:function | Should -HaveParameter CheckpointName -Mandatory -Type String
+            Get-Command $global:function | Should -HaveParameter CheckpointName -Mandatory -Type String
         }
 
         It "Throws and error when an empty or null checkpointName is specified" {
@@ -34,14 +34,14 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "Does not support 'SupportsShouldProcess'" {
-            Get-Command $script:function | Should -Not -HaveParameter WhatIf
-            Get-Command $script:function | Should -Not -HaveParameter Confirm
+            Get-Command $global:function | Should -Not -HaveParameter WhatIf
+            Get-Command $global:function | Should -Not -HaveParameter Confirm
             $script:ScriptBlock | Should -not -match 'SupportsShouldProcess'
             $script:ScriptBlock | Should -not -match '\$PSCmdlet\.ShouldProcess\(.+\)'
         }
     }
 
-    Context "$($script:function)::Function Unit Tests" {
+    Context "$($global:function)::Function Unit Tests" {
 
         It "should return a not null or empty string" {
             $results = Checkpoint-ZertoVpg -vpgName "MyVpg" -checkpointName "My Checkpoint Name"
@@ -58,3 +58,6 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoVpg -Exactly 1
     }
 }
+
+Remove-Variable -Name function -Scope Global
+Remove-Variable -Name here -Scope Global

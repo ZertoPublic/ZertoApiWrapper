@@ -1,16 +1,16 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$script:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $script:function -Tag 'Unit', 'Source', 'Built' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
-        $script:ScriptBlock = (Get-Command $script:function).ScriptBlock
+        $script:ScriptBlock = (Get-Command $global:function).ScriptBlock
     }
 
-    Context "$($script:function)::Parameter Unit Tests" {
+    Context "$($global:function)::Parameter Unit Tests" {
 
         It "server vairable has a mandatory String parameter" {
-            Get-Command $script:function | Should -HaveParameter zertoserver -Mandatory -Type String
+            Get-Command $global:function | Should -HaveParameter zertoserver -Mandatory -Type String
         }
 
         It "server variable does not accecpt an empty or null input" {
@@ -19,9 +19,9 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "port variable has a non-mandatory String parameter" {
-            Get-Command $script:function | Should -HaveParameter zertoPort -Not -Mandatory
-            Get-Command $script:function | Should -HaveParameter zertoPort -Type String
-            Get-Command $script:function | Should -HaveParameter zertoPort -DefaultValue "9669"
+            Get-Command $global:function | Should -HaveParameter zertoPort -Not -Mandatory
+            Get-Command $global:function | Should -HaveParameter zertoPort -Type String
+            Get-Command $global:function | Should -HaveParameter zertoPort -DefaultValue "9669"
         }
 
         It "port variable does not accecpt an empty or null input" {
@@ -37,7 +37,7 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "has a mandatory PSCredential parameter for the credential vairable" {
-            Get-Command $script:function | Should -HaveParameter credential -Mandatory -Type PSCredential
+            Get-Command $global:function | Should -HaveParameter credential -Mandatory -Type PSCredential
         }
 
         It "should require a PSCredentialObject for the credentials" {
@@ -61,7 +61,7 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
             return (Get-Content -Path "$global:here\Mocks\LocalSiteInfo.json" -Raw | ConvertFrom-Json)
         }
 
-        Context "$($script:function)::InModuleScope Function Unit Tests" {
+        Context "$($global:function)::InModuleScope Function Unit Tests" {
 
             BeforeAll {
                 $server = '192.168.1.100'
@@ -138,3 +138,6 @@ Describe $script:function -Tag 'Unit', 'Source', 'Built' {
         }
     }
 }
+
+Remove-Variable -Name function -Scope Global
+Remove-Variable -Name here -Scope Global
