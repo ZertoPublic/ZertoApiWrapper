@@ -15,9 +15,9 @@ function Invoke-ZARestRequest {
 
     # Check to see if the required variables are present and currently valid
     if ( -not ((Test-Path variable:script:zaLastActionTime) -and (Test-Path variable:script:zaHeaders)) ) {
-        ThrowError -ExceptionName "NoAuth" -ExceptionMessage "Zerto Analytics Connection does not Exist. Please run Connect-ZertoAnalytics first to establish a connection" -errorId "Auth02" -errorCategory "ZertoAuth" -ErrorAction Stop
+        Throw "Zerto Analytics Connection does not Exist. Please run Connect-ZertoAnalytics first to establish a connection"
     } elseif ( (Test-Path variable:script:zaHeaders) -and $([datetime]$script:zaLastActionTime).addMinutes(60) -lt $(get-date) ) {
-        ThrowError -ExceptionName "ExpiredToken" -ExceptionMessage "Authorization Token has Expired. Please re-authorize to the Zerto Analytics Portal" -errorId "Auth01" -errorCategory "ZertoAuth" -ErrorAction Stop
+        Throw "Authorization Token has Expired. Please re-authorize to the Zerto Analytics Portal"
     } else {
         # Update the last action time and submit the request based on PS Version.
         Set-Variable -Name zaLastActionTime -Scope Script -Value $(Get-date).Ticks
