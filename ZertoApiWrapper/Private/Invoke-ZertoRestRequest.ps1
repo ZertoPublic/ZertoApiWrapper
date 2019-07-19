@@ -18,12 +18,12 @@ function Invoke-ZertoRestRequest {
     $callerErrorActionPreference = $ErrorActionPreference
     # If the ZVM server and Port not defined, Stop Call
     if ( -not ((Test-Path variable:script:zvmServer) -and (Test-Path variable:script:zvmPort)) ) {
-        ThrowError -ExceptionName "NoConnection" -ExceptionMessage "Zerto Connection does not Exist. Please run Connect-ZertoServer first to establish a connection" -errorId "Connection01" -errorCategory "Connection" -ErrorAction Stop
+        Throw "Zerto Connection does not Exist. Please run Connect-ZertoServer first to establish a connection"
     }
 
     # If the Headers exist and the Last action was more than 30 minutes ago, Session is Expired
     if ( (Test-Path variable:script:zvmHeaders) -and $([datetime]$script:zvmLastAction).addMinutes(30) -lt $(get-date) ) {
-        ThrowError -ExceptionName "ExpiredToken" -ExceptionMessage "Authorization Token has Expired. Please re-authorize to the Zerto Virtual Manager" -errorId "ZVMAuth01" -errorCategory "Auth" -ErrorAction Stop
+        Throw "Authorization Token has Expired. Please re-authorize to the Zerto Virtual Manager"
     } else {
 
         # Build the URI to be submitted
