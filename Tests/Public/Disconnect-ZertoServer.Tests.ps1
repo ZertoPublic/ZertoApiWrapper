@@ -3,13 +3,10 @@ $global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
-    BeforeAll {
-        $script:ScriptBlock = (Get-Command $global:function).ScriptBlock
-    }
 
     Context "$($global:function)::Parameter Unit Tests" {
-        it "Does not take any parameters" {
-            (get-command disconnect-zertoserver).parameters.count | Should -BeExactly 11
+        It "Does not take any parameters" {
+            (Get-Command disconnect-zertoserver).parameters.count | Should -BeExactly 11
         }
     }
 
