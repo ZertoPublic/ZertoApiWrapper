@@ -38,12 +38,12 @@ function Export-ZertoVmNicSetting {
         }
         $nicSettings = foreach ($group in $vpgs) {
             $protectedVms = Get-ZertoProtectedVm -vpgName ($group.vpgname)
-            $vmMap = New-Map -InputObject $protectedVms -key "vmIdentifier" -value "vmName"
+            $vmMap = Get-Map -InputObject $protectedVms -key "vmIdentifier" -value "vmName"
             $settingsId = New-ZertoVpgSettingsIdentifier -vpgIdentifier $group.vpgIdentifier
             $vmSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $settingsId -vms
             $networks = Get-ZertoVirtualizationSite -siteIdentifier $group.RecoverySite.identifier -networks
             $null = Remove-ZertoVpgSettingsIdentifier -vpgSettingsIdentifier $settingsId
-            $networkMap = New-Map -InputObject $networks -key "NetworkIdentifier" -value "VirtualizationNetworkName"
+            $networkMap = Get-Map -InputObject $networks -key "NetworkIdentifier" -value "VirtualizationNetworkName"
             foreach ($vm in $vmSettings) {
                 $nicInfo = [PSCustomObject]@{
                     VPGName              = $group.VPGName

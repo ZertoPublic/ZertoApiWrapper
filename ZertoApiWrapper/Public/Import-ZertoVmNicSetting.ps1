@@ -31,9 +31,9 @@ function Import-ZertoVmNicSetting {
             $VpgInfo = Get-ZertoVpg -vpgName $Vpg
             $VpgIdentifier = $VpgInfo.VpgIdentifier
             $RecoveryNetworks = Get-ZertoVirtualizationSite -siteIdentifier $VpgInfo.RecoverySite.Identifier -networks
-            $NetworkMap = New-Map -InputObject $RecoveryNetworks -key "VirtualizationNetworkName" -value "NetworkIdentifier"
+            $NetworkMap = Get-Map -InputObject $RecoveryNetworks -key "VirtualizationNetworkName" -value "NetworkIdentifier"
             $VpgVms = Get-ZertoProtectedVm -vpgName $Vpg
-            $VmMap = New-Map -InputObject $VpgVms -key "vmName" -value "vmIdentifier"
+            $VmMap = Get-Map -InputObject $VpgVms -key "vmName" -value "vmIdentifier"
             $VpgSettingsId = New-ZertoVpgSettingsIdentifier -vpgIdentifier $VpgIdentifier
             $VmsToUpdate = $ImportData | Where-Object { $_.VPGName -eq $Vpg }
             foreach ($vm in $VmsToUpdate) {
