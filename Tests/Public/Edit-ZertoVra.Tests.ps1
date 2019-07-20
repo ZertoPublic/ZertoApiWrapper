@@ -1,187 +1,97 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path) -Replace "Tests", "ZertoApiWrapper"
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Mock -ModuleName ZertoApiWrapper Invoke-ZertoRestRequest {
-        return "8dcfdc8e-e5d2-4ba4-9885-f9eb57d92b14.928a122b-1763-4664-ad37-cc00bb883f2f"
+        Get-Content $global:here\Mocks\TaskId.txt
     }
 
-    Mock -ModuleName ZertoApiWrapper Get-ZertoVra {
-        $vraInformation = @{
-            DatastoreClusterIdentifier = $null
-            DatastoreClusterName       = $null
-            DatastoreIdentifier        = "840f99fb-4689-2f8b-ea10-2a47a5bb00cc.Prod_Datastore"
-            DatastoreName              = "Prod_Datastore"
-            HostIdentifier             = "840f99fb-4689-2f8b-ea10-2a47a5bb00cc.znest82esxus-1"
-            HostVersion                = 6.5
-            IpAddress                  = 192.168.1.100
-            Link                       = @{
-                href       = "https://192.168.1.200:7669/v1/vras/2609816293328110468"
-                identifier = "269816293328110468"
-                rel        = $null
-                type       = "VraApi"
-            }
-            MemoryInGB                 = 3
-            NetworkIdentifier          = "840f99fb-4689-2f8b-ea10-2a47a5bb00cc.network-1"
-            NetworkName                = "Test Network"
-            Progress                   = 0
-            ProtectedCounters          = @{
-                Vms     = 0
-                Volumes = 0
-                Vpgs    = 0
-            }
-            RecoveryCounters           = @{
-                Vms     = 0
-                Volumes = 0
-                Vpgs    = 0
-            }
-            SelfProtectedVpgs          = 0
-            Status                     = 0
-            VraAlerts                  = @{
-                VraAlertStatus = 0
-            }
-            VraGroup                   = "default_group"
-            VraIdentifier              = 269816293328110468
-            VraIdentifierStr           = "269816293328110468"
-            VraName                    = "VRA-znest82esxus-1"
-            VraNetworkDataApi          = @{
-                DefaultGateway            = "192.168.1.1"
-                SubnetMask                = "255.255.255.0"
-                VraIpAddress              = "192.168.1.100"
-                VraIpConfigurationTypeApi = "Dhcp"
-            }
-            VraVersion                 = 7.0
-        }
-        return $vraInformation
+    Mock -ModuleName ZertoApiWrapper Get-ZertoVra -ParameterFilter { $vraIdentifier -eq "MyVraIdentifier" } {
+        Get-Content $global:here\Mocks\GetSingleVra.json -Raw | ConvertFrom-Json
     }
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+    Mock -ModuleName ZertoApiWrapper Get-ZertoVra -ParameterFilter { $vraIdentifier -eq "DoesNotExist" } {
+        $null
     }
 
-    Context "$($File.BaseName)::Parameter Unit Tests" {
+    Mock -ModuleName ZertoApiWrapper Get-ZertoVra -ParameterFilter { $vraIdentifier -eq "DhcpVraIdentifier" } {
+        Get-Content $global:here\Mocks\GetDhcpVra.json -Raw | ConvertFrom-Json
+    }
 
-        It "has a mandatory String variable for the vraIdentifier" {
-            Get-Command $file.BaseName | Should -HaveParameter vraIdentifier -Mandatory -Type String
-            {Edit-ZertoVra}
+    Context "$($global:function)::Parameter Unit Tests" {
+
+        $ParameterTestCases = @(
+            @{ParameterName = 'vraIdentifier'; Type = 'String'; Mandatory = $true }
+            @{ParameterName = 'groupName'; Type = 'String'; Mandatory = $false }
+            @{ParameterName = 'vraIpAddress'; Type = 'String'; Mandatory = $false }
+            @{ParameterName = 'defaultGateway'; Type = 'String'; Mandatory = $false }
+            @{ParameterName = 'subnetMask'; Type = 'String'; Mandatory = $false }
+        )
+
+        It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
         }
 
-        It "has a non-mandatory String variable for the Bandwidth Group" {
-            Get-Command $file.BaseName | Should -HaveParameter groupName -Not -Mandatory
-            Get-Command $file.BaseName | Should -HaveParameter groupName -Type String
+        $StringTestCases = @(
+            @{ ParameterName = 'vraIdentifier' }
+            @{ ParameterName = 'groupName' }
+        )
+
+        it "<ParameterName> validates against null or empty values" -TestCases $StringTestCases {
+            param($ParameterName)
+            $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+            $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
         }
 
-        it "has a non-mandatory String variable for the staticIp Address" {
-            Get-Command $file.BaseName | Should -HaveParameter vraIpAddress -Not -Mandatory
-            Get-Command $file.BaseName | Should -HaveParameter vraIpAddress -Type String
-        }
+        $IpAddrTestCases = @(
+            @{ParameterName = 'vraIpAddress' }
+            @{ParameterName = 'defaultGateway' }
+            @{ParameterName = 'subnetMask' }
+        )
 
-        it "has a non-mandatory String variable for the default gateway" {
-            Get-Command $file.BaseName | Should -HaveParameter defaultGateway -Not -Mandatory
-            Get-Command $file.BaseName | Should -HaveParameter defaultGateway -Type String
-        }
-
-        it "has a non-mandatory String variable for the subnetmask" {
-            Get-Command $file.BaseName | Should -HaveParameter subnetMask -Not -Mandatory
-            Get-Command $file.BaseName | Should -HaveParameter subnetMask -Type String
-        }
-
-        it "supports WhatIf" {
-            Get-Command $file.BaseName | Should -HaveParameter WhatIf -Not -Mandatory
-        }
-
-        $cases = `
-        @{vraIpAddress = "192.168.1.256"}, `
-        @{vraIpAddress = "192.168.1"}, `
-        @{vraIpAddress = "String"}, `
-        @{vraIpAddress = 192.168.1}, `
-        @{vraIpAddress = 192.168.1.246}, `
-        @{vraIpAddress = 32}, `
-        @{vraIpAddress = ""}, `
-        @{vraIpAddress = $null}
-        It "IpAddress field require valid IP addresses as a String" -TestCases $cases {
-            param ( $vraIpAddress )
-            {Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -vraIpaddress $vraIpAddress} | Should -Throw
-        }
-
-        $cases = `
-        @{subnetMask = "192.168.1.256"}, `
-        @{subnetMask = "192.168.1"}, `
-        @{subnetMask = "String"}, `
-        @{subnetMask = 192.168.1}, `
-        @{subnetMask = 192.168.1.246}, `
-        @{subnetMask = 32}, `
-        @{subnetMask = ""}, `
-        @{subnetMask = $null}
-        It "subnetMask field require valid IP addresses as a String" -TestCases $cases {
-            param ( $vraIpAddress )
-            {Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -subnetMask $subnetMask} | Should -Throw
-        }
-
-        $cases = `
-        @{defaultGateway = "192.168.1.256"}, `
-        @{defaultGateway = "192.168.1"}, `
-        @{defaultGateway = "String"}, `
-        @{defaultGateway = 192.168.1}, `
-        @{defaultGateway = 192.168.1.246}, `
-        @{defaultGateway = 32}, `
-        @{defaultGateway = ""}, `
-        @{defaultGateway = $null}
-        It "defaultGateway field require valid IP addresses as a String" -TestCases $cases {
-            param ( $vraIpAddress )
-            {Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -defaultGateway $defaultGateway} | Should -Throw
-        }
-
-        $cases = `
-        @{vraIdentifier = ""; paramName = "vraIdentifier"; paramValue = ""}, `
-        @{vraIdentifier = $null; paramName = "vraIdentifier"; paramValue = ""}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "groupName"; paramValue = ""}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "groupName"; paramValue = $null}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "vraIpAddress"; paramValue = ""}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "vraIpAddress"; paramValue = $null}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "subnetMask"; paramValue = ""}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "subnetMask"; paramValue = $null}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "defaultGateway"; paramValue = ""}, `
-        @{vraIdentifier = "MyVraIdentifier"; paramName = "defaultGateway"; paramValue = $null}
-
-        It "<paramName> does not take empty or null" -TestCases $cases {
-            param($vraIdentifier, $paramValue, $paramName )
-            if ([String]::IsNullOrEmpty($vraIdentifier)) {
-                {Edit-ZertoVra -vraIdentifier $vraIdentifier} | Should -Throw
-            } else {
-                {Edit-ZertoVra -vraIdentifier $vraIdentifier -$paramName $paramValue} | should -Throw
-            }
+        it "<ParameterName> validates string for a valid IP Address" -TestCases $IpAddrTestCases {
+            param($ParameterName)
+            $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+            $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
+            $attrs.Where{ $_ -is [ValidateScript] }.ScriptBlock | Should -Match '^\$_ \-match \[IPAddress\]\$_'
         }
     }
 
-    Context "$($File.BaseName)::Function Unit Tests" {
+    Context "$($global:function)::Function Unit Tests" {
 
-        It "Returns a string" {
+        It "Returns a task id string" {
             $results = Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -groupName "MyGroup"
             $results | should not benullorempty
             $results | should -BeOfType "String"
-            $results | Should -BeExactly "8dcfdc8e-e5d2-4ba4-9885-f9eb57d92b14.928a122b-1763-4664-ad37-cc00bb883f2f"
+            $results | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
+        }
+
+        It "Throws an error when the VPG does not exist" {
+            { Edit-ZertoVra -vraIdentifier "DoesNotExist" -groupName "MyNewGroup" } | Should Throw "VRA with Identifier:"
+        }
+
+        It "Runs when passed static IP information" {
+            Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -vraIpAddress "192.168.1.250" -defaultGateway "192.168.1.254" -subnetMask "255.255.255.0"
+        }
+
+        It "Processes a VRA with a DHCP address" {
+            Edit-ZertoVra -vraIdentifier "DhcpVraIdentifier" -groupName "MyNewGroup" | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
         }
 
         it "Supports 'SupportsShouldProcess'" {
-            Get-Command $file.BaseName | Should -HaveParameter WhatIf
-            Get-Command $file.BaseName | Should -HaveParameter Confirm
-            $file | Should -FileContentMatch 'SupportsShouldProcess'
-            $file | Should -FileContentMatch '\$PSCmdlet\.ShouldProcess\(.+\)'
+            Get-Command $global:function | Should -HaveParameter WhatIf
+            Get-Command $global:function | Should -HaveParameter Confirm
+            (Get-Command $global:function).ScriptBlock | Should -Match 'SupportsShouldProcess'
+            (Get-Command $global:function).ScriptBlock | Should -Match '\$PSCmdlet\.ShouldProcess\(.+\)'
         }
 
     }
-    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest
-    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoVra
+    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 3
+    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoVra -Exactly 4
 }
+
+Remove-Variable -Name function -Scope Global
+Remove-Variable -Name here -Scope Global
