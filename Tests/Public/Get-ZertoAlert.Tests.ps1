@@ -1,84 +1,52 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+    Context "$global:function::Parameter Unit Tests" {
+
+        $ParameterTestCases = @(
+            @{ParameterName = 'alertId'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'entities'; Type = 'Switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'helpIdentifiers'; Type = 'Switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'levels'; Type = 'Switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'startDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'endDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'vpgIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'siteIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'zOrgIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'level'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'helpIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'isDismissed'; Type = 'bool'; Mandatory = $false; Validation = $null }
+        )
+
+        It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory, $Validation)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
+        }
+
+        It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
+            param($ParameterName, $Validation)
+            Switch ($Validation) {
+                'NotNullOrEmpty' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
+                }
+
+                $null {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.TypeId.Count | Should -Be 2
+                }
+            }
+        }
     }
 
-    Context "$($file.BaseName)::Parameter Unit Tests" {
+    Context "$global:function::Parameter Functional Tests" {
 
-        it "Has a mandatory string parameter for the Alert identifier" {
-            Get-Command $file.BaseName | Should -HaveParameter alertId
-            Get-Command $file.BaseName | Should -HaveParameter alertId -Mandatory
-            Get-Command $file.BaseName | Should -HaveParameter alertId -Type String[]
-        }
-
-        it "Has a non-mandatory switch parameter for the entities" {
-            Get-Command $file.BaseName | Should -HaveParameter entities
-            Get-Command $file.BaseName | Should -HaveParameter entities -Type switch
-        }
-
-        it "Has a non-mandatory switch parameter for the helpIdentifiers" {
-            Get-Command $file.BaseName | Should -HaveParameter helpIdentifiers
-            Get-Command $file.BaseName | Should -HaveParameter helpIdentifiers -Type switch
-        }
-
-        it "Has a non-mandatory switch parameter for the levels" {
-            Get-Command $file.BaseName | Should -HaveParameter levels
-            Get-Command $file.BaseName | Should -HaveParameter levels -Type switch
-        }
-
-        it "Has a non-mandatory string parameter for the startDate" {
-            Get-Command $file.BaseName | Should -HaveParameter startDate
-            Get-Command $file.BaseName | Should -HaveParameter startDate -Type string
-        }
-
-        it "Has a non-mandatory string parameter for the endDate" {
-            Get-Command $file.BaseName | Should -HaveParameter endDate
-            Get-Command $file.BaseName | Should -HaveParameter endDate -Type string
-        }
-
-        it "Has a non-mandatory string parameter for the vpgIdentifier" {
-            Get-Command $file.BaseName | Should -HaveParameter vpgIdentifier
-            Get-Command $file.BaseName | Should -HaveParameter vpgIdentifier -Type string
-        }
-
-        it "Has a non-mandatory string parameter for the siteIdentifier" {
-            Get-Command $file.BaseName | Should -HaveParameter siteIdentifier
-            Get-Command $file.BaseName | Should -HaveParameter siteIdentifier -Type string
-        }
-
-        it "Has a non-mandatory string parameter for the zorgIdentifier" {
-            Get-Command $file.BaseName | Should -HaveParameter zorgIdentifier
-            Get-Command $file.BaseName | Should -HaveParameter zorgIdentifier -Type string
-        }
-
-        it "Has a non-mandatory string parameter for the level" {
-            Get-Command $file.BaseName | Should -HaveParameter level
-            Get-Command $file.BaseName | Should -HaveParameter level -Type string
-        }
-
-        it "Has a non-mandatory string parameter for the helpIdentifier" {
-            Get-Command $file.BaseName | Should -HaveParameter helpIdentifier
-            Get-Command $file.BaseName | Should -HaveParameter helpIdentifier -Type string
-        }
-
-        it "Has a non-mandatory bool parameter for the isDismissed" {
-            Get-Command $file.BaseName | Should -HaveParameter isDismissed
-            Get-Command $file.BaseName | Should -HaveParameter isDismissed -Type bool
-        }
     }
 }
+
+Remove-Variable -Name here -Scope Global
+Remove-Variable -Name function -Scope Global
 
