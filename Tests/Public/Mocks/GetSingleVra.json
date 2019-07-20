@@ -1,0 +1,50 @@
+{
+  "DatastoreClusterIdentifier": null,
+  "DatastoreClusterName": null,
+  "DatastoreIdentifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.datastore-19",
+  "DatastoreName": "datastore1",
+  "HostIdentifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.host-15",
+  "HostVersion": "6.7",
+  "IpAddress": "192.168.10.15",
+  "Link": {
+    "href": "https://192.168.10.20:9669/v1/vras/5377857665828093654",
+    "identifier": "5377857665828093654",
+    "rel": null,
+    "type": "VraApi"
+  },
+  "Link_{0}": {
+    "href": "https://192.168.10.20:9669/v1/vras/5377857665828093654",
+    "rel": "self",
+    "type": "VraApi"
+  },
+  "MemoryInGB": 1,
+  "NetworkIdentifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.network-22",
+  "NetworkName": "VM Network",
+  "Progress": 0,
+  "ProtectedCounters": {
+    "Vms": 0,
+    "Volumes": 0,
+    "Vpgs": 0
+  },
+  "RecoveryCounters": {
+    "Vms": 0,
+    "Volumes": 0,
+    "Vpgs": 0
+  },
+  "SelfProtectedVpgs": 0,
+  "Status": 0,
+  "VraAlerts": {
+    "VraAlertsStatus": 0
+  },
+  "VraGroup": "default_group",
+  "VraIdentifier": 5377857665828093654,
+  "VraIdentifierStr": "5377857665828093654",
+  "VraName": "Z-VRA-ncesx2.nc.lab",
+  "VraNetworkDataApi": {
+    "DefaultGateway": "192.168.10.254",
+    "SubnetMask": "255.255.255.0",
+    "VraIPAddress": "192.168.10.15",
+    "VraIPConfigurationTypeApi": "Static"
+  },
+  "VraVersion": "7.0"
+}
