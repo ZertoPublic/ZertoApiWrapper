@@ -52,7 +52,7 @@ task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @('PSUseDeclaredVarsMoreThanAssignments', 'PSUseShouldProcessForStateChangingFunctions', 'PSUseToExportFieldsInManifest')
+        ExcludeRule = @('PSUseToExportFieldsInManifest', 'PSUseBOMForUnicodeEncodedFile', 'PSUseSingularNouns')
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
     if ($saResults) {
@@ -67,7 +67,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @("PSUseBOMForUnicodeEncodedFile", "PSUseSingularNouns")
+        ExcludeRule = @('PSUseSingularNouns', 'PSUseBOMForUnicodeEncodedFile')
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
 
