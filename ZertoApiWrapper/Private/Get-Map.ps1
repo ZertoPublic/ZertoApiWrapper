@@ -1,4 +1,4 @@
-function New-Map {
+function Get-Map {
     [CmdletBinding()]
     [OutputType([Hashtable])]
     param(

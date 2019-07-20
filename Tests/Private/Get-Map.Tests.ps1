@@ -12,9 +12,9 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
             it "Input Object should not accecpt a Null or Empty value" {
                 $myObj = [PSCustomObject]@{ }
-                { New-Map -InputObject $myObj -Key "Key" -Value "Value" } | Should Throw
-                { New-Map -InputObject $null -Key "Key" -Value "Value" } | Should Throw
-                { New-Map -InputObject "" -Key "Key" -Value "Value" } | Should Throw
+                { Get-Map -InputObject $myObj -Key "Key" -Value "Value" } | Should Throw
+                { Get-Map -InputObject $null -Key "Key" -Value "Value" } | Should Throw
+                { Get-Map -InputObject "" -Key "Key" -Value "Value" } | Should Throw
             }
 
             it "have a mandatory string parameter for the Map Key" {
@@ -23,16 +23,16 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
             it "The Map variable should not accecpt a Null or Empty value" {
                 $myObj = [PSCustomObject]@{one = 1; two = 2 }
-                { New-Map -InputObject $myObj -Key "" -Value "Value" } | Should Throw
-                { New-Map -InputObject $null -Key $null -Value "Value" } | Should Throw
-                { New-Map -InputObject $myObj -Key 1 -Value "Value" } | Should Throw
+                { Get-Map -InputObject $myObj -Key "" -Value "Value" } | Should Throw
+                { Get-Map -InputObject $null -Key $null -Value "Value" } | Should Throw
+                { Get-Map -InputObject $myObj -Key 1 -Value "Value" } | Should Throw
             }
 
             it "The Value variable should not accecpt a Null or Empty value" {
                 $myObj = [PSCustomObject]@{one = 1; two = 2 }
-                { New-Map -InputObject $myObj -Key "Key" -Value "" } | Should Throw
-                { New-Map -InputObject $myObj -Key "Key" -Value $null } | Should Throw
-                { New-Map -InputObject $myObj -Key "Key" -Value 1 } | Should Throw
+                { Get-Map -InputObject $myObj -Key "Key" -Value "" } | Should Throw
+                { Get-Map -InputObject $myObj -Key "Key" -Value $null } | Should Throw
+                { Get-Map -InputObject $myObj -Key "Key" -Value 1 } | Should Throw
             }
 
             it "have a mandatory string parameter for the Map Value" {
@@ -47,7 +47,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         Context "$global:function::Function Tests" {
             $myObj = Get-Content "$global:here/Mocks/ProtectedVMs.json" | ConvertFrom-Json
             BeforeEach {
-                $MyMap = New-Map -InputObject $MyObj -Key "vmIdentifier" -Value "vmName"
+                $MyMap = Get-Map -InputObject $MyObj -Key "vmIdentifier" -Value "vmName"
             }
             it "Returned object should be a hashtable" {
                 $myMap | Should -BeOfType Hashtable
