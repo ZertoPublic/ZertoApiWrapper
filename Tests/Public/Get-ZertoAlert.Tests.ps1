@@ -49,4 +49,3 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
 Remove-Variable -Name here -Scope Global
 Remove-Variable -Name function -Scope Global
-
