@@ -6,8 +6,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
 
-        it "$global:function should have exactly 15 parameters defined" {
-            (get-command $global:function).Parameters.Count | Should -Be 15
+        it "$global:function should have exactly 16 parameters defined" {
+            (get-command $global:function).Parameters.Count | Should -Be 16
         }
 
         $ParameterTestCases = @(
