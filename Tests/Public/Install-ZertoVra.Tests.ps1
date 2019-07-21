@@ -5,6 +5,10 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
+        it "$global:function should have exactly 22 parameters defined" {
+            (get-command $global:function).Parameters.Count | Should -Be 22
+        }
+
         $ParameterTestCases = @(
             @{ParameterName = 'hostName'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'datastoreName'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }

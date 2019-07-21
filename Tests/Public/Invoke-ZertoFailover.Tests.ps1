@@ -5,6 +5,10 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
+        it "$global:function should have exactly 20 parameters defined" {
+            (get-command $global:function).Parameters.Count | Should -Be 20
+        }
+
         $ParameterTestCases = @(
             @{ParameterName = 'vpgName'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'checkpointIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
@@ -39,7 +43,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                     $attrs.Where{ $_ -is [ValidateRange] }.Count | Should -Be 1
                 }
 
-                'Range' {
+                'ShouldProcess' {
                     $scriptBlock = (Get-Command $global:function).ScriptBlock
                     $scriptBlock | Should -match 'SupportsShouldProcess'
                     $scriptBlock | Should -match '\$PSCmdlet\.ShouldProcess\(.+\)'
@@ -48,6 +52,10 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 $null {
                     $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
                     $attrs.TypeId.Count | Should -Be 2
+                }
+
+                default {
+                    $true | should be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
