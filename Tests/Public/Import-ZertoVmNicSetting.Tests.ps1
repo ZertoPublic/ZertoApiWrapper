@@ -5,6 +5,10 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
+        it "$global:function should have exactly 11 parameters defined" {
+            (get-command $global:function).Parameters.Count | Should -Be 14
+        }
+
         It "Has a mandatory string array parameter for the settings file to import" {
             Get-Command $global:function | Should -HaveParameter InputFile
             Get-Command $global:function | Should -HaveParameter InputFile -Mandatory
