@@ -1,74 +1,82 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+    Context "$global:function::Parameter Unit Tests" {
+        it "$global:function should have exactly 20 parameters defined" {
+            (get-command $global:function).Parameters.Count | Should -Be 20
+        }
+
+        $ParameterTestCases = @(
+            @{ParameterName = 'vpgName'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'commitPolicy'; Type = 'String'; Mandatory = $false; Validation = 'Set' }
+            @{ParameterName = 'commitPolicyTimeout'; Type = 'Int'; Mandatory = $false; Validation = 'Range' }
+            @{ParameterName = 'forceShutdown'; Type = 'Switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'disableReverseProtection'; Type = 'Switch'; Mandatory = $true; Validation = $null }
+            @{ParameterName = 'keepSourceVms'; Type = 'Switch'; Mandatory = $true; Validation = $null }
+            @{ParameterName = 'ContinueOnPreScriptFailure'; Type = 'Switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'whatIf'; Type = 'Switch'; Mandatory = $false; Validation = 'ShouldProcess' }
+        )
+
+        It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory, $Validation)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
+        }
+
+        It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
+            param($ParameterName, $Validation)
+            Switch ($Validation) {
+                'NotNullOrEmpty' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
+                }
+
+                'Set' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateSet] }.Count | Should -Be 1
+                }
+
+                'Range' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateRange] }.Count | Should -Be 1
+                }
+
+                'ShouldProcess' {
+                    $scriptBlock = (Get-Command $global:function).ScriptBlock
+                    $scriptBlock | Should -match 'SupportsShouldProcess'
+                    $scriptBlock | Should -match '\$PSCmdlet\.ShouldProcess\(.+\)'
+                }
+
+                $null {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.TypeId.Count | Should -Be 2
+                }
+
+                default {
+                    $true | should be $false -Because "No Validation Selected. Review test cases"
+                }
+            }
+        }
+
+        It "Commit Policy Only Accecpts 'RollBack', 'Commit', or 'None'" {
+            (Get-Command $global:function).Parameters['commitPolicy'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues | Should -HaveCount 3
+            (Get-Command $global:function).Parameters['commitPolicy'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues | Should -Contain 'RollBack'
+            (Get-Command $global:function).Parameters['commitPolicy'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues | Should -Contain 'Commit'
+            (Get-Command $global:function).Parameters['commitPolicy'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues | Should -Contain 'None'
+        }
+
+        it "Commit Policy Timeout should have a minimum value of 300 and max value of 86400" {
+            (Get-Command $global:function).Parameters['commitPolicyTimeout'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should -Be 300
+            (Get-Command $global:function).Parameters['commitPolicyTimeout'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should -Be 86400
+        }
     }
 
-    Context "$($file.BaseName)::Parameter Unit Tests" {
+    Context "$global:function::Parameter Functional Tests" {
 
-        it "has a mandatory string parameter for the vpgName" {
-            Get-Command $file.BaseName | Should -HaveParameter vpgName
-            Get-Command $file.BaseName | Should -HaveParameter vpgName -Type string[]
-            Get-Command $file.BaseName | Should -HaveParameter vpgName -Mandatory
-        }
-
-        it "has a non-mandatory string parameter for commitPolicy" {
-            Get-Command $file.BaseName | Should -HaveParameter commitPolicy
-            Get-Command $file.BaseName | Should -HaveParameter commitPolicy -Type string
-        }
-
-        it "CommitPolicy only accecpts 'Rollback', 'Commit', or 'None'" {
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicy "Rollbackk" } | Should -Throw
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicy "" } | Should -Throw
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicy $null } | Should -Throw
-        }
-
-        it "has a non-mandatory int parameter for commitPolicyTimeout" {
-            Get-Command $file.BaseName | Should -HaveParameter commitPolicyTimeout
-            Get-Command $file.BaseName | Should -HaveParameter commitPolicyTimeout -Type Int
-        }
-
-        it "Commit Policy Timeout will only accecpt an int value between 5 minutes and 24 Hours" {
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicyTimeout 150 } | Should -Throw
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicyTimeout 15000000 } | Should -Throw
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicyTimeout -1350 } | Should -Throw
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicyTimeout $null } | Should -Throw
-            { Invoke-ZertoMove -vpgName "MyVpg" -commitPolicyTimeout "" } | Should -Throw
-        }
-
-        it "has a non-mandatory switch parameter for forceShutdown" {
-            Get-Command $file.BaseName | Should -HaveParameter forceShutdown
-            Get-Command $file.BaseName | Should -HaveParameter forceShutdown -Type Switch
-        }
-
-        it "has a mandatory switch parameter for disableReverseProtection" {
-            Get-Command $file.BaseName | Should -HaveParameter disableReverseProtection
-            Get-Command $file.BaseName | Should -HaveParameter disableReverseProtection -Type Switch
-            Get-Command $file.BaseName | Should -HaveParameter disableReverseProtection -Mandatory
-        }
-
-        it "has a non-mandatory switch parameter for keepSourceVms" {
-            Get-Command $file.BaseName | Should -HaveParameter keepSourceVms
-            Get-Command $file.BaseName | Should -HaveParameter keepSourceVms -Type Switch
-            Get-Command $file.BaseName | Should -HaveParameter keepSourceVms -Mandatory
-        }
-
-        it "has a non-mandatory switch parameter for ContinueOnPreScriptFailure" {
-            Get-Command $file.BaseName | Should -HaveParameter ContinueOnPreScriptFailure
-            Get-Command $file.BaseName | Should -HaveParameter ContinueOnPreScriptFailure -Type Switch
-        }
     }
 }
+
+Remove-Variable -Name here -Scope Global
+Remove-Variable -Name function -Scope Global
