@@ -7,8 +7,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     Context "$global:function::Parameter Unit Tests" {
 
         It "has a non-mandatory string parameter for the datacenterIdentifier" {
-            Get-Command $file.BaseName | Should -HaveParameter datastoreIdentifier
-            Get-Command $file.BaseName | Should -HaveParameter datastoreIdentifier -Type String[]
+            Get-Command $global:function | Should -HaveParameter datastoreIdentifier
+            Get-Command $global:function | Should -HaveParameter datastoreIdentifier -Type String[]
         }
     }
 
