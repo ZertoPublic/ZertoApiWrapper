@@ -10,6 +10,10 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             Get-Command $global:function | Should -HaveParameter datastoreIdentifier
             Get-Command $global:function | Should -HaveParameter datastoreIdentifier -Type String[]
         }
+
+        It "datastoreIdentifier parameter does not take null or empty values" {
+            (Get-Command $global:function).Parameters['datastoreIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.count | Should Be 1
+        }
     }
 
     Context "$global:function::Parameter Functional Tests" {
