@@ -5,6 +5,17 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
+        It "$global:function should have exactly 12 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 12
+        }
+
+        It "zOrgIdentifier Parameter should be present and of 'String' Type" {
+            Get-Command $global:function | Should -HaveParameter zOrgIdentifier -Type String -Mandatory:$false
+        }
+
+        It "zOrgIdentifier has the NotNullOrEmpty Validator" {
+            (Get-Command $global:function).Parameters['zOrgIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should Be 1
+        }
 
     }
 
