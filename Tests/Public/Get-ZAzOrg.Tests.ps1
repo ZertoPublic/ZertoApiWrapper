@@ -5,7 +5,9 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
-
+        It "$global:function should have exactly 11 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 11
+        }
     }
 
     Context "$global:function::Parameter Functional Tests" {
