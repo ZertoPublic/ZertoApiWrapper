@@ -28,7 +28,7 @@ function Get-ZAVpg {
         }
 
         vpg {
-            $uri = "{0}/$vpgIdentifier"
+            $uri = "{0}/$vpgIdentifier" -f $uri
         }
     }
 
