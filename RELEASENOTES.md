@@ -10,3 +10,7 @@
 
 * Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/36) where the Zerto Analytics Rest Request function was not checking for the token before attempting a connection.
 * Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/40) where the `Get-ZAVpg` method would return a 404 error when a `-vpgIdentifier` parameter was specified.
+
+### General Updates
+
+* Updated the way that tests are invoked and parsed to ensure that both source and built module files are tested. This will ensure that what is being shipped passes all tests along with testing of the source files.
