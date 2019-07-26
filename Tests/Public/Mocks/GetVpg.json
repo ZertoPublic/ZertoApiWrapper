@@ -1,0 +1,75 @@
+{
+  "ActiveProcessesApi": {
+    "RunningFailOverTestApi": null
+  },
+  "ActualRPO": 7,
+  "BackupEnabled": false,
+  "ConfiguredRpoSeconds": 300,
+  "Entities": {
+    "Protected": 0,
+    "Recovery": 0,
+    "Source": 0,
+    "Target": 0
+  },
+  "FailSafeHistory": {
+    "ActualFailSafeHistory": 60,
+    "ConfiguredFailSafeHistory": 240,
+    "FailSafeDescription": ""
+  },
+  "HistoryStatusApi": {
+    "ActualHistoryInMinutes": 92,
+    "ConfiguredHistoryInMinutes": 1440,
+    "EarliestCheckpoint": {
+      "CheckpointIdentifier": "786",
+      "Tag": null,
+      "TimeStamp": "2019-07-20T19:30:19Z"
+    }
+  },
+  "IOPs": 13,
+  "LastTest": null,
+  "Link": {
+    "href": "https://192.168.10.20:9669/v1/vpgs/57f502ff-3c41-4aff-b20a-6638205b73cd",
+    "identifier": "57f502ff-3c41-4aff-b20a-6638205b73cd",
+    "rel": null,
+    "type": "VpgApi"
+  },
+  "Link_{0}": {
+    "href": "https://192.168.10.20:9669/v1/vpgs/57f502ff-3c41-4aff-b20a-6638205b73cd",
+    "rel": "self",
+    "type": "VpgApi"
+  },
+  "OrganizationName": "",
+  "Priority": 1,
+  "ProgressPercentage": 0,
+  "ProtectedSite": {
+    "href": "https://192.168.10.20:9669/v1/localsite",
+    "identifier": "9e09efa0-0d00-46ed-929b-f86273b28205",
+    "rel": null,
+    "type": "LocalSiteApi"
+  },
+  "ProvisionedStorageInMB": 336118,
+  "RecoverySite": {
+    "href": "https://192.168.10.20:9669/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
+    "identifier": "057cab27-f02a-443a-989d-7f14341fa9c3",
+    "rel": null,
+    "type": "PeerSiteApi"
+  },
+  "ServiceProfile": null,
+  "ServiceProfileIdentifier": null,
+  "ServiceProfileName": "",
+  "SourceSite": "WCHL - NC",
+  "Status": 1,
+  "SubStatus": 0,
+  "TargetSite": "WCHL - CA",
+  "ThroughputInMB": 0.27197265625,
+  "UsedStorageInMB": 245465,
+  "VmsCount": 4,
+  "VpgIdentifier": "57f502ff-3c41-4aff-b20a-6638205b73cd",
+  "VpgName": "ExportStuff",
+  "Zorg": {
+    "href": "https://192.168.10.20:9669/v1/zorgs/00000000-0000-0000-0000-000000000000",
+    "identifier": "00000000-0000-0000-0000-000000000000",
+    "rel": null,
+    "type": "ZorgApi"
+  }
+}

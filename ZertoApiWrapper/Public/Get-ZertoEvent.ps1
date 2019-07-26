@@ -69,7 +69,7 @@ function Get-ZertoEvent {
             ParameterSetName = "filter",
             HelpMessage = "The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'"
         )]
-        [ValidateNotNullOrEmpty()]
+        [ValidateSet('All','Events','Alerts')]
         [string]$category,
         [Parameter(
             ParameterSetName = "filter",

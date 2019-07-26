@@ -1,19 +1,42 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+    Context "$global:function::Parameter Unit Tests" {
+        It "$global:function should have exactly 12 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 12
+        }
+
+        $ParameterTestCases = @(
+            @{ParameterName = 'zOrgIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+        )
+
+        It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory, $Validation)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
+        }
+
+        It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
+            param($ParameterName, $Validation)
+            Switch ($Validation) {
+                'NotNullOrEmpty' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
+                }
+
+                default {
+                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                }
+            }
+        }
+    }
+
+    Context "$global:function::Parameter Functional Tests" {
+
     }
 }
+
+Remove-Variable -Name here -Scope Global
+Remove-Variable -Name function -Scope Global

@@ -22,6 +22,7 @@ function Get-ZertoPeerSite {
             ParameterSetName = "filter",
             HelpMessage = "The name of a peer site for which information is to be returned. The name is case-sensitive."
         )]
+        [ValidateNotNullOrEmpty()]
         [string]$peerName,
         [Parameter (
             ParameterSetName = "filter",

@@ -5,7 +5,7 @@ function Disconnect-ZertoServer {
     $uri = "session"
 
     # Delete API Authorization
-    Invoke-ZertoRestRequest -uri $uri -method DELETE
+    $null = Invoke-ZertoRestRequest -uri $uri -method DELETE
 
     # Remove all variables used
     Remove-Variable -Name zvmServer -Scope Script

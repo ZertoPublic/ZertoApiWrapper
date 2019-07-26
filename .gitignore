@@ -1,7 +1,8 @@
 
 *.zip
 temp/*
-Tests/Public/TestResults.xml
-Tests/TestResults.xml
+BuiltTestResults.xml
+SourceTestResults.xml
 publish/*
 CodeCoverage.xml
+scratch

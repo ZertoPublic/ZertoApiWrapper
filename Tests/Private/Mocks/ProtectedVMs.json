@@ -1,0 +1,15 @@
+[
+    {
+        "VMname": "ExchangeMailbox",
+        "VMIdentifier": "vmid.12"
+    },
+    {
+        "VMName": "ExchangeApplication",
+        "VmIdentifier": "vmid.13"
+    },
+    {
+        "VMName": "ExchangeWeb",
+        "VmIdentifier": "vmid.14"
+    }
+]
+

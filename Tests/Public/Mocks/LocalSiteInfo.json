@@ -1,0 +1,20 @@
+{
+  "BandwidthThrottlingInMBs": -1,
+  "ContactEmail": "vSphere-Site01@zerto.com",
+  "ContactName": "vSphere-Site01@zerto.com",
+  "ContactPhone": "066-6666666",
+  "IpAddress": "192.168.200.1",
+  "IsReplicationToSelfEnabled": true,
+  "Link": {
+    "href": "https://192.168.222.1:7669/v1/localsite",
+    "identifier": "63a62dc2-ef6f-45aa-809f-9dbaeb8c06cf",
+    "rel": null,
+    "type": "LocalSiteApi"
+  },
+  "Location": "vSphere-Site01",
+  "SiteIdentifier": "63a62dc2-ef6f-45aa-809f-9dbaeb8c06cf",
+  "SiteName": "vSphere-Site01 at Zerto",
+  "SiteType": "VCenter",
+  "UtcOffsetInMinutes": -240,
+  "Version": "7.0.0"
+}

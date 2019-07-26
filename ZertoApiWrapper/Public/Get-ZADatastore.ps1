@@ -20,7 +20,7 @@ function Get-ZADatastore {
         [Parameter(
             HelpMessage = "The datastore cluster identifier. Gets a list of datastores in the cluster.",
             ParameterSetName = "cluster",
-            Mandatory = "true"
+            Mandatory = $true
         )]
         [ValidateNotNullOrEmpty()]
         [string]$clusterIdentifier,

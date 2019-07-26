@@ -1,37 +1,40 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
-    Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
-        $null
-    }
-    Mock -ModuleName ZertoApiWrapper -CommandName Remove-Variable {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    }
-
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
-    }
-
-    Context "$($file.BaseName)::Parameter Unit Tests" {
-        it "Does not take any parameters" {
-            (get-command disconnect-zertoserver).parameters.count | Should -BeExactly 11
+    Context "$($global:function)::Parameter Unit Tests" {
+        It "Does not take any parameters" {
+            (Get-Command disconnect-zertoserver).parameters.count | Should -BeExactly 11
         }
     }
 
-    Context "$($file.BaseName)::Function Unit Tests" {
-        it "Does not return anything" {
-            Disconnect-ZertoServer | Should -BeNullOrEmpty
+    Context "$($global:function)::Function Unit Tests" {
+        InModuleScope -ModuleName ZertoApiWrapper {
+            Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest {
+                # Attempted to Mock this per the Mock Below and it blew up. Auth Headers Returns a Dictionary
+                # and does not index the same way when imported from a JSON file. Need addtional investigation.
+                $xZertoSession = @("e34da0b0-4bc2-4cda-b316-0384e35bdca5")
+                $Headers = @{'x-zerto-session' = $xZertoSession }
+                $results = @{'Headers' = $Headers }
+                return $results
+            }
+
+            Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
+                return (Get-Content -Path "$global:here\Mocks\LocalSiteInfo.json" -Raw | ConvertFrom-Json)
+            }
+
+            BeforeAll {
+                Connect-ZertoServer
+            }
+
+            It "Does not return anything" {
+                Disconnect-ZertoServer | Should -BeNullOrEmpty
+            }
         }
     }
 }
+
+Remove-Variable -Name function -Scope Global
+Remove-Variable -Name here -Scope Global

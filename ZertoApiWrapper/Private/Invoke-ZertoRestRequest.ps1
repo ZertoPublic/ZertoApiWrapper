@@ -1,26 +1,29 @@
 function Invoke-ZertoRestRequest {
     [cmdletbinding()]
     param(
+        [ValidateSet("GET", "PUT", "POST", "DELETE")]
         [string]$method = "GET",
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
         [string]$uri,
+        [ValidateNotNullOrEmpty()]
         [string]$apiVersion = "v1",
+        [ValidateNotNullOrEmpty()]
         [string]$body,
+        [ValidateNotNullOrEmpty()]
         [string]$contentType = "application/json",
-        [System.Management.Automation.PSCredential]
-        $credential,
+        [PSCredential]$credential,
         [switch]$returnHeaders
     )
     $callerErrorActionPreference = $ErrorActionPreference
     # If the ZVM server and Port not defined, Stop Call
     if ( -not ((Test-Path variable:script:zvmServer) -and (Test-Path variable:script:zvmPort)) ) {
-        Write-Error -Message "Zerto Connection does not Exist. Please run Connect-ZertoServer first to establish a connection"
-        break
+        Throw "Zerto Connection does not Exist. Please run Connect-ZertoServer first to establish a connection"
     }
 
     # If the Headers exist and the Last action was more than 30 minutes ago, Session is Expired
     if ( (Test-Path variable:script:zvmHeaders) -and $([datetime]$script:zvmLastAction).addMinutes(30) -lt $(get-date) ) {
-        Write-Error -Message "Authorization Token has Expired. Please re-authorize to the Zerto Virtual Manager"
-        break
+        Throw "Authorization Token has Expired. Please re-authorize to the Zerto Virtual Manager"
     } else {
 
         # Build the URI to be submitted
@@ -57,7 +60,7 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
                 # If we are authenticating to the ZVM, Use this block to use Invoke-WebRequest and format the Headers as expected.
                 if ($uri -eq "session/add" -and $method -eq "POST") {
                     $apiRequestResults = Invoke-WebRequest -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
-                    $responseHeaders = @{}
+                    $responseHeaders = @{ }
                     $responseHeaders['x-zerto-session'] = @($apiRequestResults.Headers['x-zerto-session'])
                 } elseif ($method -ne "GET") {
                     # If the Method is something other than 'GET' use this call with a body parameter
