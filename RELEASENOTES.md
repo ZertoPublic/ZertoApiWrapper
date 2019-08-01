@@ -5,6 +5,7 @@
 * Added two functions to aid in bulk updating of NIC information for protected VMs. ([Issue 38](https://github.com/ZertoPublic/ZertoApiWrapper/issues/38))
   * [Export-ZertoVmNicSetting](https://github.com/ZertoPublic/ZertoApiWrapper/blob/Master/docs/Export-ZertoVmNicSettings.md)
   * [Import-ZertoVmNicSetting](https://github.com/ZertoPublic/ZertoApiWrapper/blob/Master/docs/Import-ZertoVmNicSettings.md)
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/43) where a VPG being created with a single VM member would not be parsed by the API correctly using PowerShell 5.1
 
 ### Zerto Analytics
 
@@ -14,3 +15,4 @@
 ### General Updates
 
 * Updated the way that tests are invoked and parsed to ensure that both source and built module files are tested. This will ensure that what is being shipped passes all tests along with testing of the source files.
+* Added additional parameter validation tests to several of the functions. On-going effort to complete stand alone unit testing of each function.
