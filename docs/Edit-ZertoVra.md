@@ -49,7 +49,7 @@ PS C:\>Edit-ZertoVra -vraIdentifier $vraIdentifier -vraIpAddress "192.168.1.101"
 
 Updates the VRA IP address to 192.168.1.101, subnet mask to 255.255.252.0, and default gateway to 192.168.1.1
 
-### Example 3
+### Example 4
 ```powershell
 PS C:\>Edit-ZertoVra -vraIdentifier $vraIdentifier -defaultGateway "192.168.1.1"
 ```
