@@ -13,7 +13,8 @@ Pairs the current Zerto Virtual Manager to the target Zerto Virtual Manager
 ## SYNTAX
 
 ```
-Add-ZertoPeerSite [-targetHost] <String> [[-targetPort] <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Add-ZertoPeerSite [-targetHost] <String> [[-targetPort] <Int32>] [-token <String>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,10 +24,17 @@ Pairs the current Zerto Virtual Manager to the target Zerto Virtual Manager by l
 
 ### Example 1
 ```powershell
-PS C:\> Add-ZertoPeerSite -targetHost "192.168.2.100" -targetPort "9081"
+PS C:\> Add-ZertoPeerSite -targetHost "192.168.2.100"
 ```
 
-Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP address 192.168.2.100.
+Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP address 192.168.2.100. Use this method when pairing Zerto Virtual Managers that are prior to version 7.5
+
+### Example 2
+```powershell
+PS C:\> Add-ZertoPeerSite -targetHost "192.168.2.100" -token "GeneratedFromTargetZVM"
+```
+
+Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP address 192.168.2.100. Use this method when pairing Zerto Virtual Managers that are version 7.5 or later.
 
 ## PARAMETERS
 
@@ -57,6 +65,21 @@ Aliases:
 Required: False
 Position: 1
 Default value: "9081"
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -token
+The generated token from the destination site. Note: This is only supported when both sites support pairing authentication. This was implemented to support ZVR 7.5 and later.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
