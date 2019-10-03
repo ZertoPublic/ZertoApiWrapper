@@ -9,34 +9,55 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
 
-        It "Has a mandatory string parameter for the target host" {
-            Get-Command $global:function | Should -HaveParameter TargetHost -Mandatory -Type String
+        It "$global:function should have exactly 16 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 16
         }
 
-        It "Will not take a non-ip address as a 'TargetHost'" {
-            { Add-ZertoPeerSite -targetHost 'MyZVMHost' -targetPort '9081' } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1.266' -targetPort '9081' } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1' -targetPort '9081' } | Should -Throw
-            { Add-ZertoPeerSite -targetHost $null -targetPort '9081' } | Should -Throw
+        $ParameterTestCases = @(
+            @{ParameterName = 'targetHost'; Type = 'String'; Mandatory = $true; Validation = 'Script' }
+            @{ParameterName = 'targetPort'; Type = 'Int32'; Mandatory = $false; Validation = 'Range' }
+            @{ParameterName = 'token'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+        )
+
+        It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory, $Validation)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
         }
 
-        It "Has a non-mandatory string parameter for the target port with default value of 9081" {
-            Get-Command Add-ZertoPeerSite | Should -HaveParameter TargetPort -Not -Mandatory
-            Get-Command Add-ZertoPeerSite | Should -HaveParameter TargetPort -Type Int32
-            Get-Command Add-ZertoPeerSite | Should -HaveParameter TargetPort -DefaultValue 9081
+        It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
+            param($ParameterName, $Validation)
+            Switch ($Validation) {
+                'Script' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
+                }
+
+                'Range' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateRange] }.Count | Should -Be 1
+                }
+
+                'NotNullOrEmpty' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
+                }
+
+                default {
+                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                }
+            }
         }
 
-        It "Will not take a non-int as a port" {
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort 'string' } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort $true } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort $null } | Should -Throw
+        It "targetPort Parameter should have a default value of 9081" {
+            Get-Command $global:function | Should -HaveParameter targetPort -DefaultValue 9081
         }
 
-        It "Will fail if the specified port is outside of the range 1024 - 65535" {
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort 1023 } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort 65536 } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort 0 } | Should -Throw
-            { Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort -1 } | Should -Throw
+        It "targetPort Parameter should have a Min value of 1024" {
+            (Get-Command $global:function).Parameters['targetPort'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should Be 1024
+        }
+
+        It "targetPort Parameter should have a Max value of 65535" {
+            (Get-Command $global:function).Parameters['targetPort'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should Be 65535
         }
 
         It "Supports 'SupportsShouldProcess'" {
@@ -52,8 +73,15 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             return (Get-Content "$global:here\Mocks\TaskId.txt")
         }
 
-        It "Returns a string value" {
+        It "Returns a string value when no Token Passed" {
             $results = Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort '9081'
+            $results | Should -Not -BeNullOrEmpty
+            $results | Should -BeOfType "String"
+            $results | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
+        }
+
+        It "Returns a string value when a Token is passed" {
+            $results = Add-ZertoPeerSite -targetHost '192.168.1.100' -targetPort '9081' -token "NotARealTokenString"
             $results | Should -Not -BeNullOrEmpty
             $results | Should -BeOfType "String"
             $results | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
@@ -64,7 +92,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $results | Should -BeNullOrEmpty
         }
 
-        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 1
+        Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 2
     }
 }
 Remove-Variable -Name here -Scope Global
