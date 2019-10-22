@@ -19,7 +19,7 @@ function Invoke-ZertoEvacuateVra {
         # VRAIdentifier Option
         [Parameter(
             Mandatory,
-            HelpMessage, "Identifier of the VRA to be evacuated",
+            HelpMessage = "Identifier of the VRA to be evacuated",
             ParameterSetName = "VraIdentifier",
             ValueFromPipelineByPropertyName,
             ValueFromPipeline
