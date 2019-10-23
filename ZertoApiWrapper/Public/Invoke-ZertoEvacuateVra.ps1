@@ -8,6 +8,7 @@ function Invoke-ZertoEvacuateVra {
             HelpMessage = "Name of the Host to Evacuate",
             ParameterSetName = "HostName"
         )]
+        [ValidateNotNullOrEmpty()]
         [String]$HostName,
         # VRA Option
         [Parameter(
@@ -15,6 +16,7 @@ function Invoke-ZertoEvacuateVra {
             HelpMessage = "Name of the VRA to Evacuate",
             ParameterSetName = "VraName"
         )]
+        [ValidateNotNullOrEmpty()]
         [String]$VraName,
         # VRAIdentifier Option
         [Parameter(
@@ -25,6 +27,7 @@ function Invoke-ZertoEvacuateVra {
             ValueFromPipeline
         )]
         [Alias("VraId", "Identifier")]
+        [ValidateNotNullOrEmpty()]
         [String]$VraIdentifier
     )
 
