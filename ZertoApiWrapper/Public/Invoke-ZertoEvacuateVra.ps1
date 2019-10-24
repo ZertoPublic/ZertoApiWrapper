@@ -43,7 +43,7 @@ function Invoke-ZertoEvacuateVra {
             }
 
             "VraName" {
-                $VraIdentifier = (Get-ZertoVra -vraName $VraName).Identifier
+                $VraIdentifier = (Get-ZertoVra -vraName $VraName).VraIdentifier
                 Invoke-ZertoEvacuateVra -VraIdentifier $VraIdentifier
             }
 
