@@ -49,7 +49,9 @@ function Copy-ZertoVpg {
         if ($PSCmdlet.ShouldProcess("$VMsToAdd", "Copying $SourceVpgName to $NewVpgName with Settings")) {
             $NewVpgId = Invoke-ZertoRestRequest -Uri $BaseUri -Body ($VpgIdToCopy | ConvertTo-Json) -Method "POST"
             $Uri = "{0}/{1}/vms" -f "vpgSettings", $NewVpgId
-            $null = Invoke-ZertoRestRequest -Uri $Uri -Body ($VMsToAdd | ConvertTo-Json) -Method "POST"
+            foreach ($VM in $VMsToAdd) {
+                $null = Invoke-ZertoRestRequest -Uri $Uri -Body ($VM | ConvertTo-Json) -Method "POST"
+            }
             $Uri = "vpgSettings/{0}" -f $NewVpgId
             $CurrentSettings = Invoke-ZertoRestRequest -Uri $Uri
             $CurrentSettings.Basic.Name = $NewVpgName
