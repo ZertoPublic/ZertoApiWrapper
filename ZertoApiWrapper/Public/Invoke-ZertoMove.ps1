@@ -89,7 +89,7 @@ function Invoke-ZertoMove {
                 Write-Error "VPG: $name not found. Please check the name and try again. Skipping"
             } else {
                 $uri = "{0}/{1}/move" -f $baseUri, $vpgId
-                if ($PSCmdlet.ShouldProcess("Moving VPG: $name wiht settings: $($body | convertto-json)")) {
+                if ($PSCmdlet.ShouldProcess("Moving VPG: $name with settings: $($body | convertto-json)")) {
                     Invoke-ZertoRestRequest -uri $uri -method "POST" -body $($body | ConvertTo-Json)
                 }
             }
