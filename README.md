@@ -32,6 +32,7 @@ PS> Install-Module -name ZertoApiWrapper
 
 ## Recent Updates
 
+* December 1st, 2019: November Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.3.0.20191201).
 * August 1st, 2019: August Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.2.0.20190801).
 * June 16th, 2019: Added functionality for Zerto Analytics.
 * May 31st, 2019: Implement logic to allow use of this module in both Windows PowerShell 5.1 and PowerShell Core.
@@ -40,7 +41,6 @@ PS> Install-Module -name ZertoApiWrapper
 
 ## TODO
 
-* Complete Help Markdown Files
 * JFLR Functionality
 * Create VPG (Per-VM modification and Backup Settings)
 * Edit VPG
