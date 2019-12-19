@@ -44,15 +44,28 @@ function Import-ZertoVmNicSetting {
                     [string]::IsNullOrWhiteSpace($Vm.LiveShouldReplaceMac) -or
                     [string]::IsNullOrWhiteSpace($Vm.TestNetwork) -or
                     [string]::IsNullOrWhiteSpace($Vm.TestShouldReplaceMac)) {
-                    Write-Error "$($Vm.VMName) does not contain all the required data. Please check the CSV entry for this item and try again." -ErrorAction Continue
+                    Write-Error "$($Vm.VMName) does not contain all the required data. Please check the CSV entry for this item and try again. You are required to provide the VPGName, VMName, NicIdentifier, LiveNetwork, and ShouldReplaceMacAddress for each Nic." -ErrorAction Continue
                 } else {
                     $uri = "vpgSettings/{0}/vms/{1}" -f $vpgSettingsId, $vmMap[$vm.VMName]
                     $VmNicSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsId -vmIdentifier $vmMap[$vm.VMName]
                     foreach ($nic in $VmNicSettings.nics) {
                         if ($nic.NicIdentifier -eq $vm.NicIdentifier) {
-                            $nic.failover.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.LiveNetwork]
-                            $nic.failover.Hypervisor.ShouldReplaceMacAddress = $vm.LiveShouldReplaceMac
-                            if ($null -eq $nic.failover.Hypervisor.IpConfig -and ($null -ne $vm.LiveIsDHCP -or $null -ne $vm.LiveIpAddress)) {
+                            $NicUri = "{0}/nics/{1}" -f $uri, $nic.NicIdentifier
+                            Invoke-ZertoRestRequest -uri $NicUri -Method "DELETE"
+                            $nicSettings = Invoke-ZertoRestRequest -uri $NicUri -Method "GET"
+                            $nicSettings.failover.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.LiveNetwork]
+                            $nicSettings.failover.Hypervisor.ShouldReplaceMacAddress = $vm.LiveShouldReplaceMac
+                            if ($vm.LiveIsDHCP -imatch "true") {
+                                $IpConfig = [PSCustomObject]@{
+                                    IsDhcp       = $vm.LiveIsDHCP
+                                    PrimaryDns   = $vm.LivePrimaryDns
+                                    SecondaryDns = $vm.LiveSecondayDns
+                                }
+                                $nicSettings.failover.Hypervisor.IpConfig = $IpConfig
+                                $nicSettings.failover.Hypervisor.DnsSuffix = $vm.LiveDnsSuffix
+                            } elseif (($vm.LiveIsDHCP -imatch "false" -or
+                                    [string]::IsNullOrWhiteSpace($vm.LiveIsDHCP)) -and
+                                -not [string]::IsNullOrWhiteSpace($vm.LiveIpAddress)) {
                                 $IpConfig = [PSCustomObject]@{
                                     IsDhcp       = $vm.LiveIsDHCP
                                     StaticIp     = $vm.LiveIpAddress
@@ -61,21 +74,22 @@ function Import-ZertoVmNicSetting {
                                     PrimaryDns   = $vm.LivePrimaryDns
                                     SecondaryDns = $vm.LiveSecondayDns
                                 }
-                                $nic.failover.Hypervisor.IpConfig = $IpConfig
-                            } elseif ($null -eq $nic.failover.Hypervisor.IpConfig -and $null -eq $vm.LiveIsDHCP -and $null -eq $vm.LiveIpAddress) {
-                                $nic.failover.Hypervisor.IpConfig = $null
-                            } else {
-                                $nic.failover.Hypervisor.IpConfig.IsDhcp = $vm.LiveIsDHCP
-                                $nic.failover.Hypervisor.IpConfig.StaticIp = $vm.LiveIpAddress
-                                $nic.failover.Hypervisor.IpConfig.SubnetMask = $vm.LiveIpSubnetMask
-                                $nic.failover.Hypervisor.IpConfig.Gateway = $vm.LiveIpDefaultGateway
-                                $nic.failover.Hypervisor.IpConfig.PrimaryDns = $vm.LivePrimaryDns
-                                $nic.failover.Hypervisor.IpConfig.SecondaryDns = $vm.LiveSecondayDns
+                                $nicSettings.failover.Hypervisor.IpConfig = $IpConfig
+                                $nicSettings.failover.Hypervisor.DnsSuffix = $vm.LiveDnsSuffix
                             }
-                            $nic.failover.Hypervisor.DnsSuffix = $vm.LiveDnsSuffix
-                            $nic.failoverTest.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.TestNetwork]
-                            $nic.failoverTest.Hypervisor.ShouldReplaceMacAddress = $vm.TestShouldReplaceMac
-                            if ($null -eq $nic.failoverTest.Hypervisor.IpConfig -and ($null -ne $vm.TestIsDHCP -or $null -ne $vm.TestIpAddress)) {
+                            $nicSettings.failoverTest.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.TestNetwork]
+                            $nicSettings.failoverTest.Hypervisor.ShouldReplaceMacAddress = $vm.TestShouldReplaceMac
+                            if ($vm.TestIsDHCP -imatch "true" ) {
+                                $IpConfig = [PsCustomObject]@{
+                                    IsDhcp       = $vm.TestIsDHCP
+                                    PrimaryDns   = $vm.TestPrimaryDns
+                                    SecondaryDns = $vm.TestSecondayDns
+                                }
+                                $nicSettings.failoverTest.Hypervisor.IpConfig = $IpConfig
+                                $nicSettings.failoverTest.Hypervisor.DnsSuffix = $vm.TestDnsSuffix
+                            } elseif (($vm.TestIsDHCP -imatch "false" -or
+                                    [string]::IsNullOrWhiteSpace($vm.TestIsDHCP)) -and
+                                -not [string]::IsNullOrWhiteSpace($vm.TestIpAddress)) {
                                 $IpConfig = [PsCustomObject]@{
                                     IsDhcp       = $vm.TestIsDHCP
                                     StaticIp     = $vm.TestIpAddress
@@ -84,23 +98,14 @@ function Import-ZertoVmNicSetting {
                                     PrimaryDns   = $vm.TestPrimaryDns
                                     SecondaryDns = $vm.TestSecondayDns
                                 }
-                                $nic.failoverTest.Hypervisor.IpConfig = $IpConfig
-                            } elseif ($null -eq $nic.failoverTest.Hypervisor.IpConfig -and $null -eq $vm.TestIsDHCP -and $null -eq $vm.TestIpAddress) {
-                                $nic.failoverTest.Hypervisor.IpConfig = $null
-                            } else {
-                                $nic.failoverTest.Hypervisor.IpConfig.IsDhcp = $vm.TestIsDHCP
-                                $nic.failoverTest.Hypervisor.IpConfig.StaticIp = $vm.TestIpAddress
-                                $nic.failoverTest.Hypervisor.IpConfig.SubnetMask = $vm.TestIpSubnetMask
-                                $nic.failoverTest.Hypervisor.IpConfig.Gateway = $vm.TestIpDefaultGateway
-                                $nic.failoverTest.Hypervisor.IpConfig.PrimaryDns = $vm.TestPrimaryDns
-                                $nic.failoverTest.Hypervisor.IpConfig.SecondaryDns = $vm.TestSecondayDns
+                                $nicSettings.failoverTest.Hypervisor.IpConfig = $IpConfig
+                                $nicSettings.failoverTest.Hypervisor.DnsSuffix = $vm.TestDnsSuffix
                             }
-                            $nic.failoverTest.Hypervisor.DnsSuffix = $vm.TestDnsSuffix
+                            Write-Verbose "Putting Updated Config for VM: $($vm.name), NIC: $($nic.nicidentifier) in VPG: $Vpg"
+                            if ($PSCmdlet.ShouldProcess($vm.NicIdentifier, "Updating Nic")) {
+                                Invoke-ZertoRestRequest -uri $NicUri -Method "PUT" -Body ($nicSettings | ConvertTo-Json -Depth 10) > $null
+                            }
                         }
-                    }
-                    Write-Verbose "Putting Updated Config for VM: $($vm.vmname) in Vpg: $Vpg"
-                    if ($PSCmdlet.ShouldProcess($vm.NicIdentifier, "Updating Nic")) {
-                        Invoke-ZertoRestRequest -uri $uri -Method "PUT" -Body ($VmNicSettings | ConvertTo-Json -Depth 10) > $null
                     }
                 }
             }
