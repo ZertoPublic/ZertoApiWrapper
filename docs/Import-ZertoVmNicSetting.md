@@ -19,7 +19,13 @@ Import-ZertoVmNicSetting [-InputFile] <String> [-WhatIf] [-Confirm] [<CommonPara
 ## DESCRIPTION
 Using a CSV file, will import updated Live and Test network settings for protected virtual machines. This function will read the provided CSV file and only update VMs defined in the file.
 
-It should be noted, due to current API limitations once a NIC is defined to update to either a Static IP address or use a DHCP address, it is not possible to remove that configuration via the API. Should you require this functionality, you will need to manually update via the GUI to set the option to "No"
+Each entry in the CSV will be for one VM and a single NIC attached to that VM. Each entry MUST contain the following information: VPG Name, VM Name, Network Adapter Name, Mac Address Update for both Live and Test, and Network Name for both Live and Test. All other information is optional, but will be applied based on the following logic:
+  * If 'IsDhcp' is set to 'TRUE', the NIC setting will be set to DHCP and Primary DNS, Secondary DNS, and Search Domain settings will be applied along with the mandatory fields.
+  * If 'IsDhcp' is set to 'FALSE' or not set and there is an IP Address defined, the IP Address, Subnet Mask, Default Gateway, Primary DNS, Secondary DNS, and Search Domain settings will be applied along with the mandatory fields.
+  * if 'IsDhcp' is set to 'FALSE' or not set and there is NOT an IP Address defined, the current NIC settings will be removed and ONLY the mandatory fields will be applied.
+
+This logic is applied to both the Live and Test settings individually. It is recommended to use the `Export-ZertoVpgNicSetting` to dump all current settings and then modify a copy of the exported file with only the settings you wish to update. Import the copied file and if you need to revert, Import the original.
+
 
 ## EXAMPLES
 
