@@ -51,7 +51,7 @@ function Import-ZertoVmNicSetting {
                     foreach ($nic in $VmNicSettings.nics) {
                         if ($nic.NicIdentifier -eq $vm.NicIdentifier) {
                             $NicUri = "{0}/nics/{1}" -f $uri, $nic.NicIdentifier
-                            Invoke-ZertoRestRequest -uri $NicUri -Method "DELETE"
+                            Invoke-ZertoRestRequest -uri $NicUri -Method "DELETE" > $null
                             $nicSettings = Invoke-ZertoRestRequest -uri $NicUri -Method "GET"
                             $nicSettings.failover.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.LiveNetwork]
                             $nicSettings.failover.Hypervisor.ShouldReplaceMacAddress = $vm.LiveShouldReplaceMac
