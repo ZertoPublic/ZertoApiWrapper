@@ -142,22 +142,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -vpgIdentifier
-The internal identifier of the VPG.
-You can specify more than one VPG, separated by commas.
-
-```yaml
-Type: String
-Parameter Sets: filter
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -vpgName
 The name of the VPG.
 You can specify more than one VPG, separated by commas.
