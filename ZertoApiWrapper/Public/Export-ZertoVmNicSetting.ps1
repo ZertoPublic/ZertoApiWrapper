@@ -45,33 +45,37 @@ function Export-ZertoVmNicSetting {
             $null = Remove-ZertoVpgSettingsIdentifier -vpgSettingsIdentifier $settingsId
             $networkMap = Get-Map -InputObject $networks -key "NetworkIdentifier" -value "VirtualizationNetworkName"
             foreach ($vm in $vmSettings) {
-                $nicInfo = [PSCustomObject]@{
-                    VPGName              = $group.VPGName
-                    VMName               = $vmMap[$($vm.vmIdentifier)]
-                    NicIdentifier        = $vm.nics.NicIdentifier
-                    LiveNetwork          = $networkMap[$vm.nics.failover.Hypervisor.NetworkIdentifier]
-                    LiveShouldReplaceMac = $vm.nics.failover.Hypervisor.ShouldReplaceMacAddress
-                    LiveIsDHCP           = $vm.Nics.failover.Hypervisor.IpConfig.IsDhcp
-                    LiveIpAddress        = $vm.nics.failover.Hypervisor.IpConfig.StaticIp
-                    LiveIpSubnetMask     = $vm.nics.failover.Hypervisor.IpConfig.SubnetMask
-                    LiveIpDefaultGateway = $vm.nics.failover.Hypervisor.IpConfig.Gateway
-                    LivePrimaryDns       = $vm.nics.failover.Hypervisor.IpConfig.PrimaryDns
-                    LiveSecondayDns      = $vm.nics.failover.Hypervisor.IpConfig.SecondaryDns
-                    LiveDnsSuffix        = $vm.nics.failover.Hypervisor.DnsSuffix
-                    TestNetwork          = $networkMap[$vm.nics.failoverTest.Hypervisor.NetworkIdentifier]
-                    TestShouldReplaceMac = $vm.nics.failoverTest.Hypervisor.ShouldReplaceMacAddress
-                    TestIsDHCP           = $vm.Nics.failoverTest.Hypervisor.IpConfig.IsDhcp
-                    TestIpAddress        = $vm.nics.failoverTest.Hypervisor.IpConfig.StaticIp
-                    TestIpSubnetMask     = $vm.nics.failoverTest.Hypervisor.IpConfig.SubnetMask
-                    TestIpDefaultGateway = $vm.nics.failoverTest.Hypervisor.IpConfig.Gateway
-                    TestPrimaryDns       = $vm.nics.failoverTest.Hypervisor.IpConfig.PrimaryDns
-                    TestSecondayDns      = $vm.nics.failoverTest.Hypervisor.IpConfig.SecondaryDns
-                    TestDnsSuffix        = $vm.nics.failoverTest.Hypervisor.DnsSuffix
+                if ($vm.nics.count -gt 0) {
+                    foreach ($nic in $vm.nics) {
+                        $nicInfo = [PSCustomObject]@{
+                            VPGName              = $group.VPGName
+                            VMName               = $vmMap[$vm.vmIdentifier]
+                            NicIdentifier        = $nic.NicIdentifier
+                            LiveNetwork          = $networkMap[$nic.failover.Hypervisor.NetworkIdentifier]
+                            LiveShouldReplaceMac = $nic.failover.Hypervisor.ShouldReplaceMacAddress
+                            LiveIsDHCP           = $nic.failover.Hypervisor.IpConfig.IsDhcp
+                            LiveIpAddress        = $nic.failover.Hypervisor.IpConfig.StaticIp
+                            LiveIpSubnetMask     = $nic.failover.Hypervisor.IpConfig.SubnetMask
+                            LiveIpDefaultGateway = $nic.failover.Hypervisor.IpConfig.Gateway
+                            LivePrimaryDns       = $nic.failover.Hypervisor.IpConfig.PrimaryDns
+                            LiveSecondayDns      = $nic.failover.Hypervisor.IpConfig.SecondaryDns
+                            LiveDnsSuffix        = $nic.failover.Hypervisor.DnsSuffix
+                            TestNetwork          = $networkMap[$nic.failoverTest.Hypervisor.NetworkIdentifier]
+                            TestShouldReplaceMac = $nic.failoverTest.Hypervisor.ShouldReplaceMacAddress
+                            TestIsDHCP           = $nic.failoverTest.Hypervisor.IpConfig.IsDhcp
+                            TestIpAddress        = $nic.failoverTest.Hypervisor.IpConfig.StaticIp
+                            TestIpSubnetMask     = $nic.failoverTest.Hypervisor.IpConfig.SubnetMask
+                            TestIpDefaultGateway = $nic.failoverTest.Hypervisor.IpConfig.Gateway
+                            TestPrimaryDns       = $nic.failoverTest.Hypervisor.IpConfig.PrimaryDns
+                            TestSecondayDns      = $nic.failoverTest.Hypervisor.IpConfig.SecondaryDns
+                            TestDnsSuffix        = $nic.failoverTest.Hypervisor.DnsSuffix
+                        }
+                        $nicInfo
+                    }
                 }
-                $nicInfo
             }
         }
-        $nicSettings | Export-Csv -Path $OutputFile
+        $nicSettings | Export-Csv -Path $OutputFile -NoTypeInformation
     }
 
     end {
