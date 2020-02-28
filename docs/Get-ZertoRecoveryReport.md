@@ -20,7 +20,7 @@ Get-ZertoRecoveryReport [<CommonParameters>]
 ### filter
 ```
 Get-ZertoRecoveryReport [-startTime <String>] [-endTime <String>] [-pageNumber <String>] [-pageSize <String>]
- [-vpgIdentifier <String>] [-vpgName <String>] [-recoveryType <String>] [-state <String>] [<CommonParameters>]
+ [-vpgName <String>] [-recoveryType <String>] [-state <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
