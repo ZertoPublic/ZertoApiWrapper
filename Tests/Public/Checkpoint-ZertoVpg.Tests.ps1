@@ -16,7 +16,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$($global:function)::Parameter Unit Tests" {
         It "Has a parameter for the VpgName that is Mandatory" {
-            Get-Command $global:function | Should -HaveParameter vpgName -Mandatory -Type String
+            Get-Command $global:function | Should -HaveParameter vpgName -Mandatory -Type 'String[]'
         }
 
         It "Has a parameter for the CheckpointName that is Mandatory" {
