@@ -56,7 +56,7 @@ Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-scripting] [<CommonParam
 
 ### recovery
 ```
-Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-rcovery] [<CommonParameters>]
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-recovery] [<CommonParameters>]
 ```
 
 ### priority
@@ -288,13 +288,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -rcovery
+### -recovery
 Get VPG Recovery Settings
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: recovery
-Aliases:
+Aliases: rcovery
 
 Required: True
 Position: Named

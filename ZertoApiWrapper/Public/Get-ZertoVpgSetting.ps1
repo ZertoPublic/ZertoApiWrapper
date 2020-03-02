@@ -211,7 +211,8 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "Get VPG Recovery Settings"
         )]
-        [switch]$rcovery,
+        [Alias("rcovery")]
+        [switch]$recovery,
         [Parameter(
             ParameterSetName = "scripting",
             Mandatory = $true,
