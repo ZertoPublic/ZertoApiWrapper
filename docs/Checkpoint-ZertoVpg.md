@@ -13,7 +13,7 @@ Add a tagged checkpoint to a specified VPG
 ## SYNTAX
 
 ```
-Checkpoint-ZertoVpg [-vpgName] <String> [-checkpointName] <String> [<CommonParameters>]
+Checkpoint-ZertoVpg [-vpgName] <String[]> [-checkpointName] <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,14 +49,14 @@ Accept wildcard characters: False
 Name of the VPG to tag.
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

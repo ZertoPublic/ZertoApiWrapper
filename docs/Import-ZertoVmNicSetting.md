@@ -26,7 +26,6 @@ Each entry in the CSV will be for one VM and a single NIC attached to that VM. E
 
 This logic is applied to both the Live and Test settings individually. It is recommended to use the `Export-ZertoVpgNicSetting` to dump all current settings and then modify a copy of the exported file with only the settings you wish to update. Import the copied file and if you need to revert, Import the original.
 
-
 ## EXAMPLES
 
 ### Example 1
