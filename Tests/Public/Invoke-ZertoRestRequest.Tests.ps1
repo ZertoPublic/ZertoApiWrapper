@@ -14,9 +14,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $ParameterNameTestCases = @(
                 @{ParameterName = "uri"; Type = "String"; Mandatory = $true; DefaultValue = $null; TestName = "URI" }
                 @{ParameterName = "method"; Type = "String"; Mandatory = $false; DefaultValue = 'GET'; TestName = "Method" }
-                @{ParameterName = "apiVersion"; Type = "String"; Mandatory = $false; DefaultValue = 'v1'; TestName = "API Version" }
                 @{ParameterName = "body"; Type = "String"; Mandatory = $false; DefaultValue = $null; TestName = "Body" }
-                @{ParameterName = "contentType"; Type = "String"; Mandatory = $false; DefaultValue = 'application/json'; TestName = "Content Type" }
                 @{ParameterName = "credential"; Type = "PSCredential"; Mandatory = $false; DefaultValue = $null; TestName = "Credential" }
                 @{ParameterName = "returnHeaders"; Type = "Switch"; Mandatory = $false; DefaultValue = $null; TestName = "Return Headers" }
             )
@@ -36,9 +34,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
             $ParameterValidationTestCases = @(
                 @{ParameterName = "URI"; TestName = "URI" }
-                @{ParameterName = "apiVersion"; TestName = "Api Version" }
                 @{ParameterName = "body"; TestName = "Body" }
-                @{ParameterName = "contentType"; TestName = "Content Type" }
             )
 
             It "<TestName> parameter cannot be null or empty" -TestCases $ParameterValidationTestCases {
