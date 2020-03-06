@@ -160,7 +160,6 @@ function Get-ZertoVpg {
     )
     begin {
         $baseUri = "vpgs"
-        $returnObject = @()
     }
 
     Process {
@@ -169,14 +168,13 @@ function Get-ZertoVpg {
 
             # When called with no parameters, return all values
             "main" {
-                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
+                $uri = $baseUri
             }
 
             # When called with protectionGroupIdentifier, query for each id provided
             "protectionGroupIdentifier" {
-                $returnObject = foreach ( $vpgId in $protectionGroupIdentifier ) {
-                    $uri = "{0}/{1}" -f $baseUri, $vpgId
-                    Invoke-ZertoRestRequest -uri $uri
+                $uri = foreach ( $vpgId in $protectionGroupIdentifier ) {
+                    "{0}/{1}" -f $baseUri, $vpgId
                 }
             }
 
@@ -185,7 +183,7 @@ function Get-ZertoVpg {
                 $filter = $false
                 if ( $PSBoundParameters.ContainsKey("startDate") -or $PSBoundParameters.ContainsKey("endDate") ) {
                     $filter = $true
-                    $filterTable = @{}
+                    $filterTable = @{ }
                     foreach ( $param in $PSBoundParameters.GetEnumerator() ) {
                         if ( $param.key -eq "startDate" -or $param.key -eq "endDate") {
                             $filterTable[$param.key] = $param.value
@@ -193,21 +191,19 @@ function Get-ZertoVpg {
                     }
                     $filter = Get-ZertoApiFilter -filterTable $filterTable
                 }
-                $returnObject = foreach ( $id in $protectionGroupIdentifier ) {
+                $uri = foreach ( $id in $protectionGroupIdentifier ) {
                     if ( $filter ) {
-                        $uri = "{0}/{1}/checkpoints{2}" -f $baseUri, $id, $filter
+                        "{0}/{1}/checkpoints{2}" -f $baseUri, $id, $filter
                     } else {
-                        $uri = "{0}/{1}/checkpoints" -f $baseUri, $id
+                        "{0}/{1}/checkpoints" -f $baseUri, $id
                     }
-                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             # When stats are requested
             "stats" {
-                $returnObject = foreach ( $id in $protectionGroupIdentifier ) {
-                    $uri = "{0}/{1}/checkpoints/stats" -f $baseUri, $id
-                    Invoke-ZertoRestRequest -uri $uri
+                $uri = foreach ( $id in $protectionGroupIdentifier ) {
+                    "{0}/{1}/checkpoints/stats" -f $baseUri, $id
                 }
             }
 
@@ -215,18 +211,18 @@ function Get-ZertoVpg {
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             # Default is to build URI based on ParameterSetName and return results.
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName.ToLower()
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
+        }
+        foreach ($entry in $uri) {
+            Invoke-ZertoRestRequest -uri $entry
         }
     }
 
     End {
-        return $returnObject
     }
 }
