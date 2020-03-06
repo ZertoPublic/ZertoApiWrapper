@@ -8,3 +8,4 @@
 * Refactored the `Checkpoint-ZertoVpg` command to allow pipeline input (ByValue and ByProperty) for the VpgName parameter.
 * Corrected a parameter typo in the `Get-ZertoVpgSetting` function. The misspelt parameter was added as an alias to ensure any existing scripts using the parameter continue to function.
 * Refactored the `Get-ZertoVpg` command to remove repetitive commands and variables that are no longer required.
+* Moved `Invoke-ZertoRestRequest` and `Invoke-ZARestRequest` to be public functions. As there become more and more scenarios where there are not prebuilt functions to accomplish complex specialized tasks, it became apparent that these functions could be leveraged to make the experience and workflow easier.

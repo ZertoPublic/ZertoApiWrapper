@@ -12,7 +12,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 @{ParameterName = 'uri'; Type = 'String'; Mandatory = $true; TestName = 'URI' }
                 @{ParameterName = 'method'; Type = 'String'; Mandatory = $false; TestName = 'Method' }
                 @{ParameterName = 'body'; Type = 'String'; Mandatory = $false; TestName = 'Body' }
-                @{ParameterName = 'contentType'; Type = 'String'; Mandatory = $false; TestName = 'contentType' }
             )
 
             It "Parameter present and Type test for: <TestName> " -TestCases $testCases {
@@ -29,14 +28,9 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 Get-Command $global:function | Should -HaveParameter Method -DefaultValue "GET"
             }
 
-            It "ContentType parameter default is 'application/json'" {
-                Get-Command $global:function | Should -HaveParameter contentType -DefaultValue "application/json"
-            }
-
             $NotNullOrEmptyTests = @(
                 @{ParameterName = 'uri'; TestName = 'Uri' }
                 @{ParameterName = 'body'; TestName = 'Body' }
-                @{ParameterName = 'contentType'; TestName = 'ContentType' }
             )
 
             It "<TestName> parameter does not accecpt a null or empty value" -TestCases $NotNullOrEmptyTests {
