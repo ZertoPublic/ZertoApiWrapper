@@ -52,9 +52,7 @@ function Get-ZAPlannerStatsReport {
     foreach ($vmId in $vmIdentifier) {
         $body['vms'].Add(@{'identifier' = $vmId; 'desiredJournalHistory' = $desiredJournalHistory })
     }
-    ($body | ConvertTo-Json)
     $reportId = Invoke-ZARestRequest -uri $uri -method POST -body ($body | ConvertTo-Json)
-    $reportId.reportId
     $uri = '{0}?reportId={1}' -f $uri, $reportId.reportId
     Invoke-ZARestRequest -uri $uri
 }
