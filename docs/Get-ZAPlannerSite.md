@@ -64,4 +64,4 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 
 ## RELATED LINKS
 [Zerto Analytics Sites Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites)
-[Zerto Analytics Single Site Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites)
+[Zerto Analytics Single Site Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites__siteIdentifier_)
