@@ -1,13 +1,14 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerSite.md
 schema: 2.0.0
 ---
 
 # Get-ZAPlannerSite
 
 ## SYNOPSIS
+Retrieve all active Planner sites for a specific account – includes ID, Name and Type or retrieves datacenter, host, and VMs for a specific site.
 
 ## SYNTAX
 
@@ -16,16 +17,23 @@ Get-ZAPlannerSite [[-siteIdentifier] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Retrieve all active Planner sites for a specific account – includes ID, Name and Type or retrieves datacenter, host, and VMs for a specific site.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZAPlannerSite
 ```
 
-{{ Add example description here }}
+Retrieve all active Planner sites for a specific account
+
+### Example 2
+```powershell
+PS C:\> Get-ZAPlannerSite -siteIdentifier '0123-45676-09876'
+```
+
+Retrieves datacenter, host, and VMs for site with Identifier '0123-45676-09876'.
 
 ## PARAMETERS
 
@@ -55,3 +63,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Analytics Sites Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites)
+[Zerto Analytics Single Site Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites)
