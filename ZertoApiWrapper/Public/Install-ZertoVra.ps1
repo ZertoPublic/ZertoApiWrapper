@@ -40,6 +40,14 @@ function Install-ZertoVra {
         $hostIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object {$_.VirtualizationHostName -eq $hostName} | Select-Object hostIdentifier -ExpandProperty hostIdentifier
         $networkIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -networks | Where-Object {$_.VirtualizationNetworkName -eq $networkName} | Select-Object NetworkIdentifier -ExpandProperty NetworkIdentifier
         $datastoreIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -datastores | Where-Object {$_.DatastoreName -eq $datastoreName} | Select-Object DatastoreIdentifier -ExpandProperty DatastoreIdentifier
+        if ($datastoreIdentifier.count -gt 1){
+            $hostDevices = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -devices -hostIdentifier $hostIdentifier
+            $datastoreIdentifier = foreach ($identifier in $datastoreIdentifier) {
+                if ($identifier -in $hostDevices.DatastoreIdentifier){
+                    $identifier
+                }
+            }
+        }
 
         # Build the JSON object through an Ordered Hashtable.
         $vraBasic = [ordered]@{}
