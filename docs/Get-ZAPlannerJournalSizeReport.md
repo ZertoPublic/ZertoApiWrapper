@@ -1,13 +1,14 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerJournalSizeReport.md
 schema: 2.0.0
 ---
 
 # Get-ZAPlannerJournalSizeReport
 
 ## SYNOPSIS
+Create a report request to retrieve the Journal Size for a specific VMs list, and timeframe.
 
 ## SYNTAX
 
@@ -17,16 +18,37 @@ Get-ZAPlannerJournalSizeReport [-siteIdentifier] <String> [-recoveryType] <Strin
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Create a report request to retrieve the Journal Size for a specific VMs list, and timeframe.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZAPlannerJournalSizeReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2'
 ```
 
-{{ Add example description here }}
+Gets a Journal report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. The report will cover a Journal History of 24 hours. This will use all data contained in Zerto Analytics to create the Journal report.
+
+### Example 2
+```powershell
+PS C:\> Get-ZAPlannerJournalSizeReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2' -desiredJournalHistory 96
+```
+
+Gets a Journal report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. The report will cover a Journal History of 96 hours (4 days). This will use all data contained in Zerto Analytics to create the Journal report.
+
+### Example 3
+```powershell
+PS C:\> Get-ZAPlannerJournalSizeReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2' -desiredJournalHistory 96 -startDate '2020-01-01'
+```
+
+Gets a Journal report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. The report will cover a Journal History of 96 hours (4 days). This will use all data starting from Jan 1st to today contained in Zerto Analytics to create the Journal report.
+
+### Example 4
+```powershell
+PS C:\> Get-ZAPlannerJournalSizeReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2' -desiredJournalHistory 96 -startDate '2020-01-01' -endDate '2020-01-30'
+```
+
+Gets a Journal report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. The report will cover a Journal History of 96 hours (4 days). This will use all data starting from Jan 1st to Jan 30th contained in Zerto Analytics to create the Journal report.
 
 ## PARAMETERS
 
@@ -137,3 +159,5 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Planner Journal Size Report - Post](https://docs.api.zerto.com/#/Planner/post_v2_planner_reports_stats_journal_size)
+[Zerto Planner Journal Size Report - Get](https://docs.api.zerto.com/#/Planner/get_v2_planner_reports_stats_journal_size)
