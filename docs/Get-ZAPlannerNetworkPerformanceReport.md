@@ -1,13 +1,15 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerNetworkPerformanceReport.md
 schema: 2.0.0
 ---
 
 # Get-ZAPlannerNetworkPerformanceReport
 
 ## SYNOPSIS
+Create a report request to retrieve the Network Performance for a specific VMs list, and timeframe.
+
 
 ## SYNTAX
 
@@ -18,16 +20,30 @@ Get-ZAPlannerNetworkPerformanceReport [-siteIdentifier] <String> [-recoveryType]
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Create a report request to retrieve the Network Performance for a specific VMs list, and timeframe.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZAPlannerNetworkPerformanceReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2'
 ```
 
-{{ Add example description here }}
+Gets a Network Performance report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. This will use all data contained in Zerto Analytics to create the Journal report.
+
+### Example 2
+```powershell
+PS C:\> Get-ZAPlannerNetworkPerformanceReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2' -startDate '2020-01-01' -interval 86400
+```
+
+Gets a Network Performance report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. This will use data contained in Zerto Analytics starting Jan 1st, 2020 ending on the day the report is run to create the Journal report. Sample reporting interval will be 86400 seconds (1 day).
+
+### Example 3
+```powershell
+PS C:\> Get-ZAPlannerNetworkPerformanceReport -siteIdentifier '1234567890-01923141' -recoveryType VMware -vmIdentifier 'vmIdentifier1', 'vmIdentifier2' -startDate '2020-01-01' -endDate '2020-01-30' -interval 86400
+```
+
+Gets a Network Performance report for VMs with identifiers 'vmIdentifier1' and 'vmIdentifier2' at source siteIdentifier '1234567890-01923141' where the target recovery location is VMware. This will use data contained in Zerto Analytics starting Jan 1st, 2020 ending on Jan 30th, 2020 to create the Journal report. Sample reporting interval will be 86400 seconds (1 day).
 
 ## PARAMETERS
 
@@ -138,3 +154,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Analytics Planner Network-Performance API Endpoint - POST](https://docs.api.zerto.com/#/Planner/post_v2_planner_reports_network_performance)
+[Zerto Analytics Planner Network-Performance API Endpoint - GET](https://docs.api.zerto.com/#/Planner/get_v2_planner_reports_network_performance)
+
