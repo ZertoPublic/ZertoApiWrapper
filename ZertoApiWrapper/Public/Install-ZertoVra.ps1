@@ -21,13 +21,13 @@ function Install-ZertoVra {
         [Parameter( ParameterSetName = "Dhcp", Mandatory = $true, HelpMessage = "Assign a DHCP address to the VRA." )]
         [switch]$Dhcp,
         [Parameter( ParameterSetName = "StaticIp", Mandatory = $true, HelpMessage = "Static IP address to assign to the VRA." )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
         [string]$vraIpAddress,
         [Parameter( ParameterSetName = "StaticIp", Mandatory = $true, HelpMessage = "Default gateway to assign to the VRA" )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
         [string]$defaultGateway,
         [Parameter( ParameterSetName = "StaticIp", Mandatory = $true, HelpMessage = "Subnetmask to be assigned to the VRA" )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
         [string]$subnetMask
 
     )
@@ -37,20 +37,24 @@ function Install-ZertoVra {
     if ( -not (Get-ZertoVra -vraName $vraName) ) {
         # Get identifiers for each item provided by name.
         $siteIdentifier = $script:zvmLocalInfo.SiteIdentifier
-        $hostIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object {$_.VirtualizationHostName -eq $hostName} | Select-Object hostIdentifier -ExpandProperty hostIdentifier
-        $networkIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -networks | Where-Object {$_.VirtualizationNetworkName -eq $networkName} | Select-Object NetworkIdentifier -ExpandProperty NetworkIdentifier
-        $datastoreIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -datastores | Where-Object {$_.DatastoreName -eq $datastoreName} | Select-Object DatastoreIdentifier -ExpandProperty DatastoreIdentifier
-        if ($datastoreIdentifier.count -gt 1){
+        $hostIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object { $_.VirtualizationHostName -eq $hostName } | Select-Object hostIdentifier -ExpandProperty hostIdentifier
+        $networkIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -networks | Where-Object { $_.VirtualizationNetworkName -eq $networkName } | Select-Object NetworkIdentifier -ExpandProperty NetworkIdentifier
+        $datastoreIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -datastores | Where-Object { $_.DatastoreName -eq $datastoreName } | Select-Object DatastoreIdentifier -ExpandProperty DatastoreIdentifier
+        if ($datastoreIdentifier.count -gt 1) {
             $hostDevices = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -devices -hostIdentifier $hostIdentifier
             $datastoreIdentifier = foreach ($identifier in $datastoreIdentifier) {
-                if ($identifier -in $hostDevices.DatastoreIdentifier){
+                if ($identifier -in $hostDevices.DatastoreIdentifier) {
                     $identifier
                 }
+            }
+            if ($datastoreIdentifier.count -gt 1) {
+                Write-Error "Datastore $datastoreName has more than one identifier associated with it on the specified host. Please review and try again."
+                Break
             }
         }
 
         # Build the JSON object through an Ordered Hashtable.
-        $vraBasic = [ordered]@{}
+        $vraBasic = [ordered]@{ }
         $vraBasic['DatastoreIdentifier'] = $datastoreIdentifier.toString()
         if ($PSBoundParameters.ContainsKey('groupName')) {
             $vraBasic['GroupName'] = $groupName
@@ -59,7 +63,7 @@ function Install-ZertoVra {
         $vraBasic['MemoryInGB'] = $memoryInGB
         $vraBasic['NetworkIdentifier'] = $networkIdentifier.toString()
         $vraBasic['UsePublicKeyInsteadOfCredentials'] = $true
-        $vraBasicNetwork = [ordered]@{}
+        $vraBasicNetwork = [ordered]@{ }
         if ( $PSCmdlet.ParameterSetName -eq "StaticIp" ) {
             $vraBasicNetwork['DefaultGateway'] = $defaultGateway.toString()
             $vraBasicNetwork['SubnetMask'] = $subnetMask.toString()
@@ -71,7 +75,7 @@ function Install-ZertoVra {
         $vraBasic['VraNetworkDataApi'] = $vraBasicNetwork
 
         # Leverage WhatIf functionality to see what might happen, if WhatIf is not specified, attempt to install.
-        if ($PSCmdlet.ShouldProcess("Preforming operation 'Install-Vra' on Host $hostName with the following data \n $($vraBasic | convertto-json)")) {
+        if ($PSCmdlet.ShouldProcess("Preforming operation 'Install-Vra' on Host $hostName with the following data \n $($vraBasic | ConvertTo-Json)")) {
             Invoke-ZertoRestRequest -uri "vras" -method POST -body $($vraBasic | ConvertTo-Json)
         }
     } else {

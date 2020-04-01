@@ -5,8 +5,8 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
-        it "$global:function should have exactly 22 parameters defined" {
-            (get-command $global:function).Parameters.Count | Should -Be 22
+        It "$global:function should have exactly 22 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 22
         }
 
         $ParameterTestCases = @(
@@ -35,7 +35,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 'IpAddr' {
                     $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
                     $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
-                    $attrs.Where{ $_ -is [ValidateScript] }.ScriptBlock | Should -Match '^\$_ \-match \[IPAddress\]\$_'
+                    $attrs.Where{ $_ -is [ValidateScript] }.ScriptBlock | Should -Match '\$_ \-match \[IPAddress\]\$_'
                 }
 
                 $null {
