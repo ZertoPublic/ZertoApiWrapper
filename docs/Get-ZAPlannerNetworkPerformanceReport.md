@@ -10,7 +10,6 @@ schema: 2.0.0
 ## SYNOPSIS
 Create a report request to retrieve the Network Performance for a specific VMs list, and timeframe.
 
-
 ## SYNTAX
 
 ```
@@ -144,8 +143,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -154,6 +152,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+
 [Zerto Analytics Planner Network-Performance API Endpoint - POST](https://docs.api.zerto.com/#/Planner/post_v2_planner_reports_network_performance)
 [Zerto Analytics Planner Network-Performance API Endpoint - GET](https://docs.api.zerto.com/#/Planner/get_v2_planner_reports_network_performance)
 

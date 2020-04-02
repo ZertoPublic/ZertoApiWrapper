@@ -8,7 +8,7 @@ schema: 2.0.0
 # Get-ZAPlannerSite
 
 ## SYNOPSIS
-Retrieve all active Planner sites for a specific account – includes ID, Name and Type or retrieves datacenter, host, and VMs for a specific site.
+Retrieve all active Planner sites for a specific account - includes ID, Name and Type or retrieves datacenter, host, and VMs for a specific site.
 
 ## SYNTAX
 
@@ -17,7 +17,7 @@ Get-ZAPlannerSite [[-siteIdentifier] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Retrieve all active Planner sites for a specific account – includes ID, Name and Type or retrieves datacenter, host, and VMs for a specific site.
+Retrieve all active Planner sites for a specific account - includes ID, Name and Type or retrieves datacenter, host, and VMs for a specific site.
 
 ## EXAMPLES
 
@@ -53,8 +53,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -63,5 +62,6 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+
 [Zerto Analytics Sites Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites)
 [Zerto Analytics Single Site Planner Endpoint](https://docs.api.zerto.com/#/Planner/get_v2_planner_sites__siteIdentifier_)
