@@ -11,3 +11,14 @@
 * Moved `Invoke-ZertoRestRequest` and `Invoke-ZARestRequest` to be public functions. As there become more and more scenarios where there are not prebuilt functions to accomplish complex specialized tasks, it became apparent that these functions could be leveraged to make the experience and workflow easier.
 * Updated the `Install-ZertoVra` logic to ensure that the target datastore is available on the target host. There isn't currently any method to validate the target network, but if that becomes available in a later version of the API, the function will be updated.
 * Updated the `Install-ZertoVra` function to allow for installation of the VRA using the host password method. Please review the [Install-ZertoVra](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md) documentation for syntax and examples.
+
+###  Zerto Analytics
+
+* Added several functions for the newly added [Zerto Analytics](https://analytics.zerto.com) Planner.
+  * `Get-ZAPlannerSite` Help can be found here: [Get-ZAPlannerSite](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerSite.md)
+  * `Get-ZAPlannerStatsReport` Help can be found here: [Get-ZAPlannerStatsReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerStatsReport.md)
+  * `Get-ZAPlannerJournalSizeReport` Help can be found here: [Get-ZAPlannerJournalSizeReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerJournalSizeReport.md)
+  * `Get-ZAPlannerNetworkPerformanceReport` Help can be found here: [Get-ZAPlannerNetworkPerformanceReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerNetworkPerformanceReport.md)
+  * `Get-ZAPlannerWanReport` Help can be found here: [Get-ZAPlannerWanReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerWanReport.md)
+  * `Get-ZAPlannerZcasReport` Help can be found here: [Get-ZAPlannerZcasReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerZcasReport.md)
+* Created `Get-ZAProtectedVm` and `Get-ZAProtectedVmReport` functions to leverage the newly released Zerto Analytics APIs for this data. Help files can be found here: [Get-ZAProtectedVm](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAProtectedVm.md) and [Get-ZAProtectedVmReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAProtectedVmReport.md)
