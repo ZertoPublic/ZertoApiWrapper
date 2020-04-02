@@ -7,6 +7,7 @@ function Get-ZAProtectedVmReport {
             Mandatory,
             HelpMessage = "A list of VM identifiers to include in the report."
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$VMIdentifier
     )
 
