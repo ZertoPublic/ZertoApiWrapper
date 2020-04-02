@@ -8,6 +8,7 @@ schema: 2.0.0
 # Get-ZAPlannerWanReport
 
 ## SYNOPSIS
+Create a report request to retrieve WAN for a specific VMs list, and timeframe.
 
 ## SYNTAX
 
@@ -17,16 +18,16 @@ Get-ZAPlannerWanReport [-siteIdentifier] <String> [-recoveryType] <String> [-vmI
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Create a report request to retrieve WAN for a specific VMs list, and timeframe.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZAPlannerWanReport -siteIdentifier '12345-0987654-254364' -recoveryType vcenter -vmIdentifier '1234-98789-0987', '1234-98789-1252'
 ```
 
-{{ Add example description here }}
+Get a WAN requirements report for VMs at the protected site.
 
 ## PARAMETERS
 
@@ -119,3 +120,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Analytics Planner Wan Stats API Endpoint - POST](https://docs.api.zerto.com/#/Planner/post_v2_planner_reports_stats_wan)
+[Zerto Analytics Planner Wan Stats API Endpoint - GET](https://docs.api.zerto.com/#/Planner/get_v2_planner_reports_stats_wan)
