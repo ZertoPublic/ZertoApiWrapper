@@ -8,6 +8,7 @@ schema: 2.0.0
 # Get-ZAPlannerZcasReport
 
 ## SYNOPSIS
+Create a report request to retrieve ZCAs for a specific VMs list, and timeframe.
 
 ## SYNTAX
 
@@ -17,16 +18,16 @@ Get-ZAPlannerZcasReport [-siteIdentifier] <String> [-recoveryType] <String> [-vm
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Create a report request to retrieve ZCAs for a specific VMs list, and timeframe.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZAPlannerZcasReport -siteIdentifier '12345-0987654-254364' -recoveryType azure -vmIdentifier '1234-98789-0987', '1234-98789-1252'
 ```
 
-{{ Add example description here }}
+Get a report for the number of required ZCA's in Azure to protect the supplied VMs.
 
 ## PARAMETERS
 
@@ -119,3 +120,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Analytics Planner ZCA Stats API Endpoint - POST](https://docs.api.zerto.com/#/Planner/post_v2_planner_reports_stats_zcas)
+[Zerto Analytics Planner ZCA Stats API Endpoint - GET](https://docs.api.zerto.com/#/Planner/get_v2_planner_reports_stats_zcas)
