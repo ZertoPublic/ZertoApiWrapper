@@ -5,8 +5,8 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
-        It "$global:function should have exactly 22 parameters defined" {
-            (Get-Command $global:function).Parameters.Count | Should -Be 22
+        It "$global:function should have exactly 24 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 24
         }
 
         $ParameterTestCases = @(
@@ -17,6 +17,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'vraIpAddress'; Type = 'String'; Mandatory = $true; Validation = 'IpAddr' }
             @{ParameterName = 'subnetMask'; Type = 'String'; Mandatory = $true; Validation = 'IpAddr' }
             @{ParameterName = 'defaultGateway'; Type = 'String'; Mandatory = $true; Validation = 'IpAddr' }
+            @{ParameterName = 'UseRootCredential'; Type = 'Switch'; Mandatory = $true; Validation = $null }
+            @{ParameterName = 'HostRootPassword'; Type = 'SecureString'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
         )
 
         It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
@@ -40,7 +42,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
                 $null {
                     $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
-                    $attrs.TypeId.Count | Should -Be 2
+                    $attrs.TypeId.Count | Should -Be 3
                 }
             }
         }
