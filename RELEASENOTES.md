@@ -9,3 +9,5 @@
 * Corrected a parameter typo in the `Get-ZertoVpgSetting` function. The misspelt parameter was added as an alias to ensure any existing scripts using the parameter continue to function.
 * Refactored the `Get-ZertoVpg` command to remove repetitive commands and variables that are no longer required.
 * Moved `Invoke-ZertoRestRequest` and `Invoke-ZARestRequest` to be public functions. As there become more and more scenarios where there are not prebuilt functions to accomplish complex specialized tasks, it became apparent that these functions could be leveraged to make the experience and workflow easier.
+* Updated the `Install-ZertoVra` logic to ensure that the target datastore is available on the target host. There isn't currently any method to validate the target network, but if that becomes available in a later version of the API, the function will be updated.
+* Updated the `Install-ZertoVra` function to allow for installation of the VRA using the host password method. Please review the [Install-ZertoVra](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md) documentation for syntax and examples.
