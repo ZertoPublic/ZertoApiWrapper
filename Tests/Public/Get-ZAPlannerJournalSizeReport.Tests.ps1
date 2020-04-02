@@ -13,7 +13,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'siteIdentifier'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'vmIdentifier'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'recoveryType'; Type = 'String'; Mandatory = $true; Validation = 'Set' }
-            @{ParameterName = 'desiredJournalHistory'; Type = 'String'; Mandatory = $true; Validation = 'Range' }
+            @{ParameterName = 'desiredJournalHistory'; Type = 'Int'; Mandatory = $false; Validation = 'Range' }
             @{ParameterName = 'startDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'endDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
         )
