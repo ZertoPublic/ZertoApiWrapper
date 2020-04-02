@@ -8,6 +8,7 @@ schema: 2.0.0
 # Get-ZAPlannerStatsReport
 
 ## SYNOPSIS
+Create a report request for the selected VMs for a specific timeframe, retrieving all stats data for ZCAs, WAN, Journal size and array of VMs avg IOPs, avg throughput and journal size.
 
 ## SYNTAX
 
@@ -17,16 +18,23 @@ Get-ZAPlannerStatsReport [-siteIdentifier] <String> [-recoveryType] <String> [-v
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Create a report request for the selected VMs for a specific timeframe, retrieving all stats data for ZCAs, WAN, Journal size and array of VMs avg IOPs, avg throughput and journal size.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Get-ZAPlannerStatsReport -siteIdentifier '0123-45676-09876' -recoveryType vcenter -vmIdentifier 'vmIdentifier01', 'vmIdentifier02'
 ```
 
-{{ Add example description here }}
+Will get a stats report for the two VMs listed recovering to a vCenter site with a 24 hour journal
+
+### Example 2
+```powershell
+PS C:\> Get-ZAPlannerStatsReport -siteIdentifier '0123-45676-09876' -recoveryType Azure -vmIdentifier 'vmIdentifier01', 'vmIdentifier02' -desiredJournalHistory 72
+```
+
+Will get a stats report for the two VMs listed recovering to an Azure site with a 72 hour journal
 
 ## PARAMETERS
 
@@ -136,3 +144,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+[Zerto Analytics Planner Stats API Endpoint - POST](https://docs.api.zerto.com/#/Planner/post_v2_planner_reports_stats)
+[Zerto Analytics Planner Stats API Endpoint - GET](https://docs.api.zerto.com/#/Planner/get_v2_planner_reports_stats)
