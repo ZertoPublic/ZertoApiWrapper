@@ -10,7 +10,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         $ParameterTestCases = @(
-            @{ParameterName = 'siteIdentifier'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'siteIdentifier'; Type = 'String[]'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
         )
 
         It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
