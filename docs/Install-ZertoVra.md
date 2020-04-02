@@ -12,10 +12,24 @@ Install Zerto VRA to a single host in the site with either a Static IP address, 
 
 ## SYNTAX
 
+### DhcpWithRoot
+```
+Install-ZertoVra -hostName <String> -datastoreName <String> -networkName <String> [-memoryInGB <Int32>]
+ [-groupName <String>] [-Dhcp] [-UseRootCredential] -HostRootPassword <SecureString> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
 ### Dhcp
 ```
 Install-ZertoVra -hostName <String> -datastoreName <String> -networkName <String> [-memoryInGB <Int32>]
  [-groupName <String>] [-Dhcp] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### StaticIpWithRoot
+```
+Install-ZertoVra -hostName <String> -datastoreName <String> -networkName <String> [-memoryInGB <Int32>]
+ [-groupName <String>] -vraIpAddress <String> -defaultGateway <String> -subnetMask <String>
+ [-UseRootCredential] -HostRootPassword <SecureString> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### StaticIp
@@ -44,6 +58,20 @@ PS C:\> Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networ
 
 Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning a DHCP address.
 
+### Example 3
+```powershell
+PS C:\> Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networkName "VM Network" -vraIpAddress "192.168.1.50" -defaultGateway "192.168.1.254" -subnetMask "255.255.255.0" -UseRootCredential -HostRootPassword $RootPasswordAsSecureString
+```
+
+Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning an IP address if "192.168.1.50", subnetmask of "255.255.255.0" and default gateway of "192.168.1.254" using the Root Credential install method.
+
+### Example 4
+```powershell
+PS C:\> Install-ZertoVra -hostName "Host01" -datastoreName "Datastore01" -networkName "VM Network" -dhcp -UseRootCredential -HostRootPassword $RootPasswordAsSecureString
+```
+
+Installs a VRA on the Host "Host01" using datastore "Datastore01" on network "VM Network" assigning a DHCP address using the Root Credential install method.
+
 ## PARAMETERS
 
 ### -datastoreName
@@ -66,7 +94,7 @@ Default gateway to assign to the VRA
 
 ```yaml
 Type: String
-Parameter Sets: StaticIp
+Parameter Sets: StaticIpWithRoot, StaticIp
 Aliases:
 
 Required: True
@@ -81,7 +109,7 @@ Assign a DHCP address to the VRA.
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: Dhcp
+Parameter Sets: DhcpWithRoot, Dhcp
 Aliases:
 
 Required: True
@@ -113,6 +141,21 @@ Host name where the VRA is to be installed.
 ```yaml
 Type: String
 Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HostRootPassword
+The password for the root user of the ESXi host where the VRA is to be installed.
+
+```yaml
+Type: SecureString
+Parameter Sets: DhcpWithRoot, StaticIpWithRoot
 Aliases:
 
 Required: True
@@ -158,7 +201,22 @@ Subnetmask to be assigned to the VRA
 
 ```yaml
 Type: String
-Parameter Sets: StaticIp
+Parameter Sets: StaticIpWithRoot, StaticIp
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseRootCredential
+Use this switch to install the VRA using the root password install method.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: DhcpWithRoot, StaticIpWithRoot
 Aliases:
 
 Required: True
@@ -173,7 +231,7 @@ Static IP address to assign to the VRA.
 
 ```yaml
 Type: String
-Parameter Sets: StaticIp
+Parameter Sets: StaticIpWithRoot, StaticIp
 Aliases:
 
 Required: True
@@ -215,7 +273,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
