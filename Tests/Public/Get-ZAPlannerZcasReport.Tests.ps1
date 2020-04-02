@@ -5,15 +5,14 @@ $global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
-        It "$global:function should have exactly 17 parameters defined" {
-            (Get-Command $global:function).Parameters.Count | Should -Be 17
+        It "$global:function should have exactly 16 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 16
         }
 
         $ParameterTestCases = @(
             @{ParameterName = 'siteIdentifier'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'vmIdentifier'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'recoveryType'; Type = 'String'; Mandatory = $true; Validation = 'Set' }
-            @{ParameterName = 'desiredJournalHistory'; Type = 'Int'; Mandatory = $false; Validation = 'Range' }
             @{ParameterName = 'startDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'endDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
         )
