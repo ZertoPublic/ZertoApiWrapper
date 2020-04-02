@@ -12,6 +12,7 @@ function Get-ZAProtectedVm {
             Mandatory,
             HelpMessage = "A list of VM identifiers to query"
         )]
+        [ValidateNotNullOrEmpty()]
         [string[]]$VMIdentifier,
         [Parameter(
             ParameterSetName = "IndividualVMs",
