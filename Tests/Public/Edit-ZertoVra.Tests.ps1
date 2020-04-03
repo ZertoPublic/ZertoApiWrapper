@@ -28,6 +28,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'vraIpAddress'; Type = 'String'; Mandatory = $false }
             @{ParameterName = 'defaultGateway'; Type = 'String'; Mandatory = $false }
             @{ParameterName = 'subnetMask'; Type = 'String'; Mandatory = $false }
+            @{ParameterName = 'HostRootPassword'; Type = 'securestring'; Mandatory = $false}
         )
 
         It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
@@ -56,7 +57,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             param($ParameterName)
             $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
             $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
-            $attrs.Where{ $_ -is [ValidateScript] }.ScriptBlock | Should -Match '^\$_ \-match \[IPAddress\]\$_'
+            $attrs.Where{ $_ -is [ValidateScript] }.ScriptBlock | Should -Match '\$_ \-match \[IPAddress\]\$_'
         }
     }
 
