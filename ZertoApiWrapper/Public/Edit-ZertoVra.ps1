@@ -18,20 +18,26 @@ function Edit-ZertoVra {
             ParameterSetName = "StaticIp",
             HelpMessage = "Static IP address to assign to the VRA."
         )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
         [string]$vraIpAddress,
         [Parameter(
             ParameterSetName = "StaticIp",
             HelpMessage = "Default gateway to assign to the VRA"
         )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
         [string]$defaultGateway,
         [Parameter(
             ParameterSetName = "StaticIp",
             HelpMessage = "Subnetmask to be assigned to the VRA"
         )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
-        [string]$subnetMask
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
+        [string]$subnetMask,
+        [Parameter(
+            HelpMessage = "Updated ESXi host root password."
+        )]
+        [ValidateNotNullOrEmpty()]
+        [securestring]$HostRootPassword
+
     )
 
     begin {
@@ -45,8 +51,8 @@ function Edit-ZertoVra {
 
     process {
         # Create ordered hashtables to be converted later to JSON.
-        $vraUpdate = [ordered]@{}
-        $vraNetwork = [ordered]@{}
+        $vraUpdate = [ordered]@{ }
+        $vraNetwork = [ordered]@{ }
         # If a new group name is specified, update.
         if ( $PSBoundParameters.ContainsKey('GroupName')) {
             $vraUpdate['GroupName'] = $groupName
@@ -77,8 +83,14 @@ function Edit-ZertoVra {
             $vraNetwork['VraIPConfigurationTypeApi'] = "Dhcp"
             $vraUpdate['VraNetworkDataApi'] = $vraNetwork
         }
+        if ($PSBoundParameters.ContainsKey('HostRootPassword')) {
+            $HostRootCredential = [pscredential]::New('root', $HostRootPassword)
+            $vraUpdate['UsePublicKeyInsteadOfCredentials'] = $false
+            $vraUpdate['HostRootPassword'] = $HostRootCredential.GetNetworkCredential().Password
+        }
+
         # -WhatIf processing and submit!
-        if ($PSCmdlet.ShouldProcess( "Updating " + $vra.vraName + " with these settings: $($vraUpdate | convertTo-Json)")) {
+        if ($PSCmdlet.ShouldProcess( $vra.vraName )) {
             Invoke-ZertoRestRequest -uri $baseUri -body $($vraUpdate | ConvertTo-Json) -method "PUT"
         }
     }
