@@ -104,8 +104,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
@@ -114,6 +113,7 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+
 [Zerto Analytics Protected VMs API Endpoint - AllVMs](https://docs.api.zerto.com/#/Monitoring/get_v2_monitoring_protected_vms)
 [Zerto Analytics Protected VMs API Endpoint - List of VMs](https://docs.api.zerto.com/#/Monitoring/get_v2_monitoring_protected_vms__vmIdentifier_)
 [Zerto Analytics Protected VMs API Endpoint - Volumes of VMs](https://docs.api.zerto.com/#/Monitoring/get_v2_monitoring_protected_vms__vmIdentifier__volumes)
