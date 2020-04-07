@@ -1,13 +1,14 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version:
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Set-ZertoUserCredential.md
 schema: 2.0.0
 ---
 
 # Set-ZertoUserCredential
 
 ## SYNOPSIS
+Allows the change or update of the credentials used to allow the Zerto Virtual Manager to connect and communicate with the paired Hypervisor.
 
 ## SYNTAX
 
@@ -16,21 +17,21 @@ Set-ZertoUserCredential [-UserCredential] <PSCredential> [-WhatIf] [-Confirm] [<
 ```
 
 ## DESCRIPTION
-{{Fill in the Description}}
+Allows the change or update of the credentials used to allow the Zerto Virtual Manager to connect and communicate with the paired Hypervisor. A PSCredential object is required and will be used to pass the updated credentials.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> Set-ZertoUserCredential -UserCredential $UserCredential
 ```
 
-{{ Add example description here }}
+Will update the user account used to connect the Zerto Virtual Manager to the the paired Hypervisor.
 
 ## PARAMETERS
 
 ### -UserCredential
-PSCredential Object that conatins the username and password for the updated credentials.
+PSCredential Object that contains the username and password for the updated credentials.
 
 ```yaml
 Type: PSCredential
@@ -86,3 +87,4 @@ For more information, see about_CommonParameters (http://go.microsoft.com/fwlink
 ## NOTES
 
 ## RELATED LINKS
+[PSCredential Object Information](https://docs.microsoft.com/en-us/dotnet/api/system.management.automation.pscredential)
