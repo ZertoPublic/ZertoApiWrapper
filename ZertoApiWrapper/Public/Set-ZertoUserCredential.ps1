@@ -19,8 +19,10 @@ function Set-ZertoUserCredential {
     process {
         $uri = '/localsite/virtualizationsettings'
         $body = @{
-            UserName = $UserCredential.UserName
-            Password = $UserCredential.GetNetworkCredential().Password
+            Credentials = @{
+                UserName = $UserCredential.UserName
+                Password = $UserCredential.GetNetworkCredential().Password
+            }
         }
         if ( $PSCmdlet.ShouldProcess( $script:zvmServer, "Updating hypervisor service account credentials" )) {
             Invoke-ZertoRestRequest -uri $uri -Method PUT -body ($body | ConvertTo-Json)
