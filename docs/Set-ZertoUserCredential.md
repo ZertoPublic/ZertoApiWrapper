@@ -28,6 +28,13 @@ PS C:\> Set-ZertoUserCredential -UserCredential $UserCredential
 
 Will update the user account used to connect the Zerto Virtual Manager to the the paired Hypervisor.
 
+### Example 2
+```powershell
+PS C:\> Set-ZertoUserCredential -UserCredential $UserCredential -Confirm:$False
+```
+
+Will update the user account used to connect the Zerto Virtual Manager to the the paired Hypervisor. CAUTION: By adding the `-Confirm:$False` parameter, this will suppress the confirmation dialog and you will not be prompted if you wish to complete this action.
+
 ## PARAMETERS
 
 ### -UserCredential
