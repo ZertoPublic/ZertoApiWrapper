@@ -52,6 +52,11 @@ function Get-ZertoVirtualizationSite {
             Mandatory = $true,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
+        [Parameter(
+            ParameterSetName = "repositories",
+            Mandatory = $true,
+            HelpMessage = "The identifier of the Zerto Virtual Manager site."
+        )]
         [ValidateNotNullOrEmpty()]
         [Alias("siteId")]
         [string]$siteIdentifier,
@@ -121,7 +126,14 @@ function Get-ZertoVirtualizationSite {
             Mandatory = $true,
             HelpMessage = "Return all VMs at the selected site."
         )]
-        [switch]$vms
+        [switch]$vms,
+        [Parameter(
+            ParameterSetName = "repositories",
+            Mandatory = $true,
+            HelpMessage = "The identifier of the Zerto Virtual Manager site."
+        )]
+        [switch]$repositories
+
     )
 
     begin {

@@ -18,6 +18,11 @@ Returns information about the hypervisor site where the API is run and all the s
 Get-ZertoVirtualizationSite [<CommonParameters>]
 ```
 
+### repositories
+```
+Get-ZertoVirtualizationSite -siteIdentifier <String> [-repositories] [<CommonParameters>]
+```
+
 ### folders
 ```
 Get-ZertoVirtualizationSite -siteIdentifier <String> [-folders] [<CommonParameters>]
@@ -225,6 +230,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -repositories
+The identifier of the Zerto Virtual Manager site.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: repositories
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -resourcePools
 Return all resource pools at the selected site.
 
@@ -245,7 +265,7 @@ The identifier of the Zerto Virtual Manager site.
 
 ```yaml
 Type: String
-Parameter Sets: folders, devices, vms, resourcePools, networks, hosts, hostClusters, datastores, datastoreClusters, siteIdentifier
+Parameter Sets: repositories, folders, devices, vms, resourcePools, networks, hosts, hostClusters, datastores, datastoreClusters, siteIdentifier
 Aliases: siteId
 
 Required: True
@@ -271,7 +291,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 
