@@ -12,6 +12,7 @@
 * Updated the `Install-ZertoVra` logic to ensure that the target datastore is available on the target host. There isn't currently any method to validate the target network, but if that becomes available in a later version of the API, the function will be updated.
 * Updated the `Install-ZertoVra` function to allow for installation of the VRA using the host password method. Please review the [Install-ZertoVra](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md) documentation for syntax and examples.
 * Updated the `Edit-ZertoVra` function to allow for modification of the associated ESX host password if the need arises. Please review the [Edit-ZertoVra](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md) documentation for syntax and examples.
+* Added a new function, `Set-ZertoUserCredential`, to allow the updating of the username and password used to connect the Zerto Virtual Manager to the paired hypervisor. Please see the [Set-ZertoUserCredential](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Set-ZertoUserCredential.md) help for additional information.
 
 ###  Zerto Analytics
 
