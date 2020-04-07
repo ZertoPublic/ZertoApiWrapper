@@ -6,7 +6,7 @@ function Set-ZertoUserCredential {
     )]
     param(
         [Parameter(
-            HelpMessage = "PSCredential Object that conatins the username and password for the updated credentials.",
+            HelpMessage = "PSCredential Object that contains the username and password for the updated credentials.",
             Mandatory
         )]
         [pscredential]$UserCredential
