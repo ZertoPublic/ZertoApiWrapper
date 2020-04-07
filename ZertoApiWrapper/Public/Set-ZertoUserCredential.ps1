@@ -22,7 +22,7 @@ function Set-ZertoUserCredential {
             UserName = $UserCredential.UserName
             Password = $UserCredential.GetNetworkCredential().Password
         }
-        if ( $PSCmdlet.ShouldProcess( $script:zertoServer, "Updating hypervisor service account credentials" )) {
+        if ( $PSCmdlet.ShouldProcess( $script:zvmServer, "Updating hypervisor service account credentials" )) {
             Invoke-ZertoRestRequest -uri $uri -Method PUT -body ($body | ConvertTo-Json)
         }
     }
