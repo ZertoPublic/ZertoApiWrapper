@@ -19,7 +19,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
             Mandatory = $true,
-            HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
+            HelpMessage = "The identifier of the VPG settings object for which information is retrieved. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [Parameter(
             ParameterSetName = "dayOfWeek",
@@ -149,31 +149,39 @@ function Get-ZertoVpgSetting {
             Mandatory = $true,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
+        [Parameter(
+            ParameterSetName = "ltr",
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
+            ValueFromRemainingArguments = $true,
+            Mandatory = $true,
+            HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
+        )]
         [ValidateNotNullOrEmpty()]
         [Alias("vpgSettingsId", "settingsId")]
         [string[]]$vpgSettingsIdentifier,
         [Parameter(
             ParameterSetName = "backup",
             Mandatory = $true,
-            HelpMessage = "Return backup information for VPG identifier specified"
+            HelpMessage = "Return backup information for VPG identifier specified. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$backup,
         [Parameter(
             ParameterSetName = "dayOfWeek",
             Mandatory = $true,
-            HelpMessage = "Get the day of week a backup is scheduled"
+            HelpMessage = "Get the day of week a backup is scheduled. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$dayOfWeek,
         [Parameter(
             ParameterSetName = "retentionPeriod",
             Mandatory = $true,
-            HelpMessage = "Get the retention period for a backup"
+            HelpMessage = "Get the retention period for a backup. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$retentionPeriod,
         [Parameter(
             ParameterSetName = "schedulerPeriod",
             Mandatory = $true,
-            HelpMessage = "Get the backup schedule"
+            HelpMessage = "Get the backup schedule. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$schedulerPeriod,
         [Parameter(
@@ -280,7 +288,14 @@ function Get-ZertoVpgSetting {
         )]
         [ValidateNotNullOrEmpty()]
         [Alias("volumeId")]
-        [string]$volumeIdentifier
+        [string]$volumeIdentifier,
+        [Parameter(
+            ParameterSetName = "ltr",
+            Mandatory = $true,
+            HelpMessage = "Return LTR information for the specified VPG. Please note, this parameter is ONLY available in Zerto version 8.0 and later. Attempting to run this switch against a Zerto Virtual Manager version 7.5 or lower will result in an error."
+        )]
+        [switch]$ltr
+
     )
 
     begin {
