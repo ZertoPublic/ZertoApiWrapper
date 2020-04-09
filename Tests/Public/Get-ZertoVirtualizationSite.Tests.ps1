@@ -87,7 +87,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -ParameterFilter {
             $uri -eq 'virtualizationsites/1234'
         } {
-            return (Get-Content "$global:here\Mocks\VirtualSite-siteId.json" -Raw) | ConvertFrom-Json
+            return (Get-Content "$global:here\Mocks\VirtualSite-SiteId.json" -Raw) | ConvertFrom-Json
         } -Verifiable
         Mock -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -ParameterFilter {
             $uri -eq 'virtualizationsites/1234/datastores'
