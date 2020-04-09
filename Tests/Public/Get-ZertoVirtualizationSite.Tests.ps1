@@ -137,7 +137,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         It "Should return a single site when a siteIdentifier is provided" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234'
-            $results.Count | Should -BeExactly 1
+            $results.VirtualizationSiteName | Should -BeExactly 'cavc.nc.lab'
+            $results.siteIdentifier | Should -BeExactly '8e1c9f53-4973-4a4a-b2dd-1ebb293614d8'
         }
 
         It "Should return a list of devices with the '-devices' switch" {
@@ -157,7 +158,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         It "Should return a single host with the '-hosts' switch and hostIdentifier provided" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234' -hosts -hostIdentifier '4567'
-            $results.Count | Should -BeExactly 1
+            $results.VirtualizationHostName | Should -BeExactly "caesx3.nc.lab"
+            $results.hostIdentifier | Should -BeExactly "09db6c5b-b956-430f-9589-b58876ca377a.host-18"
         }
 
         It "Should return a list of datastores with the '-datastores' switch" {
@@ -167,12 +169,14 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         It "Should return a list of datastores with the '-datastoreClusters' switch" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234' -datastoreClusters
-            $results.Count | Should -BeExactly 1
+            $results.DatastoreClusterIdentifier | Should -BeExactly "09db6c5b-b956-430f-9589-b58876ca377a.group-p44"
+            $results.DatastoreClusterName | Should -BeExactly "CA_DS_Cluster"
         }
 
         It "Should return a list of Networks with the '-networks' switch" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234' -networks
-            $results.Count | Should -BeExactly 1
+            $results.NetworkIdentifier | Should -BeExactly "09db6c5b-b956-430f-9589-b58876ca377a.network-20"
+            $results.VirtualizationNetworkName | Should -BeExactly "VM Network"
         }
 
         It "Should return a list of folders with the '-folders' switch" {
@@ -182,12 +186,14 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         It "Should return a list of Host Clusters with the '-hostClusters' switch" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234' -hostClusters
-            $results.Count | Should -BeExactly 1
+            $results.ClusterIdentifier | Should -BeExactly "09db6c5b-b956-430f-9589-b58876ca377a.domain-c7"
+            $results.VirtualizationClusterName | Should -BeExactly "CA Cluster"
         }
 
         It "Should return a list of Resource Pools with the '-resourcePools' switch" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234' -resourcePools
-            $results.Count | Should -BeExactly 1
+            $results.ResourcePoolIdentifier | Should -BeExactly "09db6c5b-b956-430f-9589-b58876ca377a.resgroup-8"
+            $results.ResourcePoolName | Should -BeExactly "Resources"
         }
 
         It "Should return a list of VMs with the '-VMs' switch" {
@@ -197,7 +203,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         It "Should return a list of LTR Repositories with the '-repositories' switch" {
             $results = Get-ZertoVirtualizationSite -siteIdentifier '1234' -repositories
-            $results.Count | Should -BeExactly 1
+            $results.ConnectionType | Should -BeExactly "ServerMessageBlock"
+            $results.RepositoryIdentifier | Should -BeExactly "120355ce-fcd0-4820-a971-787d0470793b"
+            $results.RepositoryName | Should -BeExactly "Synology"
+            $results.StorageType | Should -BeExactly "NetworkShare"
+            $results.Path | Should -not -be $null
         }
 
         Assert-VerifiableMock
