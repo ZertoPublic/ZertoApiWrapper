@@ -1,0 +1,7 @@
+{
+  "ConnectionType": "ServerMessageBlock",
+  "Path": "\\\\192.168.1.150\\zBackups",
+  "RepositoryIdentifier": "120355ce-fcd0-4820-a971-787d0470793b",
+  "RepositoryName": "Synology",
+  "StorageType": "NetworkShare"
+}
