@@ -17,6 +17,11 @@ Returns information when a VPG Settings object is created to create a new or edi
 Get-ZertoVpgSetting [<CommonParameters>]
 ```
 
+### ltr
+```
+Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> [-ltr] [<CommonParameters>]
+```
+
 ### volumeIdentifier
 ```
 Get-ZertoVpgSetting -vpgSettingsIdentifier <String[]> -vmIdentifier <String> -volumeIdentifier <String>
@@ -151,10 +156,17 @@ PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -basic
 
 Returns current basic settings for vpgSettingsIdentifier "MySettingsIdentifier"
 
+### Example 6
+```powershell
+PS C:\> Get-ZertoVpgSetting -vpgSettingsIdentifier "MySettingsIdentifier" -ltr
+```
+
+Returns current LTR settings for vpgSettingsIdentifier "MySettingsIdentifier"
+
 ## PARAMETERS
 
 ### -backup
-Return backup information for VPG identifier specified
+Return backup information for VPG identifier specified. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error.
 
 ```yaml
 Type: SwitchParameter
@@ -199,7 +211,7 @@ Accept wildcard characters: False
 ```
 
 ### -dayOfWeek
-Get the day of week a backup is scheduled
+Get the day of week a backup is scheduled. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error.
 
 ```yaml
 Type: SwitchParameter
@@ -219,6 +231,21 @@ Get VPG Journal Settings
 ```yaml
 Type: SwitchParameter
 Parameter Sets: journal
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ltr
+Return LTR information for the specified VPG. Please note, this parameter is ONLY available in Zerto version 8.0 and later. Attempting to run this switch against a Zerto Virtual Manager version 7.5 or lower will result in an error.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: ltr
 Aliases:
 
 Required: True
@@ -304,7 +331,7 @@ Accept wildcard characters: False
 ```
 
 ### -retentionPeriod
-Get the retention period for a backup
+Get the retention period for a backup. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error.
 
 ```yaml
 Type: SwitchParameter
@@ -319,7 +346,7 @@ Accept wildcard characters: False
 ```
 
 ### -schedulerPeriod
-Get the backup schedule
+Get the backup schedule. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error.
 
 ```yaml
 Type: SwitchParameter
@@ -413,7 +440,7 @@ The identifier of the VPG settings object for which information is retrieved.
 
 ```yaml
 Type: String[]
-Parameter Sets: volumeIdentifier, volumes, nicIdentifier, nics, vmIdentifier, vms, scripting, recovery, priority, networks, journal, bootGroup, basic, schedulerPeriod, retentionPeriod, dayOfWeek, backup, vpgSettingsIdentifier
+Parameter Sets: ltr, volumeIdentifier, volumes, nicIdentifier, nics, vmIdentifier, vms, scripting, recovery, priority, networks, journal, bootGroup, basic, schedulerPeriod, retentionPeriod, dayOfWeek, backup, vpgSettingsIdentifier
 Aliases: vpgSettingsId, settingsId
 
 Required: True
@@ -424,7 +451,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

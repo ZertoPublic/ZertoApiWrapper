@@ -13,6 +13,9 @@
 * Updated the `Install-ZertoVra` function to allow for installation of the VRA using the host password method. Please review the [Install-ZertoVra](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md) documentation for syntax and examples.
 * Updated the `Edit-ZertoVra` function to allow for modification of the associated ESX host password if the need arises. Please review the [Edit-ZertoVra](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md) documentation for syntax and examples.
 * Added a new function, `Set-ZertoUserCredential`, to allow the updating of the username and password used to connect the Zerto Virtual Manager to the paired hypervisor. Please see the [Set-ZertoUserCredential](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Set-ZertoUserCredential.md) help for additional information.
+* With the release of [Zerto 8.0](https://www.zerto.com/zerto-8-0-general-availability/) some additional API endpoints have become available.
+  * Updated `Get-ZertoVirtualizationSite` to add the `-repository` parameter to enable returning information for LTR repositories.
+  * Updated `Get-ZertoVpgSetting` to add the `-ltr` parameter to enable returning information for current LTR settings for the selected VPG.
 
 ###  Zerto Analytics
 

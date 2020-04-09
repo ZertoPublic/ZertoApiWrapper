@@ -1,0 +1,62 @@
+[
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-40",
+    "DeviceIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.naa.6001405a18009ded4f84d4177d8893d6",
+    "DeviceName": "SYNOLOGY iSCSI Disk (naa.6001405a18009ded4f84d4177d8893d6)",
+    "HostIdentifiers": [
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-18",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-15",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-12"
+    ],
+    "SizeInBytes": 1073741824000,
+    "VmIdentifier": null
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-22",
+    "DeviceIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.mpx.vmhba1:C0:T0:L0",
+    "DeviceName": "Local VMware Disk (mpx.vmhba1:C0:T0:L0)",
+    "HostIdentifiers": [
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-18",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-15",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-12"
+    ],
+    "SizeInBytes": 42949672960,
+    "VmIdentifier": null
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-42",
+    "DeviceIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.naa.6001405922cd662dc343d4683d9aecd1",
+    "DeviceName": "SYNOLOGY iSCSI Disk (naa.6001405922cd662dc343d4683d9aecd1)",
+    "HostIdentifiers": [
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-18",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-15",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-12"
+    ],
+    "SizeInBytes": 536870912000,
+    "VmIdentifier": null
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-41",
+    "DeviceIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.naa.6001405522c4ad5d65a6d4113d9657dc",
+    "DeviceName": "SYNOLOGY iSCSI Disk (naa.6001405522c4ad5d65a6d4113d9657dc)",
+    "HostIdentifiers": [
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-18",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-15",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-12"
+    ],
+    "SizeInBytes": 536870912000,
+    "VmIdentifier": null
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-43",
+    "DeviceIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.naa.600140533d732abd8caed42cfda50ed1",
+    "DeviceName": "SYNOLOGY iSCSI Disk (naa.600140533d732abd8caed42cfda50ed1)",
+    "HostIdentifiers": [
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-18",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-15",
+      "09db6c5b-b956-430f-9589-b58876ca377a.host-12"
+    ],
+    "SizeInBytes": 536870912000,
+    "VmIdentifier": null
+  }
+]
