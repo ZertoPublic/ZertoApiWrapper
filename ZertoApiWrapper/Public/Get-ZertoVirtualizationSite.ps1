@@ -133,33 +133,27 @@ function Get-ZertoVirtualizationSite {
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [switch]$repositories
-
     )
 
     begin {
-        $baseUri = "virtualizationsites"
-        $returnObject = @()
+
     }
 
     process {
         # Return information based on ParameterSetName invoked.
+        $baseUri = "virtualizationsites"
         switch ( $PSCmdlet.ParameterSetName ) {
-
             # If no ParameterSetName is specified, return all data
             "main" {
-                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
+                $uri = $baseUri
             }
 
             # If devices is specified along with a hostId, build return just that host information, otherwise return all devices at the site
-            #TODO - remove foreach, only one siteIdentifier can be specified.
             "devices" {
-                $returnObject = foreach ( $id in $siteIdentifier ) {
-                    if ( $PSBoundParameters.ContainsKey( "hostIdentifier" ) ) {
-                        $uri = "{0}/{1}/devices?hostIdentifier={2}" -f $baseUri, $siteIdentifier, $hostIdentifier
-                    } else {
-                        $uri = "{0}/{1}/devices" -f $baseUri, $siteIdentifier
-                    }
-                    Invoke-ZertoRestRequest -uri $uri
+                if ( $PSBoundParameters.ContainsKey( "hostIdentifier" ) ) {
+                    $uri = "{0}/{1}/devices?hostIdentifier={2}" -f $baseUri, $siteIdentifier, $hostIdentifier
+                } else {
+                    $uri = "{0}/{1}/devices" -f $baseUri, $siteIdentifier
                 }
             }
 
@@ -170,24 +164,22 @@ function Get-ZertoVirtualizationSite {
                 } else {
                     $uri = "{0}/{1}/hosts" -f $baseUri, $siteIdentifier
                 }
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             # If siteIdentifier is specified, return information for that site.
             "siteIdentifier" {
                 $uri = "{0}/{1}" -f $baseUri, $siteIdentifier
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             # If a different ParameterSetName is selected, use that information to build the URI and return that information
             default {
                 $uri = "{0}/{1}/{2}" -f $baseUri, $siteIdentifier, $PSCmdlet.ParameterSetName.ToLower()
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
         }
+        Invoke-ZertoRestRequest -uri $uri
     }
 
     end {
-        return $returnObject
+
     }
 }
