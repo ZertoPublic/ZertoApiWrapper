@@ -4,8 +4,8 @@ PowerShell wrapper for Zerto Virtual Manager API
 
 ## Current Build Status
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e31e5cdad534271ac688a82cc3ca17d)](https://app.codacy.com/app/wcarroll/ZertoApiWrapper?utm_source=github.com&utm_medium=referral&utm_content=wcarroll/ZertoApiWrapper&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_apis/build/status/ZertoPublic.ZertoApiWrapper?branchName=master)](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
+![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/ZertoApiWrapper?label=PowerShell%20Gallery%20Downloads)
 
 ## Legal Disclaimer
 
@@ -32,6 +32,7 @@ PS> Install-Module -name ZertoApiWrapper
 
 ## Recent Updates
 
+* April 10th, 2020: April Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.4.0.20200410).
 * December 1st, 2019: November Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.3.0.20191201).
 * August 1st, 2019: August Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.2.0.20190801).
 * June 16th, 2019: Added functionality for Zerto Analytics.
