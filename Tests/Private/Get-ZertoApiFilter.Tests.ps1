@@ -52,11 +52,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             }
 
             it "one item test" {
-                Get-ZertoApiFilter -filtertable $oneItemTest | should be "?OneItem=Test"
+                Get-ZertoApiFilter -filtertable $oneItemTest | should -Be "?OneItem=Test"
             }
 
             it "should ignore CommonParameters" {
-                Get-ZertoApiFilter -filtertable $commonParamTest | should be "?OneItem=Test"
+                Get-ZertoApiFilter -filtertable $commonParamTest | should -Be "?OneItem=Test"
             }
 
             it "should process a filter table with more than one item" {

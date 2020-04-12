@@ -12,7 +12,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "datastoreIdentifier parameter does not take null or empty values" {
-            (Get-Command $global:function).Parameters['datastoreIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.count | Should Be 1
+            (Get-Command $global:function).Parameters['datastoreIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.count | Should -Be 1
         }
     }
 

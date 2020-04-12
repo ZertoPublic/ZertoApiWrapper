@@ -28,7 +28,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }

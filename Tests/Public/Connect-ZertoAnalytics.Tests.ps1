@@ -13,8 +13,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
     }
 
-
-
     Context "$($global:function)::Function Unit Tests" {
 
         InModuleScope -ModuleName ZertoApiWrapper {
@@ -68,7 +66,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZARestRequest -Exactly 1
     }
-
 }
 
 Remove-Variable -Name function -Scope Global

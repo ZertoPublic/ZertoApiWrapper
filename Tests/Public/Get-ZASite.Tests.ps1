@@ -14,7 +14,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "zOrgIdentifier has the NotNullOrEmpty Validator" {
-            (Get-Command $global:function).Parameters['zOrgIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should Be 1
+            (Get-Command $global:function).Parameters['zOrgIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
         }
 
     }

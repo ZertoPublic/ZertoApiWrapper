@@ -63,7 +63,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             }
 
             It "runs when called" {
-                Invoke-ZARestRequest -uri "myuri" | Should Be "Ran Command"
+                Invoke-ZARestRequest -uri "myuri" | Should -Be "Ran Command"
             }
 
             It "throws when the last action was over 60 minutes ago" {

@@ -6,8 +6,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
 
-        it "$global:function should have exactly 16 parameters defined" {
-            (get-command $global:function).Parameters.Count | Should -Be 16
+        It "$global:function should have exactly 16 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 16
         }
 
         $ParameterTestCases = @(
@@ -41,7 +41,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }

@@ -35,17 +35,17 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
 
         It "Interval Parameter should have a Min value of 60" {
-            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should Be 60
+            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should -Be 60
         }
 
         It "Interval Parameter should have a Max value of 2678400" {
-            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should Be 2678400
+            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should -Be 2678400
         }
     }
 

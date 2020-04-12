@@ -43,7 +43,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
@@ -53,11 +53,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "targetPort Parameter should have a Min value of 1024" {
-            (Get-Command $global:function).Parameters['targetPort'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should Be 1024
+            (Get-Command $global:function).Parameters['targetPort'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should -Be 1024
         }
 
         It "targetPort Parameter should have a Max value of 65535" {
-            (Get-Command $global:function).Parameters['targetPort'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should Be 65535
+            (Get-Command $global:function).Parameters['targetPort'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should -Be 65535
         }
 
         It "Supports 'SupportsShouldProcess'" {
