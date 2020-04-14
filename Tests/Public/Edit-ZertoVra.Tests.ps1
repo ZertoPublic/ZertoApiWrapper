@@ -8,7 +8,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         Get-Content $global:here\Mocks\TaskId.txt
     }
 
-    Mock -ModuleName ZertoApiWrapper Get-ZertoVra -ParameterFilter { $vraIdentifier -eq "MyVraIdentifier" } {
+    Mock -ModuleName ZertoApiWrapper Get-ZertoVra -ParameterFilter { $vraIdentifier -in @("MyVraIdentifier", "PasswordVraIdentifier") } {
         Get-Content $global:here\Mocks\GetSingleVra.json -Raw | ConvertFrom-Json
     }
 
@@ -59,6 +59,13 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
             $attrs.Where{ $_ -is [ValidateScript] }.ScriptBlock | Should -Match '\$_ \-match \[IPAddress\]\$_'
         }
+
+        It "Supports 'SupportsShouldProcess'" {
+            Get-Command $global:function | Should -HaveParameter WhatIf
+            Get-Command $global:function | Should -HaveParameter Confirm
+            (Get-Command $global:function).ScriptBlock | Should -Match 'SupportsShouldProcess'
+            (Get-Command $global:function).ScriptBlock | Should -Match '\$PSCmdlet\.ShouldProcess\(.+\)'
+        }
     }
 
     Context "$($global:function)::Function Unit Tests" {
@@ -82,16 +89,14 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             Edit-ZertoVra -vraIdentifier "DhcpVraIdentifier" -groupName "MyNewGroup" | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
         }
 
-        It "Supports 'SupportsShouldProcess'" {
-            Get-Command $global:function | Should -HaveParameter WhatIf
-            Get-Command $global:function | Should -HaveParameter Confirm
-            (Get-Command $global:function).ScriptBlock | Should -Match 'SupportsShouldProcess'
-            (Get-Command $global:function).ScriptBlock | Should -Match '\$PSCmdlet\.ShouldProcess\(.+\)'
+        It "Runs with root password provided" {
+            $SecurePassword = 'NotARealPassword' | ConvertTo-SecureString -AsPlainText -Force
+            Edit-ZertoVra -vraIdentifier "PasswordVraIdentifier" -HostRootPassword $SecurePassword | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
         }
 
     }
-    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 3
-    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoVra -Exactly 4
+    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 4
+    Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoVra -Exactly 5
 }
 
 Remove-Variable -Name function -Scope Global
