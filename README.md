@@ -5,7 +5,7 @@ PowerShell wrapper for Zerto Virtual Manager API
 ## Current Build Status
 
 [![Build Status](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_apis/build/status/ZertoPublic.ZertoApiWrapper?branchName=master)](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
-![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/ZertoApiWrapper?label=PowerShell%20Gallery%20Downloads)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/ZertoApiWrapper?label=PowerShell%20Gallery%20Downloads)](https://www.powershellgallery.com/packages/ZertoApiWrapper)
 
 ## Legal Disclaimer
 
