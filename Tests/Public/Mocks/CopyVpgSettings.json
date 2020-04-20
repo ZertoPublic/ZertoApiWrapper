@@ -1,0 +1,79 @@
+{
+  "Basic": {
+    "JournalHistoryInHours": 24,
+    "Name": "Test-SQL_Copy_1",
+    "Priority": "Medium",
+    "ProtectedSiteIdentifier": "15aa0d43-69cd-400a-8b99-fe94bbac3e19",
+    "RecoverySiteIdentifier": "8e1c9f53-4973-4a4a-b2dd-1ebb293614d8",
+    "RpoInSeconds": 300,
+    "ServiceProfileIdentifier": null,
+    "TestIntervalInMinutes": 262080,
+    "UseWanCompression": true,
+    "ZorgIdentifier": null
+  },
+  "BootGroups": {
+    "BootGroups": [
+      "@{BootDelayInSeconds=0; BootGroupIdentifier=00000000-0000-0000-0000-000000000000; Name=Default}"
+    ]
+  },
+  "Journal": {
+    "DatastoreIdentifier": null,
+    "Limitation": {
+      "HardLimitInMB": 153600,
+      "HardLimitInPercent": 0,
+      "WarningThresholdInMB": 115200,
+      "WarningThresholdInPercent": 0
+    }
+  },
+  "LongTermRetention": null,
+  "Networks": {
+    "Failover": {
+      "Hypervisor": "@{DefaultNetworkIdentifier=09db6c5b-b956-430f-9589-b58876ca377a.network-20}",
+      "PublicCloud": null,
+      "VCD": null
+    },
+    "FailoverTest": {
+      "Hypervisor": "@{DefaultNetworkIdentifier=09db6c5b-b956-430f-9589-b58876ca377a.network-20}",
+      "PublicCloud": null,
+      "VCD": null
+    }
+  },
+  "Protected": {
+    "VCD": null
+  },
+  "Recovery": {
+    "DefaultDatastoreClusterIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.group-p44",
+    "DefaultDatastoreIdentifier": null,
+    "DefaultFolderIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.group-v3",
+    "DefaultHostClusterIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.domain-c7",
+    "DefaultHostIdentifier": null,
+    "PublicCloud": null,
+    "ResourcePoolIdentifier": null,
+    "VCD": null
+  },
+  "Scripting": {
+    "PostBackup": null,
+    "PostRecovery": {
+      "Command": null,
+      "Parameters": null,
+      "TimeoutInSeconds": 300
+    },
+    "PreRecovery": {
+      "Command": null,
+      "Parameters": null,
+      "TimeoutInSeconds": 300
+    }
+  },
+  "Vms": [
+    {
+      "BootGroupIdentifier": "00000000-0000-0000-0000-000000000000",
+      "Journal": "@{DatastoreIdentifier=; Limitation=}",
+      "Nics": "",
+      "Recovery": "@{DatastoreClusterIdentifier=09db6c5b-b956-430f-9589-b58876ca377a.group-p44; DatastoreIdentifier=; FolderIdentifier=09db6c5b-b956-430f-9589-b58876ca377a.group-v3; HostClusterIdentifier=09db6c5b-b956-430f-9589-b58876ca377a.domain-c7; HostIdentifier=; PublicCloud=; ResourcePoolIdentifier=; VCD=}",
+      "VmIdentifier": "d809de8e-deb7-45cc-b620-08030a1143e1.vm-87",
+      "Volumes": ""
+    }
+  ],
+  "VpgIdentifier": null,
+  "VpgSettingsIdentifier": "0be951ef-229a-401c-9e0d-bd8a5baea19a"
+}

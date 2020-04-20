@@ -25,32 +25,25 @@ function Copy-ZertoVpg {
     process {
         $VpgIdToCopy = @{ VpgIdentifier = (Get-ZertoVpg -vpgName $SourceVpgName).vpgIdentifier }
         if ( $null -eq $VpgIdToCopy.VpgIdentifier ) {
-            Write-Error -Message "Unable to find a VPG with the name: $SourceVpgName. Please check the name and try again."
-            Break
-        } elseif ($VpgIdToCopy.VpgIdentifier.Count -gt 1) {
-            Write-Error -Message "More than one VPG was returned when searching for the VPG name: $SourceVpgName. Please try again."
-            Break
+            Throw "Unable to find a VPG with the name: $SourceVpgName. Please check the name and try again."
         }
         $BaseUri = "vpgSettings/copyVpgSettings"
-        $UnprotectedVms = Get-ZertoUnprotectedVm
-        $ProtectedVms = Get-ZertoProtectedVm
+        $VmsMap = Get-Map -InputObject (Get-ZertoUnprotectedVm) -Key 'VmName' -Value 'VmIdentifier'
+        $VmsMap += Get-Map -InputObject (Get-ZertoProtectedVm) -Key 'VmName' -Value 'VmIdentifier'
         $VMsToAdd = foreach ($VM in $VMs) {
-            if ($UnprotectedVms.VmName -contains $VM) {
-                $VmId = $UnprotectedVms | Where-Object { $_.VmName -like $VM } | Select-Object -ExpandProperty VmIdentifier
-            } elseif ($ProtectedVms.VmName -contains $VM) {
-                $VmId = $ProtectedVms | Where-Object { $_.VmName -like $VM } | Select-Object -ExpandProperty VmIdentifier
+            if ($VmsMap.Keys -contains $VM) {
+                [PSCustomObject]@{
+                    VmIdentifier = $VmsMap[$VM]
+                }
             } else {
                 Write-Warning -Message "Unable to find VM with Name $VM. Skipping."
             }
-            $returnObject = New-Object PSObject
-            $returnObject | Add-Member -MemberType NoteProperty -Name "VmIdentifier" -Value $VmId
-            $returnObject
         }
         if ($PSCmdlet.ShouldProcess("$VMsToAdd", "Copying $SourceVpgName to $NewVpgName with Settings")) {
             $NewVpgId = Invoke-ZertoRestRequest -Uri $BaseUri -Body ($VpgIdToCopy | ConvertTo-Json) -Method "POST"
             $Uri = "{0}/{1}/vms" -f "vpgSettings", $NewVpgId
             foreach ($VM in $VMsToAdd) {
-                $null = Invoke-ZertoRestRequest -Uri $Uri -Body ($VM | ConvertTo-Json) -Method "POST"
+                $null = Invoke-ZertoRestRequest -Uri $Uri -Body ($VM | ConvertTo-Json) -Method "POST" -ErrorAction Stop
             }
             $Uri = "vpgSettings/{0}" -f $NewVpgId
             $CurrentSettings = Invoke-ZertoRestRequest -Uri $Uri
@@ -58,7 +51,6 @@ function Copy-ZertoVpg {
             $Null = Invoke-ZertoRestRequest -Uri $Uri -Method "Put" -Body $($CurrentSettings | ConvertTo-Json -Depth 20)
             Save-ZertoVpgSetting -vpgSettingsIdentifier $NewVpgId
         }
-
     }
 
     end {
