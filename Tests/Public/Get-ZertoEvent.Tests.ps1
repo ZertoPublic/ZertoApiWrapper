@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -53,13 +53,13 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
 
         It "entityType parameter only accecpts 4 different values" {
-            (Get-Command $global:function).Parameters['entityType'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should be 4
+            (Get-Command $global:function).Parameters['entityType'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should -Be 4
         }
 
         It "entityType parameter accecpts 'VPG' as a Value" {
@@ -79,7 +79,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "category parameter only accecpts 3 different values" {
-            (Get-Command $global:function).Parameters['category'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should be 3
+            (Get-Command $global:function).Parameters['category'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should -Be 3
         }
 
         It "category parameter accecpts 'All' as a Value" {
@@ -95,7 +95,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "eventCategory parameter only accecpts 3 different values" {
-            (Get-Command $global:function).Parameters['eventCategory'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should be 3
+            (Get-Command $global:function).Parameters['eventCategory'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should -Be 3
         }
 
         It "eventCategory parameter accecpts 'All' as a Value" {

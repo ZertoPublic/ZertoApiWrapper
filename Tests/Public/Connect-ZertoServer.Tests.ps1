@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
@@ -105,11 +105,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $headers = Connect-ZertoServer -zertoServer $Server -credential $credential -returnHeaders
             It "returns a Hashtable with 2 keys" {
                 $headers | Should -BeOfType Hashtable
-                $headers.keys.count | Should be 2
+                $headers.keys.count | Should -Be 2
             }
 
             It "return value has a key called 'x-zerto-session'" {
-                $headers.ContainsKey('x-zerto-session') | Should be $true
+                $headers.ContainsKey('x-zerto-session') | Should -Be $true
             }
 
             It "return key 'x-zerto-session' value should be a string" {
@@ -118,11 +118,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             }
 
             It "return value has a key called 'accept'" {
-                $headers.ContainsKey('accept') | Should be $true
+                $headers.ContainsKey('accept') | Should -Be $true
             }
 
             It "return key 'accept' value should be 'application/json'" {
-                $headers['accept'] | Should be 'application/json'
+                $headers['accept'] | Should -Be 'application/json'
             }
 
             It "should not require a port to be specified" {

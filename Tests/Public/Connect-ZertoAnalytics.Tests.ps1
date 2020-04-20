@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
@@ -12,8 +12,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             Get-Command $global:function | Should -HaveParameter credential -Mandatory -Type PSCredential
         }
     }
-
-
 
     Context "$($global:function)::Function Unit Tests" {
 
@@ -68,7 +66,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZARestRequest -Exactly 1
     }
-
 }
 
 Remove-Variable -Name function -Scope Global

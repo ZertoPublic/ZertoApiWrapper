@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -199,11 +199,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         $outputPath = "TestDrive:"
 
-        it "Output path should exist" {
+        It "Output path should exist" {
             $outputPath | Should -Exist
         }
 
-        it "Exported JSON file should exist after function called" {
+        It "Exported JSON file should exist after function called" {
             $vpgName = "HRIS"
             Export-ZertoVpg -outputPath $outputPath -vpgName $vpgName
             $outputFile = "{0}\{1}.json" -f $outputPath, $vpgName
@@ -211,11 +211,11 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $outputFile | Should -Not -BeNullOrEmpty
         }
 
-        it "Only one file should be present in the TestDrive" {
+        It "Only one file should be present in the TestDrive" {
             (Get-ChildItem $outputPath).Count | Should -BeExactly 1
         }
 
-        it "Should be valid JSON" {
+        It "Should be valid JSON" {
             $vpgName = "HRIS"
             Export-ZertoVpg -outputPath $outputPath -vpgName $vpgName
             $outputFile = "{0}\{1}.json" -f $outputPath, $vpgName

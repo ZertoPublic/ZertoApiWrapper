@@ -1,13 +1,13 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
 
-        it "$global:function should have exactly 16 parameters defined" {
-            (get-command $global:function).Parameters.Count | Should -Be 16
+        It "$global:function should have exactly 16 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 16
         }
 
         $ParameterTestCases = @(
@@ -42,21 +42,21 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
 
         It "LimitTo Parameter should have a Min value of 1" {
-            (Get-Command $global:function).Parameters['limitTo'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should Be 1
+            (Get-Command $global:function).Parameters['limitTo'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should -Be 1
         }
 
         It "LimitTo Parameter should have a Max value of 1000000" {
-            (Get-Command $global:function).Parameters['limitTo'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should Be 1000000
+            (Get-Command $global:function).Parameters['limitTo'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should -Be 1000000
         }
 
         It "Category parameter should only have 2 options" {
-            (Get-Command $global:function).Parameters['category'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should Be 2
+            (Get-Command $global:function).Parameters['category'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues.Count | Should -Be 2
         }
 
         It "Category parameter should take 'events'" {

@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -40,12 +40,12 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             It "<TestName> parameter cannot be null or empty" -TestCases $ParameterValidationTestCases {
                 param($ParameterName)
                 $thisParameter = $thisCommand.Parameters[$ParameterName]
-                $thisParameter.Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should Be 1
+                $thisParameter.Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
             }
 
             It "Method parameter can only be 'GET', 'POST', 'PUT', 'DELETE'" {
                 $thisParameter = $thisCommand.Parameters['method']
-                $thisParameter.Attributes.Where{ $_ -is [ValidateSet] }.Count | Should Be 1
+                $thisParameter.Attributes.Where{ $_ -is [ValidateSet] }.Count | Should -Be 1
                 $thisParameter.Attributes.Where{ $_ -is [ValidateSet] }.validValues -contains 'GET' | Should -BeTrue
                 $thisParameter.Attributes.Where{ $_ -is [ValidateSet] }.validValues -contains 'PUT' | Should -BeTrue
                 $thisParameter.Attributes.Where{ $_ -is [ValidateSet] }.validValues -contains 'POST' | Should -BeTrue

@@ -1,12 +1,12 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
-        it "$global:function should have exactly 20 parameters defined" {
-            (get-command $global:function).Parameters.Count | Should -Be 20
+        It "$global:function should have exactly 20 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 20
         }
 
         $ParameterTestCases = @(
@@ -55,7 +55,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
@@ -67,7 +67,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             (Get-Command $global:function).Parameters['commitPolicy'].Attributes.Where{ $_ -is [ValidateSet] }.ValidValues | Should -Contain 'None'
         }
 
-        it "Commit Policy Timeout should have a minimum value of 300 and max value of 86400" {
+        It "Commit Policy Timeout should have a minimum value of 300 and max value of 86400" {
             (Get-Command $global:function).Parameters['commitPolicyTimeout'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should -Be 300
             (Get-Command $global:function).Parameters['commitPolicyTimeout'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should -Be 86400
         }

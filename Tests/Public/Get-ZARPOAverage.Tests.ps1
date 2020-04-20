@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -35,17 +35,17 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
 
                 default {
-                    $true | Should be $false -Because "No Validation Selected. Review test cases"
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
                 }
             }
         }
 
         It "Interval Parameter should have a Min value of 60" {
-            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should Be 60
+            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MinRange | Should -Be 60
         }
 
         It "Interval Parameter should have a Max value of 2678400" {
-            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should Be 2678400
+            (Get-Command $global:function).Parameters['Interval'].Attributes.Where{ $_ -is [ValidateRange] }.MaxRange | Should -Be 2678400
         }
     }
 

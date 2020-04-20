@@ -1,5 +1,5 @@
 #Requires -Modules Pester
-$testPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+$testPath = Split-Path -Parent $PSCommandPath
 $docsPath = $testPath -replace 'Tests', 'docs'
 $modulePath = $testPath -replace 'Tests', 'ZertoApiWrapper'
 $module = Split-Path -Leaf $modulePath
@@ -9,7 +9,7 @@ Describe "Module: $module" -Tags 'Unit' {
     Context "Module Configuration" {
 
         It "Has a root module file ($module.psm1)" {
-            "$modulePath\$module.psm1" | should -Exist
+            "$modulePath\$module.psm1" | Should -Exist
         }
 
         It "Is valid Powershell (Has no script errors)" {
@@ -75,20 +75,20 @@ Describe "Module: $module" -Tags 'Unit' {
                     $externalHelpFile | Should -Exist
                 }
 
-                it "External Help file does not contain place holder values" {
-                    $stubExist = Get-Content -Path $externalHelpFile | Where-Object {$_.Trim() -like '*{{*}}*'}
+                It "External Help file does not contain place holder values" {
+                    $stubExist = Get-Content -Path $externalHelpFile | Where-Object { $_.Trim() -like '*{{*}}*' }
                     if ($stubExist) {
                         Write-Warning "Found a stub in the Markdown File $externalHelpFile"
                         Write-Warning "$stubExist"
                     }
-                    $stubExist | should benullorempty
+                    $stubExist | Should benullorempty
                 }
             }
 
             It "Is an advanced function" {
-                $Function.FullName | should -FileContentMatch 'function'
-                $Function.FullName | should -FileContentMatch 'cmdletbinding'
-                $Function.FullName | should -FileContentMatch 'param'
+                $Function.FullName | Should -FileContentMatch 'function'
+                $Function.FullName | Should -FileContentMatch 'cmdletbinding'
+                $Function.FullName | Should -FileContentMatch 'param'
             }
 
             It "Is valid Powershell (Has no script errors)" {
@@ -97,15 +97,15 @@ Describe "Module: $module" -Tags 'Unit' {
                 $errors | Should -HaveCount 0
             }
 
-            it "Has openbraces on the same line as the statement" {
-                $openingBracesExist = $contents | Where-Object {$_.Trim() -eq '{'}
+            It "Has openbraces on the same line as the statement" {
+                $openingBracesExist = $contents | Where-Object { $_.Trim() -eq '{' }
                 if ($openingBracesExist) {
                     Write-Warning "Found the following opening brances on their own line:"
                     foreach ($openingBrace in $openingBracesExist) {
                         Write-Warning "Opening Brace on it's own line - $openingBrace"
                     }
                 }
-                $openingBracesExist | should -BeNullOrEmpty
+                $openingBracesExist | Should -BeNullOrEmpty
             }
         }
     }

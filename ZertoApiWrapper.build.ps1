@@ -31,9 +31,11 @@ task CheckPlatyPSInstalled {
 
 <# Synopsis: Ensure Pester is installed #>
 task CheckPesterInstalled {
+    Get-Module -Name Pester | Remove-Module -Force
     if ($null -eq (Get-Module -List Pester)) {
-        Install-Module -Scope CurrentUser -Repository PSGallery -Name Pester
+        Install-Module -Scope CurrentUser -Repository PSGallery -Name Pester -MaximumVersion 4.99
     }
+    Import-Module -Name Pester -MaximumVersion 4.99 -Force
 }
 
 <# Synopsis: Ensure PSScriptAnalyzer is installed #>

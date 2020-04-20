@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -12,7 +12,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         It "datastoreIdentifier parameter does not take null or empty values" {
-            (Get-Command $global:function).Parameters['datastoreIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.count | Should Be 1
+            (Get-Command $global:function).Parameters['datastoreIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.count | Should -Be 1
         }
     }
 
