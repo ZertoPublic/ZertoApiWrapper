@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -16,7 +16,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
         }
 
-        it "<ParameterName> has <Validation> validation set" -TestCases $ParameterTestCases {
+        It "<ParameterName> has <Validation> validation set" -TestCases $ParameterTestCases {
             param($ParameterName)
             $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
             $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
@@ -24,7 +24,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     }
 
     Context "$global:function::Function Unit Tests" {
-        
+
     }
 }
 

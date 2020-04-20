@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {

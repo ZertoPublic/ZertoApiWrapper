@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -28,7 +28,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'vraIpAddress'; Type = 'String'; Mandatory = $false }
             @{ParameterName = 'defaultGateway'; Type = 'String'; Mandatory = $false }
             @{ParameterName = 'subnetMask'; Type = 'String'; Mandatory = $false }
-            @{ParameterName = 'HostRootPassword'; Type = 'securestring'; Mandatory = $false}
+            @{ParameterName = 'HostRootPassword'; Type = 'securestring'; Mandatory = $false }
         )
 
         It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
@@ -41,7 +41,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ ParameterName = 'groupName' }
         )
 
-        it "<ParameterName> validates against null or empty values" -TestCases $StringTestCases {
+        It "<ParameterName> validates against null or empty values" -TestCases $StringTestCases {
             param($ParameterName)
             $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
             $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
@@ -53,7 +53,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'subnetMask' }
         )
 
-        it "<ParameterName> validates string for a valid IP Address" -TestCases $IpAddrTestCases {
+        It "<ParameterName> validates string for a valid IP Address" -TestCases $IpAddrTestCases {
             param($ParameterName)
             $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
             $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
@@ -65,8 +65,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
         It "Returns a task id string" {
             $results = Edit-ZertoVra -vraIdentifier "MyVraIdentifier" -groupName "MyGroup"
-            $results | should not benullorempty
-            $results | should -BeOfType "String"
+            $results | Should not benullorempty
+            $results | Should -BeOfType "String"
             $results | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
         }
 
@@ -82,7 +82,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             Edit-ZertoVra -vraIdentifier "DhcpVraIdentifier" -groupName "MyNewGroup" | Should -BeExactly "7e79035e-fb8c-47fe-815c-12ddd41708e6.3e4cdd0d-1064-4022-921f-6265ad6d335a"
         }
 
-        it "Supports 'SupportsShouldProcess'" {
+        It "Supports 'SupportsShouldProcess'" {
             Get-Command $global:function | Should -HaveParameter WhatIf
             Get-Command $global:function | Should -HaveParameter Confirm
             (Get-Command $global:function).ScriptBlock | Should -Match 'SupportsShouldProcess'

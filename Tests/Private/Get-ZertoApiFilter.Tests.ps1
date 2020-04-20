@@ -1,6 +1,6 @@
 #Requires -Modules Pester
-$global:here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-$global:function = ((Split-Path -leaf $MyInvocation.MyCommand.Path).Split('.'))[0]
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -16,7 +16,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 { Get-ZertoApiFilter -filtertable $null } | Should Throw
             }
 
-            it "should have an Output type of String" {
+            It "should have an Output type of String" {
                 (Get-Command $global:function).OutputType.Name | Should -Match "String"
             }
         }
@@ -47,19 +47,19 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 }
             }
 
-            it "converts bool to text" {
-                Get-ZertoApiFilter -filtertable $singleBoolItemTest | should -Be "?BoolItem=True"
+            It "converts bool to text" {
+                Get-ZertoApiFilter -filtertable $singleBoolItemTest | Should -Be "?BoolItem=True"
             }
 
-            it "one item test" {
-                Get-ZertoApiFilter -filtertable $oneItemTest | should -Be "?OneItem=Test"
+            It "one item test" {
+                Get-ZertoApiFilter -filtertable $oneItemTest | Should -Be "?OneItem=Test"
             }
 
-            it "should ignore CommonParameters" {
-                Get-ZertoApiFilter -filtertable $commonParamTest | should -Be "?OneItem=Test"
+            It "should ignore CommonParameters" {
+                Get-ZertoApiFilter -filtertable $commonParamTest | Should -Be "?OneItem=Test"
             }
 
-            it "should process a filter table with more than one item" {
+            It "should process a filter table with more than one item" {
                 $returnString = Get-ZertoApiFilter -filtertable $twoItemTest
                 $returnString | Should -match "^\?"
                 $returnString | Should -match "&"
