@@ -89,7 +89,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             It "Module Scope zvmHeaders variable tests" {
                 $script:zvmHeaders | Should -Not -BeNullOrEmpty
                 $script:zvmHeaders | Should -BeOfType PSCustomObject
-                $script:zvmHeaders.keys.count | Should -BeExactly 2
+                $script:zvmHeaders.keys.count | Should -BeExactly 3
                 $script:zvmHeaders.ContainsKey('x-zerto-session') | Should -BeTrue
                 $script:zvmHeaders.ContainsKey('Accept') | Should -BeTrue
                 $script:zvmHeaders['x-zerto-session'] | Should -BeOfType String
@@ -105,7 +105,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $headers = Connect-ZertoServer -zertoServer $Server -credential $credential -returnHeaders
             It "returns a Hashtable with 2 keys" {
                 $headers | Should -BeOfType Hashtable
-                $headers.keys.count | Should -Be 2
+                $headers.keys.count | Should -Be 3
             }
 
             It "return value has a key called 'x-zerto-session'" {

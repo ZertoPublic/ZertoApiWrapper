@@ -32,9 +32,12 @@ function Connect-ZertoServer {
         Set-Variable -Name zvmServer -Scope Script -Value $zertoServer
         Set-Variable -Name zvmPort -Scope Script -Value $zertoPort
         # Set zvmLastAction Variable to keep track when the API token expires
-        Set-Variable -Name zvmLastAction -Scope Script -Value $(get-date).Ticks
+        Set-Variable -Name zvmLastAction -Scope Script -Value $(Get-Date).Ticks
         # Set / Clear the zvmHeaders to clear any existing token
-        Set-Variable -Name zvmHeaders -Scope Script -Value $null
+        Set-Variable -Name zvmHeaders -Scope Script -Value @{
+            "Accept"             = "application/json"
+            "zerto-triggered-by" = "PowershellWes"
+        }
     }
 
     process {
@@ -44,14 +47,14 @@ function Connect-ZertoServer {
 
     end {
         # Build Headers Hashtable with Authorization Token
-        $zertoAuthorizationHeaders = @{"x-zerto-session" = $results.Headers['x-zerto-session'][0].ToString(); "Accept" = "application/json"}
+        $Script:zvmHeaders['x-zerto-session'] = $results.Headers['x-zerto-session'][0].ToString()
         # Set common Script Scope Variables to be used other functions (Headers and Local Site Info)
-        Set-Variable -Name zvmHeaders -Scope Script -Value $zertoAuthorizationHeaders
+        # Set-Variable -Name zvmHeaders -Scope Script -Value $zertoAuthorizationHeaders
         Set-Variable -Name zvmLocalInfo -Scope Script -Value (Get-ZertoLocalSite)
 
         # Have the option to return the headers to a variable
         if ($returnHeaders) {
-            return $zertoAuthorizationHeaders
+            return $Script:zvmHeaders
         }
     }
 }
