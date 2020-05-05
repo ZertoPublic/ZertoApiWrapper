@@ -135,7 +135,7 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
 #Region - Build Module Files
 task CreatePsd1ForRelease CleanTemp, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
-    $releaseNotes = "Please review the [CHANGELOG](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/CHANGELOG.md) for the latest updates."
+    $releaseNotes = "Please review the [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/{0}) on GitHub." -f $version
 
     $ManifestParams = @{
         Path              = "$BuildRoot\temp\ZertoApiWrapper.psd1"
