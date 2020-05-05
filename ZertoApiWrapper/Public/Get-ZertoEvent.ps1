@@ -19,8 +19,8 @@ function Get-ZertoEvent {
             HelpMessage = "The name of the VPG for which you want to return events."
         )]
         [ValidateNotNullOrEmpty()]
-        [Alias("vpgName")]
-        [string]$vpg,
+        [Alias("vpg")]
+        [string]$vpgName,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the VPG for which you want to return events."
@@ -69,7 +69,7 @@ function Get-ZertoEvent {
             ParameterSetName = "filter",
             HelpMessage = "The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'"
         )]
-        [ValidateSet('All','Events','Alerts')]
+        [ValidateSet('All', 'Events', 'Alerts')]
         [string]$category,
         [Parameter(
             ParameterSetName = "filter",
