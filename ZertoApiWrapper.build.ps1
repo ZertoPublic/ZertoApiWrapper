@@ -1,6 +1,6 @@
 #Requires -Modules 'InvokeBuild'
 
-$version = "{0}.{1}" -f $(Get-Content .\version.txt), $(Get-Date -format 'yyyyMMdd')
+$version = "{0}.{1}" -f $(Get-Content .\version.txt), $(Get-Date -Format 'yyyyMMdd')
 
 #Define the default task
 task . CreateArtifacts
@@ -54,7 +54,7 @@ task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @('PSUseToExportFieldsInManifest', 'PSUseBOMForUnicodeEncodedFile', 'PSUseSingularNouns')
+        ExcludeRule = @('PSUseToExportFieldsInManifest', 'PSUseBOMForUnicodeEncodedFile', 'PSUseSingularNouns', 'PSReviewUnusedParameter')
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
     if ($saResults) {
@@ -69,7 +69,7 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
-        ExcludeRule = @('PSUseSingularNouns', 'PSUseBOMForUnicodeEncodedFile')
+        ExcludeRule = @('PSUseSingularNouns', 'PSUseBOMForUnicodeEncodedFile', 'PSReviewUnusedParameter')
     }
     $saresults = Invoke-ScriptAnalyzer @scriptAnalyzerParams
 
@@ -144,7 +144,7 @@ task CreatePsd1ForRelease CleanTemp, {
         GUID              = '4c0b9e17-141b-4dd5-8549-fb21cccaa325'
         Author            = 'Wes Carroll'
         CompanyName       = 'Zerto'
-        Copyright         = '(c) {0} Wes Carroll. All rights reserved.' -f $(Get-Date -format 'yyyy')
+        Copyright         = '(c) {0} Wes Carroll. All rights reserved.' -f $(Get-Date -Format 'yyyy')
         Description       = 'Windows PowerShell and PowerShell Core API Wrapper Module for Zerto Virtual Manager'
         PowerShellVersion = '5.1.0'
         ProjectUri        = 'https://github.com/ZertoPublic/ZertoApiWrapper'
@@ -193,9 +193,9 @@ task CreateArtifacts CleanPublish, CleanTemp, AnalyzeSourceFiles, SourceFileTest
         New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
     }
     Compress-Archive -Path .\temp\* -DestinationPath .\publish\ZertoApiWrapper.zip
-    ImportBuiltModule
-    (Get-Module ZertoApiWrapper).ReleaseNotes | Add-Content .\publish\release-notes.txt
-    (Get-Module ZertoApiWrapper).Version.ToString() | Add-Content .\publish\release-version.txt
+    #ImportBuiltModule
+    #(Get-Module ZertoApiWrapper).ReleaseNotes | Add-Content .\publish\release-notes.txt
+    #(Get-Module ZertoApiWrapper).Version.ToString() | Add-Content .\publish\release-version.txt
     Copy-Item "$BuildRoot\ZertoApiWrapper.build.ps1" "$BuildRoot\publish\ZertoApiWrapper.build.ps1"
     Copy-Item "$BuildRoot\ZertoApiWrapper.Depend.psd1" "$BuildRoot\publish\ZertoApiWrapper.Depend.psd1"
     Copy-Item "$BuildRoot\build.ps1" "$BuildRoot\publish\build.ps1"
