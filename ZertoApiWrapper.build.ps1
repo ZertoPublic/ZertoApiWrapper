@@ -135,7 +135,7 @@ task UpdateMarkdownHelp CheckPlatyPSInstalled, {
 #Region - Build Module Files
 task CreatePsd1ForRelease CleanTemp, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
-    $releaseNotes = "# {0}{1}" -f $version, $(Get-Content .\RELEASENOTES.md -Raw)
+    $releaseNotes = "Please review the [CHANGELOG](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/CHANGELOG.md) for the latest updates."
 
     $ManifestParams = @{
         Path              = "$BuildRoot\temp\ZertoApiWrapper.psd1"
@@ -165,17 +165,6 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
     $lines = '#------------------------------------------------------------#'
     $Private = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction Stop )
     $Public = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Public\*.ps1 -ErrorAction Stop )
-    <# $functionCount = 0
-     $exportString = ""
-    foreach ($file in $Public) {
-        if ($functionCount -eq 0) {
-            $functionCount++
-            $exportString = "{0}" -f $file.BaseName
-        } else {
-            $functionCount++
-            $exportString = "{0}, {1}" -f $exportString, $file.BaseName
-        }
-    } #>
     Add-Content -Path $psm1Path -Value $lines
     Add-Content -Path $psm1Path -Value "#---------------------Private Functions----------------------#"
     Add-Content -Path $psm1Path -Value $lines
