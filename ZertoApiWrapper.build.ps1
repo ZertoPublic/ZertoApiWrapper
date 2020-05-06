@@ -1,6 +1,6 @@
 #Requires -Modules 'InvokeBuild'
 
-$version = "{0}.{1}" -f $(Get-Content .\version.txt), $(Get-Date -Format 'yyyyMMdd')
+$version = "{0}" -f $(Get-Content .\version.txt)
 
 #Define the default task
 task . CreateArtifacts
