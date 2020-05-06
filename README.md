@@ -32,13 +32,7 @@ PS> Install-Module -name ZertoApiWrapper
 
 ## Recent Updates
 
-* April 10th, 2020: April Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.4.0.20200410).
-* December 1st, 2019: November Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.3.0.20191201).
-* August 1st, 2019: August Release. See [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/1.2.0.20190801).
-* June 16th, 2019: Added functionality for Zerto Analytics.
-* May 31st, 2019: Implement logic to allow use of this module in both Windows PowerShell 5.1 and PowerShell Core.
-* March 15th, 2019: Implement Export and Import Functionality. Please See [Export-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Export-ZertoVpg.md) and [Import-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Import-ZertoVpg.md) for assistance. No current pre-seed support.
-* March 11th, 2019: Create basic VPG completed. Please see [New-ZertoVpg Help](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md)
+All recent updates can now be tracked via the [Change Log](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/CHANGELOG.md).
 
 ## TODO
 
