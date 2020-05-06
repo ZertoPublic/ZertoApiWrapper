@@ -104,7 +104,7 @@ task SourceFileTests CheckPesterInstalled, {
     Assert ($results.FailedCount -eq 0) $FailureMessage
 }
 
-task BuiltFileTests CheckPesterInstalled, {
+task BuiltFileTests CreatePsm1ForRelease, CheckPesterInstalled, {
     ImportBuiltModule
     $testResultsFile = "$BuildRoot\Tests\BuiltTestResults.xml"
     $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru -Show Fails
