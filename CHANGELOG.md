@@ -8,6 +8,9 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 
 ### General
 * Removed RELEASENOTES and converted to a CHANGELOG format.
+* Updated the build process to follow Semantic Versioning.
+* Updated the build process to use the latest Pester Version (4.10.1)
+* Updated the build process to use the latest PS Script Analyzer Version (1.19.0)
 
 ### Zerto Virtual Manager
 
