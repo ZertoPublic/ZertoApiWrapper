@@ -4,7 +4,7 @@ function Invoke-ZertoMoveCommit {
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) to commit.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
@@ -20,7 +20,7 @@ function Invoke-ZertoMoveCommit {
 
     begin {
         $baseUri = "vpgs"
-        $body = @{}
+        $body = @{ }
         if ($reverseProtection) {
             $body["ReverseProtection"] = $true
         } elseif ($keepSourceVms) {

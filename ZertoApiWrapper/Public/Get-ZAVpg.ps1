@@ -11,7 +11,7 @@ function Get-ZAVpg {
         [Parameter(
             HelpMessage = "The VPG Identifier",
             ParameterSetName = "vpg",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$vpgIdentifier

@@ -4,7 +4,7 @@ function Invoke-ZertoFailover {
     param(
         #TODO - Refactor?
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Name of the VPG to Failover"
         )]
         [ValidateNotNullOrEmpty()]
@@ -54,7 +54,7 @@ function Invoke-ZertoFailover {
             Write-Error "VPG: $vpgName Not Found. Please check the name and try again!" -ErrorAction Stop
         }
         $baseUri = "vpgs/{0}/failover" -f $vpgId
-        $body = @{}
+        $body = @{ }
         # Setup Required Defaults
         $body['commitpolicy'] = $commitPolicy
         $body['TimeToWaitBeforeShutdownInSec'] = $timeToWaitBeforeShutdownInSec
@@ -76,7 +76,7 @@ function Invoke-ZertoFailover {
                 $vpgVmInformation = Get-ZertoProtectedVm -vpgName $vpgName
                 [System.Collections.ArrayList]$vmIdentifiers = @()
                 foreach ( $name in $vmName ) {
-                    $selectedVm = $vpgVmInformation | Where-Object {$_.VmName.toLower() -eq $name.toLower()}
+                    $selectedVm = $vpgVmInformation | Where-Object { $_.VmName.toLower() -eq $name.toLower() }
                     if ($null -eq $selectedVm) {
                         Write-Error "VM: $name NOT found in VPG $vpgName. Check the name and try again." -ErrorAction Stop
                     } elseif ($vmIdentifiers.Contains($selectedVm.vmIdentifier.toString())) {

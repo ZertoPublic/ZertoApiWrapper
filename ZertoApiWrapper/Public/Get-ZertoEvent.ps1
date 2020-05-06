@@ -86,7 +86,7 @@ function Get-ZertoEvent {
         [string]$alertIdentifier,
         [Parameter(
             ParameterSetName = "eventId",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "The identifier or identifiers of the event for which information is returned."
@@ -95,19 +95,19 @@ function Get-ZertoEvent {
         [string[]]$eventId,
         [Parameter(
             ParameterSetName = "categories",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Returns possible Event Categories."
         )]
         [switch]$categories,
         [Parameter(
             ParameterSetName = "entities",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Returns possible entity types."
         )]
         [switch]$entities,
         [Parameter(
             ParameterSetName = "types",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Returns possible event types.")]
         [switch]$types
     )

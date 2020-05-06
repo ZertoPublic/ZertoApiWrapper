@@ -3,7 +3,7 @@ function Add-ZertoPeerSite {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Target Hostname or IP address to pair the localsite to."
         )]
         [ValidateScript( { $_ -match [IPAddress]$_ } )]

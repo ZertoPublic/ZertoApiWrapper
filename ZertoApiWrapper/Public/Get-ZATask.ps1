@@ -17,7 +17,7 @@ function Get-ZATask {
         [Parameter(
             HelpMessage = "The task Idnetifier",
             ParameterSetName = "taskId",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$taskIdentifier

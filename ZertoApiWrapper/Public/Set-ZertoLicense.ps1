@@ -3,7 +3,7 @@ function Set-ZertoLicense {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param (
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "License Key to apply to the Zerto Virtual Manager"
         )]
         [ValidateNotNullOrEmpty()]
@@ -12,7 +12,7 @@ function Set-ZertoLicense {
 
     begin {
         $baseUri = "license"
-        $body = @{"LicenseKey" = $licenseKey}
+        $body = @{"LicenseKey" = $licenseKey }
     }
 
     process {

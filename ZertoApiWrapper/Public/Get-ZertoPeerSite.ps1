@@ -5,12 +5,12 @@ function Get-ZertoPeerSite {
         [Parameter(
             ParameterSetName = "pairingStatuses",
             HelpMessage = "Switch to return possible paiting statuses.",
-            Mandatory = $true
+            Mandatory
         )]
         [switch]$pairingStatuses,
         [Parameter(
             ParameterSetName = "siteIdentifier",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "The identifier(s) of the peer site(s) for which information is to be returned."

@@ -4,17 +4,17 @@ function Get-ZertoVpg {
     param(
         [Parameter(
             ParameterSetName = "protectionGroupIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
         [Parameter(
             ParameterSetName = "checkpoints",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
         [Parameter(
             ParameterSetName = "stats",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
         [ValidateNotNullOrEmpty()]
@@ -22,7 +22,7 @@ function Get-ZertoVpg {
         [string[]]$protectionGroupIdentifier,
         [Parameter(
             ParameterSetName = "checkpoints",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return checkpoints for the selected Virtual Protection Group."
         )]
         [switch]$checkpoints,
@@ -39,49 +39,49 @@ function Get-ZertoVpg {
         [ValidateNotNullOrEmpty()]
         [string]$endDate,
         [Parameter(
-            ParameterSetName = "stats", Mandatory = $true,
+            ParameterSetName = "stats", Mandatory,
             HelpMessage = "Return earliest and latest checkpoints for the selected Virtual Protection Group"
         )]
         [switch]$checkpointsStats,
         [Parameter(
             ParameterSetName = "entityTypes",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return Valid VPG entityTypes"
         )]
         [switch]$entityTypes,
         [Parameter(
             ParameterSetName = "failoverCommitPolicies",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid Failover Commit Policies"
         )]
         [switch]$failoverCommitPolicies,
         [Parameter(
             ParameterSetName = "failoverShutdownPolicies",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid Failover Shutdown Policies"
         )]
         [switch]$failoverShutdownPolicies,
         [Parameter(
             ParameterSetName = "priorities",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid VPG priorities"
         )]
         [switch]$priorities,
         [Parameter(
             ParameterSetName = "retentionPolicies",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid retention policies"
         )]
         [switch]$retentionPolicies,
         [Parameter(
             ParameterSetName = "statuses",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid VPG statuses"
         )]
         [switch]$statuses,
         [Parameter(
             ParameterSetName = "subStatuses",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid VPG sub statuses"
         )]
         [switch]$subStatuses,

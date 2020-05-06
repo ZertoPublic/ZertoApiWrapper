@@ -6,7 +6,7 @@ function Save-ZertoVpgSetting {
     param(
         [Parameter(
             HelpMessage = "VpgSettings Identifier to save",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]

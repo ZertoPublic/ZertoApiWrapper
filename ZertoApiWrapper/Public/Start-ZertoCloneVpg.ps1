@@ -4,7 +4,7 @@ function Start-ZertoCloneVpg {
     param(
         [Parameter(
             HelpMessage = "Name of the VPG you wish to clone.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$vpgName,
@@ -36,7 +36,7 @@ function Start-ZertoCloneVpg {
         if ( $PSBoundParameters.ContainsKey('datastoreName') ) {
             $recoverysiteIdentifier = $vpgInfo.recoverysite.identifier
             $recoverySiteDatastores = Get-ZertoVirtualizationSite -siteIdentifier $recoverysiteIdentifier -datastores
-            $datastoreIdentifier = $($recoverySiteDatastores | Where-Object {$_.datastoreName -like $datastoreName}).DatastoreIdentifier
+            $datastoreIdentifier = $($recoverySiteDatastores | Where-Object { $_.datastoreName -like $datastoreName }).DatastoreIdentifier
             if ( -not $datastoreIdentifier ) {
                 Write-Error "Datastore: $datastoreName is not a valid datastore. Please check the name and try again." -ErrorAction Stop
             }
@@ -45,7 +45,7 @@ function Start-ZertoCloneVpg {
             $vpgVmInformation = Get-ZertoProtectedVm -vpgName $vpgName
             [System.Collections.ArrayList]$vmIdentifiers = @()
             foreach ( $name in $vmName ) {
-                $selectedVm = $vpgVmInformation | Where-Object {$_.VmName.toLower() -eq $name.toLower()}
+                $selectedVm = $vpgVmInformation | Where-Object { $_.VmName.toLower() -eq $name.toLower() }
                 if ($null -eq $selectedVm) {
                     Write-Error "VM: $name NOT found in VPG $vpgName. Check the name and try again." -ErrorAction Stop
                 } elseif ($vmIdentifiers.Contains($selectedVm.vmIdentifier.toString())) {
@@ -63,7 +63,7 @@ function Start-ZertoCloneVpg {
 
     process {
         $uri = "{0}/{1}/CloneStart" -f $baseUri, $vpgIdentifier
-        $body = [ordered]@{}
+        $body = [ordered]@{ }
         if ( $PSBoundParameters.ContainsKey('checkpointIdentifier') ) {
             $body['checkpointId'] = $checkpointIdentifier
         }
