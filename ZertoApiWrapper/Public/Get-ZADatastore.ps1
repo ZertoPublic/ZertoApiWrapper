@@ -4,15 +4,15 @@ function Get-ZADatastore {
     param (
         [Parameter(
             HelpMessage = "The site identifier. The site identifier is mandatory. Omit the datastore and datastore cluster identifiers to view site level storage information.",
-            Mandatory = $true,
+            Mandatory,
             ParameterSetName = "AllInfo"
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             ParameterSetName = "cluster"
         )]
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             ParameterSetName = "datastore"
         )]
         [ValidateNotNullOrEmpty()]
@@ -20,14 +20,14 @@ function Get-ZADatastore {
         [Parameter(
             HelpMessage = "The datastore cluster identifier. Gets a list of datastores in the cluster.",
             ParameterSetName = "cluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$clusterIdentifier,
         [Parameter(
             HelpMessage = "The datastore identifer. Gets the datastore info.",
             ParameterSetName = "datastore",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$datastoreIdentifier

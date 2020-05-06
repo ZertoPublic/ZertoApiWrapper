@@ -4,7 +4,7 @@ function Invoke-ZertoMove {
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) you want to move.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
@@ -29,13 +29,13 @@ function Invoke-ZertoMove {
         [Parameter(
             ParameterSetName = "disableReverseProtection",
             HelpMessage = "Do not enable reverse protection. The VPG definition is kept with the status Needs Configuration and the reverse settings in the VPG definition are not set.",
-            Mandatory = $true
+            Mandatory
         )]
         [switch]$disableReverseProtection,
         [Parameter(
             ParameterSetName = "keepSourceVms",
             HelpMessage = "Prevent the protected virtual machines from being deleted in the protected site. Using this setting disables reverse protection.",
-            Mandatory = $true
+            Mandatory
         )]
         [switch]$keepSourceVms,
         [Parameter(

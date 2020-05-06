@@ -3,7 +3,7 @@ function Checkpoint-ZertoVpg {
     [cmdletbinding()]
     param(
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Name of the VPG to tag.",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
@@ -11,7 +11,7 @@ function Checkpoint-ZertoVpg {
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Text to tag the checkpoint with."
         )]
         [ValidateNotNullOrEmpty()]
@@ -27,10 +27,10 @@ function Checkpoint-ZertoVpg {
             $vpgIdentifier = $(get-zertovpg -name $name).vpgIdentifier
             if ($vpgIdentifier) {
                 $uri = "{0}/{1}/Checkpoints" -f $baseUri, $vpgIdentifier
-                $body = @{"checkpointName" = $checkpointName}
+                $body = @{"checkpointName" = $checkpointName }
                 Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -method "POST"
             } else {
-            Write-Output "Cannot find VPG named $name. Please check the name and try again."
+                Write-Output "Cannot find VPG named $name. Please check the name and try again."
             }
         }
     }

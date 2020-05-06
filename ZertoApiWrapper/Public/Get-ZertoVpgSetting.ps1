@@ -10,7 +10,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -18,7 +18,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [Parameter(
@@ -26,7 +26,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -34,7 +34,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -42,7 +42,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -50,7 +50,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -58,7 +58,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -66,7 +66,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -74,7 +74,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -82,7 +82,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -90,7 +90,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -98,7 +98,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -106,7 +106,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -114,7 +114,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -122,7 +122,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -130,7 +130,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -138,7 +138,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -146,7 +146,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [Parameter(
@@ -154,7 +154,7 @@ function Get-ZertoVpgSetting {
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             ValueFromRemainingArguments = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the VPG settings object for which information is retrieved."
         )]
         [ValidateNotNullOrEmpty()]
@@ -162,100 +162,100 @@ function Get-ZertoVpgSetting {
         [string[]]$vpgSettingsIdentifier,
         [Parameter(
             ParameterSetName = "backup",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return backup information for VPG identifier specified. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$backup,
         [Parameter(
             ParameterSetName = "dayOfWeek",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get the day of week a backup is scheduled. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$dayOfWeek,
         [Parameter(
             ParameterSetName = "retentionPeriod",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get the retention period for a backup. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$retentionPeriod,
         [Parameter(
             ParameterSetName = "schedulerPeriod",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get the backup schedule. Please note, this parameter is ONLY available in Zerto version 7.5 and earlier. Attempting to run this switch against a Zerto Virtual Manager version 8.0 or higher result in an error."
         )]
         [switch]$schedulerPeriod,
         [Parameter(
             ParameterSetName = "basic",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Basic Settings"
         )]
         [switch]$basic,
         [Parameter(
             ParameterSetName = "bootGroup",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Boot Settings"
         )]
         [switch]$bootgroup,
         [Parameter(
             ParameterSetName = "journal",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Journal Settings"
         )]
         [switch]$journal,
         [Parameter(
             ParameterSetName = "networks",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Network Settings"
         )]
         [switch]$networks,
         [Parameter(
             ParameterSetName = "priority",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Priority Settings"
         )]
         [switch]$priority,
         [Parameter(
             ParameterSetName = "recovery",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Recovery Settings"
         )]
         [Alias("rcovery")]
         [switch]$recovery,
         [Parameter(
             ParameterSetName = "scripting",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get VPG Recovery Settings"
         )]
         [switch]$scripting,
         [Parameter(
             ParameterSetName = "vms",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get all settings for all VMs in a VPG."
         )]
         [switch]$vms,
         [Parameter(
             ParameterSetName = "vmIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Get all settings for selected VM"
         )]
         [Parameter(
             ParameterSetName = "nics",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "VM Identifier"
         )]
         [Parameter(
             ParameterSetName = "volumes",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "VM Identifier"
         )]
         [Parameter(
             ParameterSetName = "nicIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "VM Identifier"
         )]
         [Parameter(
             ParameterSetName = "volumeIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "VM Identifier"
         )]
         [ValidateNotNullOrEmpty()]
@@ -263,13 +263,13 @@ function Get-ZertoVpgSetting {
         [string]$vmIdentifier,
         [Parameter(
             ParameterSetName = "nics",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return NIC information for all NICs of the specified VM"
         )]
         [switch]$nics,
         [Parameter(
             ParameterSetName = "nicIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return NIC information for specified NIC of the specified VM"
         )]
         [ValidateNotNullOrEmpty()]
@@ -277,13 +277,13 @@ function Get-ZertoVpgSetting {
         [string]$nicIdentifier,
         [Parameter(
             ParameterSetName = "volumes",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return Volume information for all volumes of the specified VM"
         )]
         [switch]$volumes,
         [Parameter(
             ParameterSetName = "volumeIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return volume information for the specified volume of the specified VM"
         )]
         [ValidateNotNullOrEmpty()]
@@ -291,7 +291,7 @@ function Get-ZertoVpgSetting {
         [string]$volumeIdentifier,
         [Parameter(
             ParameterSetName = "ltr",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return LTR information for the specified VPG. Please note, this parameter is ONLY available in Zerto version 8.0 and later. Attempting to run this switch against a Zerto Virtual Manager version 7.5 or lower will result in an error."
         )]
         [switch]$ltr

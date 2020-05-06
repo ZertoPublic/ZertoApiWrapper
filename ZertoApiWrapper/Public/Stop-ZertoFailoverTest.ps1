@@ -4,7 +4,7 @@ function Stop-ZertoFailoverTest {
     param(
         [Parameter(
             HelpMessage = "Name(s) of VPG(s) to stop testing.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
@@ -21,7 +21,7 @@ function Stop-ZertoFailoverTest {
 
     begin {
         $baseUri = "vpgs"
-        $body = @{"FailoverTestSuccess" = $failoverTestSuccess; "FailoverTestSummary" = $failoverTestSummary}
+        $body = @{"FailoverTestSuccess" = $failoverTestSuccess; "FailoverTestSummary" = $failoverTestSummary }
     }
 
     process {

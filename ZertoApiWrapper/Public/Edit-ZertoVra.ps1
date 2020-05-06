@@ -3,7 +3,7 @@ function Edit-ZertoVra {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Identifier of the VRA to be updated."
         )]
         [ValidateNotNullOrEmpty()]

@@ -3,7 +3,7 @@ function Get-ZertoApiFilter {
     [Outputtype([String])]
     param(
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Hashtable that contains filter keys and values"
         )]
         [ValidateNotNullOrEmpty()]

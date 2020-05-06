@@ -4,7 +4,7 @@ function Start-ZertoFailoverTest {
     param(
         [Parameter(
             HelpMessage = "Name of VPG to failover test",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$vpgName,

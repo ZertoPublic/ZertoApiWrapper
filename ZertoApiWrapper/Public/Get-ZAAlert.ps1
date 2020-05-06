@@ -17,7 +17,7 @@ function Get-ZAAlert {
         [Parameter(
             HelpMessage = "The alert Idnetifier",
             ParameterSetName = "alertId",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$alertIdentifier

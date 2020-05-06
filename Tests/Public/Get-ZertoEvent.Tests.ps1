@@ -1,6 +1,6 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $PSCommandPath)
-$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
+$global:function = ((Split-Path -Leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
@@ -12,7 +12,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         $ParameterTestCases = @(
             @{ParameterName = 'startDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'endDate'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
-            @{ParameterName = 'vpg'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'vpgName'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'vpgIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'eventType'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'siteName'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }

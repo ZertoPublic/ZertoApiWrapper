@@ -3,7 +3,7 @@ function Remove-ZertoVpg {
     [cmdletbinding( SupportsShouldProcess = $true, DefaultParameterSetName = "vpgIdentifier" )]
     param(
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             ParameterSetName = "vpgName",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
@@ -12,7 +12,7 @@ function Remove-ZertoVpg {
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             ParameterSetName = "vpgIdentifier",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
@@ -33,7 +33,7 @@ function Remove-ZertoVpg {
 
     begin {
         $baseUri = "vpgs"
-        $body = @{}
+        $body = @{ }
         if ($keepRecoveryVolumes) {
             $body['KeepRecoveryVolumes'] = $True
         } else {

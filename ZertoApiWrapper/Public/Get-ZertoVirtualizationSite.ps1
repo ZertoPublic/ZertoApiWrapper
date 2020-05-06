@@ -4,57 +4,57 @@ function Get-ZertoVirtualizationSite {
     param(
         [Parameter(
             ParameterSetName = "siteIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "datastoreClusters",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "datastores",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "hostClusters",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "hosts",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "networks",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "resourcePools",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "vms",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "devices",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "folders",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [Parameter(
             ParameterSetName = "repositories",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [ValidateNotNullOrEmpty()]
@@ -62,19 +62,19 @@ function Get-ZertoVirtualizationSite {
         [string]$siteIdentifier,
         [Parameter(
             ParameterSetName = "datastoreClusters",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "When selected, will return all datastore clusters at the specified site."
         )]
         [switch]$datastoreClusters,
         [Parameter(
             ParameterSetName = "datastores",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "When selected, will return all datastores at the specified site."
         )]
         [switch]$datastores,
         [Parameter(
             ParameterSetName = "devices",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "When selected, will return all devices at the specified site."
         )]
         [switch]$devices,
@@ -93,43 +93,43 @@ function Get-ZertoVirtualizationSite {
         [string]$hostIdentifier,
         [Parameter(
             ParameterSetName = "folders",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return all folders at the selected site."
         )]
         [switch]$folders,
         [Parameter(
             ParameterSetName = "hostClusters",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return all host clusters at the selected site."
         )]
         [switch]$hostClusters,
         [Parameter(
             ParameterSetName = "hosts",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return all hosts at the selected site. If a host identifier is provided, return only that host."
         )]
         [switch]$hosts,
         [Parameter(
             ParameterSetName = "networks",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return all networks at the selected site."
         )]
         [switch]$networks,
         [Parameter(
             ParameterSetName = "resourcePools",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return all resource pools at the selected site."
         )]
         [switch]$resourcePools,
         [Parameter(
             ParameterSetName = "vms",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return all VMs at the selected site."
         )]
         [switch]$vms,
         [Parameter(
             ParameterSetName = "repositories",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier of the Zerto Virtual Manager site."
         )]
         [switch]$repositories

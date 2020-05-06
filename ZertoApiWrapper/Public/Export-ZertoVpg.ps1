@@ -4,7 +4,7 @@ function Export-ZertoVpg {
     param(
         [Parameter(
             HelpMessage = "Location where to dump the resulting JSON files containing the VPG Settings",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [Alias("outputFolder")]
@@ -12,7 +12,7 @@ function Export-ZertoVpg {
         [parameter(
             HelpMessage = "Name(s) of the VPG(s) to be exported",
             ParameterSetName = "namedVpgs",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
@@ -21,7 +21,7 @@ function Export-ZertoVpg {
             ParameterSetName = "allVpgs",
             valuefrompipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            Mandatory = $true
+            Mandatory
         )]
         [switch]$allVpgs
     )

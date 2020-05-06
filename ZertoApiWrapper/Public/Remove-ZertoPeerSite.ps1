@@ -10,7 +10,7 @@ function Remove-ZertoPeerSite {
             ParameterSetName = "siteIdentifier",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [Alias("siteId")]
@@ -20,7 +20,7 @@ function Remove-ZertoPeerSite {
             ParameterSetName = "peerSiteName",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$peerSiteName,
@@ -29,9 +29,9 @@ function Remove-ZertoPeerSite {
             ParameterSetName = "hostName",
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            Mandatory = $true
+            Mandatory
         )]
-        [ValidateScript( {$_ -match [IPAddress]$_ })]
+        [ValidateScript( { $_ -match [IPAddress]$_ })]
         [string[]]$hostName,
         [Parameter(
             HelpMessage = "Specify this switch to Keep the target replica disks for any VPGs replicating between the sites as the VPGs will be deleted by unpairing the sites. If this switch is not used, the target replica disks will be deleted"
@@ -41,7 +41,7 @@ function Remove-ZertoPeerSite {
 
     begin {
         $baseUri = "peersites"
-        $body = @{}
+        $body = @{ }
         if ( $keepTargetDisks ) {
             $body['IsKeepTargetDisks'] = $true
         } else {

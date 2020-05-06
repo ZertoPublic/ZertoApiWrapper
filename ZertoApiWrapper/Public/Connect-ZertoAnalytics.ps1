@@ -3,7 +3,7 @@ function Connect-ZertoAnalytics {
     [cmdletbinding()]
     param(
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "PSCredential Object containing username and password authorized for the Zerto Analytics site",
             Position = 0
         )]

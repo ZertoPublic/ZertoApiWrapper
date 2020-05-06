@@ -4,7 +4,7 @@ function New-ZertoVpg {
     param(
         [Parameter(
             HelpMessage = "Name of the VPG",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$vpgName,
@@ -20,89 +20,89 @@ function New-ZertoVpg {
         [int]$journalHistoryInHours = 24,
         [Parameter(
             HelpMessage = "Name(s) of the VM(s) to be protected.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$protectedVm,
         [Parameter(
             HelpMessage = "Name of the site where the VM(s) will be recovered",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoverySite,
         [Parameter(
             HelpMessage = "Name of the cluster where the VM(s) will be recovered.",
             ParameterSetName = "recoveryClusterDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the cluster where the VM(s) will be recovered.",
             ParameterSetName = "recoveryClusterDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryCluster,
         [Parameter(
             HelpMessage = "Name of the host where the VM(s) will be recovered.",
             ParameterSetName = "recoveryHostDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the host where the VM(s) will be recovered.",
             ParameterSetName = "recoveryHostDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryHost,
         [Parameter(
             HelpMessage = "Name of the resource pool where the VM(s) will be recovered.",
             ParameterSetName = "recoveryResourcePoolDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the resource pool where the VM(s) will be recovered.",
             ParameterSetName = "recoveryResourcePoolDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryResourcePool,
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryClusterDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryHostDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryResourcePoolDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$datastore,
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryClusterDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryHostDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryResourcePoolDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$datastoreCluster,
         [Parameter(
             HelpMessage = "Name of folder at recovery location where the recovered virtual machine(s) will be created.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryFolder,
@@ -132,13 +132,13 @@ function New-ZertoVpg {
         [String]$zorg,
         [Parameter(
             HelpMessage = "Name of the network to use during a Failover Live \ Move VPG operation.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [String]$recoveryNetwork,
         [Parameter(
             HelpMessage = "Name of the network to use during a Failover Test operation",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$testNetwork,
