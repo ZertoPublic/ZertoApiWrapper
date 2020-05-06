@@ -1,9 +1,20 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### General
+* Removed RELEASENOTES and converted to a CHANGELOG format.
+
 ### Zerto Virtual Manager
 
 * Refactored `Copy-ZertoVpg` functionality to leverage identifier and name maps and eliminate `where-object` searches.
 * Updated `Get-ZertoEvent` parameter to fall in line with the filter parameter name in the API documentation. Moved the old parameter name to an alias to ensure that existing functionality continues to work.
 
-## 1.4.0.20200410
+## [1.4.0.20200410]
 
 ### Zerto Virtual Manager
 
@@ -33,7 +44,7 @@
   * `Get-ZAPlannerZcasReport` Help can be found here: [Get-ZAPlannerZcasReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerZcasReport.md)
 * Created `Get-ZAProtectedVm` and `Get-ZAProtectedVmReport` functions to leverage the newly released Zerto Analytics APIs for this data. Help files can be found here: [Get-ZAProtectedVm](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAProtectedVm.md) and [Get-ZAProtectedVmReport](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAProtectedVmReport.md)
 
-## 1.3.0.20191201
+## [1.3.0.20191201]
 
 ### Zerto Virtual Manager
 
@@ -44,7 +55,7 @@
 * A function has been added; `Copy-ZertoVpg`. This function will allow users to copy the settings of a single VPG and add new VMs to it. There is currently no customization beyond specifying the VMs to be placed in the newly created VPG. Should additional edits \ updates be required, they should be done post creation. [Issue 54](https://github.com/ZertoPublic/ZertoApiWrapper/issues/54)
 * Fixed [issue 57](https://github.com/ZertoPublic/ZertoApiWrapper/issues/57) where a `Start-ZertoFailoverTest` would throw an error complaining about validating the body parameter. This has been fixed and tested against Zerto Virtual Manager 7.5 Update 1 with Windows PowerShell 5.1 and PowerShell Core 6.2.
 
-## 1.2.0.20190801
+## [1.2.0.20190801]
 
 ### Zerto Virtual Manager
 
@@ -63,7 +74,7 @@
 * Updated the way that tests are invoked and parsed to ensure that both source and built module files are tested. This will ensure that what is being shipped passes all tests along with testing of the source files.
 * Added additional parameter validation tests to several of the functions. On-going effort to complete stand alone unit testing of each function.
 
-## Initial Release
+## [Initial Release]
 
 ### Zerto Virtual Manager
 
