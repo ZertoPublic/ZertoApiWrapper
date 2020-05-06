@@ -1,16 +1,19 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.1]
 
 ### General
+
 * Removed RELEASENOTES and converted to a CHANGELOG format.
 * Updated the build process to follow Semantic Versioning.
 * Updated the build process to use the latest Pester Version (4.10.1)
 * Updated the build process to use the latest PS Script Analyzer Version (1.19.0)
+* Updated the Tests Files to use a more modern method of grabbing the PSScriptPath
 
 ### Zerto Virtual Manager
 
@@ -36,7 +39,7 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
   * Updated `Get-ZertoVirtualizationSite` to add the `-repository` parameter to enable returning information for LTR repositories.
   * Updated `Get-ZertoVpgSetting` to add the `-ltr` parameter to enable returning information for current LTR settings for the selected VPG.
 
-###  Zerto Analytics
+### Zerto Analytics
 
 * Added several functions for the newly added [Zerto Analytics](https://analytics.zerto.com) Planner.
   * `Get-ZAPlannerSite` Help can be found here: [Get-ZAPlannerSite](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZAPlannerSite.md)
