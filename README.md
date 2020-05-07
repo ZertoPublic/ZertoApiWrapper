@@ -27,7 +27,7 @@ PS> Install-Module -name ZertoApiWrapper
 
 ## Getting Started
 
-* [Getting Started with Zerto Virtual Manager and the ZertoApiWrapper](https://github.com/ZertoPublic/ZertoApiWrapper/wiki/Getting-Stated-with-Zerto-Virtual-Manager)
+* [Getting Started with Zerto Virtual Manager and the ZertoApiWrapper](https://github.com/ZertoPublic/ZertoApiWrapper/wiki/Getting-Started-with-Zerto-Virtual-Manager)
 * [Getting Started with Zerto Analytics and the ZertoApiWrapper](https://github.com/ZertoPublic/ZertoApiWrapper/wiki/Getting-Started-with-Zerto-Analytics)
 
 ## Recent Updates
