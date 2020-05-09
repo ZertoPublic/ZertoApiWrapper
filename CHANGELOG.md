@@ -11,7 +11,7 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 
 #### Fixed
 
-* Updated `Get-ZertoEvent` to translate a vpg name parameter to a vpgIdentifier string per the API documentation
+* Updated `Get-ZertoEvent` to translate a vpg name parameter to a vpgIdentifier  per the API documentation
 
 ## [1.4.1]
 
