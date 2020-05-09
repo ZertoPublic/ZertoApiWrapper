@@ -88,6 +88,7 @@ The priority specified for the VPG. Possible values are: 'Low', 'Medium', or 'Hi
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: Low, Medium, High
 
 Required: False
 Position: Named

@@ -129,6 +129,7 @@ The status of the task. Possible values are: 'InProgress', 'Paused', 'Failed', '
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: InProgress, Paused, Failed, Completed, Cancelling
 
 Required: False
 Position: Named
