@@ -23,8 +23,10 @@ function Invoke-ZertoMoveCommit {
         $body = @{ }
         if ($reverseProtection) {
             $body["ReverseProtection"] = $true
+            $body["KeepSourceVms"] = $false
         } elseif ($keepSourceVms) {
             $body["KeepSourceVms"] = $true
+            $body["ReverseProtection"] = $false
         }
     }
 
