@@ -19,8 +19,8 @@ function Get-ZertoEvent {
             HelpMessage = "The name of the VPG for which you want to return events."
         )]
         [ValidateNotNullOrEmpty()]
-        [Alias("vpg")]
-        [string]$vpgName,
+        [Alias("vpgName")]
+        [string]$vpg,
         [Parameter(
             ParameterSetName = "filter",
             HelpMessage = "The identifier of the VPG for which you want to return events."
@@ -137,6 +137,10 @@ function Get-ZertoEvent {
             # If a filter is applied, create the filter and return the events that fall in that filter
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
+                if ($PSBoundParameters.Keys -contains 'vpg') {
+                    $vpgIdentifier = (Get-ZertoVpg -name $vpg).vpgIdentifier
+                    $filter = $filter.replace("vpg=$vpg", "vpg=$vpgIdentifier")
+                }
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
