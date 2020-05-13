@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoMoveCommit {
-    [cmdletbinding(SupportsShouldProcess = $true)]
+    [cmdletbinding(SupportsShouldProcess = $true, DefaultParameterSetName = "Main")]
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) to commit.",
@@ -9,11 +9,16 @@ function Invoke-ZertoMoveCommit {
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,
         [Parameter(
-            HelpMessage = "Set this to True to reverse protect the VPG(s) to the source site. If not set, will use selection made during move initiation. True or False"
+            HelpMessage = "Use this switch to reverse protect the VPG(s) to the source site. If neither 'ReverseProtction' nor 'KeepSourceVms' switch is specified, the commit process will use selection made during move initiation.",
+            ParameterSetName = 'ReverseProtect',
+            Mandatory
+
         )]
         [switch]$reverseProtection,
         [Parameter(
-            HelpMessage = "Use this switch to keep the source VMs. If not set, they will be destroyed."
+            HelpMessage = "Use this switch to keep the source VMs at the source site. If neither 'ReverseProtction' nor 'KeepSourceVms' switch is specified, the commit process will use selection made during move initiation.",
+            ParameterSetName = 'KeepSource',
+            Mandatory
         )]
         [switch]$keepSourceVms
     )
@@ -21,10 +26,16 @@ function Invoke-ZertoMoveCommit {
     begin {
         $baseUri = "vpgs"
         $body = @{ }
-        if ($reverseProtection) {
-            $body["ReverseProtection"] = $true
-        } elseif ($keepSourceVms) {
-            $body["KeepSourceVms"] = $true
+        Switch ($PSCmdlet.ParameterSetName){
+            'KeepSource' {
+                $body["KeepSourceVms"] = $true
+                $body["ReverseProtection"] = $false
+            }
+
+            'ReverseProtect' {
+                $body["ReverseProtection"] = $true
+                $body["KeepSourceVms"] = $false
+            }
         }
     }
 

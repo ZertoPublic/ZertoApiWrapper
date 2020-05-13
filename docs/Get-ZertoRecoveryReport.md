@@ -102,6 +102,7 @@ Possible values are: 'Failover', 'Failover Test', or 'Move'
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: Failover, Failover Test, Move
 
 Required: False
 Position: Named

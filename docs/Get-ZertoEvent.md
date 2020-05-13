@@ -112,6 +112,7 @@ The type of event to return. This filter behaves in the same way as the eventCat
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: All, Events, Alerts
 
 Required: False
 Position: Named
@@ -159,6 +160,7 @@ The type of entity for which you wish to return results. Possible Values are: 'V
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: VPG, VRA, Unknown, Site
 
 Required: False
 Position: Named
@@ -174,6 +176,7 @@ This filter behaves in the same way as the category filter. If both category and
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: All, Events, Alerts
 
 Required: False
 Position: Named
