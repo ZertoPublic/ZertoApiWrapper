@@ -13,6 +13,7 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 
 * Updated `Get-ZertoEvent` to translate a vpg name parameter to a vpgIdentifier per the API documentation
 * Updated `Invoke-ZertoMoveCommit` to ensure that when one of the parameter switches is defined, all required parameters are sent to avoid conflicts with parameters passed with the `Invoke-ZertoMove` command.
+* Updated `Start-ZertoCloneVpg` to fix an issue where an error would be thrown if an operation specified a subset of VMs to be cloned.
 
 ## [1.4.1]
 
