@@ -27,18 +27,25 @@ function Start-ZertoCloneVpg {
     )
 
     begin {
+
+    }
+
+    process {
         $baseUri = "vpgs"
         $vpgInfo = Get-ZertoVpg -name $vpgName
         if ( -not $vpgInfo ) {
             Write-Error "VPG: $vpgName could not be found. Please check the name and try again."
         }
         $vpgIdentifier = $vpgInfo.vpgIdentifier
+        $body = @{ }
         if ( $PSBoundParameters.ContainsKey('datastoreName') ) {
             $recoverysiteIdentifier = $vpgInfo.recoverysite.identifier
             $recoverySiteDatastores = Get-ZertoVirtualizationSite -siteIdentifier $recoverysiteIdentifier -datastores
             $datastoreIdentifier = $($recoverySiteDatastores | Where-Object { $_.datastoreName -like $datastoreName }).DatastoreIdentifier
             if ( -not $datastoreIdentifier ) {
                 Write-Error "Datastore: $datastoreName is not a valid datastore. Please check the name and try again." -ErrorAction Stop
+            } else {
+                $body['DatastoreIdentifier'] = $datastoreIdentifier
             }
         }
         if ( $PSBoundParameters.ContainsKey('vmName') ) {
@@ -55,32 +62,20 @@ function Start-ZertoCloneVpg {
                 }
             }
             $body['VmIdentifiers'] = $vmIdentifiers
-            if ($checkpointIdentifier) {
-                $body['CheckpointIdentifier'] = $checkpointIdentifier
-            }
         }
-    }
-
-    process {
-        $uri = "{0}/{1}/CloneStart" -f $baseUri, $vpgIdentifier
-        $body = [ordered]@{ }
         if ( $PSBoundParameters.ContainsKey('checkpointIdentifier') ) {
             $body['checkpointId'] = $checkpointIdentifier
         }
-        if ( $datastoreIdentifier ) {
-            $body['DatastoreIdentifier'] = $datastoreIdentifier
-        }
-        if ( $vmIdentifiers ) {
-            $body['VmIdentifiers'] = $vmIdentifiers
-        }
         Write-Verbose $body
+        $uri = "{0}/{1}/CloneStart" -f $baseUri, $vpgIdentifier
         if ($PSCmdlet.ShouldProcess("Clone Vpg")) {
             Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -method "POST"
+            Write-Verbose "Call Submitted to $uri"
+            Write-Verbose "With the following information: $($body | ConvertTo-Json)"
         }
     }
 
     end {
-        Write-Verbose "Call Submitted to $uri"
-        Write-Verbose "With the following information: $($body | ConvertTo-Json)"
+
     }
 }
