@@ -27,18 +27,25 @@ function Start-ZertoCloneVpg {
     )
 
     begin {
+
+    }
+
+    process {
         $baseUri = "vpgs"
         $vpgInfo = Get-ZertoVpg -name $vpgName
         if ( -not $vpgInfo ) {
             Write-Error "VPG: $vpgName could not be found. Please check the name and try again."
         }
         $vpgIdentifier = $vpgInfo.vpgIdentifier
+        $body = @{ }
         if ( $PSBoundParameters.ContainsKey('datastoreName') ) {
             $recoverysiteIdentifier = $vpgInfo.recoverysite.identifier
             $recoverySiteDatastores = Get-ZertoVirtualizationSite -siteIdentifier $recoverysiteIdentifier -datastores
             $datastoreIdentifier = $($recoverySiteDatastores | Where-Object { $_.datastoreName -like $datastoreName }).DatastoreIdentifier
             if ( -not $datastoreIdentifier ) {
                 Write-Error "Datastore: $datastoreName is not a valid datastore. Please check the name and try again." -ErrorAction Stop
+            } else {
+                $body['DatastoreIdentifier'] = $datastoreIdentifier
             }
         }
         if ( $PSBoundParameters.ContainsKey('vmName') ) {
