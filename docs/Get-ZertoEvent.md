@@ -66,7 +66,7 @@ PS C:\> Get-ZertoEvent -eventId "Need an eventID"
 
 Returns information for each -eventID specified.
 
-### Example 1
+### Example 3
 ```powershell
 PS C:\> Get-ZertoEvent -startDate "2019-01-01" -endDate "2019-01-07" -vpg "My Vpg"
 ```
