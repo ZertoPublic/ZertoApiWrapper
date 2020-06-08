@@ -22,7 +22,11 @@ function Connect-ZertoServer {
             HelpMessage = "Valid credentials to connect to the Zerto Management Server"
         )]
         [System.Management.Automation.PSCredential]$credential,
-        [switch]$returnHeaders
+        [switch]$returnHeaders,
+        [Parameter(
+            HelpMessage = "Use this switch to indicate that you would like the module to take care of auto re-authorization and reconnection to the ZVM should the token expire. This option will cache your PSCredential object to be reused"
+        )]
+        [switch]$AutoReconnect
     )
 
     begin {
@@ -37,6 +41,10 @@ function Connect-ZertoServer {
         Set-Variable -Name zvmHeaders -Scope Script -Value @{
             "Accept"             = "application/json"
             "zerto-triggered-by" = "PowershellWes"
+        }
+        Set-Variable -Name Reconnect -Scope Script -Value $AutoReconnect.IsPresent
+        if ($Script:Reconnect) {
+            Set-Variable -Name CachedCredential -Scope Script -Value $credential
         }
     }
 
