@@ -73,6 +73,13 @@ PS C:\> Get-ZertoEvent -startDate "2019-01-01" -endDate "2019-01-07" -vpg "My Vp
 
 Returns all events between Jan. 01, 2019 and Jan. 07, 2019 (inclusive) for the vpg "My Vpg"
 
+### Example 4
+```powershell
+PS C:\> Get-ZertoEvent -userName "Domain.tld\MyUser
+```
+
+Returns all events associated with the username passed into the command.
+
 ## PARAMETERS
 
 ### -alertIdentifier
