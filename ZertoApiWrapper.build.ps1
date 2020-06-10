@@ -1,7 +1,7 @@
 #Requires -Modules 'InvokeBuild'
 
 $version = "{0}" -f $(Get-Content .\version.txt)
-$moduleOutPath = "{0}\temp\{1}\ZertoApiWrapper" -f $BuildRoot, $version
+$moduleOutPath = "{0}\temp\ZertoApiWrapper\{1}" -f $BuildRoot, $version
 
 #Define the default task
 task . build
@@ -193,7 +193,8 @@ task CreateArtifacts CleanPublish, CleanTemp, AnalyzeBuiltFiles, BuiltFileTests,
     if (-not $(Test-Path "$BuildRoot\publish")) {
         New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
     }
-    Compress-Archive -Path .\temp\* -DestinationPath .\publish\ZertoApiWrapper.zip
+    $CompressionPath = Split-Path -Path $moduleOutPath -Parent
+    Compress-Archive -Path $CompressionPath -DestinationPath .\publish\ZertoApiWrapper.zip
     #ImportBuiltModule
     #(Get-Module ZertoApiWrapper).ReleaseNotes | Add-Content .\publish\release-notes.txt
     #(Get-Module ZertoApiWrapper).Version.ToString() | Add-Content .\publish\release-version.txt
