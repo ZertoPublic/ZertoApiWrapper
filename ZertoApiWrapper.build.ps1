@@ -1,7 +1,7 @@
 #Requires -Modules 'InvokeBuild'
 
 $version = "{0}" -f $(Get-Content .\version.txt)
-$moduleOutPath = "{0}\temp\ZertoApiWrapper\{1}" -f $BuildRoot, $version
+$moduleOutPath = "{0}\publish\ZertoApiWrapper" -f $BuildRoot
 
 #Define the default task
 task . build
@@ -82,17 +82,13 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
 #EndRegion
 
 #Region - Clean Operations
-task CleanTemp {
-    if (-not $(Test-Path $moduleOutPath)) {
-        New-Item -Path $moduleOutPath -ItemType "Directory"
-    }
-    Remove-Item -Recurse -Path ("{0}\*" -f $moduleOutPath)
-}
-
 task CleanPublish {
     if ($(Test-Path "$BuildRoot\publish")) {
         Remove-Item -Recurse -Path "$BuildRoot\publish\*"
+    } else {
+        New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
     }
+    New-Item -Path $moduleOutPath -ItemType "Directory"
 }
 #EndRegion
 
@@ -134,7 +130,7 @@ task UpdateMarkdownHelp quickBuild, CheckPlatyPSInstalled, {
 #EndRegion
 
 #Region - Build Module Files
-task CreatePsd1ForRelease CleanTemp, {
+task CreatePsd1ForRelease CleanPublish, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
     $releaseNotes = "Please review the [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/{0}) on GitHub." -f $version
 
@@ -182,30 +178,18 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
         Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw) -Encoding 'utf8'
         Add-Content -Path $psm1Path -Value $emptyLine -Encoding 'utf8'
     }
-    # Add-Content -Path $psm1Path -Value $emptyLine
-    # Add-Content -Path $psm1Path -Value "Export-ModuleMember -Function $exportString"
 }
 #EndRegion
 
 #Region - Artifacts \ Publish
 # Full Build Process - No Publishing
-task CreateArtifacts CleanPublish, CleanTemp, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
-    if (-not $(Test-Path "$BuildRoot\publish")) {
-        New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
-    }
-    $CompressionPath = Split-Path -Path $moduleOutPath -Parent
-    Compress-Archive -Path $CompressionPath -DestinationPath .\publish\ZertoApiWrapper.zip
-    #ImportBuiltModule
-    #(Get-Module ZertoApiWrapper).ReleaseNotes | Add-Content .\publish\release-notes.txt
-    #(Get-Module ZertoApiWrapper).Version.ToString() | Add-Content .\publish\release-version.txt
-    Copy-Item "$BuildRoot\ZertoApiWrapper.build.ps1" "$BuildRoot\publish\ZertoApiWrapper.build.ps1"
-    Copy-Item "$BuildRoot\ZertoApiWrapper.Depend.psd1" "$BuildRoot\publish\ZertoApiWrapper.Depend.psd1"
-    Copy-Item "$BuildRoot\build.ps1" "$BuildRoot\publish\build.ps1"
+task CreateArtifacts CleanPublish, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
+    Compress-Archive -Path $moduleOutPath -DestinationPath .\publish\ZertoApiWrapper.zip
 }
 #EndRegion
 
-task build CleanPublish, CleanTemp, CreatePsm1ForRelease, AnalyzeBuiltFiles, BuiltFileTests, CreateArtifacts
-task quickBuild CleanPublish, CleanTemp, CreatePsm1ForRelease, AnalyzeBuiltFiles, {
+task build CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles, BuiltFileTests, CreateArtifacts
+task quickBuild CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles, {
     Get-Module -Name ZertoApiWrapper | Remove-Module -Force
     ImportBuiltModule
 }
