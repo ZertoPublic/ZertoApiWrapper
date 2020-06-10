@@ -4,7 +4,7 @@ $version = "{0}" -f $(Get-Content .\version.txt)
 $moduleOutPath = "{0}\temp\{1}\ZertoApiWrapper" -f $BuildRoot, $version
 
 #Define the default task
-task . CreateArtifacts
+task . build
 
 #Region - Helper Functions
 function ImportSourceModule {
