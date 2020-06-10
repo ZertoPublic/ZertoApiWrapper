@@ -208,6 +208,6 @@ task quickBuild CleanPublish, CleanTemp, CreatePsm1ForRelease, AnalyzeBuiltFiles
     Get-Module -Name ZertoApiWrapper | Remove-Module -Force
     ImportBuiltModule
 }
-task release quickBuild, {
+task release build, {
     Publish-Module -Path $moduleOutPath -NuGetApiKey "1234" -WhatIf
 }
