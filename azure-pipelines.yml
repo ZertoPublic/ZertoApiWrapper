@@ -11,6 +11,7 @@ trigger:
     include:
       - master
       - PowerShellBackPort
+      - Refactor-Build
 
 # Trigger CI on pull requests to master and develop branches
 pr:
