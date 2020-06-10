@@ -7,7 +7,7 @@
             SkipPublisherCheck = $true
         }
         Target         = 'CurrentUser'
-        Version        = '5.5.11'
+        Version        = '5.6.0'
         Tags           = 'Bootstrap'
     }
 
@@ -31,7 +31,7 @@
             SkipPublisherCheck = $true
         }
         Target         = 'CurrentUser'
-        Version        = '1.18.3'
+        Version        = '1.19.0'
         Tags           = 'Bootstrap'
     }
 
