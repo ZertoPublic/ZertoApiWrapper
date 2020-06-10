@@ -185,6 +185,12 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
 # Full Build Process - No Publishing
 task CreateArtifacts CleanPublish, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
     Compress-Archive -Path $moduleOutPath -DestinationPath .\publish\ZertoApiWrapper.zip
+    $MyMatches = Select-String -Path "$BuildRoot\CHANGELOG.md" "^##\s\["
+    $data = Get-Content "$BuildRoot\CHANGELOG.md"
+    $range = ($MyMatches[0].LineNumber - 1)..($MyMatches[1].LineNumber - 3)
+    foreach ($i in $range) {
+        Add-Content -Path "$BuildRoot\publish\ReleaseNotes.md" -Value ($data[$i]).replace("## ", "# ") -Encoding utf8
+    }
 }
 #EndRegion
 
