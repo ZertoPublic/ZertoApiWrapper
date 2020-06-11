@@ -5,7 +5,8 @@ function Connect-ZertoServer {
     param(
         [Parameter(
             Mandatory,
-            HelpMessage = "IP address or FQDN of your Zerto Management Server"
+            HelpMessage = "IP address or FQDN of your Zerto Management Server",
+            Position = 0
         )]
         [ValidateNotNullOrEmpty()]
         [Alias("server", "zvm")]
@@ -19,7 +20,8 @@ function Connect-ZertoServer {
         [string]$zertoPort = "9669",
         [Parameter(
             Mandatory,
-            HelpMessage = "Valid credentials to connect to the Zerto Management Server"
+            HelpMessage = "Valid credentials to connect to the Zerto Management Server",
+            Position = 1
         )]
         [System.Management.Automation.PSCredential]$credential,
         [switch]$returnHeaders,
