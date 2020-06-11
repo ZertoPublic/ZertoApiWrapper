@@ -13,8 +13,8 @@ Establishes a connection to a ZVM.
 ## SYNTAX
 
 ```
-Connect-ZertoServer [-zertoServer] <String> [-credential] <PSCredential> [-zertoPort <String>] [-returnHeaders]
-[<CommonParameters>]
+Connect-ZertoServer [-zertoServer] <String> [-credential] <PSCredential> [-zertoPort <String>] [-AutoReconnect]
+ [-returnHeaders] [<CommonParameters>]
 ```
 
 ## DESCRIPTION

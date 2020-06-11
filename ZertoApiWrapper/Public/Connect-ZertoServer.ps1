@@ -12,6 +12,12 @@ function Connect-ZertoServer {
         [Alias("server", "zvm")]
         [string]$zertoServer,
         [Parameter(
+            Mandatory,
+            HelpMessage = "Valid credentials to connect to the Zerto Management Server",
+            Position = 1
+        )]
+        [System.Management.Automation.PSCredential]$credential,
+        [Parameter(
             HelpMessage = "Zerto Virtual Manager management port. Default value is 9669."
         )]
         [ValidateNotNullOrEmpty()]
@@ -19,16 +25,14 @@ function Connect-ZertoServer {
         [Alias("port")]
         [string]$zertoPort = "9669",
         [Parameter(
-            Mandatory,
-            HelpMessage = "Valid credentials to connect to the Zerto Management Server",
-            Position = 1
-        )]
-        [System.Management.Automation.PSCredential]$credential,
-        [switch]$returnHeaders,
-        [Parameter(
             HelpMessage = "Use this switch to indicate that you would like the module to take care of auto re-authorization and reconnection to the ZVM should the token expire. This option will cache your PSCredential object to be reused"
         )]
-        [switch]$AutoReconnect
+        [switch]$AutoReconnect,
+        [Parameter(
+            HelpMessage = "Use this switch to return the headers to a specified variable or to the default output."
+        )]
+        [switch]$returnHeaders
+
     )
 
     begin {
