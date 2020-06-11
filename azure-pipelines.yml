@@ -77,7 +77,7 @@ jobs:
           testRunTitle: "PSCore_Ubuntu_Built"
         displayName: "Publish Test Results"
         condition: always()
-      - task: PublishPipelineArtifact@0
+      - task: PublishPipelineArtifact@1
         displayName: "Publish Data"
         inputs:
           artifactName: "ReleaseData"
