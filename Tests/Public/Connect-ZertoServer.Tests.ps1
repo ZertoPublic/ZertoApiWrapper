@@ -1,6 +1,6 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $PSCommandPath)
-$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
+$global:function = ((Split-Path -Leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
@@ -44,6 +44,16 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             { Connect-ZertoServer -zertoServer -credential "MyUsername" } | Should -Throw
             { Connect-ZertoServer -zertoServer -credential 1234 } | Should -Throw
             { Connect-ZertoServer -zertoServer -credential $(@{Username = "zerto\build"; Password = 'SecureString' }) } | Should -Throw
+        }
+
+        It "has a switch parameter to return the headers" {
+            Get-Command $global:function | Should -HaveParameter returnHeaders
+            Get-Command $global:function | Should -HaveParameter returnHeaders -Type Switch
+        }
+
+        It "has a switch parameter to auto reauthorize the session" {
+            Get-Command $global:function | Should -HaveParameter autoReconnect
+            Get-Command $global:function | Should -HaveParameter autoReconnect -Type Switch
         }
     }
 
