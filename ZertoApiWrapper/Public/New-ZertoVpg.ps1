@@ -1,6 +1,6 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function New-ZertoVpg {
-    [cmdletbinding(SupportsShouldProcess = $true)]
+    [cmdletbinding(SupportsShouldProcess = $true, DefaultParameterSetName = "recoveryHostDatastore")]
     param(
         [Parameter(
             HelpMessage = "Name of the VPG",
