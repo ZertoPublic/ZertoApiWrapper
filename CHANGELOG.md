@@ -12,6 +12,7 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 #### Updated
 
 * Updated `Connect-ZertoServer` with a `-AutoReconnect` switch to allow the auto reconnection of a session that has timed-out.
+* Updated `New-ZertoVpg` to have a Default Parameter Set of `recoveryHostDatastore` should no parameters be passed when calling the function.
 
 ## [1.4.2]
 
