@@ -16,7 +16,7 @@ function Set-ZertoLicense {
     }
 
     process {
-        if ($PSCmdlet.ShouldProcess()) {
+        if ($PSCmdlet.ShouldProcess("Applying License Key: $licenseKey to server: $($script:zvmServer)")) {
             Invoke-ZertoRestRequest -uri $baseUri -body $($body | ConvertTo-Json) -method "PUT"
         }
     }
