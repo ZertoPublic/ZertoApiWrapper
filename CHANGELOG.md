@@ -15,6 +15,10 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 * Updated `New-ZertoVpg` to have a Default Parameter Set of `recoveryHostDatastore` should no parameters be passed when calling the function.
 * Updated `New-ZertoVpg -recoverySite` parameter to be case-insensitive
 
+#### Fixed
+
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/96) with `Set-ZertoLicense` so that ShouldProcess functions properly.
+
 ## [1.4.2]
 
 ### Zerto Virtual Manager
