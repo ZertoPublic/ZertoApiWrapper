@@ -106,12 +106,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 $script:zvmHeaders['Accept'] | Should -BeOfType String
             }
 
-            It "Module Scope zvmLocalInfo variable tests" {
-                $script:zvmLocalInfo | Should -Not -BeNullOrEmpty
-                $script:zvmLocalInfo | Should -BeOfType PSCustomObject
-                $script:zvmLocalInfo.SiteIdentifier | Should -BeOfType String
-            }
-
             $headers = Connect-ZertoServer -zertoServer $Server -credential $credential -returnHeaders
             It "returns a Hashtable with 2 keys" {
                 $headers | Should -BeOfType Hashtable
