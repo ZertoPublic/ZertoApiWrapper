@@ -62,10 +62,7 @@ function Connect-ZertoServer {
     end {
         # Build Headers Hashtable with Authorization Token
         $Script:zvmHeaders['x-zerto-session'] = $results.Headers['x-zerto-session'][0].ToString()
-        # Set common Script Scope Variables to be used other functions (Headers and Local Site Info)
-        # Set-Variable -Name zvmHeaders -Scope Script -Value $zertoAuthorizationHeaders
-        Set-Variable -Name zvmLocalInfo -Scope Script -Value (Get-ZertoLocalSite)
-
+        
         # Have the option to return the headers to a variable
         if ($returnHeaders) {
             return $Script:zvmHeaders

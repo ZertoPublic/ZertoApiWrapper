@@ -2,6 +2,6 @@
 function Get-ZertoUnprotectedVm {
     [cmdletbinding()]
     param()
-    $uri = "virtualizationsites/{0}/vms" -f $script:zvmLocalInfo.siteidentifier
+    $uri = "virtualizationsites/{0}/vms" -f (Get-ZertoLocalSite).siteIdentifier
     Invoke-ZertoRestRequest -uri $uri
 }

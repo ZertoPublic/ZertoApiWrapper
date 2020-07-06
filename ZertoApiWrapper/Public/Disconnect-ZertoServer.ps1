@@ -12,5 +12,4 @@ function Disconnect-ZertoServer {
     Remove-Variable -Name zvmPort -Scope Script
     Remove-Variable -Name zvmLastAction -Scope Script
     Remove-Variable -Name zvmHeaders -Scope Script
-    Remove-Variable -Name zvmLocalInfo -Scope Script
 }

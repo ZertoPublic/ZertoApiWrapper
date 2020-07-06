@@ -18,6 +18,7 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 #### Fixed
 
 * Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/96) with `Set-ZertoLicense` so that ShouldProcess functions properly.
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/95) when attempting to connect to an unlicensed site.
 
 ## [1.4.2]
 

@@ -67,10 +67,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             return $results
         }
 
-        Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
-            return (Get-Content -Path "$global:here\Mocks\LocalSiteInfo.json" -Raw | ConvertFrom-Json)
-        }
-
         Context "$($global:function)::InModuleScope Function Unit Tests" {
 
             BeforeAll {
@@ -106,12 +102,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 $script:zvmHeaders['Accept'] | Should -BeOfType String
             }
 
-            It "Module Scope zvmLocalInfo variable tests" {
-                $script:zvmLocalInfo | Should -Not -BeNullOrEmpty
-                $script:zvmLocalInfo | Should -BeOfType PSCustomObject
-                $script:zvmLocalInfo.SiteIdentifier | Should -BeOfType String
-            }
-
             $headers = Connect-ZertoServer -zertoServer $Server -credential $credential -returnHeaders
             It "returns a Hashtable with 2 keys" {
                 $headers | Should -BeOfType Hashtable
@@ -144,7 +134,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             }
 
             Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 4
-            Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite -Exactly 4
         }
     }
 }

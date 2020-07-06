@@ -111,7 +111,7 @@ function Install-ZertoVra {
         # If the VRA does not exist, proceed with the installation. If it does exist, bypass and
         if ( -not (Get-ZertoVra -vraName $vraName) ) {
             # Get identifiers for each item provided by name.
-            $siteIdentifier = $script:zvmLocalInfo.SiteIdentifier
+            $siteIdentifier = (Get-ZertoLocalSite).SiteIdentifier
             $hostIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -hosts | Where-Object { $_.VirtualizationHostName -eq $hostName } | Select-Object hostIdentifier -ExpandProperty hostIdentifier
             $networkIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -networks | Where-Object { $_.VirtualizationNetworkName -eq $networkName } | Select-Object NetworkIdentifier -ExpandProperty NetworkIdentifier
             $datastoreIdentifier = Get-ZertoVirtualizationSite -siteIdentifier $siteIdentifier -datastores | Where-Object { $_.DatastoreName -eq $datastoreName } | Select-Object DatastoreIdentifier -ExpandProperty DatastoreIdentifier
