@@ -67,10 +67,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             return $results
         }
 
-        Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
-            return (Get-Content -Path "$global:here\Mocks\LocalSiteInfo.json" -Raw | ConvertFrom-Json)
-        }
-
         Context "$($global:function)::InModuleScope Function Unit Tests" {
 
             BeforeAll {
@@ -138,7 +134,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             }
 
             Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 4
-            Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite -Exactly 4
         }
     }
 }
