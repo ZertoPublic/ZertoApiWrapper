@@ -1,23 +1,24 @@
 #Requires -Modules 'InvokeBuild'
 
 $version = "{0}" -f $(Get-Content .\version.txt)
+$moduleOutPath = "{0}\publish\ZertoApiWrapper" -f $BuildRoot
 
 #Define the default task
-task . CreateArtifacts
+task . build
 
 #Region - Helper Functions
-function ImportSourceModule() {
+function ImportSourceModule {
     If (Get-Module -Name ZertoApiWrapper) {
         Remove-Module -Name ZertoApiWrapper -Force -ErrorAction Stop
     }
     Import-Module "$BuildRoot\ZertoApiWrapper\ZertoApiWrapper.psd1" -ErrorAction Stop
 }
 
-function ImportBuiltModule() {
+function ImportBuiltModule {
     If (Get-Module -Name ZertoApiWrapper) {
         Remove-Module -Name ZertoApiWrapper -Force -ErrorAction Stop
     }
-    Import-Module "$BuildRoot\temp\ZertoApiWrapper.psd1" -ErrorAction Stop
+    Import-Module ("{0}\ZertoApiWrapper.psd1" -f $moduleOutPath) -ErrorAction Stop
 }
 #EndRegion
 
@@ -65,7 +66,7 @@ task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
 
 task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
     $scriptAnalyzerParams = @{
-        Path        = "$BuildRoot\temp\"
+        Path        = $moduleOutPath
         Severity    = @('Error', 'Warning')
         Recurse     = $true
         Verbose     = $false
@@ -81,17 +82,13 @@ task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
 #EndRegion
 
 #Region - Clean Operations
-task CleanTemp {
-    if (-not $(Test-Path "$BuildRoot\temp")) {
-        New-Item -Path $BuildRoot -Name "temp" -ItemType "Directory"
-    }
-    Remove-Item -Recurse -Path "$BuildRoot\temp\*"
-}
-
 task CleanPublish {
     if ($(Test-Path "$BuildRoot\publish")) {
         Remove-Item -Recurse -Path "$BuildRoot\publish\*"
+    } else {
+        New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
     }
+    New-Item -Path $moduleOutPath -ItemType "Directory"
 }
 #EndRegion
 
@@ -107,7 +104,7 @@ task SourceFileTests CheckPesterInstalled, {
 task BuiltFileTests CreatePsm1ForRelease, CheckPesterInstalled, {
     ImportBuiltModule
     $testResultsFile = "$BuildRoot\Tests\BuiltTestResults.xml"
-    $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru -Show Fails
+    $script:results = Invoke-Pester -Script "$BuildRoot" -Tag Unit -OutputFile $testResultsFile -PassThru -Show Failed
     $FailureMessage = '{0} Unit test(s) failed. Aborting build' -f $results.FailedCount
     Assert ($results.FailedCount -eq 0) $FailureMessage
 }
@@ -116,7 +113,7 @@ task BuiltFileTests CreatePsm1ForRelease, CheckPesterInstalled, {
 #Region - Build Help System
 $buildMamlParams = @{
     Inputs  = { Get-ChildItem docs\*.md }
-    Outputs = "$BuildRoot\temp\en-us\ZertoApiWrapper-help.xml"
+    Outputs = "{0}\en-us\ZertoApiWrapper-help.xml" -f $moduleOutPath
 }
 
 task BuildMamlHelp CheckPlatyPSInstalled, {
@@ -126,19 +123,19 @@ task BuildMamlHelp CheckPlatyPSInstalled, {
     platyPS\New-ExternalHelp .\docs -Force -OutputPath $buildMamlParams.Outputs
 }
 
-task UpdateMarkdownHelp CheckPlatyPSInstalled, {
-    ImportSourceModule
+task UpdateMarkdownHelp quickBuild, CheckPlatyPSInstalled, {
+    ImportBuiltModule
     Update-MarkdownHelpModule -Path docs -AlphabeticParamsOrder
 }
 #EndRegion
 
 #Region - Build Module Files
-task CreatePsd1ForRelease CleanTemp, {
+task CreatePsd1ForRelease CleanPublish, {
     $functionsToExport = Get-ChildItem -Path 'ZertoApiWrapper\Public\*.ps1' | ForEach-Object { $_.BaseName }
     $releaseNotes = "Please review the [Release Notes](https://github.com/ZertoPublic/ZertoApiWrapper/releases/tag/{0}) on GitHub." -f $version
 
     $ManifestParams = @{
-        Path              = "$BuildRoot\temp\ZertoApiWrapper.psd1"
+        Path              = "{0}\ZertoApiWrapper.psd1" -f $moduleOutPath
         RootModule        = 'ZertoApiWrapper.psm1'
         ModuleVersion     = $version
         GUID              = '4c0b9e17-141b-4dd5-8549-fb21cccaa325'
@@ -161,43 +158,47 @@ task CreatePsd1ForRelease CleanTemp, {
 
 task CreatePsm1ForRelease CreatePsd1ForRelease, {
     $emptyLine = ""
-    $psm1Path = "$BuildRoot\temp\ZertoApiWrapper.psm1"
+    $psm1Path = "{0}\ZertoApiWrapper.psm1" -f $moduleOutPath
     $lines = '#------------------------------------------------------------#'
     $Private = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Private\*.ps1 -ErrorAction Stop )
     $Public = @( Get-ChildItem -Path $BuildRoot\ZertoApiWrapper\Public\*.ps1 -ErrorAction Stop )
-    Add-Content -Path $psm1Path -Value $lines
-    Add-Content -Path $psm1Path -Value "#---------------------Private Functions----------------------#"
-    Add-Content -Path $psm1Path -Value $lines
-    Add-Content -Path $psm1Path -Value $emptyLine
+    Add-Content -Path $psm1Path -Value $lines -Encoding 'utf8'
+    Add-Content -Path $psm1Path -Value "#---------------------Private Functions----------------------#"  -Encoding 'utf8'
+    Add-Content -Path $psm1Path -Value $lines -Encoding 'utf8'
+    Add-Content -Path $psm1Path -Value $emptyLine -Encoding 'utf8'
     foreach ($file in $private) {
-        Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw)
-        Add-Content -Path $psm1Path -Value $emptyLine
+        Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw) -Encoding 'utf8'
+        Add-Content -Path $psm1Path -Value $emptyLine -Encoding 'utf8'
     }
-    Add-Content -Path $psm1Path -Value $lines
-    Add-Content -Path $psm1Path -Value "#----------------------Public Functions----------------------#"
-    Add-Content -Path $psm1Path -Value $lines
-    Add-Content -Path $psm1Path -Value $emptyLine
+    Add-Content -Path $psm1Path -Value $lines -Encoding 'utf8'
+    Add-Content -Path $psm1Path -Value "#----------------------Public Functions----------------------#" -Encoding 'utf8'
+    Add-Content -Path $psm1Path -Value $lines -Encoding 'utf8'
+    Add-Content -Path $psm1Path -Value $emptyLine -Encoding 'utf8'
     foreach ($file in $public) {
-        Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw)
-        Add-Content -Path $psm1Path -Value $emptyLine
+        Add-Content -Path $psm1Path -Value $(Get-Content -Path $file.Fullname -Raw) -Encoding 'utf8'
+        Add-Content -Path $psm1Path -Value $emptyLine -Encoding 'utf8'
     }
-    # Add-Content -Path $psm1Path -Value $emptyLine
-    # Add-Content -Path $psm1Path -Value "Export-ModuleMember -Function $exportString"
 }
 #EndRegion
 
 #Region - Artifacts \ Publish
 # Full Build Process - No Publishing
-task CreateArtifacts CleanPublish, CleanTemp, AnalyzeSourceFiles, SourceFileTests, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
-    if (-not $(Test-Path "$BuildRoot\publish")) {
-        New-Item -Path $BuildRoot -Name "publish" -ItemType Directory
+task CreateArtifacts CleanPublish, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
+    Compress-Archive -Path $moduleOutPath -DestinationPath .\publish\ZertoApiWrapper.zip
+    $MyMatches = Select-String -Path "$BuildRoot\CHANGELOG.md" "^##\s\["
+    $data = Get-Content "$BuildRoot\CHANGELOG.md"
+    $range = ($MyMatches[0].LineNumber - 1)..($MyMatches[1].LineNumber - 3)
+    foreach ($i in $range) {
+        Add-Content -Path "$BuildRoot\publish\ReleaseNotes.md" -Value ($data[$i]).replace("## ", "# ") -Encoding utf8
     }
-    Compress-Archive -Path .\temp\* -DestinationPath .\publish\ZertoApiWrapper.zip
-    #ImportBuiltModule
-    #(Get-Module ZertoApiWrapper).ReleaseNotes | Add-Content .\publish\release-notes.txt
-    #(Get-Module ZertoApiWrapper).Version.ToString() | Add-Content .\publish\release-version.txt
-    Copy-Item "$BuildRoot\ZertoApiWrapper.build.ps1" "$BuildRoot\publish\ZertoApiWrapper.build.ps1"
-    Copy-Item "$BuildRoot\ZertoApiWrapper.Depend.psd1" "$BuildRoot\publish\ZertoApiWrapper.Depend.psd1"
-    Copy-Item "$BuildRoot\build.ps1" "$BuildRoot\publish\build.ps1"
 }
 #EndRegion
+
+task build CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles, BuiltFileTests, CreateArtifacts
+task quickBuild CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles, {
+    Get-Module -Name ZertoApiWrapper | Remove-Module -Force
+    ImportBuiltModule
+}
+task release build, {
+    Publish-Module -Path $moduleOutPath -NuGetApiKey "1234" -WhatIf
+}

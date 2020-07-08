@@ -11,6 +11,7 @@ trigger:
     include:
       - master
       - PowerShellBackPort
+      - Refactor-Build
 
 # Trigger CI on pull requests to master and develop branches
 pr:
@@ -24,26 +25,18 @@ jobs:
     pool:
       vmImage: windows-latest
     steps:
-    # Run build.ps1 script in PowerShell Core
-    - powershell: |
-        .\build.ps1 -Verbose
-      displayName: 'Build and Test'
-    # Upload test results to Azure Pipeline
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/SourceTestResults.xml'
-        testRunTitle: 'PS_Win2016_Source'
-      displayName: 'Publish Test Results'
-      condition: always()
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/BuiltTestResults.xml'
-        testRunTitle: 'PS_Win2016_Built'
-      displayName: 'Publish Test Results'
-      condition: always()
-
+      # Run build.ps1 script in PowerShell Core
+      - powershell: |
+          .\build.ps1 -Verbose
+        displayName: "Build and Test"
+      # Upload test results to Azure Pipeline
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: "NUnit"
+          testResultsFiles: "**/BuiltTestResults.xml"
+          testRunTitle: "PS_Win2016_Built"
+        displayName: "Publish Test Results"
+        condition: always()
 
   # Windows PowerShell Core Build Job
   - job: Build_PSCore_Windows
@@ -52,25 +45,18 @@ jobs:
     pool:
       vmImage: windows-latest
     steps:
-    # Run build.ps1 script in PowerShell Core
-    - pwsh: |
-        .\build.ps1 -Verbose
-      displayName: 'Build and Test'
-    # Upload test results to Azure Pipeline
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/SourceTestResults.xml'
-        testRunTitle: 'PSCore_Win2016_Source'
-      displayName: 'Publish Test Results'
-      condition: always()
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/BuiltTestResults.xml'
-        testRunTitle: 'PSCore_Win2016_Built'
-      displayName: 'Publish Test Results'
-      condition: always()
+      # Run build.ps1 script in PowerShell Core
+      - pwsh: |
+          .\build.ps1 -Verbose
+        displayName: "Build and Test"
+      # Upload test results to Azure Pipeline
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: "NUnit"
+          testResultsFiles: "**/BuiltTestResults.xml"
+          testRunTitle: "PSCore_Win2016_Built"
+        displayName: "Publish Test Results"
+        condition: always()
 
   # Linux Build Job
   - job: Build_PSCore_Ubuntu
@@ -79,37 +65,24 @@ jobs:
     pool:
       vmImage: ubuntu-latest
     steps:
-    # Run build.ps1 script in PowerShell Core
-    - pwsh: |
-        .\build.ps1 -verbose
-      displayName: 'Build and Test'
-    # Upload test results to Azure Pipeline
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/SourceTestResults.xml'
-        testRunTitle: 'PSCore_Ubuntu_Source'
-      displayName: 'Publish Test Results'
-      condition: always()
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/BuiltTestResults.xml'
-        testRunTitle: 'PSCore_Ubuntu_Built'
-      displayName: 'Publish Test Results'
-      condition: always()
-    - task: PublishPipelineArtifact@0
-      displayName: 'Publish compiled module Artifact'
-      inputs:
-        artifactName: 'ZertoApiWrapper'
-        targetPath: ./temp
-      condition: always()
-    - task: PublishPipelineArtifact@0
-      displayName: 'Publish Data'
-      inputs:
-        artifactName: 'ReleaseData'
-        targetPath: ./publish
-      condition: always()
+      # Run build.ps1 script in PowerShell Core
+      - pwsh: |
+          .\build.ps1 -verbose
+        displayName: "Build and Test"
+      # Upload test results to Azure Pipeline
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: "NUnit"
+          testResultsFiles: "**/BuiltTestResults.xml"
+          testRunTitle: "PSCore_Ubuntu_Built"
+        displayName: "Publish Test Results"
+        condition: always()
+      - task: PublishPipelineArtifact@1
+        displayName: "Publish Data"
+        inputs:
+          artifactName: "ReleaseData"
+          targetPath: ./publish
+        condition: always()
 
   # MacOS Build Job
   - job: Build_PSCore_MacOS
@@ -118,22 +91,15 @@ jobs:
     pool:
       vmImage: macOS-latest
     steps:
-    # Run build.ps1 script in PowerShell Core
-    - pwsh: |
-        .\build.ps1 -verbose
-      displayName: 'Build and Test'
-    # Upload test results to Azure Pipeline
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/SourceTestResults.xml'
-        testRunTitle: 'PSCore_MacOS1013_Source'
-      displayName: 'Publish Test Results'
-      condition: always()
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: 'NUnit'
-        testResultsFiles: '**/BuiltTestResults.xml'
-        testRunTitle: 'PSCore_MacOS1013_Built'
-      displayName: 'Publish Test Results'
-      condition: always()
+      # Run build.ps1 script in PowerShell Core
+      - pwsh: |
+          .\build.ps1 -verbose
+        displayName: "Build and Test"
+      # Upload test results to Azure Pipeline
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: "NUnit"
+          testResultsFiles: "**/BuiltTestResults.xml"
+          testRunTitle: "PSCore_MacOS1013_Built"
+        displayName: "Publish Test Results"
+        condition: always()

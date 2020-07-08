@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.3]
+
+### Zerto Virtual Manager
+
+#### Updated
+
+* Updated `Connect-ZertoServer` with a `-AutoReconnect` switch to allow the auto reconnection of a session that has timed-out.
+* Updated `New-ZertoVpg` to have a Default Parameter Set of `recoveryHostDatastore` should no parameters be passed when calling the function.
+* Updated `New-ZertoVpg -recoverySite` parameter to be case-insensitive
+
+#### Fixed
+
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/96) with `Set-ZertoLicense` so that ShouldProcess functions properly.
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/95) when attempting to connect to an unlicensed site.
+
 ## [1.4.2]
 
 ### Zerto Virtual Manager

@@ -66,12 +66,26 @@ PS C:\> Get-ZertoEvent -eventId "Need an eventID"
 
 Returns information for each -eventID specified.
 
-### Example 1
+### Example 3
 ```powershell
 PS C:\> Get-ZertoEvent -startDate "2019-01-01" -endDate "2019-01-07" -vpg "My Vpg"
 ```
 
 Returns all events between Jan. 01, 2019 and Jan. 07, 2019 (inclusive) for the vpg "My Vpg"
+
+### Example 4
+```powershell
+PS C:\> Get-ZertoEvent -userName "Domain.tld\MyUser
+```
+
+Returns all events associated with the username passed into the command.
+
+### Example 5
+```powershell
+PS C:\> Get-ZertoEvent -startDate "2019-01-01T12:30:00" -endDate "2019-01-01T13:30:00" -vpg "My Vpg"
+```
+
+Returns all events between Jan. 01, 2019 12:30 PM and Jan. 01, 2019 1:30 PM (inclusive) for the vpg "My Vpg"
 
 ## PARAMETERS
 

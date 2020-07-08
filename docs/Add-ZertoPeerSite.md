@@ -31,10 +31,10 @@ Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP addre
 
 ### Example 2
 ```powershell
-PS C:\> Add-ZertoPeerSite -targetHost "192.168.2.100" -token "GeneratedFromTargetZVM"
+PS C:\> Add-ZertoPeerSite -targetHost "192.168.2.100" -targetPort "9071" -token "GeneratedFromTargetZVM"
 ```
 
-Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP address 192.168.2.100. Use this method when pairing Zerto Virtual Managers that are version 7.5 or later.
+Pairs the current Zerto Virtual Manager to the Zerto Virtual Manager at IP address 192.168.2.100 over Port 9071. Use this method when pairing Zerto Virtual Managers that are version 7.5 or later.
 
 ## PARAMETERS
 

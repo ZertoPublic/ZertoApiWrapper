@@ -1,3 +1,5 @@
+param([validateSet("build", "release")]$operation = "build")
+
 # Bootstrap the environment
 $null = Get-PackageProvider -Name NuGet -ForceBootstrap
 
@@ -11,6 +13,7 @@ Invoke-PSDepend `
     -Force `
     -Import `
     -Install `
-    -Tags 'Bootstrap'
+    -Tags 'Bootstrap' `
+    -ErrorAction Continue
 
-Invoke-Build .
+Invoke-Build $operation

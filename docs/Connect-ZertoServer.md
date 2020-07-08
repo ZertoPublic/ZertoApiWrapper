@@ -13,7 +13,7 @@ Establishes a connection to a ZVM.
 ## SYNTAX
 
 ```
-Connect-ZertoServer [-zertoServer] <String> [[-zertoPort] <String>] [-credential] <PSCredential>
+Connect-ZertoServer [-zertoServer] <String> [-credential] <PSCredential> [-zertoPort <String>] [-AutoReconnect]
  [-returnHeaders] [<CommonParameters>]
 ```
 
@@ -29,7 +29,30 @@ PS C:\> Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "9669" -cred
 
 Establishes a connection to ZVM 192.168.1.100 on port 9669 with supplied PSCredential object.
 
+### Example 2
+```powershell
+PS C:\> Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "9669" -credential $credential -AutoReconnect
+```
+
+Establishes a connection to ZVM 192.168.1.100 on port 9669 with supplied PSCredential object. Adding the `-AutoReconnect` switch
+will cache the PSCredential object should the session need to be reauthorized due to an expired token.
+
 ## PARAMETERS
+
+### -AutoReconnect
+Use this switch to indicate that you would like the module to take care of auto re-authorization and reconnection to the ZVM should the token expire. This option will cache your PSCredential object to be reused
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -credential
 Valid credentials to connect to the Zerto Management Server
@@ -40,7 +63,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -71,7 +94,7 @@ Parameter Sets: (All)
 Aliases: port
 
 Required: False
-Position: 1
+Position: Named
 Default value: "9669"
 Accept pipeline input: False
 Accept wildcard characters: False

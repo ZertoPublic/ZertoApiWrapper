@@ -1,6 +1,6 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $PSCommandPath)
-$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
+$global:function = ((Split-Path -Leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
@@ -45,6 +45,16 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             { Connect-ZertoServer -zertoServer -credential 1234 } | Should -Throw
             { Connect-ZertoServer -zertoServer -credential $(@{Username = "zerto\build"; Password = 'SecureString' }) } | Should -Throw
         }
+
+        It "has a switch parameter to return the headers" {
+            Get-Command $global:function | Should -HaveParameter returnHeaders
+            Get-Command $global:function | Should -HaveParameter returnHeaders -Type Switch
+        }
+
+        It "has a switch parameter to auto reauthorize the session" {
+            Get-Command $global:function | Should -HaveParameter autoReconnect
+            Get-Command $global:function | Should -HaveParameter autoReconnect -Type Switch
+        }
     }
 
     InModuleScope -ModuleName ZertoApiWrapper {
@@ -55,10 +65,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             $Headers = @{'x-zerto-session' = $xZertoSession }
             $results = @{'Headers' = $Headers }
             return $results
-        }
-
-        Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite {
-            return (Get-Content -Path "$global:here\Mocks\LocalSiteInfo.json" -Raw | ConvertFrom-Json)
         }
 
         Context "$($global:function)::InModuleScope Function Unit Tests" {
@@ -96,12 +102,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
                 $script:zvmHeaders['Accept'] | Should -BeOfType String
             }
 
-            It "Module Scope zvmLocalInfo variable tests" {
-                $script:zvmLocalInfo | Should -Not -BeNullOrEmpty
-                $script:zvmLocalInfo | Should -BeOfType PSCustomObject
-                $script:zvmLocalInfo.SiteIdentifier | Should -BeOfType String
-            }
-
             $headers = Connect-ZertoServer -zertoServer $Server -credential $credential -returnHeaders
             It "returns a Hashtable with 2 keys" {
                 $headers | Should -BeOfType Hashtable
@@ -134,7 +134,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             }
 
             Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Invoke-ZertoRestRequest -Exactly 4
-            Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoLocalSite -Exactly 4
         }
     }
 }
