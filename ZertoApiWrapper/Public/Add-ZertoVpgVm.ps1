@@ -10,6 +10,7 @@ function Add-ZertoVpgVm {
             ValueFromRemainingArguments
         )]
         [ValidateNotNullOrEmpty()]
+        [Alias("sid", "settingsIdentifier", "vpgSettingsId")]
         [String]$vpgSettingsIdentifier,
         [Parameter(
             Mandatory,
