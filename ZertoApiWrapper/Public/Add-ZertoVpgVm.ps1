@@ -1,17 +1,25 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Add-ZertoVpgVm {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "VpgName")]
     param (
         [Parameter(
             Mandatory,
             HelpMessage = "Vpg Settings Identifier",
             ValueFromPipeline,
             ValueFromPipelineByPropertyName,
-            ValueFromRemainingArguments
+            ValueFromRemainingArguments,
+            ParameterSetName = "VpgSettingsIdentifier"
         )]
         [ValidateNotNullOrEmpty()]
         [Alias("sid", "settingsIdentifier", "vpgSettingsId")]
         [String]$vpgSettingsIdentifier,
+        [Parameter(
+            Mandatory,
+            HelpMessage = "Target VPG Name to Add the VM",
+            ParameterSetName = "VpgName"
+        )]
+        [ValidateNotNullOrEmpty()]
+        [String]$VpgName,
         [Parameter(
             Mandatory,
             HelpMessage = "Name of VM(s) to add to the VPG"
@@ -25,7 +33,11 @@ function Add-ZertoVpgVm {
     }
 
     process {
-        $baseUrl = "vpgsettings/{0}" -f $vpgSettingsIdentifier
+        if ($PSCmdlet.ParameterSetName -eq "VpgName"){
+            $VpgIdentifier = Get-ZertoVpg -name $VpgName | Select-Object -ExpandProperty VpgIdentifier
+            $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -vpgIdentifier $VpgIdentifier
+        }
+        $baseUrl = "vpgsettings/{0}/vms" -f $vpgSettingsIdentifier
         $baseSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
         $unprotectedVms = Get-ZertoUnprotectedVm
         $protectedVms = Get-ZertoProtectedVm
@@ -56,19 +68,27 @@ function Add-ZertoVpgVm {
                     }
                 }
                 # Create a custom object to store the information to easily convert to JSON. Return to vmIdentifiers array.
-                $returnObject = New-Object PSObject
-                $returnObject | Add-Member -MemberType NoteProperty -Name "VmIdentifier" -Value $vmIdentifier
-                $returnObject
+                $vmIdentifier
             } else {
                 Write-Warning "$machine is already a member of this VPG Settings object. It will not be added again. Skipping $machine"
                 continue
             }
         }
-        if ($vmIdentifiers.Count -gt 0 -and $PSCmdlet.ShouldProcess($Vm, "Adding VM to Vpg")) {
-            $baseSettings.Vms += $vmIdentifiers
-            Invoke-ZertoRestRequest -uri $baseUrl -method PUT -body $($baseSettings | ConvertTo-Json -Depth 10)
+        if ($vmIdentifiers.Count -gt 0 -and $PSCmdlet.ShouldProcess($VmIdentifiers, "Adding VM to Vpg")) {
+            foreach ($id in $VmIdentifiers) {
+                # Build the Body
+                $Body = @{VmIdentifier = $id }
+                # Submit the request. Out to Null to prevent line returns while running.
+                $null = Invoke-ZertoRestRequest -uri $baseUrl -method POST -body ($Body | ConvertTo-Json -Depth 10)
+            }
+            if ($PSCmdlet.ParameterSetName -eq "VpgName") {
+                $vpgSettingsIdentifier
+            }
         } else {
             Write-Warning "No VMs found to add. Please check your parameters and try again."
+            if ($PSCmdlet.ParameterSetName -eq "VpgName") {
+                Remove-ZertoVpgSettingsIdentifier -vpgSettingsIdentifier $vpgSettingsIdentifier
+            }
         }
     }
 
