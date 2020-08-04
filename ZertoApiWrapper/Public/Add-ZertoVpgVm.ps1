@@ -88,9 +88,8 @@ function Add-ZertoVpgVm {
                 # Submit the request. Out to Null to prevent line returns while running.
                 $null = Invoke-ZertoRestRequest -uri $baseUrl -method POST -body ($Body | ConvertTo-Json -Depth 10)
             }
-            if ($PSCmdlet.ParameterSetName -eq "VpgName") {
-                $vpgSettingsIdentifier
-            }
+
+            $vpgSettingsIdentifier
         } else {
             Write-Warning "No VMs found to add. Please check your parameters and try again."
             if ($PSCmdlet.ParameterSetName -eq "VpgName") {
