@@ -309,13 +309,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -vpgIdentifier
-The identifier of the VPG for which you want to return events.
+### -vpg
+The name of the VPG for which you want to return events.
 
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases: vpgId
+Aliases: vpgName
 
 Required: False
 Position: Named
@@ -324,13 +324,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -vpgName
-The name of the VPG for which you want to return events.
+### -vpgIdentifier
+The identifier of the VPG for which you want to return events.
 
 ```yaml
 Type: String
 Parameter Sets: filter
-Aliases: vpg
+Aliases: vpgId
 
 Required: False
 Position: Named

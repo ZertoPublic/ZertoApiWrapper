@@ -14,21 +14,20 @@ Start a move of a VPG.
 
 ### main (Default)
 ```
-Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolicyTimeout] <Int32>]
- [-forceShutdown] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-ZertoMove -vpgName <String[]> [-commitPolicy <String>] [-commitPolicyTimeout <Int32>] [-forceShutdown]
+ [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### disableReverseProtection
 ```
-Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolicyTimeout] <Int32>]
- [-forceShutdown] [-disableReverseProtection] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Invoke-ZertoMove -vpgName <String[]> [-commitPolicy <String>] [-commitPolicyTimeout <Int32>] [-forceShutdown]
+ [-disableReverseProtection] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### keepSourceVms
 ```
-Invoke-ZertoMove [-vpgName] <String[]> [[-commitPolicy] <String>] [[-commitPolicyTimeout] <Int32>]
- [-forceShutdown] [-keepSourceVms] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-ZertoMove -vpgName <String[]> [-commitPolicy <String>] [-commitPolicyTimeout <Int32>] [-forceShutdown]
+ [-keepSourceVms] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,9 +57,10 @@ Default is the Site Settings setting.
 Type: String
 Parameter Sets: (All)
 Aliases:
+Accepted values: Rollback, Commit, None
 
 Required: False
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -76,7 +76,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -91,7 +91,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 6
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -121,7 +121,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -136,7 +136,7 @@ Parameter Sets: keepSourceVms
 Aliases:
 
 Required: True
-Position: 5
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -151,7 +151,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
