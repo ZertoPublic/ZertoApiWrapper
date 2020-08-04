@@ -11,7 +11,7 @@ function Save-ZertoVpgSetting {
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [Alias("vpgSettingsId")]
+        [Alias("sid", "settingsIdentifier", "vpgSettingsId")]
         [string]$vpgSettingsIdentifier
     )
 
