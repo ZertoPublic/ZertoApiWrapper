@@ -19,7 +19,7 @@ Get-ZertoEvent [<CommonParameters>]
 
 ### filter
 ```
-Get-ZertoEvent [-startDate <String>] [-endDate <String>] [-vpgName <String>] [-vpgIdentifier <String>]
+Get-ZertoEvent [-startDate <String>] [-endDate <String>] [-vpg <String>] [-vpgIdentifier <String>]
  [-eventType <String>] [-siteName <String>] [-siteIdentifier <String>] [-zorgIdentifier <String>]
  [-entityType <String>] [-userName <String>] [-category <String>] [-eventCategory <String>]
  [-alertIdentifier <String>] [<CommonParameters>]
