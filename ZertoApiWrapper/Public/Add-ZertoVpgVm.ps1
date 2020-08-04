@@ -33,9 +33,13 @@ function Add-ZertoVpgVm {
     }
 
     process {
-        if ($PSCmdlet.ParameterSetName -eq "VpgName"){
+        if ($PSCmdlet.ParameterSetName -eq "VpgName") {
             $VpgIdentifier = Get-ZertoVpg -name $VpgName | Select-Object -ExpandProperty VpgIdentifier
-            $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -vpgIdentifier $VpgIdentifier
+            if (-not $VpgIdentifier) {
+                Write-Error "Unable to find Vpg with name $VpgName. Please check your parameters and try again." -ErrorAction Stop
+            } else {
+                $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -vpgIdentifier $VpgIdentifier
+            }
         }
         $baseUrl = "vpgsettings/{0}/vms" -f $vpgSettingsIdentifier
         $baseSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
