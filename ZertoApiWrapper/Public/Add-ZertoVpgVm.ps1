@@ -43,6 +43,9 @@ function Add-ZertoVpgVm {
         }
         $baseUrl = "vpgsettings/{0}/vms" -f $vpgSettingsIdentifier
         $baseSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
+        if ($PSCmdlet.ParameterSetName -eq "VpgSettingsIdentifier") {
+            $VpgName = $baseSettings.Basic.Name
+        }
         $unprotectedVms = Get-ZertoUnprotectedVm
         $protectedVms = Get-ZertoProtectedVm
         $vmMap = Get-Map -inputObject $unprotectedVms -key VmName -value VmIdentifier
@@ -78,7 +81,7 @@ function Add-ZertoVpgVm {
                 continue
             }
         }
-        if ($vmIdentifiers.Count -gt 0 -and $PSCmdlet.ShouldProcess($VmIdentifiers, "Adding VM to Vpg")) {
+        if ($vmIdentifiers.Count -gt 0 -and $PSCmdlet.ShouldProcess($VmIdentifiers, "Adding VM(s): $Vm to Vpg $VpgName")) {
             foreach ($id in $VmIdentifiers) {
                 # Build the Body
                 $Body = @{VmIdentifier = $id }
