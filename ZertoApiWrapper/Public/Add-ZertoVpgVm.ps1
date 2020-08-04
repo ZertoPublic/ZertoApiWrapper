@@ -48,7 +48,7 @@ function Add-ZertoVpgVm {
         $vmMap = Get-Map -inputObject $unprotectedVms -key VmName -value VmIdentifier
         $vmMap = $vmMap + (Get-Map -inputObject $protectedVms -key VmName -value VmIdentifier)
         # Create array of VM identifiers
-        $vmIdentifiers = foreach ($machine in $Vm) {
+        $vmIdentifiers = foreach ($machine in ($Vm | Select-Object -Unique)) {
             if ($vmMap[$machine] -notin $baseSettings.Vms.vmIdentifier ) {
                 # If the VM is unprotected, get the identifier
                 $vmIdentifier = $unprotectedVms | Where-Object { $_.vmName -like $machine } | Select-Object -ExpandProperty vmIdentifier
