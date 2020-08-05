@@ -6,3 +6,4 @@ SourceTestResults.xml
 publish/*
 CodeCoverage.xml
 scratch
+.DS_Store

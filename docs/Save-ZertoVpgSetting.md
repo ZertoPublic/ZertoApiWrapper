@@ -36,10 +36,10 @@ VpgSettings Identifier to save
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: vpgSettingsId
+Aliases: sid, settingsIdentifier, vpgSettingsId
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
