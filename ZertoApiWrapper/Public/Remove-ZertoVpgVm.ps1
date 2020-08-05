@@ -39,7 +39,7 @@ function Remove-ZertoVpgVm {
             $vpgSettingsIdentifier = New-ZertoVpgSettingsIdentifier -vpgIdentifier $VpgData.VpgIdentifier
             foreach ($identifier in $VmIdentifiers) {
                 $url = "vpgSettings/{0}/vms/{1}" -f $vpgSettingsIdentifier, $identifier
-                Invoke-ZertoRestRequest -uri $uri -method DELETE
+                Invoke-ZertoRestRequest -uri $url -method DELETE
             }
             Save-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
         } else {
