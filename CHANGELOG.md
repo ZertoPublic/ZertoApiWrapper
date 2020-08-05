@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Zerto Virtual Manager
+
+#### New
+
+* Added `Add-ZertoVpgVm` function to the module. Read the [help file](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Add-ZertoVpgVm.md) for more information.
+* Added `Remove-ZertoVpgVm` function to the module. Read the [help file](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpgVm.md) for more information.
+
 ## [1.4.3]
 
 ### Zerto Virtual Manager
