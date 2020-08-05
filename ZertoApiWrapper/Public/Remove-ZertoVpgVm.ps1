@@ -30,9 +30,9 @@ function Remove-ZertoVpgVm {
         }
         $VmIdentifiers = foreach ($machine in ($vm | Select-Object -Unique)) {
             if ($machine -in $protectedVms.VmName) {
-                $protectedVms.VmName.Where( { $_.VmName -like $machine }) | Select-Object -ExpandProperty VmIdentifier
+                $protectedVms.Where( { $_.VmName -like $machine }) | Select-Object -ExpandProperty VmIdentifier
             } else {
-                Write-Warning "$machine is not found in $VpgName. Check your parameters. Skipping $machine"
+                Write-Warning "Virtual Machine: '$machine' is not found in Vpg: '$VpgName'. Check your parameters. Skipping $machine"
             }
         }
         if ($VmIdentifiers.Count -gt 0 -and $PSCmdlet.ShouldProcess(($Vm | Select-Object -Unique), "Removing VM(s): $($Vm | Select-Object -Unique) from Vpg $VpgName")) {
