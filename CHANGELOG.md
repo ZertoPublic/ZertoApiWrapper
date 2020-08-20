@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [1.5.0]
 
 ### Zerto Virtual Manager
 
@@ -13,6 +13,10 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 
 * Added `Add-ZertoVpgVm` function to the module. Read the [help file](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Add-ZertoVpgVm.md) for more information.
 * Added `Remove-ZertoVpgVm` function to the module. Read the [help file](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpgVm.md) for more information.
+
+#### Fixed
+
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/103) with `Add-ZertoPeerSite` where there was an incorrect settings validator on the `-targetHost` parameter where it would not accept a hostname.
 
 ## [1.4.3]
 

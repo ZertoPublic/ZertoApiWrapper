@@ -4,5 +4,6 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "powershell.codeFormatting.preset": "OTBS",
-    "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe"
+    "terminal.integrated.shell.windows": "c:/Program Files/PowerShell/7/pwsh.exe",
+    "powershell.codeFormatting.addWhitespaceAroundPipe": true
 }
