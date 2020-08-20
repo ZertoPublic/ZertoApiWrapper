@@ -1,6 +1,6 @@
 #Requires -Modules Pester
 $global:here = (Split-Path -Parent $PSCommandPath)
-$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
+$global:function = ((Split-Path -Leaf $PSCommandPath).Split('.'))[0]
 
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
     BeforeAll {
@@ -14,7 +14,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         $ParameterTestCases = @(
-            @{ParameterName = 'targetHost'; Type = 'String'; Mandatory = $true; Validation = 'Script' }
+            @{ParameterName = 'targetHost'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'targetPort'; Type = 'Int32'; Mandatory = $false; Validation = 'Range' }
             @{ParameterName = 'token'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
         )
@@ -27,11 +27,6 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
             param($ParameterName, $Validation)
             Switch ($Validation) {
-                'Script' {
-                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
-                    $attrs.Where{ $_ -is [ValidateScript] }.Count | Should -Be 1
-                }
-
                 'Range' {
                     $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
                     $attrs.Where{ $_ -is [ValidateRange] }.Count | Should -Be 1
@@ -63,8 +58,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         It "Supports 'SupportsShouldProcess'" {
             Get-Command $global:function | Should -HaveParameter WhatIf
             Get-Command $global:function | Should -HaveParameter Confirm
-            $script:ScriptBlock | Should -match 'SupportsShouldProcess'
-            $script:ScriptBlock | Should -match '\$PSCmdlet\.ShouldProcess\(.+\)'
+            $script:ScriptBlock | Should -Match 'SupportsShouldProcess'
+            $script:ScriptBlock | Should -Match '\$PSCmdlet\.ShouldProcess\(.+\)'
         }
     }
 
