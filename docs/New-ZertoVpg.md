@@ -12,6 +12,16 @@ Creates a New VPG with default settings only. Customization of VM settings can b
 
 ## SYNTAX
 
+### recoveryHostDatastore (Default)
+```
+New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <Int32>] -protectedVm <String[]>
+ -recoverySite <String> -recoveryHost <String> -datastore <String> -recoveryFolder <String>
+ [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
+ [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
+ [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
 ### recoveryClusterDatastoreCluster
 ```
 New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <Int32>] -protectedVm <String[]>
@@ -36,16 +46,6 @@ New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <
 ```
 New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <Int32>] -protectedVm <String[]>
  -recoverySite <String> -recoveryHost <String> -datastoreCluster <String> -recoveryFolder <String>
- [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
- [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
- [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
- [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### recoveryHostDatastore
-```
-New-ZertoVpg -vpgName <String> [-vpgPriority <String>] [-journalHistoryInHours <Int32>] -protectedVm <String[]>
- -recoverySite <String> -recoveryHost <String> -datastore <String> -recoveryFolder <String>
  [-rpoInSeconds <Int32>] [-testIntervalInMinutes <Int32>] [-serviceProfile <String>]
  [-useWanCompression <Boolean>] [-zorg <String>] -recoveryNetwork <String> -testNetwork <String>
  [-journalDatastore <String>] [-journalHardLimitInMb <UInt64>] [-journalWarningThresholdInMb <UInt64>]
@@ -176,7 +176,7 @@ Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.
 
 ```yaml
 Type: String
-Parameter Sets: recoveryClusterDatastore, recoveryHostDatastore, recoveryResourcePoolDatastore
+Parameter Sets: recoveryHostDatastore, recoveryClusterDatastore, recoveryResourcePoolDatastore
 Aliases:
 
 Required: True
@@ -312,7 +312,7 @@ Name of the host where the VM(s) will be recovered.
 
 ```yaml
 Type: String
-Parameter Sets: recoveryHostDatastoreCluster, recoveryHostDatastore
+Parameter Sets: recoveryHostDatastore, recoveryHostDatastoreCluster
 Aliases:
 
 Required: True

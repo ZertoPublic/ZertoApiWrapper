@@ -21,7 +21,7 @@ Remove-ZertoVpg -vpgidentifier <String[]> [-keepRecoveryVolumes] [-force] [-What
 
 ### vpgName
 ```
-Remove-ZertoVpg [-vpgName] <String[]> [-keepRecoveryVolumes] [-force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-ZertoVpg -vpgName <String[]> [-keepRecoveryVolumes] [-force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -122,7 +122,7 @@ Parameter Sets: vpgName
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
