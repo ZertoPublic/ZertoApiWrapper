@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Zerto Virtual Manager
+
+#### New
+
+* Added `Get-ZertoAzureResource` function to the module. This function is designed to retrieve information about resources in Azure that can be utilized when creating VPGs targeting the specified Azure site. Please read the [help file](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoAzureResource.md) for more information and examples.
+
 ## [1.5.0]
 
 ### Zerto Virtual Manager
