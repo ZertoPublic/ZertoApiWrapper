@@ -105,6 +105,9 @@ function Get-ZertoAzureResource {
             $SiteIdentifier = $SiteInfo | Select-Object -ExpandProperty SiteIdentifier
         } else {
             $SiteInfo = Get-ZertoPeerSite -siteIdentifier $SiteIdentifier
+            if ($null -eq $SiteInfo) {
+                Write-Error "Unable to find a peer site with identifier of $SiteIdentifier. Please check your parameters and try again." -ErrorAction Stop
+            }
         }
         if ($SiteInfo.SiteType -notmatch "Azure") {
             Write-Error "Specified site is not an Azure site. Please specify an Azure site and try again." -ErrorAction Stop
