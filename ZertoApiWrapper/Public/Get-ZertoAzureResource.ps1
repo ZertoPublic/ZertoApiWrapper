@@ -4,82 +4,90 @@ function Get-ZertoAzureResource {
     param (
         [Parameter(
             Mandatory,
-            HelpMessage = "Name the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Name the Azure Site you wish to get the information.",
             ParameterSetName = "SiteNameSecurityGroup"
         )]
         [Parameter(
             Mandatory,
-            HelpMessage = "Name the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Name the Azure Site you wish to get the information.",
             ParameterSetName = "SiteNameSubnet"
         )]
         [Parameter(
             Mandatory,
-            HelpMessage = "Name the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Name the Azure Site you wish to get the information.",
             ParameterSetName = "SiteNameNetwork"
         )]
         [Parameter(
             Mandatory,
-            HelpMessage = "Name the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Name the Azure Site you wish to get the information.",
             ParameterSetName = "SiteNameVmInstanceType"
         )]
         [ValidateNotNullOrEmpty()]
         [String]$SiteName,
         [Parameter(
             Mandatory,
-            HelpMessage = "Site Identifier of the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Site Identifier of the Azure Site you wish to get the information.",
             ParameterSetName = "SiteIdentifierSecurityGroup"
         )]
         [Parameter(
             Mandatory,
-            HelpMessage = "Site Identifier of the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Site Identifier of the Azure Site you wish to get the information.",
             ParameterSetName = "SiteIdentifierSubnet"
         )]
         [Parameter(
             Mandatory,
-            HelpMessage = "Site Identifier of the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Site Identifier of the Azure Site you wish to get the information.",
             ParameterSetName = "SiteIdentifierNetwork"
         )]
         [Parameter(
             Mandatory,
-            HelpMessage = "Site Identifier of the Azure Site you wish to get the Security Groups.",
+            HelpMessage = "Site Identifier of the Azure Site you wish to get the information.",
             ParameterSetName = "SiteIdentifierVmInstanceType"
         )]
         [ValidateNotNullOrEmpty()]
         [String]$SiteIdentifier,
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteIdentifierSecurityGroup"
+            ParameterSetName = "SiteIdentifierSecurityGroup",
+            HelpMessage = "Use this switch to get information about the supported Security Groups"
         )]
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteNameSecurityGroup"
+            ParameterSetName = "SiteNameSecurityGroup",
+            HelpMessage = "Use this switch to get information about the supported Security Groups"
         )]
         [Switch]$SecurityGroup,
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteIdentifierSubnet"
+            ParameterSetName = "SiteIdentifierSubnet",
+            HelpMessage = "Use this switch to get information about the supported Subnets"
         )]
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteNameSubnet"
+            ParameterSetName = "SiteNameSubnet",
+            HelpMessage = "Use this switch to get information about the supported Subnets"
         )]
         [Switch]$Subnet,
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteIdentifierNetwork"
+            ParameterSetName = "SiteIdentifierNetwork",
+            HelpMessage = "Use this switch to get information about the supported Networks (VNets)."
         )]
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteNameNetwork"
+            ParameterSetName = "SiteNameNetwork",
+            HelpMessage = "Use this switch to get information about the supported Networks (VNets)."
         )]
         [Switch]$Network,
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteIdentifierVmInstanceType"
+            ParameterSetName = "SiteIdentifierVmInstanceType",
+            HelpMessage = "Use this switch to get information about the supported Vm Instance Types."
         )]
         [Parameter(
             Mandatory,
-            ParameterSetName = "SiteNameVmInstanceType"
+            ParameterSetName = "SiteNameVmInstanceType",
+            HelpMessage = "Use this switch to get information about the supported Vm Instance Types."
         )]
         [Switch]$VmInstanceType
     )
