@@ -5,8 +5,8 @@ $global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
     Context "$global:function::Parameter Unit Tests" {
-        It "$global:function should have exactly 20 parameters defined" {
-            (Get-Command $global:function).Parameters.Count | Should -Be 20
+        It "$global:function should have exactly 21 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 21
         }
 
         $ParameterTestCases = @(
@@ -14,8 +14,8 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'commitPolicy'; Type = 'String'; Mandatory = $false; Validation = 'Set' }
             @{ParameterName = 'commitPolicyTimeout'; Type = 'Int'; Mandatory = $false; Validation = 'Range' }
             @{ParameterName = 'forceShutdown'; Type = 'Switch'; Mandatory = $false; Validation = $null }
-            @{ParameterName = 'disableReverseProtection'; Type = 'Switch'; Mandatory = $true; Validation = $null }
-            @{ParameterName = 'keepSourceVms'; Type = 'Switch'; Mandatory = $true; Validation = $null }
+            @{ParameterName = 'disableReverseProtection'; Type = 'Switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'keepSourceVms'; Type = 'Switch'; Mandatory = $false; Validation = $null }
             @{ParameterName = 'ContinueOnPreScriptFailure'; Type = 'Switch'; Mandatory = $false; Validation = $null }
             @{ParameterName = 'whatIf'; Type = 'Switch'; Mandatory = $false; Validation = 'ShouldProcess' }
         )
