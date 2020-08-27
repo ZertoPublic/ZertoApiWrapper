@@ -10,6 +10,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
         }
 
         $ParameterTestCases = @(
+            @{ParameterName = 'vpgIdentifier'; Type = 'Guid[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'vpgName'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'commitPolicy'; Type = 'String'; Mandatory = $false; Validation = 'Set' }
             @{ParameterName = 'commitPolicyTimeout'; Type = 'Int'; Mandatory = $false; Validation = 'Range' }
