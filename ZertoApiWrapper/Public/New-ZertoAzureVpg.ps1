@@ -31,7 +31,7 @@ function New-ZertoAzureVpg {
         [ValidateSet(0, 43200, 131040, 262080, 394560, 525600)]
         [Int]$TestIntervalInMinutes = 262080,
         [Parameter(
-            HelpMessage = "Turn on or off WAN compression. Reccommended this setting is not turned off. Default is to leave WAN compression turned on."
+            HelpMessage = "Turn on or off WAN compression. Recommended this setting is not turned off. Default is to leave WAN compression turned on."
         )]
         [Bool]$UseWanCompression = $True,
         [Parameter(
