@@ -12,22 +12,30 @@ Start a move of a VPG.
 
 ## SYNTAX
 
-### main (Default)
+### id (Default)
 ```
-Invoke-ZertoMove -vpgName <String[]> [-commitPolicy <String>] [-commitPolicyTimeout <Int32>] [-forceShutdown]
+Invoke-ZertoMove -vpgIdentifier <Guid[]> [-forceShutdown] [-disableReverseProtection] [-keepSourceVms]
  [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### disableReverseProtection
+### commitName
 ```
-Invoke-ZertoMove -vpgName <String[]> [-commitPolicy <String>] [-commitPolicyTimeout <Int32>] [-forceShutdown]
- [-disableReverseProtection] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-ZertoMove -vpgName <String[]> -commitPolicy <String> [-commitPolicyTimeout <Int32>] [-forceShutdown]
+ [-disableReverseProtection] [-keepSourceVms] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
-### keepSourceVms
+### name
 ```
-Invoke-ZertoMove -vpgName <String[]> [-commitPolicy <String>] [-commitPolicyTimeout <Int32>] [-forceShutdown]
- [-keepSourceVms] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
+Invoke-ZertoMove -vpgName <String[]> [-forceShutdown] [-disableReverseProtection] [-keepSourceVms]
+ [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### commitId
+```
+Invoke-ZertoMove -vpgIdentifier <Guid[]> -commitPolicy <String> [-commitPolicyTimeout <Int32>] [-forceShutdown]
+ [-disableReverseProtection] [-keepSourceVms] [-ContinueOnPreScriptFailure] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,10 +45,24 @@ Start a move of a VPG.
 
 ### Example 1
 ```powershell
-PS C:\> Invoke-ZertoMove -vpgName "MyVpg"
+PS C:\> Invoke-ZertoMove -vpgName 'MyVpg'
 ```
 
-Starts a move operation of VPG "MyVpg"
+Specify the name of a vpg to move
+
+### Example 2
+```powershell
+PS C:\> Invoke-ZertoMove -vpgIdentifier '2fbbf6b5-cddc-4653-b1fe-564f069eeb64'
+```
+
+Specify the identifier of a vpg to move
+
+### Example 3
+```powershell
+PS C:\> Get-ZertoVpg | Invoke-ZertoMove
+```
+
+Utilize the pipeline to move multiple vpgs
 
 ## PARAMETERS
 
@@ -55,11 +77,11 @@ Default is the Site Settings setting.
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: commitName, commitId
 Aliases:
 Accepted values: Rollback, Commit, None
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -72,7 +94,7 @@ If omitted, the site settings default will be applied.
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
+Parameter Sets: commitName, commitId
 Aliases:
 
 Required: False
@@ -102,10 +124,10 @@ Do not enable reverse protection. The VPG definition is kept with the status Nee
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: disableReverseProtection
+Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -132,13 +154,28 @@ Use this switch to Prevent the protected virtual machines from being deleted in 
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: keepSourceVms
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -vpgIdentifier
+ID(s) of the VPG(s) you want to move.
+
+```yaml
+Type: Guid[]
+Parameter Sets: id, commitId
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -147,7 +184,7 @@ Name(s) of the VPG(s) you want to move.
 
 ```yaml
 Type: String[]
-Parameter Sets: (All)
+Parameter Sets: commitName, name
 Aliases:
 
 Required: True
