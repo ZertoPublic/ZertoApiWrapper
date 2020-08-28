@@ -84,7 +84,7 @@ function Invoke-ZertoMove {
             reverseProtection          = -not $disableReverseProtection.IsPresent
         }
 
-        if ( $keepSourceVms -and -not $disableReverseProtection ) {
+        if ( $keepSourceVms.IsPresent -and -not $disableReverseProtection.IsPresent ) {
             Write-Verbose 'Disabling reverse protection as keepSourceVms requires it'
             $body['reverseProtection'] = $false
         }
