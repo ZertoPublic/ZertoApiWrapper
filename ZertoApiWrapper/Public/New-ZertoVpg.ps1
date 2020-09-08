@@ -295,11 +295,11 @@ function New-ZertoVpg {
 
             "recoveryHostDatastoreCluster" {
                 $baseSettings.Recovery.DefaultDatastoreClusterIdentifier = $identifiersTable['datastoreClusterIdentifier']
-                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['hostIdentifier']
+                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['recoveryHostIdentifier']
             }
 
             "recoveryHostDatastore" {
-                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['hostIdentifier']
+                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['recoveryHostIdentifier']
                 $baseSettings.Recovery.DefaultDatastoreIdentifier = $identifiersTable['datastoreIdentifier']
             }
 
