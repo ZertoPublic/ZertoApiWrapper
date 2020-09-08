@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1]
+
+### Zerto Virtual Manager
+
+#### Fixed
+
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/108) with `New-ZertoVpg` where when specifying a single host as a recovery target, the host identifier was not properly assigned. - Thanks @jonsouzerto!
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/86) with `Invoke-ZertoMoveVpg` where parameters should have been mandatory in certain workflows. - Thanks @gdbarron!
+
 ## [1.5.0]
 
 ### Zerto Virtual Manager
