@@ -2,9 +2,14 @@
 function Add-ZertoAzureVpgVm {
     [Cmdletbinding()]
     param(
-        [Parameter(Mandatory)]
+        [Parameter(
+            Mandatory,
+            HelpMessage = "VPG Settings Identifier of the target VPG.",
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName
+        )]
         [ValidateNotNullOrEmpty()]
-        [String]$VpgSettingsIdentifier,
+        [Guid]$VpgSettingsIdentifier,
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
         [String]$VmName,
@@ -144,7 +149,7 @@ function Add-ZertoAzureVpgVm {
             "TestIpAddress" {
                 $VmSettings.Nics[0].FailoverTest.PublicCloud.PrivateIP = $TestIpAddress
             }
-        }
+        } # End Switch Statement
 
         # Update the VPG VM Settings Object with the updated attributes
         $null = Invoke-ZertoRestRequest -uri $VmSettingsUri -method PUT -body ($VmSettings | ConvertTo-Json -Depth 10)
