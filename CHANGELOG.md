@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2]
+
+### Zerto Virtual Manager
+
+#### Fixed
+
+* Fixed an issue when attempting to export more than 100 VPGs with the `Export-ZertoVpg` function that would cause an error.
+
 ## [1.5.1]
 
 ### Zerto Virtual Manager

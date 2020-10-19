@@ -38,6 +38,7 @@ function Export-ZertoVpg {
             $vpgSettings = Get-ZertoVpgSetting -vpgSettingsIdentifier $vpgSettingsIdentifier
             $filePath = "{0}\{1}.json" -f $outputPath, $name
             $vpgSettings | Convertto-Json -depth 10 | Out-File -FilePath $filePath
+            $null = Remove-ZertoVpgSettingsIdentifier -vpgSettingsIdentifier $vpgSettingsIdentifier
         }
     }
 

@@ -46,6 +46,10 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             return "1024d377-afb8-4880-82f0-96eeff413ffd"
         }
 
+        Mock -ModuleName ZertoApiWrapper -CommandName Remove-ZertoVpgSettingsIdentifier {
+            return $null
+        }
+
         Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoVpgSetting {
             $returnObj = @{
                 Backup                = $null
