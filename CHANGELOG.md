@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Zerto Virtual Manager
+
+#### Fixed
+
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/112) where `New-ZertoVpg` would fail when specifying the localsite as the target site.
+
 ## [1.5.2]
 
 ### Zerto Virtual Manager

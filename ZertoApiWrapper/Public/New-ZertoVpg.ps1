@@ -165,7 +165,7 @@ function New-ZertoVpg {
     begin {
         # Create an identifiers table, and start converting names to identifiers.
         $identifiersTable = @{ }
-        $identifiersTable['recoverySiteIdentifier'] = (Get-ZertoPeerSite).Where({$_.PeerSiteName -like $recoverySite}) | Select-Object -ExpandProperty SiteIdentifier
+        $identifiersTable['recoverySiteIdentifier'] = (Get-ZertoVirtualizationSite).Where( { $_.VirtualizationSiteName -like $recoverySite }) | Select-Object -ExpandProperty SiteIdentifier
         $peerSiteNetworks = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -networks)
         $identifiersTable['failoverNetworkIdentifier'] = $peerSiteNetworks | Where-Object { $_.VirtualizationNetworkName -like $recoveryNetwork } | Select-Object -ExpandProperty NetworkIdentifier
         $identifiersTable['testNetworkIdentifier'] = $peerSiteNetworks | Where-Object { $_.VirtualizationNetworkName -like $testNetwork } | Select-Object -ExpandProperty NetworkIdentifier
