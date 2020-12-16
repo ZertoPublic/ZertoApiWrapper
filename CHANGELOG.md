@@ -11,7 +11,12 @@ and this project is transitioning to [Semantic Versioning](https://semver.org/sp
 
 #### Fixed
 
-* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/112) where `New-ZertoVpg` would fail when specifying the localsite as the target site.
+* Fixed an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues/112) where `New-ZertoVpg` would fail when specifying the local site as the target site.
+* Updated the method where a Site Identifer is obtained during the `New-ZertoVpg` execution that would occasionally fail on some versions of PowerShell.
+
+#### Updated
+
+* Updated `New-ZertoVpg` function [help documentation](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md) to more clearly specify the return value and the requirement to pass it into the `Save-ZertoVpgSetting` function to commit the VPG.
 
 ## [1.5.2]
 
