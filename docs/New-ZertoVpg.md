@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-ZertoVpg
 
 ## SYNOPSIS
-Creates a New VPG with default settings only. Customization of VM settings can be accomplished with other module level functions.
+Creates a New VPG with default settings only. Customization of VM settings can be accomplished with other module level functions. Returns a VpgSettingsIdentifier to be passed into the `Save-ZertoVpgSetting` function to create the VPG.
 
 ## SYNTAX
 
