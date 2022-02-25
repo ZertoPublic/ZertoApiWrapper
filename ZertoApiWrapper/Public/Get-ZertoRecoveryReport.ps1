@@ -28,12 +28,6 @@ function Get-ZertoRecoveryReport {
         [string]$pageSize,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "The internal identifier of the VPG. You can specify more than one VPG, separated by commas."
-        )]
-        [ValidateNotNullOrEmpty()]
-        [string]$vpgIdentifier,
-        [Parameter(
-            ParameterSetName = "filter",
             HelpMessage = "The name of the VPG. You can specify more than one VPG, separated by commas."
         )]
         [ValidateNotNullOrEmpty()]

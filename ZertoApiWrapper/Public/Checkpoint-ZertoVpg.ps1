@@ -3,13 +3,15 @@ function Checkpoint-ZertoVpg {
     [cmdletbinding()]
     param(
         [Parameter(
-            Mandatory = $true,
-            HelpMessage = "Name of the VPG to tag."
+            Mandatory,
+            HelpMessage = "Name of the VPG to tag.",
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [string]$vpgName,
+        [string[]]$vpgName,
         [Parameter(
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Text to tag the checkpoint with."
         )]
         [ValidateNotNullOrEmpty()]
@@ -18,16 +20,18 @@ function Checkpoint-ZertoVpg {
 
     begin {
         $baseUri = "vpgs"
-        $vpgIdentifier = $(get-zertovpg -name $vpgName).vpgIdentifier
-        $body = @{"checkpointName" = $checkpointName}
     }
 
     process {
-        if ($vpgIdentifier) {
-            $uri = "{0}/{1}/Checkpoints" -f $baseUri, $vpgIdentifier
-            Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -method "POST"
-        } else {
-            Write-Output "Cannot find VPG named $vpgName. Please check the name and try again."
+        foreach ($name in $vpgName) {
+            $vpgIdentifier = $(get-zertovpg -name $name).vpgIdentifier
+            if ($vpgIdentifier) {
+                $uri = "{0}/{1}/Checkpoints" -f $baseUri, $vpgIdentifier
+                $body = @{"checkpointName" = $checkpointName }
+                Invoke-ZertoRestRequest -uri $uri -body $($body | ConvertTo-Json) -method "POST"
+            } else {
+                Write-Output "Cannot find VPG named $name. Please check the name and try again."
+            }
         }
     }
 

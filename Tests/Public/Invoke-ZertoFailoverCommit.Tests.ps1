@@ -1,44 +1,56 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+    Context "$global:function::Parameter Unit Tests" {
+
+        It "$global:function should have exactly 15 parameters defined" {
+            (Get-Command $global:function).Parameters.Count | Should -Be 15
+        }
+
+        $ParameterTestCases = @(
+            @{ParameterName = 'vpgName'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'reverseProtection'; Type = 'switch'; Mandatory = $false; Validation = $null }
+            @{ParameterName = 'whatIf'; Type = 'Switch'; Mandatory = $false; Validation = 'ShouldProcess' }
+        )
+
+        It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory, $Validation)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
+        }
+
+        It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
+            param($ParameterName, $Validation)
+            Switch ($Validation) {
+                'NotNullOrEmpty' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
+                }
+
+                'ShouldProcess' {
+                    $scriptBlock = (Get-Command $global:function).ScriptBlock
+                    $scriptBlock | Should -match 'SupportsShouldProcess'
+                    $scriptBlock | Should -match '\$PSCmdlet\.ShouldProcess\(.+\)'
+                }
+
+                $null {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.TypeId.Count | Should -Be 2
+                }
+
+                default {
+                    $true | Should -Be $false -Because "No Validation Selected. Review test cases"
+                }
+            }
+        }
     }
 
-    Context "$($file.BaseName)::Parameter Unit Tests" {
+    Context "$global:function::Parameter Functional Tests" {
 
-        it "Supports 'ShouldProcess'" {
-            Get-Command $file.BaseName | Should -HaveParameter WhatIf
-            Get-Command $file.BaseName | Should -HaveParameter Confirm
-            $file | Should -FileContentMatch 'SupportsShouldProcess'
-            $file | Should -FileContentMatch '\$PSCmdlet\.ShouldProcess\(.+\)'
-        }
-
-        it "has a mandatory string parameter for the vpgName" {
-            Get-Command $file.BaseName | Should -HaveParameter vpgName
-            Get-Command $file.BaseName | Should -HaveParameter vpgName -Type string[]
-            Get-Command $file.BaseName | Should -HaveParameter vpgName -Mandatory
-        }
-
-        it "has a switch parameter for reverse protection" {
-            Get-Command $file.BaseName | Should -HaveParameter reverseProtection
-            Get-Command $file.BaseName | Should -HaveParameter reverseProtection -Type switch
-        }
-    }
-
-    Context "$($file.BaseName)::Function Unit Tests" {
-        #TODO
     }
 }
+
+Remove-Variable -Name here -Scope Global
+Remove-Variable -Name function -Scope Global

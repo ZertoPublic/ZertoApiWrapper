@@ -1,53 +1,39 @@
 #Requires -Modules Pester
-#Region - Test Setup
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
-#EndRegion
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
-    }
+    Context "$global:function::Parameter Unit Tests" {
 
-    Context "$($file.BaseName)::Parameter Unit Tests" {
-        it "has a mantatory string parameter for the output path" {
-            Get-Command $file.BaseName | Should -HaveParameter outputPath -Type String -Mandatory
+        $ParameterTestCases = @(
+            @{ParameterName = 'OutputPath'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'vpgName'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+            @{ParameterName = 'allVpgs'; Type = 'Switch'; Mandatory = $true; Validation = $null }
+        )
+
+        It "<ParameterName> parameter is of <Type> type, with correct validation" -TestCases $ParameterTestCases {
+            param($ParameterName, $Type, $Mandatory, $Validation)
+            Get-Command $global:function | Should -HaveParameter $ParameterName -Mandatory:$Mandatory -Type $Type
         }
 
-        it "has a non-mandatory string array parameter for vpgName(s) to export" {
-            Get-Command $file.BaseName | Should -HaveParameter vpgName -Type String[] -Mandatory
-        }
+        It "<ParameterName> parameter has correct validation setting"  -TestCases $ParameterTestCases {
+            param($ParameterName, $Validation)
+            Switch ($Validation) {
+                'NotNullOrEmpty' {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.Where{ $_ -is [ValidateNotNullOrEmpty] }.Count | Should -Be 1
+                }
 
-        it "has a non-mandatory switch parameter to export all vpgs" {
-            Get-Command $file.BaseName | Should -HaveParameter allVpgs -Type Switch -Mandatory
-        }
-
-        it "No defined vpgName or AllVpg switch should throw an error" {
-            {Export-ZertoVpg -outputPath "."} | Should -Throw
-        }
-
-        it "Output path does not take null or empty string" {
-            {Export-ZertoVpg -outputPath "" -allVpgs} | Should -Throw
-            {Export-ZertoVpg -outputPath $null -allVpgs} | Should -Throw
-        }
-
-        it "Vpg Name parameter does not take null or empty string" {
-            {Export-ZertoVpg -outputPath "." -vpgName = ""} | Should -Throw
-            {Export-ZertoVpg -outputPath "." -vpgName = $null} | Should -Throw
+                $null {
+                    $attrs = (Get-Command $global:function).Parameters[$ParameterName].Attributes
+                    $attrs.TypeId.Count | Should -Be 2
+                }
+            }
         }
     }
 
-    Context "$($file.BaseName)::Function Unit Tests" {
+    Context "$($global:function)::Function Unit Tests" {
         Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoVpg {
             $returnObj = @{
                 VpgName       = "HRIS"
@@ -58,6 +44,10 @@ Describe $file.BaseName -Tag 'Unit' {
 
         Mock -ModuleName ZertoApiWrapper -CommandName New-ZertoVpgSettingsIdentifier {
             return "1024d377-afb8-4880-82f0-96eeff413ffd"
+        }
+
+        Mock -ModuleName ZertoApiWrapper -CommandName Remove-ZertoVpgSettingsIdentifier {
+            return $null
         }
 
         Mock -ModuleName ZertoApiWrapper -CommandName Get-ZertoVpgSetting {
@@ -213,11 +203,11 @@ Describe $file.BaseName -Tag 'Unit' {
 
         $outputPath = "TestDrive:"
 
-        it "Output path should exist" {
+        It "Output path should exist" {
             $outputPath | Should -Exist
         }
 
-        it "Exported JSON file should exist after function called" {
+        It "Exported JSON file should exist after function called" {
             $vpgName = "HRIS"
             Export-ZertoVpg -outputPath $outputPath -vpgName $vpgName
             $outputFile = "{0}\{1}.json" -f $outputPath, $vpgName
@@ -225,11 +215,11 @@ Describe $file.BaseName -Tag 'Unit' {
             $outputFile | Should -Not -BeNullOrEmpty
         }
 
-        it "Only one file should be present in the TestDrive" {
+        It "Only one file should be present in the TestDrive" {
             (Get-ChildItem $outputPath).Count | Should -BeExactly 1
         }
 
-        it "Should be valid JSON" {
+        It "Should be valid JSON" {
             $vpgName = "HRIS"
             Export-ZertoVpg -outputPath $outputPath -vpgName $vpgName
             $outputFile = "{0}\{1}.json" -f $outputPath, $vpgName
@@ -247,3 +237,6 @@ Describe $file.BaseName -Tag 'Unit' {
         Assert-MockCalled -ModuleName ZertoApiWrapper -CommandName Get-ZertoVpgSetting
     }
 }
+
+Remove-Variable -Name function -Scope Global
+Remove-Variable -Name here -Scope Global

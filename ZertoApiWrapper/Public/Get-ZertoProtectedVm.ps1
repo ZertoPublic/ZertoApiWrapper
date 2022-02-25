@@ -4,7 +4,7 @@ function Get-ZertoProtectedVm {
     param (
         [Parameter(
             ParameterSetName = "vmIdentifier",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "vmIdentifier(s) for which to return information"

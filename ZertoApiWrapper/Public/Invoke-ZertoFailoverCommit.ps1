@@ -4,7 +4,7 @@ function Invoke-ZertoFailoverCommit {
     param(
         [Parameter(
             HelpMessage = "Name(s) of the VPG(s) to commit.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName,

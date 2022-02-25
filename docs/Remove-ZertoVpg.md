@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpg.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Remove-ZertoVpg.md
 schema: 2.0.0
 ---
 
@@ -21,7 +21,7 @@ Remove-ZertoVpg -vpgidentifier <String[]> [-keepRecoveryVolumes] [-force] [-What
 
 ### vpgName
 ```
-Remove-ZertoVpg [-vpgName] <String[]> [-keepRecoveryVolumes] [-force] [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-ZertoVpg -vpgName <String[]> [-keepRecoveryVolumes] [-force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -122,7 +122,7 @@ Parameter Sets: vpgName
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False

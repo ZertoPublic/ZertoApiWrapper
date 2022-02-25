@@ -4,7 +4,7 @@ function Import-ZertoVpg {
     param(
         [Parameter(
             HelpMessage = "VPG settings JSON file(s) to import.",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]

@@ -1,0 +1,18 @@
+[
+  {
+    "VmIdentifier": "d809de8e-deb7-45cc-b620-08030a1143e1.vm-87",
+    "VmName": "sql01-prod"
+  },
+  {
+    "VmIdentifier": "d809de8e-deb7-45cc-b620-08030a1143e1.vm-34",
+    "VmName": "Ubuntu01"
+  },
+  {
+    "VmIdentifier": "d809de8e-deb7-45cc-b620-08030a1143e1.vm-79",
+    "VmName": "Win2019Template"
+  },
+  {
+    "VmIdentifier": "d809de8e-deb7-45cc-b620-08030a1143e1.vm-25",
+    "VmName": "WinTemplate"
+  }
+]

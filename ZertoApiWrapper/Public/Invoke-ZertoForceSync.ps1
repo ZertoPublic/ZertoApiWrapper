@@ -4,7 +4,7 @@ function Invoke-ZertoForceSync {
     param(
         [Parameter(
             HelpMessage = "Name(s) of VPG(s) to force sync",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName

@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSetting.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Save-ZertoVpgSetting.md
 schema: 2.0.0
 ---
 
@@ -36,10 +36,10 @@ VpgSettings Identifier to save
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: vpgSettingsId
+Aliases: sid, settingsIdentifier, vpgSettingsId
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False

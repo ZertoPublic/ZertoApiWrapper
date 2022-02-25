@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoTask.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoTask.md
 schema: 2.0.0
 ---
 
@@ -129,6 +129,7 @@ The status of the task. Possible values are: 'InProgress', 'Paused', 'Failed', '
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: InProgress, Paused, Failed, Completed, Cancelling
 
 Required: False
 Position: Named

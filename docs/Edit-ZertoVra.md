@@ -1,20 +1,20 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Edit-ZertoVra.md
 schema: 2.0.0
 ---
 
 # Edit-ZertoVra
 
 ## SYNOPSIS
-Updates a VRA with updated settings
+Updates a VRA with updated settings. Use of this function will cause a reboot of the associated VRA.
 
 ## SYNTAX
 
 ```
 Edit-ZertoVra -vraIdentifier <String> [-groupName <String>] [-vraIpAddress <String>] [-defaultGateway <String>]
- [-subnetMask <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-subnetMask <String>] [-HostRootPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,6 +23,8 @@ Updates a VRA with updated settings using the Zerto VRA end point.
 It is possible to update the Bandwidth group with the -groupName setting. If the group does not currently exist, it will be created.
 
 It is possible to update the static IP address, default gateway, or subnetmask.
+
+This function can be used if the VRA was installed with host credentials to update the password to connect to the host if it has changed.
 
 It is suggested that you use Get-ZertoVra to get the vraIdentifer parameter.
 
@@ -49,9 +51,16 @@ PS C:\>Edit-ZertoVra -vraIdentifier $vraIdentifier -vraIpAddress "192.168.1.101"
 
 Updates the VRA IP address to 192.168.1.101, subnet mask to 255.255.252.0, and default gateway to 192.168.1.1
 
-### Example 3
+### Example 4
 ```powershell
 PS C:\>Edit-ZertoVra -vraIdentifier $vraIdentifier -defaultGateway "192.168.1.1"
+```
+
+Updates the VRA default gateway to 192.168.1.1
+
+### Example 5
+```powershell
+PS C:\>Edit-ZertoVra -HostRootPassword $HostRootPassword
 ```
 
 Updates the VRA default gateway to 192.168.1.1
@@ -79,6 +88,21 @@ If unspecified will not modify current assignment
 
 ```yaml
 Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -HostRootPassword
+Updated ESXi host root password.
+
+```yaml
+Type: SecureString
 Parameter Sets: (All)
 Aliases:
 

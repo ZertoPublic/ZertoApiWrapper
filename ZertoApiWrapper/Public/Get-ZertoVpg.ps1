@@ -4,17 +4,17 @@ function Get-ZertoVpg {
     param(
         [Parameter(
             ParameterSetName = "protectionGroupIdentifier",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
         [Parameter(
             ParameterSetName = "checkpoints",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
         [Parameter(
             ParameterSetName = "stats",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "The identifier(s) of the Virtual Protection Group to return"
         )]
         [ValidateNotNullOrEmpty()]
@@ -22,7 +22,7 @@ function Get-ZertoVpg {
         [string[]]$protectionGroupIdentifier,
         [Parameter(
             ParameterSetName = "checkpoints",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return checkpoints for the selected Virtual Protection Group."
         )]
         [switch]$checkpoints,
@@ -39,49 +39,49 @@ function Get-ZertoVpg {
         [ValidateNotNullOrEmpty()]
         [string]$endDate,
         [Parameter(
-            ParameterSetName = "stats", Mandatory = $true,
+            ParameterSetName = "stats", Mandatory,
             HelpMessage = "Return earliest and latest checkpoints for the selected Virtual Protection Group"
         )]
         [switch]$checkpointsStats,
         [Parameter(
             ParameterSetName = "entityTypes",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Return Valid VPG entityTypes"
         )]
         [switch]$entityTypes,
         [Parameter(
             ParameterSetName = "failoverCommitPolicies",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid Failover Commit Policies"
         )]
         [switch]$failoverCommitPolicies,
         [Parameter(
             ParameterSetName = "failoverShutdownPolicies",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid Failover Shutdown Policies"
         )]
         [switch]$failoverShutdownPolicies,
         [Parameter(
             ParameterSetName = "priorities",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid VPG priorities"
         )]
         [switch]$priorities,
         [Parameter(
             ParameterSetName = "retentionPolicies",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid retention policies"
         )]
         [switch]$retentionPolicies,
         [Parameter(
             ParameterSetName = "statuses",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid VPG statuses"
         )]
         [switch]$statuses,
         [Parameter(
             ParameterSetName = "subStatuses",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Valid VPG sub statuses"
         )]
         [switch]$subStatuses,
@@ -160,7 +160,6 @@ function Get-ZertoVpg {
     )
     begin {
         $baseUri = "vpgs"
-        $returnObject = @()
     }
 
     Process {
@@ -169,14 +168,13 @@ function Get-ZertoVpg {
 
             # When called with no parameters, return all values
             "main" {
-                $returnObject = Invoke-ZertoRestRequest -uri $baseUri
+                $uri = $baseUri
             }
 
             # When called with protectionGroupIdentifier, query for each id provided
             "protectionGroupIdentifier" {
-                $returnObject = foreach ( $vpgId in $protectionGroupIdentifier ) {
-                    $uri = "{0}/{1}" -f $baseUri, $vpgId
-                    Invoke-ZertoRestRequest -uri $uri
+                $uri = foreach ( $vpgId in $protectionGroupIdentifier ) {
+                    "{0}/{1}" -f $baseUri, $vpgId
                 }
             }
 
@@ -185,7 +183,7 @@ function Get-ZertoVpg {
                 $filter = $false
                 if ( $PSBoundParameters.ContainsKey("startDate") -or $PSBoundParameters.ContainsKey("endDate") ) {
                     $filter = $true
-                    $filterTable = @{}
+                    $filterTable = @{ }
                     foreach ( $param in $PSBoundParameters.GetEnumerator() ) {
                         if ( $param.key -eq "startDate" -or $param.key -eq "endDate") {
                             $filterTable[$param.key] = $param.value
@@ -193,21 +191,19 @@ function Get-ZertoVpg {
                     }
                     $filter = Get-ZertoApiFilter -filterTable $filterTable
                 }
-                $returnObject = foreach ( $id in $protectionGroupIdentifier ) {
+                $uri = foreach ( $id in $protectionGroupIdentifier ) {
                     if ( $filter ) {
-                        $uri = "{0}/{1}/checkpoints{2}" -f $baseUri, $id, $filter
+                        "{0}/{1}/checkpoints{2}" -f $baseUri, $id, $filter
                     } else {
-                        $uri = "{0}/{1}/checkpoints" -f $baseUri, $id
+                        "{0}/{1}/checkpoints" -f $baseUri, $id
                     }
-                    Invoke-ZertoRestRequest -uri $uri
                 }
             }
 
             # When stats are requested
             "stats" {
-                $returnObject = foreach ( $id in $protectionGroupIdentifier ) {
-                    $uri = "{0}/{1}/checkpoints/stats" -f $baseUri, $id
-                    Invoke-ZertoRestRequest -uri $uri
+                $uri = foreach ( $id in $protectionGroupIdentifier ) {
+                    "{0}/{1}/checkpoints/stats" -f $baseUri, $id
                 }
             }
 
@@ -215,18 +211,18 @@ function Get-ZertoVpg {
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
                 $uri = "{0}{1}" -f $baseUri, $filter
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
 
             # Default is to build URI based on ParameterSetName and return results.
             default {
                 $uri = "{0}/{1}" -f $baseUri, $PSCmdlet.ParameterSetName.ToLower()
-                $returnObject = Invoke-ZertoRestRequest -uri $uri
             }
+        }
+        foreach ($entry in $uri) {
+            Invoke-ZertoRestRequest -uri $entry
         }
     }
 
     End {
-        return $returnObject
     }
 }

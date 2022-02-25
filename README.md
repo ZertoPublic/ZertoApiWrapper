@@ -1,11 +1,11 @@
 # ZertoApiWrapper
 
-PowerShell Core wrapper for Zerto Virtual Manager API
+PowerShell wrapper for Zerto Virtual Manager API
 
 ## Current Build Status
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0e31e5cdad534271ac688a82cc3ca17d)](https://app.codacy.com/app/wcarroll/ZertoApiWrapper?utm_source=github.com&utm_medium=referral&utm_content=wcarroll/ZertoApiWrapper&utm_campaign=Badge_Grade_Settings)
-[![Build Status](https://dev.azure.com/wescarroll/ZertoApiWrapper/_apis/build/status/wcarroll.ZertoApiWrapper?branchName=master)](https://dev.azure.com/wescarroll/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_apis/build/status/ZertoPublic.ZertoApiWrapper?branchName=master)](https://dev.azure.com/ZertoPublic/ZertoApiWrapper/_build/latest?definitionId=1&branchName=master)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/ZertoApiWrapper?label=PowerShell%20Gallery%20Downloads)](https://www.powershellgallery.com/packages/ZertoApiWrapper)
 
 ## Legal Disclaimer
 
@@ -15,54 +15,30 @@ In no event shall Zerto, its authors or anyone else involved in the creation, pr
 
 ## Disclaimer
 
-This code is still under development!! USE AT YOUR OWN RISK AND ONLY IF YOU KNOW WHAT YOU ARE DOING!!
+This code is still under development! Please use carefully and if you encounter any issues or have an idea, please submit an [issue](https://github.com/ZertoPublic/ZertoApiWrapper/issues). Along the same lines, should you be proficient in PowerShell, please feel free to submit any [Pull Requests](https://github.com/ZertoPublic/ZertoApiWrapper/pulls) with enhancements and bug fixes.
+
+## Installing the Module
+
+This module can be installed directly from the [PowerShell Gallery](https://www.powershellgallery.com/packages/ZertoApiWrapper) with the following command.
+
+```PowerShell
+PS> Install-Module -name ZertoApiWrapper
+```
 
 ## Getting Started
 
-Place the folder and contents on your hard drive in a location known to you. From there run the following command to import the module into your session:
-
-```PowerShell
-PS C:\>Import-Module <path>\ZertoApiWrapper\ZertoApiWrapper\ZertoApiWrapper.psm1 -force
-```
-
-This will import the module into your current session and make the function available to you use and test.
-
-### Connecting to a ZVM
-
-Before any of the functions will work, you will need to connect to a Zerto Virtual Manager server. To do this you will use the `Connect-ZertoServer` function passing in a Server Name or IP address of the Zerto Virtual Manager. If you are using a non-standard port, you will need to provide that as well with the `-zertoPort` parameter. You will also need to supply credentials to authenticate against the Zerto Virtual Manager. If credentials are not provided, the user will be prompted for a username and password.
-
-```PowerShell
-PS C:\>$credential = Get-Credential
-PS C:\>Connect-ZertoServer -zertoServer "192.168.222.20" -credential $credential
-```
-
-After successful execution, a few Module level variables are set that are not currently exposed. These variables keep track of the Zerto Server connection information such as Server Name and Port information along with the authentication headers. A "Last Action" variable is also set to keep track of when the last call was made to the API to determine if the authentication information has expired or not. Should this command be run again with a different server, the old information will be overwritten and all commands from that point will be executed against the new server information.
-
-### Using the Module
-
-A help system is currently under development. While each command has a help page, it may not be fully fleshed out yet. To see all possible functions you can use the following command after the module has been imported:
-
-```PowerShell
-PS C:\>Get-Command -module ZertoApiWrapper
-```
-
-Once you have found the command that you want to know about you can call `Get-Help <Command>` to take a look at the help page, or if you want to see syntax, `Get-Command <Command> -syntax`.
-
-### Ending the Session
-
-If you are using this as part of a larger script, I highly suggest explicitly ending your session with the `Disconnect-ZertoSession` command. This will delete the token authorization from the Zerto Virtual Manager as well as clear all Module scoped variables.
+* [Getting Started with Zerto Virtual Manager and the ZertoApiWrapper](https://github.com/ZertoPublic/ZertoApiWrapper/wiki/Getting-Started-with-Zerto-Virtual-Manager)
+* [Getting Started with Zerto Analytics and the ZertoApiWrapper](https://github.com/ZertoPublic/ZertoApiWrapper/wiki/Getting-Started-with-Zerto-Analytics)
 
 ## Recent Updates
 
-- March 15th, 2019: Implement Export and Import Functionality. Please See [Export-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Export-ZertoVpg.md) and [Import-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Import-ZertoVpg.md) for assistance. No current pre-seed support.
-- March 11th, 2019: Create basic VPG completed. Please see [New-ZertoVpg Help](https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/New-ZertoVpg.md)
+All recent updates can now be tracked via the [Change Log](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/CHANGELOG.md).
 
 ## TODO
 
-- Complete Help Markdown Files
-- JFLR Functionality
-- Create VPG (Per-VM modification and Backup Settings)
-- Edit VPG
-- Delete Zerto License
-- Flesh out Pester Tests
-- Complete Automated Build Process
+* JFLR Functionality
+* Create VPG (Per-VM modification and Backup Settings)
+* Edit VPG
+* Delete Zerto License
+* Flesh out Pester Tests
+* Complete Automated Build Process

@@ -69,7 +69,7 @@ function Get-ZertoEvent {
             ParameterSetName = "filter",
             HelpMessage = "The type of event to return. This filter behaves in the same way as the eventCategory filter. Possible Values are: Possible Values are: 'All', 'Events', 'Alerts'"
         )]
-        [ValidateNotNullOrEmpty()]
+        [ValidateSet('All', 'Events', 'Alerts')]
         [string]$category,
         [Parameter(
             ParameterSetName = "filter",
@@ -86,7 +86,7 @@ function Get-ZertoEvent {
         [string]$alertIdentifier,
         [Parameter(
             ParameterSetName = "eventId",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
             HelpMessage = "The identifier or identifiers of the event for which information is returned."
@@ -95,19 +95,19 @@ function Get-ZertoEvent {
         [string[]]$eventId,
         [Parameter(
             ParameterSetName = "categories",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Returns possible Event Categories."
         )]
         [switch]$categories,
         [Parameter(
             ParameterSetName = "entities",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Returns possible entity types."
         )]
         [switch]$entities,
         [Parameter(
             ParameterSetName = "types",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Returns possible event types.")]
         [switch]$types
     )
@@ -137,6 +137,10 @@ function Get-ZertoEvent {
             # If a filter is applied, create the filter and return the events that fall in that filter
             "filter" {
                 $filter = Get-ZertoApiFilter -filterTable $PSBoundParameters
+                if ($PSBoundParameters.Keys -contains 'vpg') {
+                    $vpgIdentifier = (Get-ZertoVpg -name $vpg).vpgIdentifier
+                    $filter = $filter.replace("vpg=$vpg", "vpg=$vpgIdentifier")
+                }
                 $uri = "{0}{1}" -f $baseUri, $filter
                 $returnObject = Invoke-ZertoRestRequest -uri $uri
             }

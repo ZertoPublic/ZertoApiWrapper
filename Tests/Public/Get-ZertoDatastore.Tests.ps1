@@ -1,19 +1,25 @@
 #Requires -Modules Pester
-$moduleFileName = "ZertoApiWrapper.psd1"
-$here = (Split-Path -Parent $MyInvocation.MyCommand.Path).Replace("Tests", "ZertoApiWrapper")
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path).Replace(".Tests.", ".")
-$file = Get-ChildItem "$here\$sut"
-$modulePath = $here -replace "Public", ""
-$moduleFile = Get-ChildItem "$modulePath\$moduleFileName"
-Get-Module -Name ZertoApiWrapper | Remove-Module -Force
-Import-Module $moduleFile -Force
+$global:here = (Split-Path -Parent $PSCommandPath)
+$global:function = ((Split-Path -leaf $PSCommandPath).Split('.'))[0]
 
-Describe $file.BaseName -Tag 'Unit' {
+Describe $global:function -Tag 'Unit', 'Source', 'Built' {
 
-    It "is valid Powershell (Has no script errors)" {
-        $contents = Get-Content -Path $file -ErrorAction Stop
-        $errors = $null
-        $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-        $errors | Should -HaveCount 0
+    Context "$global:function::Parameter Unit Tests" {
+
+        It "has a non-mandatory string parameter for the datacenterIdentifier" {
+            Get-Command $global:function | Should -HaveParameter datastoreIdentifier
+            Get-Command $global:function | Should -HaveParameter datastoreIdentifier -Type String[]
+        }
+
+        It "datastoreIdentifier parameter does not take null or empty values" {
+            (Get-Command $global:function).Parameters['datastoreIdentifier'].Attributes.Where{ $_ -is [ValidateNotNullOrEmpty] }.count | Should -Be 1
+        }
+    }
+
+    Context "$global:function::Parameter Functional Tests" {
+
     }
 }
+
+Remove-Variable -Name here -Scope Global
+Remove-Variable -Name function -Scope Global

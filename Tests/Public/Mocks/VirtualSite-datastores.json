@@ -1,0 +1,34 @@
+[
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-40",
+    "DatastoreName": "MgmtLUN"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-23",
+    "DatastoreName": "LabPool"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-22",
+    "DatastoreName": "datastore1 (2)"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-21",
+    "DatastoreName": "datastore1 (1)"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-19",
+    "DatastoreName": "datastore1"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-41",
+    "DatastoreName": "CA_DS_01"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-42",
+    "DatastoreName": "CA_DS_02"
+  },
+  {
+    "DatastoreIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.datastore-43",
+    "DatastoreName": "CA_DS_03"
+  }
+]

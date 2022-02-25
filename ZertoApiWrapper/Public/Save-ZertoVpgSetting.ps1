@@ -6,17 +6,25 @@ function Save-ZertoVpgSetting {
     param(
         [Parameter(
             HelpMessage = "VpgSettings Identifier to save",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
         [ValidateNotNullOrEmpty()]
-        [Alias("vpgSettingsId")]
+        [Alias("sid", "settingsIdentifier", "vpgSettingsId")]
         [string]$vpgSettingsIdentifier
     )
 
-    $baseUri = "vpgsettings/{0}/commit" -f $vpgSettingsIdentifier
-    if ($PSCmdlet.ShouldProcess("Commiting VPG Settings with Settigns identifier $vpgSettingsIdentifier")) {
-        Invoke-ZertoRestRequest -uri $baseUri -method "POST"
+    Begin {
+    }
+
+    Process {
+        $baseUri = "vpgsettings/{0}/commit" -f $vpgSettingsIdentifier
+        if ($PSCmdlet.ShouldProcess("Commiting VPG Settings with Settigns identifier $vpgSettingsIdentifier")) {
+            Invoke-ZertoRestRequest -uri $baseUri -method "POST"
+        }
+    }
+
+    End {
     }
 }

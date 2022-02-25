@@ -4,7 +4,7 @@ function Start-ZertoFailoverTest {
     param(
         [Parameter(
             HelpMessage = "Name of VPG to failover test",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$vpgName,
@@ -27,11 +27,12 @@ function Start-ZertoFailoverTest {
         if ( -not $vpgIdentifier) {
             Write-Error "VPG: $vpgName Not Found. Please check the name and try again!" -ErrorAction Stop
         }
+        $body = @{ }
         if ( $PSBoundParameters.ContainsKey('vmName') ) {
             $vpgVmInformation = Get-ZertoProtectedVm -vpgName $vpgName
-            [System.Collections.ArrayList]$vmIdentifiers = @()
+            $vmIdentifiers = [System.Collections.Generic.List[string]]::new()
             foreach ( $name in $vmName ) {
-                $selectedVm = $vpgVmInformation | Where-Object {$_.VmName.toLower() -eq $name.toLower()}
+                $selectedVm = $vpgVmInformation | Where-Object { $_.VmName.toLower() -eq $name.toLower() }
                 if ($null -eq $selectedVm) {
                     Write-Error "VM: $name NOT found in VPG $vpgName. Check the name and try again." -ErrorAction Stop
                 } elseif ($vmIdentifiers.Contains($selectedVm.vmIdentifier.toString())) {

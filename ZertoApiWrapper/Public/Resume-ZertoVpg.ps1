@@ -4,7 +4,7 @@ function Resume-ZertoVpg {
     param(
         [Parameter(
             HelpMessage = "Name(s) of VPG(s) to resume replication",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$vpgName

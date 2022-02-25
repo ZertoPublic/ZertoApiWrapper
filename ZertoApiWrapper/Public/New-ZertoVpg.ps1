@@ -1,10 +1,10 @@
 <# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function New-ZertoVpg {
-    [cmdletbinding(SupportsShouldProcess = $true)]
+    [cmdletbinding(SupportsShouldProcess = $true, DefaultParameterSetName = "recoveryHostDatastore")]
     param(
         [Parameter(
             HelpMessage = "Name of the VPG",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$vpgName,
@@ -20,89 +20,89 @@ function New-ZertoVpg {
         [int]$journalHistoryInHours = 24,
         [Parameter(
             HelpMessage = "Name(s) of the VM(s) to be protected.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string[]]$protectedVm,
         [Parameter(
             HelpMessage = "Name of the site where the VM(s) will be recovered",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoverySite,
         [Parameter(
             HelpMessage = "Name of the cluster where the VM(s) will be recovered.",
             ParameterSetName = "recoveryClusterDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the cluster where the VM(s) will be recovered.",
             ParameterSetName = "recoveryClusterDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryCluster,
         [Parameter(
             HelpMessage = "Name of the host where the VM(s) will be recovered.",
             ParameterSetName = "recoveryHostDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the host where the VM(s) will be recovered.",
             ParameterSetName = "recoveryHostDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryHost,
         [Parameter(
             HelpMessage = "Name of the resource pool where the VM(s) will be recovered.",
             ParameterSetName = "recoveryResourcePoolDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the resource pool where the VM(s) will be recovered.",
             ParameterSetName = "recoveryResourcePoolDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryResourcePool,
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryClusterDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryHostDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryResourcePoolDatastore",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$datastore,
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryClusterDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryHostDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [Parameter(
             HelpMessage = "Name of the datastore cluster where the VM(s), Volume(s), and Journal(s) will reside.",
             ParameterSetName = "recoveryResourcePoolDatastoreCluster",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$datastoreCluster,
         [Parameter(
             HelpMessage = "Name of folder at recovery location where the recovered virtual machine(s) will be created.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$recoveryFolder,
@@ -132,13 +132,13 @@ function New-ZertoVpg {
         [String]$zorg,
         [Parameter(
             HelpMessage = "Name of the network to use during a Failover Live \ Move VPG operation.",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [String]$recoveryNetwork,
         [Parameter(
             HelpMessage = "Name of the network to use during a Failover Test operation",
-            Mandatory = $true
+            Mandatory
         )]
         [ValidateNotNullOrEmpty()]
         [string]$testNetwork,
@@ -164,64 +164,63 @@ function New-ZertoVpg {
 
     begin {
         # Create an identifiers table, and start converting names to identifiers.
-        $identifiersTable = @{}
-        $identifiersTable['recoverySiteIdentifier'] = $(Get-ZertoPeerSite -peerName $recoverySite).siteIdentifier
+        $identifiersTable = @{ }
+        $identifiersTable['recoverySiteIdentifier'] = Get-ZertoVirtualizationSite | Where-Object { $_.VirtualizationSiteName -like $recoverySite } | Select-Object -ExpandProperty SiteIdentifier
         $peerSiteNetworks = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -networks)
-        $identifiersTable['failoverNetworkIdentifier'] = $peerSiteNetworks | Where-Object {$_.VirtualizationNetworkName -like $recoveryNetwork} | Select-Object -ExpandProperty NetworkIdentifier
-        $identifiersTable['testNetworkIdentifier'] = $peerSiteNetworks | Where-Object {$_.VirtualizationNetworkName -like $testNetwork} | Select-Object -ExpandProperty NetworkIdentifier
-        $identifiersTable['folderIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -folders | Where-Object {$_.FolderName -like $recoveryFolder}).folderIdentifier
+        $identifiersTable['failoverNetworkIdentifier'] = $peerSiteNetworks | Where-Object { $_.VirtualizationNetworkName -like $recoveryNetwork } | Select-Object -ExpandProperty NetworkIdentifier
+        $identifiersTable['testNetworkIdentifier'] = $peerSiteNetworks | Where-Object { $_.VirtualizationNetworkName -like $testNetwork } | Select-Object -ExpandProperty NetworkIdentifier
+        $identifiersTable['folderIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -folders | Where-Object { $_.FolderName -like $recoveryFolder }).folderIdentifier
         if ($PSBoundParameters.ContainsKey("zorg")) {
-            $identifiersTable['zorgIdentifier'] = $(Get-ZertoZorg | Where-Object {$_.ZorgName -like $zorg}).ZorgIdentifier
+            $identifiersTable['zorgIdentifier'] = $(Get-ZertoZorg | Where-Object { $_.ZorgName -like $zorg }).ZorgIdentifier
         }
         if ($PSBoundParameters.ContainsKey("serviceProfile")) {
-            $identifiersTable['serviceProfileIdentifier'] = $(Get-ZertoServiceProfile -siteIdentifier $identifiersTable['recoverySiteIdentifier'] | Where-Object {$_.ServiceProfileName -like $serviceProfile}).serviceProfileIdentifier
+            $identifiersTable['serviceProfileIdentifier'] = $(Get-ZertoServiceProfile -siteIdentifier $identifiersTable['recoverySiteIdentifier'] | Where-Object { $_.ServiceProfileName -like $serviceProfile }).serviceProfileIdentifier
         }
         if ($PSBoundParameters.ContainsKey('journalDatastore')) {
-            $identifiersTable['journalDatastore'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object {$_.DatastoreName -like $journalDatastore}).DatastoreIdentifier
+            $identifiersTable['journalDatastore'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object { $_.DatastoreName -like $journalDatastore }).DatastoreIdentifier
         }
         # Get identifiers based on parameter set name
         switch ($PSCmdlet.ParameterSetName) {
             "recoveryClusterDatastoreCluster" {
-                $identifiersTable['clusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hostclusters | Where-Object {$_.VirtualizationClusterName -like $recoveryCluster}).ClusterIdentifier
-                $identifiersTable['datastoreClusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastoreclusters | Where-Object {$_.DatastoreClusterName -like $datastoreCluster}).DatastoreClusterIdentifier
+                $identifiersTable['clusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hostClusters | Where-Object { $_.VirtualizationClusterName -like $recoveryCluster }).ClusterIdentifier
+                $identifiersTable['datastoreClusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastoreClusters | Where-Object { $_.DatastoreClusterName -like $datastoreCluster }).DatastoreClusterIdentifier
             }
 
             "recoveryClusterDatastore" {
-                $identifiersTable['clusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hostclusters | Where-Object {$_.VirtualizationClusterName -like $recoveryCluster}).ClusterIdentifier
-                $identifiersTable['datastoreIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object {$_.DatastoreName -like $datastore}).DatastoreIdentifier
+                $identifiersTable['clusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hostClusters | Where-Object { $_.VirtualizationClusterName -like $recoveryCluster }).ClusterIdentifier
+                $identifiersTable['datastoreIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object { $_.DatastoreName -like $datastore }).DatastoreIdentifier
             }
 
             "recoveryHostDatastoreCluster" {
-                $identifiersTable['recoveryHostIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hosts | Where-Object {$_.VirtualizationHostName -like $recoveryHost}).HostIdentifier
-                $identifiersTable['datastoreClusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastoreclusters | Where-Object {$_.DatastoreClusterName -like $datastoreCluster}).DatastoreClusterIdentifier
+                $identifiersTable['recoveryHostIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hosts | Where-Object { $_.VirtualizationHostName -like $recoveryHost }).HostIdentifier
+                $identifiersTable['datastoreClusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastoreClusters | Where-Object { $_.DatastoreClusterName -like $datastoreCluster }).DatastoreClusterIdentifier
             }
 
             "recoveryHostDatastore" {
-                $identifiersTable['recoveryHostIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hosts | Where-Object {$_.VirtualizationHostName -like $recoveryHost}).HostIdentifier
-                $identifiersTable['datastoreIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object {$_.DatastoreName -like $datastore}).DatastoreIdentifier
+                $identifiersTable['recoveryHostIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -hosts | Where-Object { $_.VirtualizationHostName -like $recoveryHost }).HostIdentifier
+                $identifiersTable['datastoreIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object { $_.DatastoreName -like $datastore }).DatastoreIdentifier
             }
 
             "recoveryResourcePoolDatastoreCluster" {
-                $identifiersTable['recoveryResourcePoolIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -resourcepools | Where-Object {$_.ResourcePoolName -like $recoveryResourcePool}).ResourcePoolIdentifier
-                $identifiersTable['datastoreClusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastoreclusters | Where-Object {$_.DatastoreClusterName -like $datastoreCluster}).DatastoreClusterIdentifier
+                $identifiersTable['recoveryResourcePoolIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -resourcePools | Where-Object { $_.ResourcePoolName -like $recoveryResourcePool }).ResourcePoolIdentifier
+                $identifiersTable['datastoreClusterIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastoreClusters | Where-Object { $_.DatastoreClusterName -like $datastoreCluster }).DatastoreClusterIdentifier
             }
 
             "recoveryResourcePoolDatastore" {
-                $identifiersTable['recoveryResourcePoolIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -resourcepools | Where-Object {$_.ResourcePoolName -like $recoveryResourcePool}).ResourcePoolIdentifier
-                $identifiersTable['datastoreIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object {$_.DatastoreName -like $datastore}).DatastoreIdentifier
+                $identifiersTable['recoveryResourcePoolIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -resourcePools | Where-Object { $_.ResourcePoolName -like $recoveryResourcePool }).ResourcePoolIdentifier
+                $identifiersTable['datastoreIdentifier'] = $(Get-ZertoVirtualizationSite -siteIdentifier $identifiersTable['recoverySiteIdentifier'] -datastores | Where-Object { $_.DatastoreName -like $datastore }).DatastoreIdentifier
             }
         }
         $unprotectedVms = Get-ZertoUnprotectedVm
         $protectedVms = Get-ZertoProtectedVm
         # Create array of VM identifiers
-        $vmIdentifiers = @()
         $vmIdentifiers = foreach ($vm in $protectedVm) {
             # If the VM is unprotected, get the identifier
-            $vmIdentifier = $unprotectedVms | Where-Object {$_.vmName -like $vm} | Select-Object -ExpandProperty vmIdentifier
+            $vmIdentifier = $unprotectedVms | Where-Object { $_.vmName -like $vm } | Select-Object -ExpandProperty vmIdentifier
             # If the VM is not unprotected, check the protected VMs
             if ( -not $vmIdentifier) {
                 # Get all identifiers to test if the VM is eligible to be a member of an additional VPG
-                $results = $protectedVms | Where-Object {$_.VmName -like $vm} | Select-Object -ExpandProperty vmIdentifier
+                $results = $protectedVms | Where-Object { $_.VmName -like $vm } | Select-Object -ExpandProperty vmIdentifier
                 # If VM is currently a member of 3 VPGs, skip it. If it cannot be found, skip it. Otherwise, set the identifier
                 if ($results.count -eq 3) {
                     Write-Warning "$vm is already a part of 3 VPGs and cannot be part of an additional VPG. Skipping $vm"
@@ -296,11 +295,11 @@ function New-ZertoVpg {
 
             "recoveryHostDatastoreCluster" {
                 $baseSettings.Recovery.DefaultDatastoreClusterIdentifier = $identifiersTable['datastoreClusterIdentifier']
-                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['hostIdentifier']
+                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['recoveryHostIdentifier']
             }
 
             "recoveryHostDatastore" {
-                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['hostIdentifier']
+                $baseSettings.Recovery.DefaultHostIdentifier = $identifiersTable['recoveryHostIdentifier']
                 $baseSettings.Recovery.DefaultDatastoreIdentifier = $identifiersTable['datastoreIdentifier']
             }
 
@@ -314,13 +313,7 @@ function New-ZertoVpg {
                 $baseSettings.Recovery.DefaultDatastoreIdentifier = $identifiersTable['datastoreIdentifier']
             }
         }
-        # If only 1 VM is selected, force VMs settings to be an array.
-        If ($vmIdentifiers.count -eq 1) {
-            $basesettings.Vms = @()
-            $baseSettings.Vms += $vmIdentifiers
-        } else {
-            $baseSettings.Vms = $vmIdentifiers
-        }
+        $basesettings.Vms += $vmIdentifiers
         if ($identifiersTable.ContainsKey('journalDatastore')) {
             $baseSettings.Journal.DatastoreIdentifier = $identifiersTable['journalDatastore']
         }

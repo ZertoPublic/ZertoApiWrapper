@@ -4,7 +4,7 @@ function Get-ZertoAlert {
     param(
         [Parameter(
             ParameterSetName = "alertId",
-            Mandatory = $true,
+            Mandatory,
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true ,
             HelpMessage = "AlertId or array of AlertIds to be queried"
@@ -13,19 +13,19 @@ function Get-ZertoAlert {
         [string[]]$alertId,
         [Parameter(
             ParameterSetName = "entities",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Switch to return the entities information from the API"
         )]
         [switch]$entities,
         [Parameter(
             ParameterSetName = "helpIdentifiers",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Switch to get the Help Identifiers information from the API"
         )]
         [switch]$helpIdentifiers,
         [Parameter(
             ParameterSetName = "levels",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Switch to return Alert Levels information from the API"
         )]
         [switch]$levels,
@@ -43,7 +43,7 @@ function Get-ZertoAlert {
         [string]$endDate,
         [Parameter(
             ParameterSetName = "filter",
-            HelpMessage = "Returns alerts for the specified vraIdentifier"
+            HelpMessage = "Returns alerts for the specified vpgIdentifier"
         )]
         [ValidateNotNullOrEmpty()]
         [Alias("vpgId")]

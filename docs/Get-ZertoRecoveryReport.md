@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoRecoveryReport.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoRecoveryReport.md
 schema: 2.0.0
 ---
 
@@ -20,7 +20,7 @@ Get-ZertoRecoveryReport [<CommonParameters>]
 ### filter
 ```
 Get-ZertoRecoveryReport [-startTime <String>] [-endTime <String>] [-pageNumber <String>] [-pageSize <String>]
- [-vpgIdentifier <String>] [-vpgName <String>] [-recoveryType <String>] [-state <String>] [<CommonParameters>]
+ [-vpgName <String>] [-recoveryType <String>] [-state <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -102,6 +102,7 @@ Possible values are: 'Failover', 'Failover Test', or 'Move'
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: Failover, Failover Test, Move
 
 Required: False
 Position: Named
@@ -129,22 +130,6 @@ Accept wildcard characters: False
 
 ### -state
 Whether the recovery operation has completed.
-
-```yaml
-Type: String
-Parameter Sets: filter
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -vpgIdentifier
-The internal identifier of the VPG.
-You can specify more than one VPG, separated by commas.
 
 ```yaml
 Type: String

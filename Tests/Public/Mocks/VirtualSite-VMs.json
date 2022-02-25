@@ -1,0 +1,18 @@
+[
+  {
+    "VmIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.vm-55",
+    "VmName": "TimeSeries"
+  },
+  {
+    "VmIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.vm-53",
+    "VmName": "AnsibleTarget"
+  },
+  {
+    "VmIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.vm-28",
+    "VmName": "cazvm.nc.lab"
+  },
+  {
+    "VmIdentifier": "09db6c5b-b956-430f-9589-b58876ca377a.vm-26",
+    "VmName": "WinTemplate"
+  }
+]

@@ -1,7 +1,7 @@
 ---
 external help file: ZertoApiWrapper-help.xml
 Module Name: ZertoApiWrapper
-online version: https://github.com/wcarroll/ZertoApiWrapper/blob/master/docs/Get-ZertoVpg.md
+online version: https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Get-ZertoVpg.md
 schema: 2.0.0
 ---
 
@@ -271,6 +271,7 @@ The VPG priority. Possible values are: 'Low', 'Medium', 'High'
 Type: String
 Parameter Sets: filter
 Aliases:
+Accepted values: Low, Medium, High
 
 Required: False
 Position: Named

@@ -33,7 +33,7 @@
     Description       = 'PowerShell Core Wrapper Module for Zerto Virtual Manager API'
 
     # Minimum version of the PowerShell engine required by this module
-    PowerShellVersion = '6.0.0'
+    PowerShellVersion = '5.1.0'
 
     # Name of the PowerShell host required by this module
     # PowerShellHostName = ''
@@ -69,7 +69,7 @@
     # NestedModules = @()
 
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = 'Add-ZertoPeerSite', 'Checkpoint-ZertoVpg', 'Connect-ZertoServer', 'Disconnect-ZertoServer', 'Edit-ZertoVra', 'Export-ZertoVpg', 'Get-ZertoAlert', 'Get-ZertoDatastore', 'Get-ZertoEvent', 'Get-ZertoLicense', 'Get-ZertoLocalSite', 'Get-ZertoPeerSite', 'Get-ZertoProtectedVm', 'Get-ZertoRecoveryReport', 'Get-ZertoResourcesReport', 'Get-ZertoServiceProfile', 'Get-ZertoTask', 'Get-ZertoUnprotectedVm', 'Get-ZertoVirtualizationSite', 'Get-ZertoVolume', 'Get-ZertoVpg', 'Get-ZertoVpgSetting', 'Get-ZertoVra', 'Get-ZertoZorg', 'Get-ZertoZsspSession', 'Import-ZertoVpg', 'Install-ZertoVra', 'Invoke-ZertoFailover', 'Invoke-ZertoFailoverCommit', 'Invoke-ZertoFailoverRollback', 'Invoke-ZertoForceSync', 'Invoke-ZertoMove', 'Invoke-ZertoMoveCommit', 'Invoke-ZertoMoveRollback', 'New-ZertoVpg', 'New-ZertoVpgSettingsIdentifier', 'Remove-ZertoPeerSite', 'Remove-ZertoVpg', 'Resume-ZertoVpg', 'Save-ZertoVpgSettings', 'Set-ZertoAlert', 'Set-ZertoLicense', 'Start-ZertoCloneVpg', 'Start-ZertoFailoverTest', 'Stop-ZertoCloneVpg', 'Stop-ZertoFailoverTest', 'Suspend-ZertoVpg', 'Uninstall-ZertoVra'
+    FunctionsToExport = '*'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport   = @()

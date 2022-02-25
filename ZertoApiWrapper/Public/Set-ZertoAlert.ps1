@@ -5,7 +5,7 @@ function Set-ZertoAlert {
         [Parameter(
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true,
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Alert identifier(s) to be dismissed or undismissed."
         )]
         [ValidateNotNullOrEmpty()]
@@ -13,13 +13,13 @@ function Set-ZertoAlert {
         [string[]]$alertId,
         [Parameter(
             ParameterSetName = "dismiss",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Will dismiss the selected alert."
         )]
         [switch]$dismiss,
         [Parameter(
             ParameterSetName = "undismiss",
-            Mandatory = $true,
+            Mandatory,
             HelpMessage = "Will undismiss the selected alert."
         )]
         [switch]$undismiss
