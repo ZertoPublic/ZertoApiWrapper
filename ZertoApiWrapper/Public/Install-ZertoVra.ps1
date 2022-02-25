@@ -26,6 +26,11 @@ function Install-ZertoVra {
         [ValidateRange(1, 16)]
         [int]$memoryInGB = 3,
         [Parameter(
+            HelpMessage = "Initial number of CPUs to assign to the VRA. Default is 1, Minimum is 1, Maximum is 4"
+        )]
+        [ValidateRange(1, 4)]
+        [int]$NumOfCpus = 1,
+        [Parameter(
             HelpMessage = "Bandwidth group to assign to the VRA. If unspecified will assign to the 'default_group'"
         )]
         [ValidateNotNullOrEmpty()]
@@ -136,6 +141,7 @@ function Install-ZertoVra {
             }
             $vraBasic['HostIdentifier'] = $hostIdentifier.toString()
             $vraBasic['MemoryInGB'] = $memoryInGB
+            $vraBasic['NumOfCpus'] = $NumOfCpus
             $vraBasic['NetworkIdentifier'] = $networkIdentifier.toString()
             $vraBasic['UsePublicKeyInsteadOfCredentials'] = $true
             $vraBasicNetwork = [ordered]@{ }
