@@ -165,6 +165,22 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -numofCPU
+Initial number of vCPUs to assign to the VRA.
+Default is 1, Minimum is 1, Maximum is 4
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -memoryInGB
 Initial amount of memory to assign to the VRA in GB.
 Default is 3, Minimum is 1, Maximum is 16
