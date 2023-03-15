@@ -36,6 +36,7 @@ All recent updates can now be tracked via the [Change Log](https://github.com/Ze
 
 ## TODO
 
+* Support ZVM appliance (different connection flow)
 * JFLR Functionality
 * Create VPG (Per-VM modification and Backup Settings)
 * Edit VPG
