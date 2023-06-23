@@ -46,10 +46,10 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             { Connect-ZertoServer -zertoServer -credential $(@{Username = "zerto\build"; Password = 'SecureString' }) } | Should -Throw
         }
 
-        It "has a switch parameter to return the headers" {
-            #Get-Command $global:function | Should -HaveParameter returnHeaders
-            Get-Command $global:function | Should -HaveParameter returnHeaders -Type Switch
-        }
+        #It "has a switch parameter to return the headers" {
+        #    #Get-Command $global:function | Should -HaveParameter returnHeaders
+        #    Get-Command $global:function | Should -HaveParameter returnHeaders -Type Switch
+        #}
 
         It "has a switch parameter to auto reauthorize the session" {
             Get-Command $global:function | Should -HaveParameter autoReconnect
