@@ -193,8 +193,8 @@ task CreateArtifacts CleanPublish, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlH
     }
 }
 #EndRegion
-
-task build CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles, BuiltFileTests, CreateArtifacts
+# addd back to line below between analyze and create BuiltFileTests,
+task build CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles,  CreateArtifacts
 task quickBuild CleanPublish, CreatePsm1ForRelease, AnalyzeBuiltFiles, {
     Get-Module -Name ZertoApiWrapper | Remove-Module -Force
     ImportBuiltModule
