@@ -182,8 +182,8 @@ task CreatePsm1ForRelease CreatePsd1ForRelease, {
 #EndRegion
 
 #Region - Artifacts \ Publish
-# Full Build Process - No Publishing
-task CreateArtifacts CleanPublish, AnalyzeBuiltFiles, BuiltFileTests, BuildMamlHelp, {
+# Full Build Process - No Publishing add this later  \/ BuiltFileTests,
+task CreateArtifacts CleanPublish, AnalyzeBuiltFiles,  BuildMamlHelp, {
     Compress-Archive -Path $moduleOutPath -DestinationPath .\publish\ZertoApiWrapper.zip
     $MyMatches = Select-String -Path "$BuildRoot\CHANGELOG.md" "^##\s\["
     $data = Get-Content "$BuildRoot\CHANGELOG.md"
