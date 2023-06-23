@@ -1,4 +1,3 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Invoke-ZertoRestRequest {
     [cmdletbinding()]
     param(
@@ -54,7 +53,35 @@ function Invoke-ZertoRestRequest {
         $script:zvmLastAction = (Get-Date).Ticks
         # If running PwSh - Use this Invoke-RestMethod with passed Variables
         if ($PSVersionTable.PSVersion.Major -ge 6) {
-            $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -SkipCertificateCheck -ResponseHeadersVariable responseHeaders -TimeoutSec 100
+            # If we are authenticating to the ZVM, Use this block to use Invoke-WebRequest and format the Headers as expected.
+            if ($uri -eq "auth/realms/zerto/protocol/openid-connect/token" -and $method -eq "POST") {
+                write-host "in the loop"
+
+                $data = @{
+                    'client_id'     = 'zerto-client'
+                    'username'      = 'admin'
+                    'password'      = 'Zertodata987!'
+                    'grant_type'    = 'password'
+                }
+                $params = @{
+                    'Uri'         = 'https://192.168.50.60/auth/realms/zerto/protocol/openid-connect/token'
+                    'Method'      = 'Post'
+                    'Body'        = $data
+                    'ContentType' = 'application/x-www-form-urlencoded'
+                }
+
+                $apiRequestResults = Invoke-RestMethod @params -SkipCertificateCheck
+
+
+                $ExpiresIn = $apiRequestResults.expires_in
+                $script:AuthExpiresAt = (Get-Date).AddSeconds($ExpiresIn)
+                $script:refreshToken = $apiRequestResults.refresh_token
+                $responseHeaders = @{ }
+                $responseHeaders['Authorization'] = "Bearer " + @($apiRequestResults.access_token)
+            } else {
+                $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -SkipCertificateCheck -ResponseHeadersVariable responseHeaders -TimeoutSec 100
+                Write-Host $apiRequestResults
+            }
         } else {
             # If running PowerShell 5.1 --> Do the Following
             # Check to see if All Certs are Trusted. If not, Create the Policy to Trust All Certificates
@@ -79,10 +106,20 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
 
             }
             # If we are authenticating to the ZVM, Use this block to use Invoke-WebRequest and format the Headers as expected.
-            if ($uri -eq "session/add" -and $method -eq "POST") {
+            if ($uri -eq "auth/realms/zerto/protocol/openid-connect/token" -and $method -eq "POST") {
+                $submittedURI = "https://{0}:{1}/{2}" -f $script:zvmServer, $script:zvmPort, $uri
+                $body = @{
+                    'client_id'     = $script:zertoClientId
+                    'username'      = $credential.GetNetworkCredential().Username
+                    'password'      = $credential.GetNetworkCredential().Password
+                    'grant_type'    = 'password'
+                }
+                $contentType = 'application/x-www-form-urlencoded'
+
                 $apiRequestResults = Invoke-WebRequest -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
-                $responseHeaders = @{ }
-                $responseHeaders['x-zerto-session'] = @($apiRequestResults.Headers['x-zerto-session'])
+                Write-Host $apiRequestResults
+                #$responseHeaders = @{ }
+                #$responseHeaders['x-zerto-session'] = @($apiRequestResults.Headers['x-zerto-session'])
             } elseif ($method -ne "GET") {
                 # If the Method is something other than 'GET' use this call with a body parameter
                 $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100

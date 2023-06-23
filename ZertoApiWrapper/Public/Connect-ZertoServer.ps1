@@ -1,4 +1,3 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
 function Connect-ZertoServer {
     [cmdletbinding()]
     [OutputType([hashtable])]
@@ -18,26 +17,31 @@ function Connect-ZertoServer {
         )]
         [System.Management.Automation.PSCredential]$credential,
         [Parameter(
-            HelpMessage = "Zerto Virtual Manager management port. Default value is 9669."
+            HelpMessage = "Zerto Virtual Manager management port. Default value is 443."
         )]
         [ValidateNotNullOrEmpty()]
         [ValidateRange(1024, 65535)]
         [Alias("port")]
-        [string]$zertoPort = "9669",
+        [string]$zertoPort = "443",
+        [Parameter(
+            HelpMessage = "Zerto Keycloak client id. Default value is zerto-client."
+        )]
+        [ValidateNotNullOrEmpty()]
+        [Alias("clientid")]
+        [string]$zertoClientId = "zerto-client",
         [Parameter(
             HelpMessage = "Use this switch to indicate that you would like the module to take care of auto re-authorization and reconnection to the ZVM should the token expire. This option will cache your PSCredential object to be reused"
         )]
         [switch]$AutoReconnect,
         [Parameter(
-            HelpMessage = "Use this switch to return the headers to a specified variable or to the default output."
+            HelpMessage = "Use this switch to return the Bearer Token to a specified variable or to the default output."
         )]
-        [switch]$returnHeaders
+        [switch]$returnToken
 
     )
 
     begin {
-        $body = '{"AuthenticationMethod": "1"}'
-        $uri = "session/add"
+        $uri = "auth/realms/zerto/protocol/openid-connect/token"
         # Set Script Scope Variables for Use in all functions in the module; Server and Port Information
         Set-Variable -Name zvmServer -Scope Script -Value $zertoServer
         Set-Variable -Name zvmPort -Scope Script -Value $zertoPort
@@ -45,26 +49,34 @@ function Connect-ZertoServer {
         Set-Variable -Name zvmLastAction -Scope Script -Value $(Get-Date).Ticks
         # Set / Clear the zvmHeaders to clear any existing token
         Set-Variable -Name zvmHeaders -Scope Script -Value @{
-            "Accept"             = "application/json"
+            #"Accept"             = "application/json"
             "zerto-triggered-by" = "PowershellWes"
         }
         Set-Variable -Name Reconnect -Scope Script -Value $AutoReconnect.IsPresent
         if ($Script:Reconnect) {
             Set-Variable -Name CachedCredential -Scope Script -Value $credential
         }
+        Set-Variable -Name zertoClientId -Scope Script -Value $zertoClientId
+
+        $body = @{
+            'client_id'     = $script:zertoClientId
+            'username'      = $credential.GetNetworkCredential().Username
+            'password'      = $credential.GetNetworkCredential().Password
+            'grant_type'    = 'password'
+        }
     }
 
     process {
-        # Send authorization request to the function and send back the results including headers
-        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -returnHeaders -body $body -method POST -ErrorAction Stop
+        # Send authorization request to the function and send back the results including headers -returnHeaders
+        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential  -body $body -method POST -ErrorAction Stop
     }
 
     end {
         # Build Headers Hashtable with Authorization Token
-        $Script:zvmHeaders['x-zerto-session'] = $results.Headers['x-zerto-session'][0].ToString()
-        
+        $script:zvmHeaders['Authorization'] = "Bearer " + $results.access_token.ToString()
+
         # Have the option to return the headers to a variable
-        if ($returnHeaders) {
+        if ($returnToken) {
             return $Script:zvmHeaders
         }
     }
