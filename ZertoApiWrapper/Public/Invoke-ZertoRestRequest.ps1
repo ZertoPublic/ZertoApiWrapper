@@ -55,8 +55,6 @@ function Invoke-ZertoRestRequest {
         if ($PSVersionTable.PSVersion.Major -ge 6) {
             # If we are authenticating to the ZVM, Use this block to use Invoke-WebRequest and format the Headers as expected.
             if ($uri -eq "auth/realms/zerto/protocol/openid-connect/token" -and $method -eq "POST") {
-                write-host "in the loop"
-
                 $data = @{
                     'client_id'     = 'zerto-client'
                     'username'      = 'admin'
@@ -80,7 +78,6 @@ function Invoke-ZertoRestRequest {
                 $responseHeaders['Authorization'] = "Bearer " + @($apiRequestResults.access_token)
             } else {
                 $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -SkipCertificateCheck -ResponseHeadersVariable responseHeaders -TimeoutSec 100
-                Write-Host $apiRequestResults
             }
         } else {
             # If running PowerShell 5.1 --> Do the Following
@@ -117,7 +114,6 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
                 $contentType = 'application/x-www-form-urlencoded'
 
                 $apiRequestResults = Invoke-WebRequest -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
-                Write-Host $apiRequestResults
                 #$responseHeaders = @{ }
                 #$responseHeaders['x-zerto-session'] = @($apiRequestResults.Headers['x-zerto-session'])
             } elseif ($method -ne "GET") {
