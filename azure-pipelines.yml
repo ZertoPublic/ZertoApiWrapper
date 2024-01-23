@@ -103,3 +103,16 @@ jobs:
           testRunTitle: "PSCore_MacOS1013_Built"
         displayName: "Publish Test Results"
         condition: always()
+
+  # Publish Module to Gallery
+  - job: Publish
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/zvma-updates'))
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - powershell: |
+      Install-Module -Name PowerShellGet -Force -Scope CurrentUser
+      $apiKey = "$(PowerShellGalleryApiKey)"
+      Publish-Module -Name 'ZertoApiWrapper' -NuGetApiKey $apiKey
+    displayName: 'Publish to PowerShell Gallery'
