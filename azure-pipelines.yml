@@ -106,7 +106,11 @@ jobs:
 
   # Publish Module to Gallery
   - job: Publish
-    dependsOn: Build
+    dependsOn:
+      - Build_PS_Windows
+      - Build_PSCore_Windows
+      - Build_PSCore_Ubuntu
+      - Build_PSCore_MacOS
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/zvma-updates'))
     pool:
       vmImage: 'windows-latest'
