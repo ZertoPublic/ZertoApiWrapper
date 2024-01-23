@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project is transitioning to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0]
+
+### Added
+
+* Added Support for Zerto 10 Virtual Appliance - You can now authenticate to Zerto Virtual Appliances and run the other functions of this module.
+
+### Updated
+
+* Updated `Connect-ZertoServer` function [help documentation](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md)
+* Updated `Invoke-ZertoRestRequest` function [help documentation](https://github.com/ZertoPublic/ZertoApiWrapper/blob/master/docs/Install-ZertoVra.md)
+
 ## [1.5.4]
 
 ### Zerto Virtual Manager

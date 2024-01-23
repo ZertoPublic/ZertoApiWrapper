@@ -10,12 +10,12 @@ trigger:
   branches:
     include:
       - master
-      - PowerShellBackPort
-      - Refactor-Build
+      - zvma-updates
 
 # Trigger CI on pull requests to master and develop branches
 pr:
   - master
+  - zvma-updates
 
 jobs:
   # Windows PowerShell 5.1 Build Job

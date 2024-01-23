@@ -24,17 +24,17 @@ Establishes a connection to a ZVM using credentials provided via a PSCredential 
 
 ### Example 1
 ```powershell
-PS C:\> Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "9669" -credential $credential
+PS C:\> Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "443" -credential $credential
 ```
 
-Establishes a connection to ZVM 192.168.1.100 on port 9669 with supplied PSCredential object.
+Establishes a connection to ZVM 192.168.1.100 on port 443 with supplied PSCredential object.
 
 ### Example 2
 ```powershell
-PS C:\> Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "9669" -credential $credential -AutoReconnect
+PS C:\> Connect-ZertoServer -zertoServer "192.168.1.100" -zertoPort "443" -credential $credential -AutoReconnect
 ```
 
-Establishes a connection to ZVM 192.168.1.100 on port 9669 with supplied PSCredential object. Adding the `-AutoReconnect` switch
+Establishes a connection to ZVM 192.168.1.100 on port 443 with supplied PSCredential object. Adding the `-AutoReconnect` switch
 will cache the PSCredential object should the session need to be reauthorized due to an expired token.
 
 ## PARAMETERS
@@ -86,7 +86,7 @@ Accept wildcard characters: False
 
 ### -zertoPort
 Zerto Virtual Manager management port.
-Default value is 9669.
+Default value is 443.
 
 ```yaml
 Type: String
@@ -95,7 +95,7 @@ Aliases: port
 
 Required: False
 Position: Named
-Default value: "9669"
+Default value: "443"
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

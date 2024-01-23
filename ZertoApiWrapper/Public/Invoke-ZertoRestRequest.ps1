@@ -123,18 +123,26 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
             }
             # If we are authenticating to the ZVM, Use this block to use Invoke-WebRequest and format the Headers as expected.
             if ($uri -eq "auth/realms/zerto/protocol/openid-connect/token" -and $method -eq "POST") {
-                $submittedURI = "https://{0}:{1}/{2}" -f $script:zvmServer, $script:zvmPort, $uri
-                $body = @{
+                $data = @{
                     'client_id'     = $script:zertoClientId
-                    'username'      = $credential.GetNetworkCredential().Username
+                    'username'      = $credential.GetNetworkCredential().UserName
                     'password'      = $credential.GetNetworkCredential().Password
                     'grant_type'    = 'password'
                 }
-                $contentType = 'application/x-www-form-urlencoded'
 
-                $apiRequestResults = Invoke-WebRequest -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
-                #$responseHeaders = @{ }
-                #$responseHeaders['x-zerto-session'] = @($apiRequestResults.Headers['x-zerto-session'])
+                $params = @{
+                    'Uri'         = 'https://' + $script:zvmServer + ':' + $script:zvmPort + '/auth/realms/zerto/protocol/openid-connect/token'
+                    'Method'      = 'POST'
+                    'Body'        = $data
+                    'ContentType' = 'application/x-www-form-urlencoded'
+                }
+                $apiRequestResults = Invoke-RestMethod @params
+
+                $ExpiresIn = $apiRequestResults.expires_in
+                $script:AuthExpiresAt = (Get-Date).AddSeconds($ExpiresIn)
+                $script:refreshToken = $apiRequestResults.refresh_token
+                $responseHeaders = @{ }
+                $responseHeaders['Authorization'] = "Bearer " + @($apiRequestResults.access_token)
             } elseif ($method -ne "GET") {
                 # If the Method is something other than 'GET' use this call with a body parameter
                 $apiRequestResults = Invoke-RestMethod -Uri $submittedURI -Headers $script:zvmHeaders -Method $method -Body $body -ContentType $contentType -Credential $credential -TimeoutSec 100
