@@ -24,13 +24,13 @@
     },
     "LastTest": null,
     "Link": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-38?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-38?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "identifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-38?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": null,
       "type": "VmApi"
     },
     "Link_{0}": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-38?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-38?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": "self",
       "type": "VmApi"
     },
@@ -38,7 +38,7 @@
     "OutgoingBandWidthInMbps": 0.001953125,
     "Priority": 1,
     "ProtectedSite": {
-      "href": "https://192.168.10.20:9669/v1/localsite",
+      "href": "https://192.168.10.20/v1/localsite",
       "identifier": "9e09efa0-0d00-46ed-929b-f86273b28205",
       "rel": null,
       "type": "LocalSiteApi"
@@ -46,7 +46,7 @@
     "ProvisionedStorageInMB": 77906,
     "RecoveryHostIdentifier": "f45d81e4-4ff5-4376-a5c8-20ffe8d52431.host-15",
     "RecoverySite": {
-      "href": "https://192.168.10.20:9669/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
+      "href": "https://192.168.10.20/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
       "identifier": "057cab27-f02a-443a-989d-7f14341fa9c3",
       "rel": null,
       "type": "PeerSiteApi"
@@ -92,13 +92,13 @@
     },
     "LastTest": null,
     "Link": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-37?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-37?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "identifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-37?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": null,
       "type": "VmApi"
     },
     "Link_{0}": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-37?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-37?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": "self",
       "type": "VmApi"
     },
@@ -106,7 +106,7 @@
     "OutgoingBandWidthInMbps": 0.0009765625,
     "Priority": 1,
     "ProtectedSite": {
-      "href": "https://192.168.10.20:9669/v1/localsite",
+      "href": "https://192.168.10.20/v1/localsite",
       "identifier": "9e09efa0-0d00-46ed-929b-f86273b28205",
       "rel": null,
       "type": "LocalSiteApi"
@@ -114,7 +114,7 @@
     "ProvisionedStorageInMB": 77906,
     "RecoveryHostIdentifier": "f45d81e4-4ff5-4376-a5c8-20ffe8d52431.host-15",
     "RecoverySite": {
-      "href": "https://192.168.10.20:9669/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
+      "href": "https://192.168.10.20/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
       "identifier": "057cab27-f02a-443a-989d-7f14341fa9c3",
       "rel": null,
       "type": "PeerSiteApi"
@@ -160,13 +160,13 @@
     },
     "LastTest": null,
     "Link": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-36?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-36?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "identifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-36?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": null,
       "type": "VmApi"
     },
     "Link_{0}": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-36?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-36?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": "self",
       "type": "VmApi"
     },
@@ -174,7 +174,7 @@
     "OutgoingBandWidthInMbps": 0.00146484375,
     "Priority": 1,
     "ProtectedSite": {
-      "href": "https://192.168.10.20:9669/v1/localsite",
+      "href": "https://192.168.10.20/v1/localsite",
       "identifier": "9e09efa0-0d00-46ed-929b-f86273b28205",
       "rel": null,
       "type": "LocalSiteApi"
@@ -182,7 +182,7 @@
     "ProvisionedStorageInMB": 77906,
     "RecoveryHostIdentifier": "f45d81e4-4ff5-4376-a5c8-20ffe8d52431.host-15",
     "RecoverySite": {
-      "href": "https://192.168.10.20:9669/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
+      "href": "https://192.168.10.20/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
       "identifier": "057cab27-f02a-443a-989d-7f14341fa9c3",
       "rel": null,
       "type": "PeerSiteApi"
@@ -228,13 +228,13 @@
     },
     "LastTest": null,
     "Link": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-26?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-26?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "identifier": "d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-26?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": null,
       "type": "VmApi"
     },
     "Link_{0}": {
-      "href": "https://192.168.10.20:9669/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-26?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
+      "href": "https://192.168.10.20/v1/vms/d4a6a1d5-79e9-4308-990a-7c3e616f0908.vm-26?VpgIdentifier=57f502ff-3c41-4aff-b20a-6638205b73cd",
       "rel": "self",
       "type": "VmApi"
     },
@@ -242,7 +242,7 @@
     "OutgoingBandWidthInMbps": 0.01953125,
     "Priority": 1,
     "ProtectedSite": {
-      "href": "https://192.168.10.20:9669/v1/localsite",
+      "href": "https://192.168.10.20/v1/localsite",
       "identifier": "9e09efa0-0d00-46ed-929b-f86273b28205",
       "rel": null,
       "type": "LocalSiteApi"
@@ -250,7 +250,7 @@
     "ProvisionedStorageInMB": 102400,
     "RecoveryHostIdentifier": "f45d81e4-4ff5-4376-a5c8-20ffe8d52431.host-15",
     "RecoverySite": {
-      "href": "https://192.168.10.20:9669/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
+      "href": "https://192.168.10.20/v1/peersites/057cab27-f02a-443a-989d-7f14341fa9c3",
       "identifier": "057cab27-f02a-443a-989d-7f14341fa9c3",
       "rel": null,
       "type": "PeerSiteApi"

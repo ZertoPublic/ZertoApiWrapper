@@ -1,3 +1,5 @@
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Connect-ZertoServer {
     [cmdletbinding()]
     [OutputType([hashtable])]
@@ -20,7 +22,7 @@ function Connect-ZertoServer {
             HelpMessage = "Zerto Virtual Manager management port. Default value is 443."
         )]
         [ValidateNotNullOrEmpty()]
-        [ValidateRange(1024, 65535)]
+        [ValidateRange(443, 65535)]
         [Alias("port")]
         [string]$zertoPort = "443",
         [Parameter(
@@ -45,30 +47,25 @@ function Connect-ZertoServer {
         # Set Script Scope Variables for Use in all functions in the module; Server and Port Information
         Set-Variable -Name zvmServer -Scope Script -Value $zertoServer
         Set-Variable -Name zvmPort -Scope Script -Value $zertoPort
+        Set-Variable -Name zvmClientId -Scope Script -Value $zertoClientId
         # Set zvmLastAction Variable to keep track when the API token expires
         Set-Variable -Name zvmLastAction -Scope Script -Value $(Get-Date).Ticks
         # Set / Clear the zvmHeaders to clear any existing token
         Set-Variable -Name zvmHeaders -Scope Script -Value @{
-            #"Accept"             = "application/json"
+            "Accept"             = "application/json"
             "zerto-triggered-by" = "PowershellWes"
         }
         Set-Variable -Name Reconnect -Scope Script -Value $AutoReconnect.IsPresent
         if ($Script:Reconnect) {
             Set-Variable -Name CachedCredential -Scope Script -Value $credential
         }
+        # need to check to see if we need this or if the zvmclientid above is enough
         Set-Variable -Name zertoClientId -Scope Script -Value $zertoClientId
-
-        $body = @{
-            'client_id'     = $script:zertoClientId
-            'username'      = $credential.GetNetworkCredential().Username
-            'password'      = $credential.GetNetworkCredential().Password
-            'grant_type'    = 'password'
-        }
     }
 
     process {
         # Send authorization request to the function and send back the results including headers -returnHeaders
-        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential  -body $body -method POST -ErrorAction Stop
+        $results = Invoke-ZertoRestRequest -uri $uri -credential $credential -method POST -ErrorAction Stop
     }
 
     end {

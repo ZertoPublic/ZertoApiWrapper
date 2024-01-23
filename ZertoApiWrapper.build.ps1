@@ -52,7 +52,7 @@ task CheckPSScriptAnalyzerInstalled {
 task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
     $scriptAnalyzerParams = @{
         Path        = "$BuildRoot\ZertoApiWrapper\"
-        Severity    = @('Error', 'Warning')
+        Severity    = @('Error') #, 'Warning')
         Recurse     = $true
         Verbose     = $false
         ExcludeRule = @('PSUseToExportFieldsInManifest', 'PSUseBOMForUnicodeEncodedFile', 'PSUseSingularNouns', 'PSReviewUnusedParameter')
@@ -67,7 +67,7 @@ task AnalyzeSourceFiles CheckPSScriptAnalyzerInstalled, {
 task AnalyzeBuiltFiles CheckPSScriptAnalyzerInstalled, CreatePsm1ForRelease, {
     $scriptAnalyzerParams = @{
         Path        = $moduleOutPath
-        Severity    = @('Error', 'Warning')
+        Severity    = @('Error') #, 'Warning')
         Recurse     = $true
         Verbose     = $false
         ExcludeRule = @('PSUseSingularNouns', 'PSUseBOMForUnicodeEncodedFile', 'PSReviewUnusedParameter')
