@@ -132,5 +132,5 @@ jobs:
           Install-Module -Name PowerShellGet -Force -Scope CurrentUser
           $env:PSModulePath = "$(Build.ArtifactStagingDirectory);"+$env:PSModulePath
           $apiKey = "$(PowerShellGalleryApiKey)"
-          Publish-Module -Name 'ZertoApiWrapper' -Path "$(Build.ArtifactStagingDirectory)/ZertoApiWrapper" -NuGetApiKey $apiKey
+          Publish-Module -Path "$(Build.ArtifactStagingDirectory)\ZertoApiWrapper" -NuGetApiKey $apiKey
         displayName: 'Publish to PowerShell Gallery'
