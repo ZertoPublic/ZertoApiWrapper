@@ -57,6 +57,12 @@ jobs:
           testRunTitle: "PSCore_Win2016_Built"
         displayName: "Publish Test Results"
         condition: always()
+          # Publish module as an artifact
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: "publish/ZertoApiWrapper"
+          ArtifactName: "ZertoApiWrapper"
+          publishLocation: "Container"
 
   # Linux Build Job
   - job: Build_PSCore_Ubuntu
@@ -115,8 +121,16 @@ jobs:
     pool:
       vmImage: 'windows-latest'
     steps:
+      # Download the artifact
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          artifactName: 'ZertoApiWrapper' # The name of the artifact you specified in the build job
+          downloadPath: '$(Build.ArtifactStagingDirectory)'
+
+      # Publish the module to the PowerShell Gallery
       - powershell: |
           Install-Module -Name PowerShellGet -Force -Scope CurrentUser
+          $env:PSModulePath = "$(Build.ArtifactStagingDirectory);"+$env:PSModulePath
           $apiKey = "$(PowerShellGalleryApiKey)"
-          Publish-Module -Name 'ZertoApiWrapper' -NuGetApiKey $apiKey
+          Publish-Module -Name 'ZertoApiWrapper' -Path "$(Build.ArtifactStagingDirectory)/ZertoApiWrapper" -NuGetApiKey $apiKey
         displayName: 'Publish to PowerShell Gallery'
