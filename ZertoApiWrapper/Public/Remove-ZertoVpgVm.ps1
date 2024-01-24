@@ -30,7 +30,7 @@ function Remove-ZertoVpgVm {
         }
         $VmIdentifiers = foreach ($machine in ($vm | Select-Object -Unique)) {
             if ($machine -in $protectedVms.VmName) {
-                $protectedVms.Where( { $_.VmName -like $machine }) | Select-Object -ExpandProperty VmIdentifier
+                $protectedVms | Where-Object ( { $_.VmName -like $machine }) | Select-Object -ExpandProperty VmIdentifier
             } else {
                 Write-Warning "Virtual Machine: '$machine' is not found in Vpg: '$VpgName'. Check your parameters. Skipping $machine"
             }
