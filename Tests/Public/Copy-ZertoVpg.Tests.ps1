@@ -17,6 +17,7 @@ Describe $global:function -Tag 'Unit', 'Source', 'Built' {
             @{ParameterName = 'SourceVpgName'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'NewVpgName'; Type = 'String'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
             @{ParameterName = 'VMs'; Type = 'String[]'; Mandatory = $true; Validation = 'NotNullOrEmpty' }
+	    @{ParameterName = 'StoragePolicyIdentifier'; Type = 'String'; Mandatory = $false; Validation = 'NotNullOrEmpty' }
         )
 
         It "<ParameterName> parameter is of <Type> type" -TestCases $ParameterTestCases {
