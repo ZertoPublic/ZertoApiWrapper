@@ -61,9 +61,13 @@ function Invoke-ZertoRestRequest {
             Uri         = $submittedURI
             Method      = $method
             Headers     = $headers
-            Body        = $body
             TimeoutSec  = 100
             ContentType = "application/json"
+        }
+
+        # Ensure GET requests do not include a body
+        if ($method -ne "GET") {
+            $params["Body"] = $body
         }
 
         # Handle authentication requests
