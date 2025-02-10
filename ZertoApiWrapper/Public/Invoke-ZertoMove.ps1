@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Invoke-ZertoMove {
     [CmdletBinding( DefaultParameterSetName = "id", SupportsShouldProcess = $true )]
     param(

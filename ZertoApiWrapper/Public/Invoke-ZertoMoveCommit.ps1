@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Invoke-ZertoMoveCommit {
     [cmdletbinding(SupportsShouldProcess = $true, DefaultParameterSetName = "Main")]
     param(

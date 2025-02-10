@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function New-ZertoVpgSettingsIdentifier {
     [cmdletbinding( SupportsShouldProcess = $true, DefaultParameterSetName = "newVpg" )]
     param(

@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Start-ZertoFailoverTest {
     [cmdletbinding( SupportsShouldProcess = $true )]
     param(

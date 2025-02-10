@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Add-ZertoVpgVm {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "VpgName")]
     param (

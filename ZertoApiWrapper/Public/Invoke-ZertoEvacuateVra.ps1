@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Invoke-ZertoEvacuateVra {
     [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = "VraIdentifier")]
     param (

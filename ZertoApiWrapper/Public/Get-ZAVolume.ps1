@@ -1,4 +1,5 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Get-ZAVolume {
     [CmdletBinding(DefaultParameterSetName = "VpgIdentifier")]
     param (
