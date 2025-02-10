@@ -63,6 +63,7 @@ function Invoke-ZertoRestRequest {
             Headers     = $headers
             Body        = $body
             TimeoutSec  = 100
+            ContentType = "application/json"
         }
 
         # Handle authentication requests
@@ -77,18 +78,18 @@ function Invoke-ZertoRestRequest {
             $params.Uri = "https://{0}:{1}/auth/realms/zerto/protocol/openid-connect/token" -f $script:zvmServer, $script:zvmPort
             $params.Body = $data
             $params.ContentType = "application/x-www-form-urlencoded"
-        } else {
-            $params.ContentType = "application/json"
         }
 
         # Handle certificate validation for PowerShell 5.1
         if ($PSVersionTable.PSVersion.Major -ge 6) {
             $params["SkipCertificateCheck"] = $true
-        } elseif ([System.Net.ServicePointManager]::CertificatePolicy.GetType().Name -ne "TrustAllCertsPolicy") {
-            [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
+            $apiRequestResults = Invoke-RestMethod @params -ResponseHeadersVariable responseHeaders
+        } else {
+            # PowerShell 5.1 workaround since `-ResponseHeadersVariable` is not available
+            $webResponse = Invoke-WebRequest @params
+            $apiRequestResults = $webResponse.Content | ConvertFrom-Json -ErrorAction SilentlyContinue
+            $responseHeaders = $webResponse.Headers
         }
-
-        $apiRequestResults = Invoke-RestMethod @params -ResponseHeadersVariable responseHeaders
 
         # Debugging - Inspect Response Type
         Write-Verbose "Response Type: $($apiRequestResults.GetType().FullName)"
