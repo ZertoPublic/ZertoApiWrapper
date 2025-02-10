@@ -80,12 +80,28 @@ function Invoke-ZertoRestRequest {
             $params.ContentType = "application/x-www-form-urlencoded"
         }
 
-        # Handle certificate validation for PowerShell 5.1
-        if ($PSVersionTable.PSVersion.Major -ge 6) {
+        # Handle SSL/TLS trust issue for PowerShell 5.1
+        if ($PSVersionTable.PSVersion.Major -lt 6) {
+            Add-Type -TypeDefinition @"
+            using System;
+            using System.Net;
+            using System.Security.Cryptography.X509Certificates;
+            public class TrustAllCertsPolicy : ICertificatePolicy {
+                public bool CheckValidationResult(ServicePoint srvPoint, X509Certificate certificate, WebRequest request, int certificateProblem) {
+                    return true;
+                }
+            }
+"@ -PassThru
+            [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+        } else {
             $params["SkipCertificateCheck"] = $true
+        }
+
+        # Execute API request
+        if ($PSVersionTable.PSVersion.Major -ge 6) {
             $apiRequestResults = Invoke-RestMethod @params -ResponseHeadersVariable responseHeaders
         } else {
-            # PowerShell 5.1 workaround since `-ResponseHeadersVariable` is not available
+            # PowerShell 5.1 workaround: use Invoke-WebRequest instead
             $webResponse = Invoke-WebRequest @params
             $apiRequestResults = $webResponse.Content | ConvertFrom-Json -ErrorAction SilentlyContinue
             $responseHeaders = $webResponse.Headers
