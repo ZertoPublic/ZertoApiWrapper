@@ -53,6 +53,7 @@ function Import-ZertoVmNicSetting {
                             $NicUri = "{0}/nics/{1}" -f $uri, $nic.NicIdentifier
                             Invoke-ZertoRestRequest -uri $NicUri -Method "DELETE" > $null
                             $nicSettings = Invoke-ZertoRestRequest -uri $NicUri -Method "GET"
+                            $nicSettings.failover.Hypervisor.ShouldReplaceIpConfiguration = "True"
                             $nicSettings.failover.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.LiveNetwork]
                             $nicSettings.failover.Hypervisor.ShouldReplaceMacAddress = $vm.LiveShouldReplaceMac
                             if ($vm.LiveIsDHCP -imatch "true") {
@@ -77,6 +78,7 @@ function Import-ZertoVmNicSetting {
                                 $nicSettings.failover.Hypervisor.IpConfig = $IpConfig
                                 $nicSettings.failover.Hypervisor.DnsSuffix = $vm.LiveDnsSuffix
                             }
+                            $nicSettings.failoverTest.Hypervisor.ShouldReplaceIpConfiguration = "True"
                             $nicSettings.failoverTest.Hypervisor.NetworkIdentifier = $NetworkMap[$vm.TestNetwork]
                             $nicSettings.failoverTest.Hypervisor.ShouldReplaceMacAddress = $vm.TestShouldReplaceMac
                             if ($vm.TestIsDHCP -imatch "true" ) {
