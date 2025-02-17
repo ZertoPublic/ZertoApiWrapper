@@ -9,12 +9,12 @@ function Add-ZertoPeerSite {
         [ValidateNotNullOrEmpty()]
         [string]$targetHost,
         [Parameter(
-            HelpMessage = "Target communication port. Default is 9081"
+            HelpMessage = "Target communication port. Default is 9071 for Zerto 10.0 and Later. For ZVR 9.7 and earlier, use port 9081."
         )]
         [ValidateRange(1024, 65535)]
-        [int]$targetPort = 9081,
+        [int]$targetPort = 9071,
         [Parameter(
-            HelpMessage = "The generated token from the destination site. Note: This is only supported when both sites support pairing authentication. This was implemented to support ZVR 7.5 and later."
+            HelpMessage = "The generated token from the destination site. Note: This is only supported when both sites support pairing authentication. This was implemented to support ZVR 10.0 and later."
         )]
         [ValidateNotNullOrEmpty()]
         [string]$token
