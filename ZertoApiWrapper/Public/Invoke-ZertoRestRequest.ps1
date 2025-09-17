@@ -1,4 +1,6 @@
-<# .ExternalHelp ./en-us/ZertoApiWrapper-help.xml #>
+<#
+.ExternalHelp ./en-us/ZertoApiWrapper-help.xml
+#>
 function Invoke-ZertoRestRequest {
     [cmdletbinding()]
     param(
@@ -64,6 +66,7 @@ function Invoke-ZertoRestRequest {
                     'username'      = $credential.GetNetworkCredential().UserName
                     'password'      = $credential.GetNetworkCredential().Password
                     'grant_type'    = 'password'
+                    'scope'         = 'openid'
                 }
 
                 $params = @{
